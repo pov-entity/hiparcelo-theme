@@ -1,0 +1,10 @@
+node_modules/
+scripts/
+docs/
+preview-output/
+test-results/
+package.json
+package-lock.json
+README.md
+.gitignore
+.github/

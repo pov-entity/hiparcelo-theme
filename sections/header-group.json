@@ -1,0 +1,13 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "hp-header",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header"
+  ]
+}

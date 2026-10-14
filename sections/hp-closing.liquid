@@ -1,0 +1,44 @@
+{% liquid
+  assign default_heading = 'hiparcelo.closing.heading' | t
+  assign offer_url = '#hp-about'
+  assign offer_label = 'hiparcelo.closing.about' | t
+  assign featured = section.settings.featured_product | default: settings.hp_featured_product
+  if featured != blank
+    assign offer_url = featured.url
+    assign offer_label = 'hiparcelo.navigation.first_find' | t
+  endif
+%}
+<section class="hp hp-closing" aria-labelledby="hp-closing-title-{{ section.id }}">
+  <div class="hp-shell hp-closing__inner">
+    <div>
+      <h2 id="hp-closing-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>
+      <p>{{ 'hiparcelo.closing.copy' | t }}</p>
+    </div>
+    <a class="hp-button" href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}">
+      <span data-hp-offer-label>{{ offer_label }}</span>{% render 'hp-icon', name: 'arrow' %}
+    </a>
+  </div>
+</section>
+{% stylesheet %}
+  .hp-closing { padding-block: 43px; background: #edf5f3; }
+  .hp-closing__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .hp-closing h2 { font-size: 30px; }
+  .hp-closing p { margin-top: 10px; font-size: 14px; color: var(--hp-muted); }
+  .hp-closing .hp-button { max-width: 48%; }
+  @media (max-width: 749px) {
+    .hp-closing__inner { display: block; }
+    .hp-closing h2 { font-size: 27px; }
+    .hp-closing .hp-button { margin-top: 23px; max-width: 100%; }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:hiparcelo.closing.name",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:hiparcelo.fields.heading" },
+    { "type": "product", "id": "featured_product", "label": "t:hiparcelo.fields.product" }
+  ],
+  "presets": [{ "name": "t:hiparcelo.closing.name" }]
+}
+{% endschema %}

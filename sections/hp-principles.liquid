@@ -1,0 +1,83 @@
+<section class="hp hp-principles" id="hp-approach" aria-label="{{ 'hiparcelo.principles.label' | t }}">
+  <div class="hp-shell hp-principles__grid">
+    {% for block in section.blocks %}
+      {% liquid
+        case block.settings.icon
+          when 'eye'
+            assign default_title = 'hiparcelo.principles.clarity_title' | t
+            assign default_copy = 'hiparcelo.principles.clarity_copy' | t
+          when 'heart'
+            assign default_title = 'hiparcelo.principles.help_title' | t
+            assign default_copy = 'hiparcelo.principles.help_copy' | t
+          else
+            assign default_title = 'hiparcelo.principles.useful_title' | t
+            assign default_copy = 'hiparcelo.principles.useful_copy' | t
+        endcase
+      %}
+      <div class="hp-principles__item" {{ block.shopify_attributes }}>
+        <span class="hp-principles__icon">{% render 'hp-icon', name: block.settings.icon %}</span>
+        <div>
+          <h2>{{ block.settings.title | default: default_title | escape }}</h2>
+          <p>{{ block.settings.copy | default: default_copy | escape }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% stylesheet %}
+  .hp-principles { background: var(--hp-surface); border-bottom: 1px solid var(--hp-line); }
+  .hp-principles__grid { display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 32px; }
+  .hp-principles__item { display: flex; align-items: center; gap: 17px; padding-inline: 28px; }
+  .hp-principles__item:first-child { padding-left: 0; }
+  .hp-principles__item + .hp-principles__item { border-left: 1px solid var(--hp-line); }
+  .hp-principles__icon { display: flex; flex-shrink: 0; width: 49px; height: 49px; align-items: center; justify-content: center; border-radius: 50%; background: #dcefed; }
+  .hp-principles h2 { font-size: 15px; line-height: 1.35; letter-spacing: -.02em; }
+  .hp-principles p { margin-top: 5px; font-size: 13px; color: var(--hp-muted); }
+  @media (max-width: 1000px) and (min-width: 750px) {
+    .hp-principles__item { padding-inline: 16px; gap: 10px; }
+    .hp-principles__icon { width: 40px; height: 40px; }
+  }
+  @media (max-width: 749px) {
+    .hp-principles__grid { grid-template-columns: 1fr; padding-block: 8px; }
+    .hp-principles__item { padding: 19px 0; }
+    .hp-principles__item + .hp-principles__item { border-left: 0; border-top: 1px solid var(--hp-line); }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:hiparcelo.principles.name",
+  "limit": 1,
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "principle",
+      "name": "t:hiparcelo.principles.block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:hiparcelo.fields.icon",
+          "options": [
+            { "value": "box", "label": "t:hiparcelo.principles.useful" },
+            { "value": "eye", "label": "t:hiparcelo.principles.clarity" },
+            { "value": "heart", "label": "t:hiparcelo.principles.help" }
+          ],
+          "default": "box"
+        },
+        { "type": "text", "id": "title", "label": "t:hiparcelo.fields.heading" },
+        { "type": "textarea", "id": "copy", "label": "t:hiparcelo.fields.copy" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:hiparcelo.principles.name",
+      "blocks": [
+        { "type": "principle", "settings": { "icon": "box" } },
+        { "type": "principle", "settings": { "icon": "eye" } },
+        { "type": "principle", "settings": { "icon": "heart" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

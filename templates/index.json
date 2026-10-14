@@ -1,0 +1,129 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hp-hero",
+      "settings": {
+        "show_concept": true
+      }
+    },
+    "principles": {
+      "type": "hp-principles",
+      "blocks": {
+        "useful": {
+          "type": "principle",
+          "settings": {
+            "icon": "box"
+          }
+        },
+        "clarity": {
+          "type": "principle",
+          "settings": {
+            "icon": "eye"
+          }
+        },
+        "help": {
+          "type": "principle",
+          "settings": {
+            "icon": "heart"
+          }
+        }
+      },
+      "block_order": [
+        "useful",
+        "clarity",
+        "help"
+      ],
+      "settings": {}
+    },
+    "discovery": {
+      "type": "hp-discovery",
+      "blocks": {
+        "life": {
+          "type": "detail",
+          "settings": {
+            "topic": "life"
+          }
+        },
+        "detail": {
+          "type": "detail",
+          "settings": {
+            "topic": "detail"
+          }
+        },
+        "choice": {
+          "type": "detail",
+          "settings": {
+            "topic": "choice"
+          }
+        }
+      },
+      "block_order": [
+        "life",
+        "detail",
+        "choice"
+      ],
+      "settings": {
+        "show_concept": true
+      }
+    },
+    "about": {
+      "type": "hp-about",
+      "settings": {}
+    },
+    "help": {
+      "type": "hp-help",
+      "settings": {}
+    },
+    "faq": {
+      "type": "hp-faq",
+      "blocks": {
+        "products": {
+          "type": "question",
+          "settings": {
+            "topic": "products"
+          }
+        },
+        "delivery": {
+          "type": "question",
+          "settings": {
+            "topic": "delivery"
+          }
+        },
+        "returns": {
+          "type": "question",
+          "settings": {
+            "topic": "returns"
+          }
+        },
+        "help": {
+          "type": "question",
+          "settings": {
+            "topic": "help"
+          }
+        }
+      },
+      "block_order": [
+        "products",
+        "delivery",
+        "returns",
+        "help"
+      ],
+      "settings": {
+        "open_first": false
+      }
+    },
+    "closing": {
+      "type": "hp-closing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "principles",
+    "discovery",
+    "about",
+    "help",
+    "faq",
+    "closing"
+  ]
+}

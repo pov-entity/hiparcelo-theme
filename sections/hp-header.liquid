@@ -1,0 +1,144 @@
+{% liquid
+  assign offer_url = routes.root_url | append: '#hp-discovery'
+  assign offer_label = 'hiparcelo.navigation.explore' | t
+  assign featured = section.settings.featured_product | default: settings.hp_featured_product
+  if featured != blank
+    assign offer_url = featured.url
+    assign offer_label = 'hiparcelo.navigation.first_find' | t
+  endif
+%}
+<header class="hp hp-header">
+  <div class="hp-shell hp-header__inner">
+    <a class="hp-wordmark" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {% if settings.logo != blank %}
+        {{ settings.logo | image_url: width: 360 | image_tag: widths: '180, 360', sizes: '180px', width: 180, loading: 'eager', alt: shop.name }}
+      {% else %}
+        {{ 'hiparcelo.brand.prefix' | t }}<span>{{ 'hiparcelo.brand.suffix' | t }}</span>
+      {% endif %}
+    </a>
+    <nav class="hp-header__desktop" aria-label="{{ 'hiparcelo.navigation.main' | t }}">
+      <a href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}"><span data-hp-offer-label>{{ offer_label }}</span></a>
+      <a href="{{ routes.root_url }}#hp-about">{{ 'hiparcelo.navigation.about' | t }}</a>
+      <a href="{{ routes.root_url }}#hp-help">{{ 'hiparcelo.navigation.help' | t }}</a>
+    </nav>
+    <div class="hp-header__actions">
+      <a class="hp-header__cart" id="cart-icon-bubble" href="{{ routes.cart_url }}" aria-label="{{ 'hiparcelo.navigation.cart' | t }}">
+        {% render 'hp-icon', name: 'bag' %}
+        {% if cart.item_count > 0 %}
+          <span class="hp-header__count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+      <details class="hp-header__mobile" data-hp-menu>
+        <summary aria-label="{{ 'hiparcelo.navigation.menu' | t }}">{% render 'hp-icon', name: 'menu' %}</summary>
+        <nav aria-label="{{ 'hiparcelo.navigation.mobile' | t }}">
+          <a href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}"><span data-hp-offer-label>{{ offer_label }}</span></a>
+          <a href="{{ routes.root_url }}#hp-about">{{ 'hiparcelo.navigation.about' | t }}</a>
+          <a href="{{ routes.root_url }}#hp-help">{{ 'hiparcelo.navigation.help' | t }}</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+{% if template.name == 'product' and product != blank %}
+  <script type="application/json" data-hp-product>
+    {"title": {{ product.title | json }}, "url": {{ product.url | json }}}
+  </script>
+{% endif %}
+{% stylesheet %}
+  .hp-header { position: relative; z-index: 10; border-bottom: 1px solid var(--hp-line); background: #fff; }
+  .hp-header__inner { display: flex; min-height: 86px; align-items: center; gap: 40px; }
+  .hp-header .hp-wordmark { margin-right: auto; display: flex; align-items: center; }
+  .hp-header .hp-wordmark img { max-width: 180px; height: auto; }
+  .hp-header__desktop { display: flex; gap: 32px; align-items: center; }
+  .hp-header__desktop a { padding-block: 14px; font-size: 13px; text-decoration: none; }
+  .hp-header__desktop a:hover, .hp-header__mobile a:hover { color: var(--hp-teal); }
+  .hp-header__desktop [data-hp-offer-label] { display: block; max-width: 30ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hp-header__actions { display: flex; align-items: center; gap: 8px; }
+  .hp-header__cart { position: relative; display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; }
+  .hp-header__count { position: absolute; right: 0; top: 0; min-width: 17px; height: 17px; border-radius: 50%; background: var(--hp-teal); color: #fff; text-align: center; font-size: 10px; line-height: 17px; }
+  .hp-header__mobile { display: none; }
+  @media (max-width: 749px) {
+    .hp-header__inner { min-height: 72px; gap: 16px; }
+    .hp-header .hp-wordmark { font-size: 25px; }
+    .hp-header__desktop { display: none; }
+    .hp-header__mobile { display: block; }
+    .hp-header__mobile summary { display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; list-style: none; cursor: pointer; }
+    .hp-header__mobile summary::-webkit-details-marker { display: none; }
+    .hp-header__mobile nav { position: absolute; top: 100%; left: 0; right: 0; display: flex; flex-direction: column; padding: 16px 20px 24px; background: #fff; border-bottom: 1px solid var(--hp-line); box-shadow: 0 10px 20px #1021390d; }
+    .hp-header__mobile nav a { display: block; padding: 14px 4px; text-decoration: none; font-size: 15px; overflow-wrap: anywhere; }
+  }
+{% endstylesheet %}
+{% javascript %}
+  (() => {
+    const storageKey = 'hiparcelo:last-product:v1';
+    const maxAge = 2 * 60 * 60 * 1000;
+    const safeProductUrl = (value) => {
+      if (typeof value !== 'string') return null;
+      try {
+        const url = new URL(value, window.location.origin);
+        if (url.origin !== window.location.origin || !/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?products\/[^/]+\/?$/i.test(url.pathname)) return null;
+        const variant = url.searchParams.get('variant');
+        return url.pathname + (variant && /^\d+$/.test(variant) ? '?variant=' + variant : '');
+      } catch { return null; }
+    };
+    const saveProduct = () => {
+      const data = document.querySelector('[data-hp-product]');
+      if (!data) return;
+      try {
+        const product = JSON.parse(data.textContent);
+        const url = safeProductUrl(window.location.href) || safeProductUrl(product.url);
+        if (!url || typeof product.title !== 'string' || !product.title.trim()) return;
+        sessionStorage.setItem(storageKey, JSON.stringify({ title: product.title.slice(0, 300), url, savedAt: Date.now() }));
+      } catch {}
+    };
+    const restoreProduct = () => {
+      if (!document.querySelector('[data-hp-home]')) return;
+      try {
+        const product = JSON.parse(sessionStorage.getItem(storageKey));
+        if (!product || typeof product.title !== 'string' || !product.title.trim() || !Number.isFinite(product.savedAt)) return;
+        const age = Date.now() - product.savedAt;
+        const url = safeProductUrl(product.url);
+        if (!url || age < 0 || age > maxAge) {
+          sessionStorage.removeItem(storageKey);
+          return;
+        }
+        document.querySelectorAll('[data-hp-offer-link]').forEach((link) => {
+          const label = link.querySelector('[data-hp-offer-label]');
+          link.href = url;
+          link.title = product.title;
+          if (label && link.dataset.returnLabel) label.textContent = link.dataset.returnLabel.replace('__HP_PRODUCT__', product.title);
+        });
+      } catch {}
+    };
+    const start = () => {
+      saveProduct();
+      restoreProduct();
+      document.querySelectorAll('[data-hp-menu]').forEach((menu) => {
+        if (menu.dataset.hpReady) return;
+        menu.dataset.hpReady = 'true';
+        menu.addEventListener('click', (event) => {
+          if (event.target.closest('a')) menu.open = false;
+        });
+        menu.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && menu.open) {
+            menu.open = false;
+            menu.querySelector('summary').focus();
+          }
+        });
+      });
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+    else start();
+    document.addEventListener('shopify:section:load', start);
+    window.addEventListener('pagehide', saveProduct);
+  })();
+{% endjavascript %}
+{% schema %}
+{
+  "name": "t:hiparcelo.header.name",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "product", "id": "featured_product", "label": "t:hiparcelo.fields.product" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,39 @@
+{% liquid
+  assign default_heading = 'hiparcelo.about.heading' | t
+  assign default_copy = 'hiparcelo.about.copy' | t
+%}
+<section class="hp hp-about" id="hp-about" aria-labelledby="hp-about-title-{{ section.id }}">
+  <div class="hp-shell hp-about__grid">
+    <div>
+      <p class="hp-eyebrow">{{ 'hiparcelo.about.eyebrow' | t }}</p>
+      <h2 id="hp-about-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>
+    </div>
+    <div>
+      <p class="hp-copy">{{ section.settings.copy | default: default_copy | escape }}</p>
+      <a href="#hp-help">{{ 'hiparcelo.about.help' | t }} {% render 'hp-icon', name: 'arrow' %}</a>
+    </div>
+  </div>
+</section>
+{% stylesheet %}
+  .hp-about { padding-block: 58px; background: #f5f8f7; border-block: 1px solid var(--hp-line); }
+  .hp-about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .hp-about h2 { margin-top: 13px; max-width: 13ch; }
+  .hp-about__grid a { display: inline-flex; align-items: center; gap: 12px; margin-top: 23px; font-size: 13px; font-weight: 700; padding-block: 6px; }
+  .hp-about__grid a .hp-icon { width: 18px; }
+  @media (max-width: 749px) {
+    .hp-about { padding-block: 45px; }
+    .hp-about__grid { grid-template-columns: 1fr; gap: 22px; }
+    .hp-about h2 { max-width: 17ch; }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:hiparcelo.about.name",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:hiparcelo.fields.heading" },
+    { "type": "textarea", "id": "copy", "label": "t:hiparcelo.fields.copy" }
+  ],
+  "presets": [{ "name": "t:hiparcelo.about.name" }]
+}
+{% endschema %}

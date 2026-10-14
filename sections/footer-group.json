@@ -1,0 +1,13 @@
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "hp-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

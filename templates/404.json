@@ -1,7 +1,8 @@
 {
   "sections": {
     "main": {
-      "type": "main-404"
+      "type": "hp-not-found",
+      "settings": {}
     }
   },
   "order": [

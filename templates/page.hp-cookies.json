@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "A clear view",
+        "intro": "Understand the actual services before choosing how information is used.",
+        "show_draft": true,
+        "show_support": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

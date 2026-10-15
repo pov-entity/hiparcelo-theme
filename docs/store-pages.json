@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "stage": "preparation",
+  "language": "en",
+  "pages": [
+    {
+      "handle": "about",
+      "title": "About HiParcelo",
+      "template": "hp-about",
+      "kind": "hp-page",
+      "kicker": "Useful finds. Clearly explained.",
+      "intro": "A small upgrade to everyday life should feel useful, understandable and worth choosing.",
+      "draft": false,
+      "body": "<h2>From screen to your space.</h2><p>HiParcelo is being built for the moment you discover something online and can picture how it could help in your own life. Our focus is practical, problem-solving products — with information that helps you decide whether they are right for you.</p><h2>What we want to make simpler</h2><ul><li><strong>Understanding the product:</strong> what it does, what is included, its dimensions and its limitations.</li><li><strong>Knowing what happens after ordering:</strong> the actual price, destination availability, delivery process and return conditions.</li><li><strong>Getting help:</strong> a clear route to product questions and order support.</li></ul><h2>One focused beginning</h2><p>We are preparing one first offer rather than filling the website with unrelated products. The concept imagery on this preview illustrates the brand direction; it is not a product currently offered for sale.</p><h2>Accountability before orders</h2><p>Verified legal operator details and the final service terms will be displayed before orders open. We will not fill the gap with invented reviews, test results or delivery promises.</p><p><a href=\"/pages/first-find\">Explore the first-find layout</a> · <a href=\"/pages/contact\">Ask a question</a></p>"
+    },
+    {
+      "handle": "help",
+      "title": "Help centre",
+      "template": "hp-help",
+      "kind": "hp-help-centre",
+      "draft": false,
+      "body": "<p>Answers about HiParcelo, our first offer, ordering, delivery, returns and customer care.</p>"
+    },
+    {
+      "handle": "shipping",
+      "title": "Delivery information",
+      "template": "hp-shipping",
+      "kind": "hp-page",
+      "kicker": "From order to parcel",
+      "intro": "Know the destination, the full cost and what a delivery estimate actually includes.",
+      "draft": true,
+      "body": "<h2>Delivery availability</h2><p>Our first product and launch country have not been selected. This preview does not offer shipping to any destination.</p><h2>Before you place an order</h2><p>The final offer must show eligible destinations, processing time, the delivery estimate from ordering to receipt, shipping charges and any import arrangements. We will not present a supplier's transit estimate as a complete delivery promise.</p><h2>Following a shipment</h2><p>When an actual order ships, its secure order-status page will show confirmed fulfillment and tracking information. Tracking can take time to update after a label is created.</p><h2>Delays, address changes and missing parcels</h2><p>Contact us through the Contact page with the order number. The available action depends on the actual order and shipment status; no change or delivery date is guaranteed in this preview.</p><h2>Still to confirm before launch</h2><ul><li>First destination and any excluded areas.</li><li>Verified processing and end-to-end delivery evidence.</li><li>Carrier route, customs responsibility and delivery charges.</li><li>Address-change, delay, loss and replacement procedures.</li></ul>"
+    },
+    {
+      "handle": "returns",
+      "title": "Returns & refunds",
+      "template": "hp-returns",
+      "kind": "hp-page",
+      "kicker": "Clear expectations",
+      "intro": "The right process starts with the actual product, destination and reason for the request.",
+      "draft": true,
+      "body": "<h2>This is not the final return policy</h2><p>Orders are not open. The applicable cancellation and return rights, exceptions, costs, instructions and refund handling must be confirmed for the first product and market before launch.</p><h2>How to raise a request</h2><p>Use our Contact page and include your order number, the issue and the outcome you are requesting. Do not send an item to an unconfirmed address.</p><h2>Changed your mind</h2><p>The final policy must explain the applicable withdrawal process, deadlines, return condition requirements and who pays return shipping. This preview does not impose restrictions on statutory consumer rights.</p><h2>Damaged, faulty or incorrect items</h2><p>Report the issue through the Contact page. We may request relevant product photos or details to assess the case, using a suitable support channel. The applicable legal remedies will be reflected in the final policy.</p><h2>Refund handling</h2><p>Eligibility, the refund method, processing period and any permitted deductions must be established before orders open. No automatic approval or payment deadline is promised here.</p><h2>Still to confirm</h2><ul><li>Verified seller identity and a workable return address.</li><li>Destination-specific consumer rights and product-specific exceptions.</li><li>Return shipping arrangements, losses and replacement costs.</li><li>Refund workflow and responsible support owner.</li></ul>"
+    },
+    {
+      "handle": "track-order",
+      "title": "Track your order",
+      "template": "hp-tracking",
+      "kind": "hp-tracking",
+      "draft": false,
+      "body": "<p>Use the secure order-status link in your confirmation email. This preview does not provide a live order lookup or simulated shipment events.</p>"
+    },
+    {
+      "handle": "privacy",
+      "title": "Privacy information",
+      "template": "hp-privacy",
+      "kind": "hp-page",
+      "kicker": "Your information",
+      "intro": "A preparation draft, to be completed against the actual store setup and launch market.",
+      "draft": true,
+      "body": "<h2>Status of this document</h2><p>This is a preparation draft, not an approved privacy notice. The legal operator, privacy contact, launch market and actual data-processing arrangements remain to be confirmed.</p><h2>Information the store may need</h2><table><thead><tr><th>Situation</th><th>Information and purpose to verify</th></tr></thead><tbody><tr><td>Contact and support</td><td>Contact details, order reference and message content needed to respond.</td></tr><tr><td>Ordering and fulfillment</td><td>Order, contact and delivery details needed to process and fulfill an actual order.</td></tr><tr><td>Store operation</td><td>Technical information used by Shopify and any enabled services to operate and protect the store.</td></tr><tr><td>Optional marketing and measurement</td><td>Actual tools, permissions and consent requirements, if these activities are activated.</td></tr></tbody></table><h2>Service providers and international processing</h2><p>The store uses Shopify. The final notice must identify the actual relevant payment, fulfillment, support and other providers, their purposes, applicable safeguards and international transfers.</p><h2>Retention and your rights</h2><p>Retention periods, legal bases, access and deletion requests, complaint routes and identity checks must be set for the actual market and business operations.</p><h2>Questions and choices</h2><p>Use the Contact page for privacy questions. Shopify's existing <a href=\"/pages/data-sharing-opt-out\">Your Privacy Choices</a> page is retained; it is not a substitute for completing the full privacy and cookie setup.</p>"
+    },
+    {
+      "handle": "terms",
+      "title": "Terms of service",
+      "template": "hp-terms",
+      "kind": "hp-page",
+      "kicker": "Before we open",
+      "intro": "The final trading terms depend on the verified seller, first offer and launch country.",
+      "draft": true,
+      "body": "<h2>Preparation status</h2><p>This store is in preparation and is not accepting orders through the new review theme. This is a draft structure for review, not the final purchase contract.</p><h2>Seller and contact details</h2><p>The verified legal operator, business contact details and any required registration disclosures must be added before launch. A brand name alone is not the complete seller identity.</p><h2>The product and price</h2><p>The final offer must identify the actual product, options, specifications, limitations, currency, total charges and destination availability. Concept imagery is not evidence of a product or its performance.</p><h2>Ordering and payment</h2><p>Order acceptance, payment eligibility, error handling, confirmation and cancellation procedures must be approved for the actual setup before purchase controls are enabled.</p><h2>Delivery, returns and consumer rights</h2><p>Final delivery and return terms must be consistent across the product page, checkout and support process. Applicable mandatory consumer rights must be respected.</p><h2>Complaints and governing arrangements</h2><p>The complaint process, dispute information and applicable legal arrangements must be reviewed for the actual seller and target market. This draft does not attempt to waive statutory rights.</p>"
+    },
+    {
+      "handle": "cookies",
+      "title": "Cookies & preferences",
+      "template": "hp-cookies",
+      "kind": "hp-page",
+      "kicker": "A clear view",
+      "intro": "Understand the actual services before choosing how information is used.",
+      "draft": true,
+      "body": "<h2>Store functions and cookies</h2><p>Shopify and enabled services may use cookies or similar technologies for store functionality, security, preferences and other configured purposes. The exact inventory has not yet been audited for launch.</p><h2>Optional uses</h2><p>Analytics, advertising and other optional tools require a documented purpose and an appropriate consent configuration where applicable. No such tools are being installed as part of this build.</p><h2>Managing preferences</h2><p>The final store must provide the applicable consent and preference controls. The existing <a href=\"/pages/data-sharing-opt-out\">Your Privacy Choices</a> page is preserved. Browser settings are an additional control, not a replacement for the store's legal obligations.</p><h2>Before launch</h2><ul><li>Audit actual cookies, pixels and connected services.</li><li>Document purpose, provider and retention.</li><li>Configure and test applicable consent, rejection and withdrawal options.</li><li>Align this page with the approved privacy notice.</li></ul>"
+    },
+    {
+      "handle": "first-find",
+      "title": "Our first find",
+      "template": "hp-first-find",
+      "kind": "hp-product-preview",
+      "draft": false,
+      "body": "<p>Our first offer is in preparation. No product, price, benefit, delivery promise or customer review is represented as verified by the concept imagery.</p>"
+    },
+    {
+      "handle": "guides",
+      "title": "Useful guides",
+      "template": "hp-guides",
+      "kind": "hp-page",
+      "kicker": "A little more useful",
+      "intro": "Simple questions that help an everyday find become a considered choice.",
+      "draft": false,
+      "body": "<h2>Check the fit</h2><p>Dimensions, compatibility and available space matter as much as an attractive image.</p><p><a href=\"/pages/guide-fit\">Read: check the fit before you choose</a></p><h2>Before you order</h2><p>Find the actual total cost, destination, delivery information and return process.</p><p><a href=\"/pages/guide-before-ordering\">Read: a clear buying checklist</a></p><h2>Use and care</h2><p>Start with the instructions for the exact product, not a general promise from a demonstration.</p><p><a href=\"/pages/guide-use-and-care\">Read: get the useful details first</a></p>"
+    },
+    {
+      "handle": "guide-fit",
+      "title": "Check the fit before you choose",
+      "template": "hp-guide-fit",
+      "kind": "hp-page",
+      "kicker": "Useful guide · 01",
+      "intro": "A few checks now can prevent a product that does not fit your routine.",
+      "draft": false,
+      "body": "<h2>Measure the actual space</h2><p>Compare the stated dimensions with the space where you plan to use or store the item. A lifestyle image does not establish size.</p><h2>Check the connection or surface</h2><p>Look for the exact material, attachment method and compatibility information. If your setup is not covered, ask before ordering.</p><h2>Look beyond the headline benefit</h2><p>Read the included items, limitations and maintenance requirements. Decide whether the improvement matters to your own routine.</p><h2>Keep questions specific</h2><p>A clear product question is easier to answer: which size, material, use or compatibility detail do you need confirmed?</p><p><a href=\"/pages/contact\">Ask a product question</a></p>"
+    },
+    {
+      "handle": "guide-before-ordering",
+      "title": "A clear buying checklist",
+      "template": "hp-guide-order",
+      "kind": "hp-page",
+      "kicker": "Useful guide · 02",
+      "intro": "Five things worth finding before an order becomes a parcel.",
+      "draft": false,
+      "body": "<ol><li><strong>The exact offer:</strong> product, option, quantity and what is included.</li><li><strong>The full price:</strong> currency, delivery and any other applicable charges before payment.</li><li><strong>The destination and timing:</strong> availability for your address, processing and the complete delivery estimate.</li><li><strong>The return process:</strong> applicable rights, instructions, address and costs.</li><li><strong>A route to help:</strong> the seller's identity and a contact method for product or order questions.</li></ol><p>If one of these is unclear, pause and ask. An attractive image should not leave the practical details to guesswork.</p><p><a href=\"/pages/help\">Visit the help centre</a></p>"
+    },
+    {
+      "handle": "guide-use-and-care",
+      "title": "Get the useful details first",
+      "template": "hp-guide-care",
+      "kind": "hp-page",
+      "kicker": "Useful guide · 03",
+      "intro": "Good use starts with the instructions for the exact item.",
+      "draft": false,
+      "body": "<h2>Start with the product instructions</h2><p>Check the intended use, setup, limitations and care information provided for your actual product. A short demonstration may not contain every instruction.</p><h2>Do not assume a product is suitable for every situation</h2><p>Compatibility and material limits can change how an item should be used. Ask when those details are missing or unclear.</p><h2>Keep the order information</h2><p>Your order confirmation and the exact product details make it easier to ask a support question later.</p><h2>Raise a concern early</h2><p>If an item appears damaged, faulty or different from the order, contact customer care with the relevant order number and a clear description. Avoid continuing a use that seems unsafe.</p><p><a href=\"/pages/contact\">Contact customer care</a></p>"
+    }
+  ]
+}

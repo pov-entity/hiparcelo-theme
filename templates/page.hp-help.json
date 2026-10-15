@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-help-centre",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

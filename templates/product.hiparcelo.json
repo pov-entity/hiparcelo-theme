@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-product",
+      "settings": {}
+    },
+    "details": {
+      "type": "hp-product-details",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "details"
+  ]
+}

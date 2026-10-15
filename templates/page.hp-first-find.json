@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-product-preview",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

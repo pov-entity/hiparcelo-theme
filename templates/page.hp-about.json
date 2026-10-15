@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "Useful finds. Clearly explained.",
+        "intro": "A small upgrade to everyday life should feel useful, understandable and worth choosing.",
+        "show_draft": false,
+        "show_support": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "Useful guide · 02",
+        "intro": "Five things worth finding before an order becomes a parcel.",
+        "show_draft": false,
+        "show_support": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "HiParcelo",
-    "theme_version": "0.1.0",
+    "theme_version": "0.2.0",
     "theme_author": "HiParcelo",
     "theme_documentation_url": "https://github.com/pov-entity/hiparcelo-theme",
     "theme_support_url": "https://github.com/pov-entity/hiparcelo-theme/issues"
@@ -45,6 +45,32 @@
         "id": "hp_surface",
         "label": "t:hiparcelo.settings.surface",
         "default": "#F4F8F8"
+      }
+    ]
+  },
+  {
+    "name": "t:hp_store.settings_name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "hp_store_preparation",
+        "label": "t:hp_store.prep",
+        "info": "t:hp_store.prep_info",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "hp_commerce_enabled",
+        "label": "t:hp_store.commerce",
+        "info": "t:hp_store.commerce_info",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "hp_contact_enabled",
+        "label": "t:hp_store.contact",
+        "info": "t:hp_store.contact_info",
+        "default": false
       }
     ]
   },

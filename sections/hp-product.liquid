@@ -33,7 +33,7 @@
             <button type="submit" name="add" class="hp-button"{% if settings.hp_commerce_enabled != true or selected.available == false %} disabled{% endif %}>{% unless settings.hp_commerce_enabled %}{{ 'hp_store.product.preparing' | t }}{% elsif selected.available %}{{ 'hp_store.product.add' | t }}{% else %}{{ 'hp_store.product.unavailable' | t }}{% endunless %}</button>
           {% endform %}
           {% unless settings.hp_commerce_enabled %}<p class="hp-product__notice">{{ 'hp_store.product.prep_copy' | t }}</p>{% endunless %}
-          <div class="hp-product__links"><a href="{{ routes.root_url }}pages/shipping">{{ 'hp_store.product.shipping' | t }}</a><a href="{{ routes.root_url }}pages/returns">{{ 'hp_store.product.returns' | t }}</a><a href="{{ routes.root_url }}pages/contact">{{ 'hp_store.product.ask' | t }}</a></div>
+          <div class="hp-product__links"><a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.product.shipping' | t }}</a><a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.product.returns' | t }}</a><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.product.ask' | t }}</a></div>
           <p class="hp-product__notice">{{ 'hp_store.product.offer_note' | t }}</p>
         </div>
       </div>

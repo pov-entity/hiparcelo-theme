@@ -12,6 +12,7 @@ const extract = (source, name) => [...source.matchAll(new RegExp('{%-?\\s*' + na
 const escape = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 await mkdir(resolve(output, 'snippets'), { recursive: true });
 await writeFile(resolve(output, 'snippets/hp-icon.liquid'), stripBlocks(await read('snippets/hp-icon.liquid')));
+await writeFile(resolve(output, 'snippets/hp-localization.liquid'), stripBlocks(await read('snippets/hp-localization.liquid')).replace(/{%-?\s*form\s+[^%]*-?%}/g, '<form data-local-form="true">').replace(/{%-?\s*endform\s*-?%}/g, '</form>'));
 const engine = new Liquid({ root: resolve(output, 'snippets'), extname: '.liquid', strictFilters: true });
 const translations = JSON.parse(await read('locales/en.default.json'));
 engine.registerFilter('t', (key, ...parameters) => {
@@ -46,6 +47,7 @@ const context = {
   template: { name: 'index' },
   request: { locale: { iso_code: 'en' } }
 };
+engine.options.globals = context;
 const home = JSON.parse(await read('templates/index.json'));
 const header = JSON.parse(await read('sections/header-group.json'));
 const footer = JSON.parse(await read('sections/footer-group.json'));

@@ -6,7 +6,8 @@
         "kicker": "A clear view",
         "intro": "Understand the actual services before choosing how information is used.",
         "show_draft": true,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "cookies"
       }
     }
   },

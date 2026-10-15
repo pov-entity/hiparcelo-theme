@@ -6,7 +6,8 @@
         "kicker": "Useful guide · 01",
         "intro": "A few checks now can prevent a product that does not fit your routine.",
         "show_draft": false,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "guide_fit"
       }
     }
   },

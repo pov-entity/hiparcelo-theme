@@ -221,6 +221,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Página no encontrada",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "No se encontraron resultados para “{{ terms }}” Revisa la ortografía o usa una palabra o frase diferente.",
       "results_with_count": {
@@ -269,10 +273,6 @@
         "error_heading": "Por favor, ajusta lo siguiente:",
         "title": "Formulario de contacto"
       }
-    },
-    "404": {
-      "title": "Página no encontrada",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -538,6 +538,313 @@
       "send_on_label": "Enviar el (opcional)",
       "expanded": "Formulario del destinatario de la tarjeta de regalo expandido",
       "collapsed": "Formulario del destinatario de tarjeta de regalo contraído"
+    }
+  },
+  "hiparcelo": {
+    "brand": {
+      "prefix": "Hi",
+      "suffix": "Parcelo"
+    },
+    "common": {
+      "concept": "Imagen conceptual"
+    },
+    "navigation": {
+      "main": "Navegación principal",
+      "mobile": "Navegación móvil",
+      "footer": "Navegación del pie de página",
+      "first_find": "Descubre nuestro primer producto",
+      "explore": "Nuestro enfoque",
+      "about": "Quiénes somos",
+      "help": "Ayuda",
+      "contact": "Contacto",
+      "cart": "Ver carrito",
+      "menu": "Abrir menú",
+      "return_product": "Volver a {{ product }}"
+    },
+    "hero": {
+      "eyebrow": "Ideas útiles para el día a día.",
+      "heading": "Descúbrelo online.",
+      "accent": "Hazlo tuyo.",
+      "copy": "Pequeñas mejoras bien pensadas para el día a día. Descubre las posibilidades, fíjate en los detalles y elige lo que encaja contigo.",
+      "explore": "Descubre nuestro enfoque",
+      "about": "Conoce HiParcelo",
+      "concept_alt": "Escena ilustrativa con un organizador de escritorio, un teléfono móvil y un paquete abierto."
+    },
+    "principles": {
+      "label": "Lo que importa a HiParcelo",
+      "useful_title": "Productos útiles para el día a día",
+      "useful_copy": "Pequeñas mejoras con una utilidad práctica.",
+      "clarity_title": "Una mirada más cercana",
+      "clarity_copy": "Entender los detalles antes de elegir.",
+      "help_title": "Ayuda a tu alcance",
+      "help_copy": "Una forma sencilla de hacer una pregunta."
+    },
+    "discovery": {
+      "eyebrow": "Una mirada más cercana",
+      "heading": "De la pantalla a tu espacio.",
+      "copy": "Imagina las posibilidades del día a día. Valora la utilidad, los detalles y cómo podría encajar un producto en tu rutina.",
+      "concept_alt": "Escena ilustrativa de una mano colocando un bolígrafo en un organizador verde salvia sobre un escritorio.",
+      "life_title": "Empieza por la vida real",
+      "life_copy": "Un producto útil empieza por una necesidad cotidiana.",
+      "detail_title": "Fíjate en los pequeños detalles",
+      "detail_copy": "El tamaño, los materiales y el funcionamiento importan al decidir.",
+      "choice_title": "Encuentra lo que encaja contigo",
+      "choice_copy": "Elige lo que tenga sentido para tu espacio y tu rutina.",
+      "about": "¿Por qué HiParcelo?",
+      "product": "Ver el producto",
+      "from_price": "Desde {{ price }}",
+      "price_details": "Consulta las opciones, el coste total y la entrega en la página del producto."
+    },
+    "about": {
+      "eyebrow": "¿Por qué HiParcelo?",
+      "heading": "Buenas ideas. Intenciones claras.",
+      "copy": "Un buen descubrimiento debe seguir siéndolo hasta llegar a casa. Estamos construyendo HiParcelo en torno a productos prácticos, decisiones meditadas e información para elegir con confianza. La utilidad, la adecuación a tus necesidades y una buena relación entre valor y coste guían nuestro enfoque.",
+      "help": "Conoce nuestro enfoque"
+    },
+    "help": {
+      "label": "Entrega, devoluciones y atención al cliente",
+      "delivery": "Información de entrega",
+      "delivery_copy": "Conoce el recorrido hasta tu puerta.",
+      "returns": "Información sobre devoluciones",
+      "returns_copy": "Conoce tus opciones antes de comprar.",
+      "contact": "Haz una pregunta",
+      "contact_copy": "Contacta con HiParcelo."
+    },
+    "faq": {
+      "eyebrow": "Un poco más de claridad",
+      "heading": "¿Tienes preguntas? Empieza aquí.",
+      "copy": "Respuestas rápidas para conocer HiParcelo.",
+      "products_question": "¿Qué tipo de productos ofrece HiParcelo?",
+      "products_answer": "Nos centramos en productos prácticos para el día a día, con una utilidad clara. Estamos preparando nuestra primera oferta. La escena es una imagen conceptual, no un producto actualmente a la venta.",
+      "delivery_question": "¿Dónde entregáis y cuánto tarda el envío?",
+      "delivery_answer": "La entrega depende del artículo y del destino. Cada oferta indicará los destinos disponibles, el tiempo de preparación, el plazo estimado de entrega y los gastos antes de comprar.",
+      "returns_question": "¿Cómo funcionan las devoluciones?",
+      "returns_answer": "El plazo aplicable, las condiciones, los costes y los pasos se indicarán en la oferta antes de comprar. Si algo no está claro, consúltanos antes de hacer el pedido.",
+      "help_question": "¿Cómo puedo contactar con HiParcelo?",
+      "help_answer": "Utiliza el correo que aparece abajo para hacer una pregunta. Si ya tienes un pedido, incluye su número para que podamos identificar la consulta."
+    },
+    "closing": {
+      "heading": "Un buen descubrimiento empieza mirando los detalles.",
+      "copy": "Descubre qué hay detrás de HiParcelo o vuelve al producto que te llamó la atención.",
+      "about": "Conoce HiParcelo"
+    },
+    "footer": {
+      "tagline": "Cosas útiles para las posibilidades del día a día.",
+      "copyright": "© {{ year }} {{ brand }}.",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "tiktok": "TikTok"
+    }
+  },
+  "hp_store": {
+    "common": {
+      "home": "Inicio",
+      "help": "Centro de ayuda",
+      "contact": "Contacta con nosotros",
+      "track": "Seguir pedido",
+      "about": "Sobre HiParcelo",
+      "guides": "Guías prácticas",
+      "shipping": "Información de entrega",
+      "returns": "Devoluciones y reembolsos",
+      "privacy": "Privacidad",
+      "terms": "Condiciones",
+      "cookies": "Cookies",
+      "choices": "Tus opciones de privacidad",
+      "first_find": "Nuestro primer producto",
+      "learn_more": "Descubre nuestro enfoque",
+      "back_home": "Volver a HiParcelo",
+      "read_guide": "Leer la guía",
+      "draft": "Borrador preparatorio",
+      "draft_copy": "Esta página se está preparando para el primer lanzamiento. La oferta definitiva, los datos del vendedor y las condiciones del servicio deben confirmarse antes de abrir los pedidos.",
+      "preview": "Tienda en preparación: nuestra primera oferta aún no se puede pedir.",
+      "no_orders": "Los pedidos aún no están abiertos",
+      "support_copy": "¿Tienes una pregunta? Usa la página de contacto para que podamos ayudarte con la información adecuada.",
+      "question": "Un poco de claridad ayuda mucho.",
+      "currency": "Los precios se muestran en {{ currency }}.",
+      "concept": "Imagen conceptual: no es un producto seleccionado",
+      "offer_pending": "Nuestra primera oferta está en preparación",
+      "page_kicker": "Un poco de claridad",
+      "discover": "Descubrir",
+      "support": "Atención al cliente",
+      "legal": "Información y políticas",
+      "company": "Una empresa detrás. El cliente en el centro."
+    },
+    "form": {
+      "heading": "Aclaremos tus dudas.",
+      "intro": "Pregunta por un producto, un pedido o el funcionamiento de HiParcelo. Comparte solo lo necesario para que podamos ayudarte.",
+      "name": "Tu nombre",
+      "email": "Correo electrónico",
+      "topic": "¿En qué podemos ayudarte?",
+      "product": "Consulta sobre un producto",
+      "delivery": "Entrega o seguimiento",
+      "return": "Devolución o reembolso",
+      "other": "Otro asunto",
+      "order": "Número de pedido (opcional)",
+      "message": "Tu mensaje",
+      "send": "Enviar mensaje",
+      "success": "Tu mensaje se ha enviado. Revisa el correo electrónico que has indicado para ver nuestra respuesta.",
+      "error": "Revisa los campos señalados e inténtalo de nuevo.",
+      "notice": "No incluyas datos de tarjetas de pago, contraseñas, documentos de identidad ni información de salud sensible.",
+      "privacy": "Cómo tratamos tu información",
+      "preview": "Solo vista previa del formulario. El envío está desactivado hasta verificar el destino de las consultas.",
+      "email_us": "Escríbenos por correo",
+      "response": "Publicaremos el horario de atención antes de abrir los pedidos.",
+      "disabled": "Formulario no activado"
+    },
+    "tracking": {
+      "heading": "Sigue el paquete. Tenlo todo claro.",
+      "intro": "La página de estado de tu pedido muestra las actualizaciones confirmadas.",
+      "step_one": "Abre el correo de confirmación",
+      "step_one_copy": "Selecciona el enlace al estado del pedido en la confirmación que recibiste al comprar.",
+      "step_two": "Consulta la última actualización",
+      "step_two_copy": "El seguimiento aparece cuando se crea el envío. Una etiqueta por sí sola no significa que el paquete esté en tránsito.",
+      "step_three": "¿Necesitas ayuda?",
+      "step_three_copy": "Usa la página de contacto e incluye el número de pedido. Nunca compartas tu contraseña ni los datos de pago.",
+      "login": "Iniciar sesión en tu cuenta",
+      "account_copy": "Si tu pedido está vinculado a una cuenta de cliente, inicia sesión para verlo.",
+      "no_lookup": "No mostramos información de pedidos únicamente con el número de pedido. Usa tu enlace seguro al estado del pedido o contacta con nosotros.",
+      "prelaunch": "Esta vista previa no tiene conectado un seguimiento en tiempo real. Los eventos procederán de datos autenticados del pedido; no se presentan ejemplos como si fueran reales."
+    },
+    "product": {
+      "kicker": "Un producto útil para el día a día",
+      "details": "Los detalles útiles",
+      "fit": "Comprueba que encaje antes de elegir",
+      "fit_copy": "Consulta las dimensiones, los materiales, la compatibilidad y los cuidados del producto real. Pregúntanos si algo no está claro.",
+      "limits": "Lo que debes saber",
+      "quantity": "Cantidad",
+      "variant": "Elige tu opción",
+      "add": "Añadir al carrito",
+      "unavailable": "Actualmente no disponible",
+      "preparing": "Los pedidos no están activados",
+      "shipping": "Detalles de entrega",
+      "returns": "Información sobre devoluciones",
+      "no_product": "No se ha seleccionado ningún producto",
+      "no_product_copy": "Esta es la plantilla reutilizable de producto. Selecciona el primer producto en el editor del tema después de verificar la oferta.",
+      "image": "Imagen del producto",
+      "no_image": "Las fotos del producto aparecerán aquí",
+      "price": "Precio actual",
+      "offer_note": "Revisa el precio total, la disponibilidad de entrega y las condiciones de devolución antes de comprar.",
+      "prep_copy": "Esta página de producto es una vista previa preparatoria. La compra está desactivada.",
+      "specifications": "Especificaciones",
+      "included": "Qué incluye",
+      "guidance": "Uso y cuidados",
+      "ask": "Consultar sobre el producto",
+      "preview_title": "La próxima pequeña mejora empieza por una necesidad real.",
+      "preview_copy": "Estamos preparando nuestro primer producto útil. Publicaremos el producto, el precio, las especificaciones y la entrega cuando se haya verificado la oferta.",
+      "preview_label": "Vista previa de la presentación de la oferta",
+      "preview_problem": "Empieza por el problema cotidiano",
+      "preview_problem_copy": "Un producto se gana su lugar cuando simplifica una tarea habitual. El primer lanzamiento se centrará en una necesidad concreta.",
+      "preview_proof": "Muestra el producto con honestidad",
+      "preview_proof_copy": "Cuando elijamos el primer artículo, presentaremos dimensiones claras, información práctica de uso e imágenes reales del producto.",
+      "preview_fit": "Comprueba si es para ti",
+      "preview_fit_copy": "La adecuación, la compatibilidad, los cuidados y las limitaciones deben acompañar a las ventajas para que puedas decidir con información.",
+      "preview_service": "Sabe qué ocurre después",
+      "preview_service_copy": "La oferta definitiva incluirá el precio total, los destinos disponibles y la información de entrega, devoluciones y atención al cliente.",
+      "preview_button": "Primera oferta próximamente",
+      "facts_kicker": "Antes de elegir"
+    },
+    "cart": {
+      "heading": "Tus productos útiles.",
+      "empty": "Tu próximo descubrimiento útil empieza aquí.",
+      "empty_copy": "Tu carrito está vacío. Conoce nuestro enfoque mientras preparamos la primera oferta.",
+      "item": "Artículo",
+      "quantity": "Cantidad",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "update": "Actualizar carrito",
+      "checkout": "Continuar al pago",
+      "remove": "Eliminar",
+      "costs": "La entrega y los impuestos o cargos aplicables se confirmarán antes del pago.",
+      "taxes": "Los impuestos del producto están incluidos cuando así se indica. La entrega y los demás cargos aplicables se confirman antes del pago.",
+      "preview": "Esta es una vista previa preparatoria. El pago está desactivado hasta aprobar la primera oferta y los detalles operativos.",
+      "review": "Revisa los detalles antes de comprar",
+      "help": "¿Tienes dudas sobre tu pedido?",
+      "error": "No se ha podido actualizar el carrito. Inténtalo de nuevo."
+    },
+    "faq": {
+      "heading": "Las respuestas útiles.",
+      "intro": "Un punto de partida claro para tus dudas sobre HiParcelo, los pedidos y la atención al cliente.",
+      "brand_q": "¿Qué es HiParcelo?",
+      "brand_a": "HiParcelo se está construyendo en torno a productos prácticos que resuelven necesidades e información clara. Estamos preparando una primera oferta centrada en una necesidad concreta.",
+      "order_q": "¿Puedo comprar ya?",
+      "order_a": "Todavía no. La tienda está en preparación. Abriremos los pedidos después de verificar el producto, el precio, el pago y los detalles del servicio.",
+      "products_q": "¿Está a la venta el producto de la imagen conceptual?",
+      "products_a": "No. Las imágenes muestran la dirección de la marca, no un producto seleccionado, una muestra probada ni una oferta disponible.",
+      "delivery_q": "¿Dónde entregáis y cuánto tardará?",
+      "delivery_a": "El primer destino y la ruta de entrega aún se están confirmando. El plazo estimado real, la preparación y los posibles gastos de importación se indicarán antes de realizar el pedido.",
+      "returns_q": "¿Cómo funcionarán las devoluciones?",
+      "returns_a": "El proceso definitivo, la dirección de devolución, los costes, los derechos de desistimiento aplicables y los reembolsos se indicarán antes de abrir los pedidos. Esta vista previa no ofrece una promesa general de devolución.",
+      "tracking_q": "¿Cómo puedo seguir un pedido?",
+      "tracking_a": "Usa el enlace seguro al estado del pedido de tu correo de confirmación. No facilitamos información solo con el número de pedido.",
+      "support_q": "¿Cómo puedo contactar con vosotros?",
+      "support_a": "Usa la página de contacto. El horario de atención y el destino del formulario deben verificarse antes del lanzamiento.",
+      "health_q": "¿Ofrecéis asesoramiento médico?",
+      "health_a": "No. La información del producto no constituye un diagnóstico ni asesoramiento médico. Cualquier producto con usos o afirmaciones relacionados con la salud requiere su propia revisión de seguridad y cumplimiento.",
+      "feedback_q": "¿Dónde están las opiniones de clientes?",
+      "feedback_a": "Añadiremos opiniones auténticas y autorizadas cuando existan. No usamos reseñas ni cifras de clientes inventadas."
+    },
+    "password": {
+      "eyebrow": "Algo útil está tomando forma.",
+      "heading": "Descúbrelo online. Hazlo tuyo.",
+      "copy": "Estamos preparando el primer producto cotidiano de HiParcelo. Información clara, una oferta meditada y ayuda a tu alcance.",
+      "owner": "¿Eres el propietario de la tienda?",
+      "login": "Iniciar sesión en Shopify",
+      "enter": "Entrar con contraseña",
+      "password": "Contraseña de la tienda",
+      "open": "Entrar en la tienda",
+      "error": "No se ha aceptado esa contraseña. Inténtalo de nuevo.",
+      "privacy": "Esta página preparatoria no recoge suscripciones a boletines."
+    },
+    "not_found": {
+      "eyebrow": "Un pequeño desvío",
+      "heading": "Esta página no está en el paquete.",
+      "copy": "Puede que el enlace haya cambiado o que la página siga en preparación. Vuelve al inicio o visita el centro de ayuda."
+    },
+    "localization": {
+      "label": "Idioma",
+      "submit": "Cambiar idioma"
+    }
+  },
+  "hp_pages": {
+    "about": {
+      "kicker": "Productos útiles. Explicados con claridad.",
+      "intro": "Una pequeña mejora del día a día debe ser útil, comprensible y merecer tu elección."
+    },
+    "shipping": {
+      "kicker": "Del pedido al paquete",
+      "intro": "Conoce el destino, el coste total y lo que incluye realmente una estimación de entrega."
+    },
+    "returns": {
+      "kicker": "Expectativas claras",
+      "intro": "El proceso adecuado depende del producto real, del destino y del motivo de la solicitud."
+    },
+    "privacy": {
+      "kicker": "Tu información",
+      "intro": "Un borrador preparatorio que se completará según la configuración real de la tienda y el mercado de lanzamiento."
+    },
+    "terms": {
+      "kicker": "Antes de abrir",
+      "intro": "Las condiciones definitivas dependen del vendedor verificado, de la primera oferta y del país de lanzamiento."
+    },
+    "cookies": {
+      "kicker": "Una visión clara",
+      "intro": "Conoce los servicios reales antes de decidir cómo se utiliza tu información."
+    },
+    "guides": {
+      "kicker": "Un poco más útil",
+      "intro": "Preguntas sencillas para convertir un descubrimiento cotidiano en una elección meditada."
+    },
+    "guide_fit": {
+      "kicker": "Guía práctica · 01",
+      "intro": "Unas comprobaciones ahora pueden evitar un producto que no encaje en tu rutina."
+    },
+    "guide_before_ordering": {
+      "kicker": "Guía práctica · 02",
+      "intro": "Cinco puntos que conviene revisar antes de que un pedido se convierta en un paquete."
+    },
+    "guide_use_and_care": {
+      "kicker": "Guía práctica · 03",
+      "intro": "Un buen uso empieza por las instrucciones del artículo exacto."
     }
   }
 }

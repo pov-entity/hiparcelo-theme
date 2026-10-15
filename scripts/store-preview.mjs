@@ -8,15 +8,18 @@ import vm from 'node:vm';
 import { Liquid } from 'liquidjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const output = resolve(root, 'preview-output/store');
+const locale = process.env.HP_LOCALE || 'en';
+const languagePrefix = locale === 'en' ? '' : '/' + locale.toLowerCase();
+const output = resolve(root, 'preview-output/store-' + locale);
 const read = (path) => readFile(resolve(root, path), 'utf8');
 const extract = (text, tag) => [...text.matchAll(new RegExp('{%-?\\s*' + tag + '\\s*-?%}([\\s\\S]*?){%-?\\s*end' + tag + '\\s*-?%}', 'g'))].map((m) => m[1]).join('\n');
 const strip = (text) => text.replace(/{%-?\s*(schema|stylesheet|javascript|doc)\s*-?%}[\s\S]*?{%-?\s*end\1\s*-?%}/g, '');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 await mkdir(resolve(output, 'snippets'), { recursive: true });
-await writeFile(resolve(output, 'snippets/hp-icon.liquid'), strip(await read('snippets/hp-icon.liquid')));
+for (const snippet of ['hp-icon', 'hp-localization']) await writeFile(resolve(output, 'snippets/' + snippet + '.liquid'), strip(await read('snippets/' + snippet + '.liquid')).replace(/{%-?\s*form\s+[^%]*-?%}/g, '<form data-local-form="true">').replace(/{%-?\s*endform\s*-?%}/g, '</form>'));
 const engine = new Liquid({ root: resolve(output, 'snippets'), extname: '.liquid', strictFilters: true });
-const translations = JSON.parse(await read('locales/en.default.json'));
+const translations = JSON.parse(await read('locales/' + (locale === 'en' ? 'en.default' : locale) + '.json'));
+const text = (key) => key.split('.').reduce((a, k) => a?.[k], translations);
 engine.registerFilter('t', (key, ...args) => {
   let value = String(key).split('.').reduce((a, k) => a?.[k], translations);
   assert.equal(typeof value, 'string', 'Missing translation ' + key);
@@ -38,10 +41,14 @@ for (const group of JSON.parse(await read('config/settings_schema.json'))) for (
 assert.equal(settings.hp_commerce_enabled, false);
 assert.equal(settings.hp_contact_enabled, false);
 assert.equal(settings.hp_store_preparation, true);
-const pages = JSON.parse(await read('docs/store-pages.json')).pages;
+const pageSource = JSON.parse(await read('docs/store-pages.json')).pages;
+const localizedPages = locale === 'en' ? {} : JSON.parse(await read('docs/localization/pages-' + locale + '.json'));
+const pages = pageSource.map((page) => ({ ...page, ...localizedPages[page.handle], body: (localizedPages[page.handle]?.body || page.body).replaceAll('\\"', '"') }));
 const pagesByHandle = new Map(pages.map((page) => [page.handle, page]));
-const routes = { root_url: '/', cart_url: '/cart', cart_change_url: '/cart/change', account_login_url: '/account/login' };
-const context = { settings, routes, shop: { name: 'HiParcelo', email: 'preview@example.test', policies: [], customer_accounts_enabled: false }, cart: { item_count: 0, items: [] }, request: { locale: { iso_code: 'en' } }, template: { name: 'page' }, form: { errors: null, 'posted_successfully?': false } };
+const routes = { root_url: languagePrefix || '/', cart_url: languagePrefix + '/cart', cart_change_url: languagePrefix + '/cart/change', account_login_url: languagePrefix + '/account/login' };
+const languageNames = { en: 'English', fr: 'Français', de: 'Deutsch', es: 'Español', it: 'Italiano', nl: 'Nederlands', 'pt-PT': 'Português (Portugal)' };
+const availableLanguages = Object.entries(languageNames).map(([iso_code, endonym_name]) => ({ iso_code, endonym_name }));
+const context = { settings, routes, localization: { available_languages: availableLanguages, language: availableLanguages.find((l) => l.iso_code === locale) }, shop: { name: 'HiParcelo', email: 'preview@example.test', policies: [], customer_accounts_enabled: false }, cart: { item_count: 0, items: [] }, request: { locale: { iso_code: locale } }, template: { name: 'page' }, form: { errors: null, 'posted_successfully?': false } };
 const sources = new Map();
 async function renderSection(type, data = {}, extra = {}) {
   const source = sources.get(type) || await read('sections/' + type + '.liquid');
@@ -50,6 +57,7 @@ async function renderSection(type, data = {}, extra = {}) {
   const defaults = Object.fromEntries((schema.settings || []).filter((f) => f.default !== undefined).map((f) => [f.id, f.default]));
   const section = { id: type, settings: { ...defaults, ...data.settings }, blocks: (data.block_order || []).map((id) => ({ id, ...data.blocks[id], shopify_attributes: '' })) };
   const content = strip(source).replace(/{%-?\s*form\s+[^%]*-?%}/g, '<form data-local-form="true">').replace(/{%-?\s*endform\s*-?%}/g, '</form>');
+  engine.options.globals = { ...context, ...extra };
   return engine.parseAndRender(content, { ...context, ...extra, section });
 }
 async function renderTemplate(file, extra = {}) {
@@ -60,18 +68,22 @@ async function renderTemplate(file, extra = {}) {
 }
 const header = await renderSection('hp-header');
 const footer = await renderSection('hp-footer');
+assert(header.includes('name="locale_code"'), 'Native language control available');
+assert(header.includes('value="' + locale + '" lang="' + locale + '" selected'), 'Current language selected');
+const singleLanguageHeader = await renderSection('hp-header', {}, { localization: { available_languages: [context.localization.language], language: context.localization.language } });
+assert(!singleLanguageHeader.includes('name="locale_code"'), 'No unavailable languages offered');
 const notice = await engine.parseAndRender(strip(await read('snippets/hp-store-status.liquid')), context);
 const rendered = new Map();
 for (const page of pages) {
   const html = await renderTemplate('templates/page.' + page.template + '.json', { page: { title: page.title, content: page.body, handle: page.handle } });
   assert.equal((html.match(/<h1\b/g) || []).length, 1, page.handle + ': one main heading');
   assert(!html.includes('translation missing'), page.handle);
-  if (page.draft) assert(html.includes('Preparation draft'), page.handle + ': draft label');
+  if (page.draft) assert(html.includes(text('hp_store.common.draft')), page.handle + ': draft label');
   rendered.set('/pages/' + page.handle, html);
 }
 const contact = await renderTemplate('templates/page.contact.json');
 assert(contact.includes('fieldset disabled'), 'Contact preview cannot submit');
-assert(contact.includes('Form not activated'));
+assert(contact.includes(text('hp_store.form.disabled')));
 rendered.set('/pages/contact', contact);
 const contactActive = await renderTemplate('templates/page.contact.json', { settings: { ...settings, hp_contact_enabled: true } });
 assert(contactActive.includes('name="contact[email]"'));
@@ -79,11 +91,11 @@ assert(contactActive.includes('name="contact[body]"'));
 assert(contactActive.includes('type="submit"'));
 assert(!contactActive.includes('fieldset disabled'));
 const emptyCart = await renderTemplate('templates/cart.json');
-assert(emptyCart.includes('Your cart is empty.'));
+assert(emptyCart.includes(text('hp_store.cart.empty_copy')));
 rendered.set('/cart', emptyCart);
 const image = { src: '/assets/hp-story-concept.webp', alt: 'Local QA fixture only' };
 const variants = [{ id: 11111, title: 'Option A', available: true, price: 2500 }, { id: 22222, title: 'Option B', available: false, price: 3500 }];
-const product = { title: 'Local QA fixture — not a real offer', url: '/products/fixture-only', selected_or_first_available_variant: variants[0], variants, description: '<p>Local fixture content, not product evidence.</p>', images: [image, image], featured_image: image };
+const product = { title: 'Local QA fixture — not a real offer', url: languagePrefix + '/products/fixture-only', selected_or_first_available_variant: variants[0], variants, description: '<p>Local fixture content, not product evidence.</p>', images: [image, image], featured_image: image };
 const productPreview = await renderTemplate('templates/product.json', { product, template: { name: 'product' } });
 assert(productPreview.includes('name="add" class="hp-button" disabled'));
 assert(productPreview.includes('loading="eager"'));
@@ -98,7 +110,7 @@ const cartFixture = { item_count: 2, total_price: 5000, taxes_included: false, i
 const filledCart = await renderTemplate('templates/cart.json', { cart: cartFixture });
 assert(filledCart.includes('name="checkout" disabled'));
 assert(filledCart.includes('name="updates[]" value="2"'));
-assert(filledCart.includes('/cart/change?line=1&amp;quantity=0'));
+assert(filledCart.includes(languagePrefix + '/cart/change?line=1&amp;quantity=0'));
 const enabledCart = await renderTemplate('templates/cart.json', { cart: cartFixture, settings: { ...settings, hp_commerce_enabled: true } });
 assert(!enabledCart.includes('name="checkout" disabled'));
 const password = await renderTemplate('templates/password.json');
@@ -114,11 +126,13 @@ for (const [route, main] of rendered) {
   const ids = [...full.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
   assert.equal(new Set(ids).size, ids.length, route + ': unique IDs');
   for (const match of full.matchAll(/<label\b[^>]*\bfor="([^"]+)"/g)) assert(ids.includes(match[1]), route + ': input label ' + match[1]);
-  for (const match of full.matchAll(/href="([^"]+)"/g)) {
-    const href = match[1];
+  for (const match of full.matchAll(/href=(["'])(.*?)\1/g)) {
+    const href = match[2];
     if (!href.startsWith('/')) continue;
-    const path = href.split(/[?#]/)[0] || '/';
+    let path = href.split(/[?#]/)[0] || '/';
     if (path.startsWith('/assets/')) continue;
+    if (languagePrefix && path.startsWith('/pages/')) assert.fail(route + ': lost language prefix ' + path);
+    if (languagePrefix && (path === languagePrefix || path.startsWith(languagePrefix + '/'))) path = path.slice(languagePrefix.length) || '/';
     assert(known.has(path), route + ': unresolved local route ' + path);
     linkCount++;
   }
@@ -149,7 +163,7 @@ const css = await read('assets/hp-base.css') + '\n' + await read('assets/hp-stor
 const js = code + '\n' + [...sources.values()].map((s) => extract(s, 'javascript')).join('\n');
 for (const [route, main] of rendered) {
   const isPassword = route === '/password';
-  const doc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HiParcelo local review</title><style>body{margin:0}' + css + '</style></head><body>' + (isPassword ? '' : notice + header) + '<main id="MainContent">' + main + '</main>' + (isPassword ? '' : footer) + '<script>' + js.replaceAll('</script', '<\\/script') + '</script></body></html>';
+  const doc = '<!doctype html><html lang="' + locale + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HiParcelo local review</title><style>body{margin:0}' + css + '</style></head><body>' + (isPassword ? '' : notice + header) + '<main id="MainContent">' + main + '</main>' + (isPassword ? '' : footer) + '<script>' + js.replaceAll('</script', '<\\/script') + '</script></body></html>';
   const filename = route === '/' ? 'index' : route.slice(1).replaceAll('/', '-');
   await writeFile(resolve(output, filename + '.html'), doc);
 }

@@ -11,7 +11,7 @@
       {% endfor %}
       {% for block in section.blocks %}<details {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }}</summary><div>{{ block.settings.answer }}</div></details>{% endfor %}
     </div>
-    <div class="hp-faq-page__contact"><a class="hp-button" href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a></div>
+    <div class="hp-faq-page__contact"><a class="hp-button" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a></div>
   </div>
 </section>
 {% schema %}

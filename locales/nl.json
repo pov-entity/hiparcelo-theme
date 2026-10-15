@@ -217,6 +217,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Pagina niet gevonden",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "Geen resultaten gevonden voor “{{ terms }}”. Controleer de spelling of gebruik een ander woord of een andere zin.",
       "results_with_count": {
@@ -260,10 +264,6 @@
         "error_heading": "Pas het volgende aan:",
         "title": "Contactformulier"
       }
-    },
-    "404": {
-      "title": "Pagina niet gevonden",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -526,6 +526,313 @@
       "send_on_label": "Verzenden op (optioneel)",
       "expanded": "Formulier voor ontvanger cadeaubon uitgevouwen",
       "collapsed": "Formulier voor ontvanger cadeaubon ingeklapt"
+    }
+  },
+  "hiparcelo": {
+    "brand": {
+      "prefix": "Hi",
+      "suffix": "Parcelo"
+    },
+    "common": {
+      "concept": "Conceptbeeld"
+    },
+    "navigation": {
+      "main": "Hoofdnavigatie",
+      "mobile": "Mobiele navigatie",
+      "footer": "Voettekstnavigatie",
+      "first_find": "Ontdek onze eerste vondst",
+      "explore": "Onze aanpak",
+      "about": "Over ons",
+      "help": "Hulp",
+      "contact": "Contact",
+      "cart": "Winkelwagen bekijken",
+      "menu": "Menu openen",
+      "return_product": "Terug naar {{ product }}"
+    },
+    "hero": {
+      "eyebrow": "Handige vondsten voor elke dag.",
+      "heading": "Online ontdekt.",
+      "accent": "Maak het van jou.",
+      "copy": "Doordachte kleine verbeteringen voor elke dag. Ontdek de mogelijkheden, bekijk de details en kies wat bij je past.",
+      "explore": "Ontdek onze aanpak",
+      "about": "Maak kennis met HiParcelo",
+      "concept_alt": "Illustratieve scène met een bureau-organizer, smartphone en een geopend pakket."
+    },
+    "principles": {
+      "label": "Wat HiParcelo belangrijk vindt",
+      "useful_title": "Handige vondsten voor elke dag",
+      "useful_copy": "Kleine verbeteringen met een praktisch doel.",
+      "clarity_title": "Bekijk het van dichtbij",
+      "clarity_copy": "Begrijp de details voordat je kiest.",
+      "help_title": "Hulp binnen handbereik",
+      "help_copy": "Een duidelijke manier om een vraag te stellen."
+    },
+    "discovery": {
+      "eyebrow": "Bekijk het van dichtbij",
+      "heading": "Van je scherm naar jouw ruimte.",
+      "copy": "Stel je de mogelijkheden voor. Bekijk het doel, de details en hoe een vondst in je dagelijkse routine zou kunnen passen.",
+      "concept_alt": "Illustratieve scène van een hand die een pen in een saliegroene bureau-organizer zet.",
+      "life_title": "Begin bij het dagelijks leven",
+      "life_copy": "Een handige vondst begint bij een herkenbare dagelijkse behoefte.",
+      "detail_title": "Let op de kleine details",
+      "detail_copy": "Afmetingen, materialen en werking tellen mee bij je keuze.",
+      "choice_title": "Kies wat bij je past",
+      "choice_copy": "Kies wat past bij jouw ruimte en dagelijkse routine.",
+      "about": "Waarom HiParcelo?",
+      "product": "Bekijk het product",
+      "from_price": "Vanaf {{ price }}",
+      "price_details": "Bekijk de productpagina voor opties, totale kosten en bezorginformatie."
+    },
+    "about": {
+      "eyebrow": "Waarom HiParcelo?",
+      "heading": "Goede vondsten. Duidelijke bedoelingen.",
+      "copy": "Een goede vondst moet tot aan je voordeur goed aanvoelen. We bouwen HiParcelo rond praktische producten, doordachte keuzes en de informatie die je nodig hebt om met vertrouwen te kiezen. Nut, een passende toepassing en een goede verhouding tussen waarde en kosten bepalen onze aanpak.",
+      "help": "Leer onze aanpak kennen"
+    },
+    "help": {
+      "label": "Bezorging, retouren en klantenservice",
+      "delivery": "Bezorginformatie",
+      "delivery_copy": "Begrijp de reis naar je voordeur.",
+      "returns": "Retourinformatie",
+      "returns_copy": "Ken je mogelijkheden voordat je bestelt.",
+      "contact": "Stel een vraag",
+      "contact_copy": "Neem contact op met HiParcelo."
+    },
+    "faq": {
+      "eyebrow": "Wat meer duidelijkheid",
+      "heading": "Vragen? Begin hier.",
+      "copy": "Korte antwoorden om HiParcelo te leren kennen.",
+      "products_question": "Wat voor producten biedt HiParcelo aan?",
+      "products_answer": "We richten ons op praktische producten voor elke dag, met een duidelijk doel. Ons eerste aanbod is in voorbereiding. De afgebeelde scène is een conceptbeeld en geen product dat nu te koop is.",
+      "delivery_question": "Waar bezorgen jullie en hoelang duurt dat?",
+      "delivery_answer": "De bezorging hangt af van het artikel en de bestemming. Bij elk aanbod vermelden we vóór aankoop de beschikbare bestemmingen, verwerkingstijd, geschatte bezorgtijd en kosten.",
+      "returns_question": "Hoe werken retouren?",
+      "returns_answer": "De geldende retourtermijn, voorwaarden, kosten en stappen staan vóór aankoop bij het aanbod. Is iets onduidelijk? Vraag het ons voordat je bestelt.",
+      "help_question": "Hoe neem ik contact op met HiParcelo?",
+      "help_answer": "Gebruik het e-mailadres hieronder om een vraag te stellen. Vermeld bij een bestaande bestelling het bestelnummer, zodat we je vraag kunnen koppelen."
+    },
+    "closing": {
+      "heading": "Een goede vondst begint met beter kijken.",
+      "copy": "Ontdek waar HiParcelo voor staat of ga terug naar het product dat je aandacht trok.",
+      "about": "Maak kennis met HiParcelo"
+    },
+    "footer": {
+      "tagline": "Handige dingen voor de mogelijkheden van elke dag.",
+      "copyright": "© {{ year }} {{ brand }}.",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "tiktok": "TikTok"
+    }
+  },
+  "hp_store": {
+    "common": {
+      "home": "Home",
+      "help": "Helpcentrum",
+      "contact": "Neem contact op",
+      "track": "Bestelling volgen",
+      "about": "Over HiParcelo",
+      "guides": "Handige gidsen",
+      "shipping": "Bezorginformatie",
+      "returns": "Retouren en terugbetalingen",
+      "privacy": "Privacy",
+      "terms": "Voorwaarden",
+      "cookies": "Cookies",
+      "choices": "Je privacykeuzes",
+      "first_find": "Onze eerste vondst",
+      "learn_more": "Ontdek onze aanpak",
+      "back_home": "Terug naar HiParcelo",
+      "read_guide": "Lees de gids",
+      "draft": "Voorbereidend concept",
+      "draft_copy": "Deze pagina wordt voorbereid voor onze eerste lancering. Het definitieve aanbod, de verkopersgegevens en de servicevoorwaarden moeten vaststaan voordat bestellingen mogelijk zijn.",
+      "preview": "Winkel in voorbereiding: ons eerste aanbod is nog niet te bestellen.",
+      "no_orders": "Bestellen is nog niet mogelijk",
+      "support_copy": "Heb je een vraag? Gebruik onze contactpagina, zodat we je met de juiste informatie kunnen helpen.",
+      "question": "Een beetje duidelijkheid helpt je verder.",
+      "currency": "Prijzen worden weergegeven in {{ currency }}.",
+      "concept": "Conceptbeeld: geen geselecteerd product",
+      "offer_pending": "Ons eerste aanbod is in voorbereiding",
+      "page_kicker": "Wat meer duidelijkheid",
+      "discover": "Ontdek",
+      "support": "Klantenservice",
+      "legal": "Informatie en beleid",
+      "company": "Een bedrijf als basis. De klant centraal."
+    },
+    "form": {
+      "heading": "Laten we het duidelijk maken.",
+      "intro": "Stel een vraag over een product, bestelling of de werking van HiParcelo. Deel alleen wat we nodig hebben om je te helpen.",
+      "name": "Je naam",
+      "email": "E-mailadres",
+      "topic": "Waarmee kunnen we je helpen?",
+      "product": "Vraag over een product",
+      "delivery": "Bezorging of volgen",
+      "return": "Retour of terugbetaling",
+      "other": "Iets anders",
+      "order": "Bestelnummer (optioneel)",
+      "message": "Je bericht",
+      "send": "Bericht versturen",
+      "success": "Je bericht is verzonden. Houd het opgegeven e-mailadres in de gaten voor ons antwoord.",
+      "error": "Controleer de gemarkeerde velden en probeer het opnieuw.",
+      "notice": "Stuur geen betaalkaartgegevens, wachtwoorden, identiteitsdocumenten of gevoelige gezondheidsinformatie mee.",
+      "privacy": "Hoe we met je gegevens omgaan",
+      "preview": "Dit is een voorbeeld van het formulier. Verzenden is uitgeschakeld totdat de ontvangst van supportberichten is gecontroleerd.",
+      "email_us": "Stuur ons een e-mail",
+      "response": "We publiceren onze bereikbaarheid voordat bestellingen mogelijk zijn.",
+      "disabled": "Formulier niet geactiveerd"
+    },
+    "tracking": {
+      "heading": "Volg je pakket. Houd overzicht.",
+      "intro": "Op de statuspagina van je bestelling vind je bevestigde updates.",
+      "step_one": "Open je bevestigingsmail",
+      "step_one_copy": "Kies de link naar de bestelstatus in de bevestiging die je bij je bestelling ontving.",
+      "step_two": "Bekijk de laatste update",
+      "step_two_copy": "Volginformatie verschijnt zodra een zending is aangemaakt. Een verzendlabel betekent op zichzelf nog niet dat het pakket onderweg is.",
+      "step_three": "Hulp nodig?",
+      "step_three_copy": "Gebruik onze contactpagina en vermeld je bestelnummer. Deel nooit je wachtwoord of betaalgegevens.",
+      "login": "Inloggen op je account",
+      "account_copy": "Is je bestelling aan een klantaccount gekoppeld? Log dan in om deze te bekijken.",
+      "no_lookup": "We tonen geen bestelgegevens op basis van alleen een bestelnummer. Gebruik je beveiligde link naar de bestelstatus of neem contact op.",
+      "prelaunch": "Aan dit voorbeeld is geen live volgdienst gekoppeld. Verzendupdates zullen uit geauthenticeerde bestelgegevens komen; voorbeeldgebeurtenissen worden niet als echt voorgesteld."
+    },
+    "product": {
+      "kicker": "Een handige vondst voor elke dag",
+      "details": "De handige details",
+      "fit": "Controleer of het past voordat je kiest",
+      "fit_copy": "Lees de afmetingen, materialen, compatibiliteit en onderhoudsinformatie van het echte product. Vraag het ons als iets onduidelijk is.",
+      "limits": "Goed om te weten",
+      "quantity": "Aantal",
+      "variant": "Kies je optie",
+      "add": "In winkelwagen",
+      "unavailable": "Momenteel niet beschikbaar",
+      "preparing": "Bestellen is niet ingeschakeld",
+      "shipping": "Bezorgdetails",
+      "returns": "Retourinformatie",
+      "no_product": "Er is nog geen product gekozen",
+      "no_product_copy": "Dit is de herbruikbare productindeling. Kies het eerste product in de thema-editor nadat het aanbod is gecontroleerd.",
+      "image": "Productafbeelding",
+      "no_image": "Hier verschijnen de productfoto’s",
+      "price": "Huidige prijs",
+      "offer_note": "Controleer de totaalprijs, bezorgmogelijkheden en retourvoorwaarden voordat je bestelt.",
+      "prep_copy": "Deze productpagina is een voorbereidend voorbeeld. Aankopen zijn uitgeschakeld.",
+      "specifications": "Specificaties",
+      "included": "Wat is inbegrepen",
+      "guidance": "Gebruik en onderhoud",
+      "ask": "Stel een productvraag",
+      "preview_title": "De volgende kleine verbetering begint met een echte behoefte.",
+      "preview_copy": "We bereiden onze eerste handige vondst voor. Het product, de prijs, specificaties en bezorgdetails delen we nadat het aanbod is gecontroleerd.",
+      "preview_label": "Voorbeeld van de aanbodpagina",
+      "preview_problem": "Begin bij het dagelijkse probleem",
+      "preview_problem_copy": "Een product verdient zijn plek door een vertrouwde taak eenvoudiger te maken. De eerste lancering richt zich op één specifieke behoefte.",
+      "preview_proof": "Laat het product eerlijk zien",
+      "preview_proof_copy": "Zodra ons eerste artikel is gekozen, tonen we duidelijke afmetingen, praktische gebruiksinformatie en echte productfoto’s.",
+      "preview_fit": "Weet of het bij je past",
+      "preview_fit_copy": "Geschiktheid, compatibiliteit, onderhoud en beperkingen horen naast de voordelen, zodat je een weloverwogen keuze kunt maken.",
+      "preview_service": "Weet wat er daarna gebeurt",
+      "preview_service_copy": "Het definitieve aanbod bevat de totaalprijs, beschikbare bestemmingen en informatie over bezorging, retouren en support.",
+      "preview_button": "Eerste aanbod volgt later",
+      "facts_kicker": "Voordat je kiest"
+    },
+    "cart": {
+      "heading": "Jouw handige vondsten.",
+      "empty": "Je volgende handige vondst begint hier.",
+      "empty_copy": "Je winkelwagen is leeg. Ontdek onze aanpak terwijl we het eerste aanbod voorbereiden.",
+      "item": "Artikel",
+      "quantity": "Aantal",
+      "total": "Totaal",
+      "subtotal": "Subtotaal",
+      "update": "Winkelwagen bijwerken",
+      "checkout": "Verder naar afrekenen",
+      "remove": "Verwijderen",
+      "costs": "Bezorging en eventuele belastingen of kosten worden vóór betaling bevestigd.",
+      "taxes": "Productbelastingen zijn inbegrepen waar dit staat vermeld. Bezorging en overige kosten worden vóór betaling bevestigd.",
+      "preview": "Dit is een voorbereidend voorbeeld. Afrekenen is uitgeschakeld totdat het eerste aanbod en de werkwijze zijn goedgekeurd.",
+      "review": "Controleer de details voordat je bestelt",
+      "help": "Vragen over je bestelling?",
+      "error": "De winkelwagen kon niet worden bijgewerkt. Probeer het opnieuw."
+    },
+    "faq": {
+      "heading": "De handige antwoorden.",
+      "intro": "Een duidelijk startpunt voor vragen over HiParcelo, bestellen en klantenservice.",
+      "brand_q": "Wat is HiParcelo?",
+      "brand_a": "We bouwen HiParcelo rond praktische producten die problemen oplossen, met duidelijke productinformatie. We bereiden één gericht eerste aanbod voor.",
+      "order_q": "Kan ik nu bestellen?",
+      "order_a": "Nog niet. De winkel is in voorbereiding. Bestellen wordt mogelijk nadat het product, de prijs, betaling en serviceafspraken zijn gecontroleerd.",
+      "products_q": "Is het product op het conceptbeeld te koop?",
+      "products_a": "Nee. De beelden tonen de richting van het merk, geen geselecteerd product, getest exemplaar of beschikbaar aanbod.",
+      "delivery_q": "Waar bezorgen jullie en hoelang duurt dat?",
+      "delivery_a": "De eerste bestemming en bezorgroute moeten nog worden bevestigd. De werkelijke bezorgschatting, verwerkingstijd en eventuele invoerkosten staan vóór bestelling vermeld.",
+      "returns_q": "Hoe gaan retouren werken?",
+      "returns_a": "Het definitieve proces, retouradres, de kosten, geldende herroepingsrechten en terugbetalingen worden vóór de opening vermeld. Dit voorbeeld doet geen algemene retourbelofte.",
+      "tracking_q": "Hoe volg ik een bestelling?",
+      "tracking_a": "Gebruik de beveiligde link naar de bestelstatus in je bevestigingsmail. We geven geen bestelgegevens op basis van alleen het bestelnummer.",
+      "support_q": "Hoe kan ik contact opnemen?",
+      "support_a": "Gebruik de contactpagina. De bereikbaarheid van support en de ontvangst van het formulier moeten vóór de lancering worden gecontroleerd.",
+      "health_q": "Geven jullie medisch advies?",
+      "health_a": "Nee. Productinformatie is geen diagnose of medisch advies. Elk product met gezondheidsgerelateerde toepassingen of claims heeft een eigen veiligheids- en nalevingscontrole nodig.",
+      "feedback_q": "Waar staan de klantbeoordelingen?",
+      "feedback_a": "We voegen echte klantreacties met toestemming toe zodra die er zijn. We gebruiken geen verzonnen beoordelingen of klantaantallen."
+    },
+    "password": {
+      "eyebrow": "Er krijgt iets handigs vorm.",
+      "heading": "Online ontdekt. Maak het van jou.",
+      "copy": "We bereiden HiParcelo’s eerste dagelijkse vondst voor. Duidelijke informatie, een doordacht aanbod en hulp binnen handbereik.",
+      "owner": "Winkeleigenaar?",
+      "login": "Inloggen bij Shopify",
+      "enter": "Openen met wachtwoord",
+      "password": "Winkelwachtwoord",
+      "open": "Winkel openen",
+      "error": "Dat wachtwoord is niet geaccepteerd. Probeer het opnieuw.",
+      "privacy": "Deze voorbereidingspagina verzamelt geen nieuwsbriefinschrijvingen."
+    },
+    "not_found": {
+      "eyebrow": "Een kleine omweg",
+      "heading": "Deze pagina zit niet in het pakket.",
+      "copy": "De link is mogelijk gewijzigd of de pagina is nog in voorbereiding. Ga naar de homepage of ons helpcentrum."
+    },
+    "localization": {
+      "label": "Taal",
+      "submit": "Taal wijzigen"
+    }
+  },
+  "hp_pages": {
+    "about": {
+      "kicker": "Handige vondsten. Duidelijk uitgelegd.",
+      "intro": "Een kleine verbetering voor elke dag moet nuttig, begrijpelijk en het kiezen waard zijn."
+    },
+    "shipping": {
+      "kicker": "Van bestelling naar pakket",
+      "intro": "Ken de bestemming, de totale kosten en wat een bezorgschatting werkelijk omvat."
+    },
+    "returns": {
+      "kicker": "Duidelijke verwachtingen",
+      "intro": "Het juiste proces hangt af van het echte product, de bestemming en de reden voor je verzoek."
+    },
+    "privacy": {
+      "kicker": "Jouw gegevens",
+      "intro": "Een voorbereidend concept dat wordt afgestemd op de echte winkelinstellingen en de eerste verkoopmarkt."
+    },
+    "terms": {
+      "kicker": "Voordat we openen",
+      "intro": "De definitieve voorwaarden hangen af van de gecontroleerde verkoper, het eerste aanbod en het eerste verkoopland."
+    },
+    "cookies": {
+      "kicker": "Een duidelijk overzicht",
+      "intro": "Begrijp de werkelijke diensten voordat je kiest hoe je gegevens worden gebruikt."
+    },
+    "guides": {
+      "kicker": "Nog wat handiger",
+      "intro": "Eenvoudige vragen die van een dagelijkse vondst een doordachte keuze maken."
+    },
+    "guide_fit": {
+      "kicker": "Handige gids · 01",
+      "intro": "Een paar controles vooraf kunnen een product voorkomen dat niet bij je routine past."
+    },
+    "guide_before_ordering": {
+      "kicker": "Handige gids · 02",
+      "intro": "Vijf dingen om te controleren voordat een bestelling een pakket wordt."
+    },
+    "guide_use_and_care": {
+      "kicker": "Handige gids · 03",
+      "intro": "Goed gebruik begint met de instructies voor het precieze artikel."
     }
   }
 }

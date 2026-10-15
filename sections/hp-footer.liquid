@@ -8,26 +8,27 @@
         {% if support_email != blank %}<p><a href="mailto:{{ support_email | escape }}">{{ support_email | escape }}</a></p>{% endif %}
       </div>
       <div><h2>{{ 'hp_store.common.discover' | t }}</h2><nav aria-label="{{ 'hp_store.common.discover' | t }}">
-        <a href="{{ routes.root_url }}pages/first-find">{{ 'hp_store.common.first_find' | t }}</a>
-        <a href="{{ routes.root_url }}pages/about">{{ 'hp_store.common.about' | t }}</a>
-        <a href="{{ routes.root_url }}pages/guides">{{ 'hp_store.common.guides' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hp_store.common.first_find' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hp_store.common.about' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hp_store.common.guides' | t }}</a>
       </nav></div>
       <div><h2>{{ 'hp_store.common.support' | t }}</h2><nav aria-label="{{ 'hp_store.common.support' | t }}">
-        <a href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a>
-        <a href="{{ routes.root_url }}pages/help">{{ 'hp_store.common.help' | t }}</a>
-        <a href="{{ routes.root_url }}pages/track-order">{{ 'hp_store.common.track' | t }}</a>
-        <a href="{{ routes.root_url }}pages/shipping">{{ 'hp_store.common.shipping' | t }}</a>
-        <a href="{{ routes.root_url }}pages/returns">{{ 'hp_store.common.returns' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hp_store.common.help' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a>
       </nav></div>
       <div><h2>{{ 'hp_store.common.legal' | t }}</h2><nav aria-label="{{ 'hp_store.common.legal' | t }}">
-        <a href="{{ routes.root_url }}pages/privacy">{{ 'hp_store.common.privacy' | t }}</a>
-        <a href="{{ routes.root_url }}pages/terms">{{ 'hp_store.common.terms' | t }}</a>
-        <a href="{{ routes.root_url }}pages/cookies">{{ 'hp_store.common.cookies' | t }}</a>
-        <a href="{{ routes.root_url }}pages/data-sharing-opt-out">{{ 'hp_store.common.choices' | t }}</a>
-        {% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}
+        <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.common.privacy' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/terms' | replace: '//', '/' }}">{{ 'hp_store.common.terms' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/cookies' | replace: '//', '/' }}">{{ 'hp_store.common.cookies' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/data-sharing-opt-out' | replace: '//', '/' }}">{{ 'hp_store.common.choices' | t }}</a>
+        {% unless settings.hp_store_preparation %}{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}{% endunless %}
       </nav></div>
     </div>
     <div class="hp-footer__bottom">
+      {% render 'hp-localization', placement: 'footer' %}
       <div>{% assign year = 'now' | date: '%Y' %}<p>{{ 'hiparcelo.footer.copyright' | t: year: year, brand: shop.name }}</p>{% if settings.hp_seller_identity != blank %}<p>{{ settings.hp_seller_identity | escape }}</p>{% endif %}</div>
       <div class="hp-footer__links">
         {% if settings.social_instagram_link != blank %}<a href="{{ settings.social_instagram_link | escape }}">{{ 'hiparcelo.footer.instagram' | t }}</a>{% endif %}

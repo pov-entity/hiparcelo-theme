@@ -6,7 +6,8 @@
         "kicker": "Useful guide · 03",
         "intro": "Good use starts with the instructions for the exact item.",
         "show_draft": false,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "guide_use_and_care"
       }
     }
   },

@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "preview:store": "node scripts/store-preview.mjs",
+    "localization:build": "node scripts/localization-build.mjs"
   },
   "engines": {
     "node": ">=20"

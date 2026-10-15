@@ -787,6 +787,52 @@
       "eyebrow": "A little detour",
       "heading": "This page isn't in the parcel.",
       "copy": "The link may have changed, or the page may still be in preparation. Head home or visit our help centre."
+    },
+    "localization": {
+      "label": "Language",
+      "submit": "Change language"
+    }
+  },
+  "hp_pages": {
+    "about": {
+      "kicker": "Useful finds. Clearly explained.",
+      "intro": "A small upgrade to everyday life should feel useful, understandable and worth choosing."
+    },
+    "shipping": {
+      "kicker": "From order to parcel",
+      "intro": "Know the destination, the full cost and what a delivery estimate actually includes."
+    },
+    "returns": {
+      "kicker": "Clear expectations",
+      "intro": "The right process starts with the actual product, destination and reason for the request."
+    },
+    "privacy": {
+      "kicker": "Your information",
+      "intro": "A preparation draft, to be completed against the actual store setup and launch market."
+    },
+    "terms": {
+      "kicker": "Before we open",
+      "intro": "The final trading terms depend on the verified seller, first offer and launch country."
+    },
+    "cookies": {
+      "kicker": "A clear view",
+      "intro": "Understand the actual services before choosing how information is used."
+    },
+    "guides": {
+      "kicker": "A little more useful",
+      "intro": "Simple questions that help an everyday find become a considered choice."
+    },
+    "guide_fit": {
+      "kicker": "Useful guide · 01",
+      "intro": "A few checks now can prevent a product that does not fit your routine."
+    },
+    "guide_before_ordering": {
+      "kicker": "Useful guide · 02",
+      "intro": "Five things worth finding before an order becomes a parcel."
+    },
+    "guide_use_and_care": {
+      "kicker": "Useful guide · 03",
+      "intro": "Good use starts with the instructions for the exact item."
     }
   }
 }

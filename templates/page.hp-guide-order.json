@@ -6,7 +6,8 @@
         "kicker": "Useful guide · 02",
         "intro": "Five things worth finding before an order becomes a parcel.",
         "show_draft": false,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "guide_before_ordering"
       }
     }
   },

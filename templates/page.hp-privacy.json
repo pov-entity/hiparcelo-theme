@@ -6,7 +6,8 @@
         "kicker": "Your information",
         "intro": "A preparation draft, to be completed against the actual store setup and launch market.",
         "show_draft": true,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "privacy"
       }
     }
   },

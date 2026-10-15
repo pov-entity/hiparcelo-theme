@@ -8,7 +8,7 @@
       <article class="hp-step"><span class="hp-step__number" aria-hidden="true">03</span><h2>{{ 'hp_store.tracking.step_three' | t }}</h2><p>{{ 'hp_store.tracking.step_three_copy' | t }}</p></article>
     </div>
     <div class="hp-tracking__actions">
-      <a class="hp-button" href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a>
+      <a class="hp-button" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
       {% if shop.customer_accounts_enabled %}<a class="hp-button hp-button--outline" href="{{ routes.account_login_url }}">{{ 'hp_store.tracking.login' | t }}</a>{% endif %}
     </div>
     <p class="hp-tracking__privacy">{{ 'hp_store.tracking.no_lookup' | t }}</p>

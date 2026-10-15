@@ -6,7 +6,8 @@
         "kicker": "Clear expectations",
         "intro": "The right process starts with the actual product, destination and reason for the request.",
         "show_draft": true,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "returns"
       }
     }
   },

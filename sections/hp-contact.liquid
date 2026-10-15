@@ -10,7 +10,7 @@
         <div class="hp-contact__details">
           {% if support_email != blank %}<a href="mailto:{{ support_email | escape }}">{{ support_email | escape }}</a>{% endif %}
           <p>{{ 'hp_store.form.response' | t }}</p>
-          <p><a href="{{ routes.root_url }}pages/track-order">{{ 'hp_store.common.track' | t }}</a></p>
+          <p><a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a></p>
         </div>
       </div>
       <div class="hp-form">
@@ -25,7 +25,7 @@
             <div class="hp-field"><label for="HpContactTopic">{{ 'hp_store.form.topic' | t }}</label><select id="HpContactTopic" name="contact[topic]"><option>{{ 'hp_store.form.product' | t }}</option><option>{{ 'hp_store.form.delivery' | t }}</option><option>{{ 'hp_store.form.return' | t }}</option><option>{{ 'hp_store.form.other' | t }}</option></select></div>
             <div class="hp-field"><label for="HpContactOrder">{{ 'hp_store.form.order' | t }}</label><input id="HpContactOrder" name="contact[order_number]" type="text" autocomplete="off" maxlength="80"></div>
             <div class="hp-field"><label for="HpContactMessage">{{ 'hp_store.form.message' | t }}</label><textarea id="HpContactMessage" name="contact[body]" rows="7" required>{{ form.body | escape }}</textarea></div>
-            <p class="hp-form__note">{{ 'hp_store.form.notice' | t }} <a href="{{ routes.root_url }}pages/privacy">{{ 'hp_store.form.privacy' | t }}</a></p>
+            <p class="hp-form__note">{{ 'hp_store.form.notice' | t }} <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.form.privacy' | t }}</a></p>
             <button class="hp-button" type="submit">{{ 'hp_store.form.send' | t }}</button>
           {% endform %}
         {% else %}

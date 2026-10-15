@@ -6,7 +6,8 @@
         "kicker": "A little more useful",
         "intro": "Simple questions that help an everyday find become a considered choice.",
         "show_draft": false,
-        "show_support": true
+        "show_support": true,
+        "localization_key": "guides"
       }
     }
   },

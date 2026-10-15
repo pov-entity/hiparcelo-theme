@@ -1,70 +1,52 @@
 {% assign support_email = settings.hp_support_email | default: shop.email %}
 <footer class="hp hp-footer">
   <div class="hp-shell">
-    <div class="hp-footer__top">
-      <div>
+    <div class="hp-page-footer">
+      <div class="hp-page-footer__brand">
         <a class="hp-wordmark" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">{{ 'hiparcelo.brand.prefix' | t }}<span>{{ 'hiparcelo.brand.suffix' | t }}</span></a>
         <p>{{ 'hiparcelo.footer.tagline' | t }}</p>
+        {% if support_email != blank %}<p><a href="mailto:{{ support_email | escape }}">{{ support_email | escape }}</a></p>{% endif %}
       </div>
-      <nav aria-label="{{ 'hiparcelo.navigation.footer' | t }}">
-        <a href="{{ routes.root_url }}#hp-discovery">{{ 'hiparcelo.navigation.first_find' | t }}</a>
-        <a href="{{ routes.root_url }}#hp-about">{{ 'hiparcelo.navigation.about' | t }}</a>
-        <a href="{{ routes.root_url }}#hp-help">{{ 'hiparcelo.navigation.help' | t }}</a>
-        {% if support_email != blank %}
-          <a href="mailto:{{ support_email | escape }}">{{ 'hiparcelo.navigation.contact' | t }}</a>
-        {% endif %}
-      </nav>
+      <div><h2>{{ 'hp_store.common.discover' | t }}</h2><nav aria-label="{{ 'hp_store.common.discover' | t }}">
+        <a href="{{ routes.root_url }}pages/first-find">{{ 'hp_store.common.first_find' | t }}</a>
+        <a href="{{ routes.root_url }}pages/about">{{ 'hp_store.common.about' | t }}</a>
+        <a href="{{ routes.root_url }}pages/guides">{{ 'hp_store.common.guides' | t }}</a>
+      </nav></div>
+      <div><h2>{{ 'hp_store.common.support' | t }}</h2><nav aria-label="{{ 'hp_store.common.support' | t }}">
+        <a href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a>
+        <a href="{{ routes.root_url }}pages/help">{{ 'hp_store.common.help' | t }}</a>
+        <a href="{{ routes.root_url }}pages/track-order">{{ 'hp_store.common.track' | t }}</a>
+        <a href="{{ routes.root_url }}pages/shipping">{{ 'hp_store.common.shipping' | t }}</a>
+        <a href="{{ routes.root_url }}pages/returns">{{ 'hp_store.common.returns' | t }}</a>
+      </nav></div>
+      <div><h2>{{ 'hp_store.common.legal' | t }}</h2><nav aria-label="{{ 'hp_store.common.legal' | t }}">
+        <a href="{{ routes.root_url }}pages/privacy">{{ 'hp_store.common.privacy' | t }}</a>
+        <a href="{{ routes.root_url }}pages/terms">{{ 'hp_store.common.terms' | t }}</a>
+        <a href="{{ routes.root_url }}pages/cookies">{{ 'hp_store.common.cookies' | t }}</a>
+        <a href="{{ routes.root_url }}pages/data-sharing-opt-out">{{ 'hp_store.common.choices' | t }}</a>
+        {% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}
+      </nav></div>
     </div>
     <div class="hp-footer__bottom">
-      <div>
-        {% assign year = 'now' | date: '%Y' %}
-        <p>{{ 'hiparcelo.footer.copyright' | t: year: year, brand: shop.name }}</p>
-        {% if settings.hp_seller_identity != blank %}
-          <p>{{ settings.hp_seller_identity | escape }}</p>
-        {% endif %}
-      </div>
+      <div>{% assign year = 'now' | date: '%Y' %}<p>{{ 'hiparcelo.footer.copyright' | t: year: year, brand: shop.name }}</p>{% if settings.hp_seller_identity != blank %}<p>{{ settings.hp_seller_identity | escape }}</p>{% endif %}</div>
       <div class="hp-footer__links">
-        {% for policy in shop.policies %}
-          {% if policy.body != blank %}
-            <a href="{{ policy.url }}">{{ policy.title | escape }}</a>
-          {% endif %}
-        {% endfor %}
-        {% if settings.social_instagram_link != blank %}
-          <a href="{{ settings.social_instagram_link | escape }}">{{ 'hiparcelo.footer.instagram' | t }}</a>
-        {% endif %}
-        {% if settings.social_facebook_link != blank %}
-          <a href="{{ settings.social_facebook_link | escape }}">{{ 'hiparcelo.footer.facebook' | t }}</a>
-        {% endif %}
-        {% if settings.social_tiktok_link != blank %}
-          <a href="{{ settings.social_tiktok_link | escape }}">{{ 'hiparcelo.footer.tiktok' | t }}</a>
-        {% endif %}
+        {% if settings.social_instagram_link != blank %}<a href="{{ settings.social_instagram_link | escape }}">{{ 'hiparcelo.footer.instagram' | t }}</a>{% endif %}
+        {% if settings.social_facebook_link != blank %}<a href="{{ settings.social_facebook_link | escape }}">{{ 'hiparcelo.footer.facebook' | t }}</a>{% endif %}
+        {% if settings.social_tiktok_link != blank %}<a href="{{ settings.social_tiktok_link | escape }}">{{ 'hiparcelo.footer.tiktok' | t }}</a>{% endif %}
       </div>
     </div>
   </div>
 </footer>
 {% stylesheet %}
-  .hp-footer { background: var(--hp-ink); color: #fff; padding-block: 43px 28px; }
-  .hp-footer .hp-wordmark { color: #fff; display: inline-block; }
-  .hp-footer .hp-wordmark span { color: #47c4bd; }
-  .hp-footer__top { display: flex; justify-content: space-between; align-items: center; gap: 35px; padding-bottom: 35px; }
-  .hp-footer__top p { margin-top: 14px; color: #c4d1df; font-size: 13px; }
-  .hp-footer nav { display: flex; flex-wrap: wrap; gap: 26px; }
-  .hp-footer nav a { font-size: 13px; text-decoration: none; padding-block: 12px; }
-  .hp-footer__bottom { display: flex; justify-content: space-between; align-items: start; gap: 28px; padding-top: 24px; border-top: 1px solid #ffffff24; }
-  .hp-footer__bottom p { font-size: 11px; color: #c4d1df; margin-bottom: 5px; }
-  .hp-footer__links { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 13px 22px; max-width: 60%; }
-  .hp-footer__links a { color: #d1dfeb; font-size: 11px; }
-  .hp-footer a:focus-visible { outline-color: #68d5cd; }
-  @media (max-width: 749px) {
-    .hp-footer__top, .hp-footer__bottom { display: block; }
-    .hp-footer nav { gap: 12px 24px; margin-top: 23px; }
-    .hp-footer__links { justify-content: flex-start; max-width: 100%; margin-top: 20px; }
-  }
+.hp-footer{background:var(--hp-ink);color:#fff;padding-block:40px 28px}
+.hp-footer .hp-wordmark{color:#fff}.hp-footer .hp-wordmark span{color:#47c4bd}
+.hp-footer__bottom{display:flex;justify-content:space-between;align-items:start;gap:28px;padding-top:24px;border-top:1px solid #ffffff24}
+.hp-footer__bottom p{font-size:11px;color:#c4d1df;margin-bottom:5px}
+.hp-footer__links{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:13px 22px;max-width:60%}
+.hp-footer__links a{color:#d1dfeb;font-size:11px}
+.hp-footer a:focus-visible{outline-color:#68d5cd}
+@media(max-width:749px){.hp-footer__bottom{display:block}.hp-footer__links{justify-content:flex-start;max-width:100%;margin-top:20px}}
 {% endstylesheet %}
 {% schema %}
-{
-  "name": "t:hiparcelo.footer.name",
-  "enabled_on": { "groups": ["footer"] },
-  "settings": []
-}
+{"name":"t:hiparcelo.footer.name","enabled_on":{"groups":["footer"]},"settings":[]}
 {% endschema %}

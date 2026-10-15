@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "Useful guide · 03",
+        "intro": "Good use starts with the instructions for the exact item.",
+        "show_draft": false,
+        "show_support": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

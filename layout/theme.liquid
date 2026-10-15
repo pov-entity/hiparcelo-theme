@@ -64,6 +64,8 @@
     {%- endif -%}
 
     {{ 'hp-base.css' | asset_url | stylesheet_tag }}
+    {{ 'hp-store.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'hp-store.js' | asset_url }}" defer="defer"></script>
     {% style %}
       :root {
         --hp-ink: {{ settings.hp_ink | default: '#102139' }};
@@ -332,6 +334,7 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+    {% render 'hp-store-status' %}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

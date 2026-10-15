@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "From order to parcel",
+        "intro": "Know the destination, the full cost and what a delivery estimate actually includes.",
+        "show_draft": true,
+        "show_support": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

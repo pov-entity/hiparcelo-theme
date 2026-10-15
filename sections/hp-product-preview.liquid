@@ -1,0 +1,16 @@
+<section class="hp hp-product hp-product__preview" aria-labelledby="hp-preview-title-{{ section.id }}">
+  <div class="hp-shell">
+    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.first_find' | t }}</span></nav>
+    <div class="hp-product__grid">
+      <div class="hp-product__media"><img class="hp-product__image" src="{{ 'hp-story-concept.webp' | asset_url }}" width="1536" height="1024" alt="{{ 'hiparcelo.discovery.concept_alt' | t }}" loading="eager" fetchpriority="high"><span class="hp-concept">{{ 'hp_store.common.concept' | t }}</span></div>
+      <div class="hp-product__information"><p class="hp-eyebrow">{{ 'hp_store.product.preview_label' | t }}</p><h1 id="hp-preview-title-{{ section.id }}">{{ 'hp_store.product.preview_title' | t }}</h1><p class="hp-copy">{{ 'hp_store.product.preview_copy' | t }}</p><button class="hp-button" type="button" disabled>{{ 'hp_store.product.preview_button' | t }}</button><div class="hp-product__links"><a href="{{ routes.root_url }}pages/about">{{ 'hp_store.common.learn_more' | t }}</a><a href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a></div></div>
+    </div>
+  </div>
+</section>
+<section class="hp hp-product-facts"><div class="hp-shell"><div class="hp-fact-grid">
+  {% assign topics = 'problem,proof,fit,service' | split: ',' %}
+  {% for topic in topics %}{% assign title_key = 'hp_store.product.preview_' | append: topic %}{% assign copy_key = title_key | append: '_copy' %}<article class="hp-fact"><h2>{{ title_key | t }}</h2><p>{{ copy_key | t }}</p></article>{% endfor %}
+</div></div></section>
+{% schema %}
+{"name":"t:hp_store.preview_name","settings":[],"presets":[{"name":"t:hp_store.preview_name"}]}
+{% endschema %}

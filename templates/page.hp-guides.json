@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "A little more useful",
+        "intro": "Simple questions that help an everyday find become a considered choice.",
+        "show_draft": false,
+        "show_support": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

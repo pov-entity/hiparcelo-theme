@@ -1,5 +1,5 @@
 {% liquid
-  assign offer_url = routes.root_url | append: '#hp-discovery'
+  assign offer_url = routes.root_url | append: 'pages/first-find'
   assign offer_label = 'hiparcelo.navigation.explore' | t
   assign featured = section.settings.featured_product | default: settings.hp_featured_product
   if featured != blank
@@ -18,8 +18,9 @@
     </a>
     <nav class="hp-header__desktop" aria-label="{{ 'hiparcelo.navigation.main' | t }}">
       <a href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}"><span data-hp-offer-label>{{ offer_label }}</span></a>
-      <a href="{{ routes.root_url }}#hp-about">{{ 'hiparcelo.navigation.about' | t }}</a>
-      <a href="{{ routes.root_url }}#hp-help">{{ 'hiparcelo.navigation.help' | t }}</a>
+      <a href="{{ routes.root_url }}pages/about">{{ 'hiparcelo.navigation.about' | t }}</a>
+      <a href="{{ routes.root_url }}pages/help">{{ 'hiparcelo.navigation.help' | t }}</a>
+      <a href="{{ routes.root_url }}pages/track-order">{{ 'hp_store.common.track' | t }}</a>
     </nav>
     <div class="hp-header__actions">
       <a class="hp-header__cart" id="cart-icon-bubble" href="{{ routes.cart_url }}" aria-label="{{ 'hiparcelo.navigation.cart' | t }}">
@@ -32,8 +33,10 @@
         <summary aria-label="{{ 'hiparcelo.navigation.menu' | t }}">{% render 'hp-icon', name: 'menu' %}</summary>
         <nav aria-label="{{ 'hiparcelo.navigation.mobile' | t }}">
           <a href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}"><span data-hp-offer-label>{{ offer_label }}</span></a>
-          <a href="{{ routes.root_url }}#hp-about">{{ 'hiparcelo.navigation.about' | t }}</a>
-          <a href="{{ routes.root_url }}#hp-help">{{ 'hiparcelo.navigation.help' | t }}</a>
+          <a href="{{ routes.root_url }}pages/about">{{ 'hiparcelo.navigation.about' | t }}</a>
+          <a href="{{ routes.root_url }}pages/help">{{ 'hiparcelo.navigation.help' | t }}</a>
+          <a href="{{ routes.root_url }}pages/track-order">{{ 'hp_store.common.track' | t }}</a>
+          <a href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a>
         </nav>
       </details>
     </div>

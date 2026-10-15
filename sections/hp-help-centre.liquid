@@ -1,0 +1,19 @@
+<section class="hp hp-faq-page" aria-labelledby="hp-help-title-{{ section.id }}">
+  <div class="hp-shell">
+    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.help' | t }}</span></nav>
+    <header class="hp-faq-page__head"><p class="hp-eyebrow">{{ 'hp_store.common.support' | t }}</p><h1 id="hp-help-title-{{ section.id }}">{{ 'hp_store.faq.heading' | t }}</h1><p class="hp-copy">{{ 'hp_store.faq.intro' | t }}</p></header>
+    <div class="hp-faq-list">
+      {% assign topics = 'brand,order,products,delivery,returns,tracking,support,health,feedback' | split: ',' %}
+      {% for topic in topics %}
+        {% assign question_key = 'hp_store.faq.' | append: topic | append: '_q' %}
+        {% assign answer_key = 'hp_store.faq.' | append: topic | append: '_a' %}
+        <details><summary>{{ question_key | t }}</summary><div>{{ answer_key | t }}</div></details>
+      {% endfor %}
+      {% for block in section.blocks %}<details {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }}</summary><div>{{ block.settings.answer }}</div></details>{% endfor %}
+    </div>
+    <div class="hp-faq-page__contact"><a class="hp-button" href="{{ routes.root_url }}pages/contact">{{ 'hp_store.common.contact' | t }}</a></div>
+  </div>
+</section>
+{% schema %}
+{"name":"t:hp_store.faq_name","settings":[],"blocks":[{"type":"answer","name":"t:hp_store.faq_block","settings":[{"type":"text","id":"question","label":"t:hp_store.question"},{"type":"richtext","id":"answer","label":"t:hp_store.answer"}]}],"presets":[{"name":"t:hp_store.faq_name"}]}
+{% endschema %}

@@ -61,7 +61,7 @@ Shopify's existing Your Privacy Choices page is linked and unchanged. The draft 
 
 ## Verification
 
-- Official Shopify Liquid/theme validation: **41 changed theme files passed**, revision 3.
+- Official Shopify Liquid/theme validation: **41 changed theme files passed**, revision 3; subsequent prelaunch-layout adjustments passed targeted checks.
 - Native theme file write: **41 files accepted**, no user errors.
 - Local Liquid rendering: **19 page states rendered**.
 - **535 internal links checked** against the intended route manifest.
@@ -70,8 +70,9 @@ Shopify's existing Your Privacy Choices page is linked and unchanged. The draft 
 - Contact preview and activated-form markup tested with local fixtures.
 - Empty/filled cart and checkout gates tested with local fixtures.
 - Local fixtures were not sent to Shopify and do not represent actual products or orders.
-- Native visual browser rendering, actual checkout/payment, native contact delivery and real carrier tracking remain to be reviewed or tested. Local rendering does not establish these integrations.
+- The branded preparation/password screen was observed in Shopify's browser preview. Full page-by-page visual rendering, actual checkout/payment, native contact delivery and real carrier tracking remain to be reviewed or tested. Local rendering does not establish these integrations.
 - Browser executables were unavailable in the local runtime. The storefront is still password protected.
+- Native settings were checked semantically against the source; Shopify normalizes its saved JSON/checksum. Preparation remains enabled, commerce disabled and contact submission disabled. Other uploaded theme-file checksums were checked against the acknowledged writes; final prelaunch-layout adjustments were uploaded separately.
 
 To reproduce local functional checks:
 

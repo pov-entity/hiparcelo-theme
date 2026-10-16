@@ -10,7 +10,7 @@
     </div>
     <div>
       <p class="hp-copy">{{ section.settings.copy | default: default_copy | escape }}</p>
-      <a href="#hp-help">{{ 'hiparcelo.about.help' | t }} {% render 'hp-icon', name: 'arrow' %}</a>
+      <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hiparcelo.about.help' | t }} {% render 'hp-icon', name: 'arrow' %}</a>
     </div>
   </div>
 </section>

@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "hp-hero",
       "settings": {
         "show_concept": true,
-        "eyebrow": "HiParcelo  /  Finds for everyday life",
+        "eyebrow": "HiParcelo / Better everyday ideas",
         "heading": "Little frustrations.",
         "accent": "Better possibilities.",
         "copy": "Everyday problems deserve practical ideas. Discover the thinking behind our finds, explore useful guides, and see what's coming next."

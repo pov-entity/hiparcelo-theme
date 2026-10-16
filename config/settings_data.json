@@ -191,7 +191,10 @@
     },
     "hp_ink": "#102139",
     "hp_teal": "#006B6B",
-    "hp_surface": "#F4F8F8"
+    "hp_surface": "#F4F8F8",
+    "hp_contact_enabled": true,
+    "hp_commerce_enabled": false,
+    "hp_store_preparation": true
   },
   "presets": {
     "HiParcelo": {

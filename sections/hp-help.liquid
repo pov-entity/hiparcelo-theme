@@ -1,17 +1,8 @@
 {% liquid
-  assign delivery_url = '#hp-faq-delivery'
-  assign returns_url = '#hp-faq-returns'
+  assign delivery_url = routes.root_url | append: '/pages/shipping' | replace: '//', '/'
+  assign returns_url = routes.root_url | append: '/pages/returns' | replace: '//', '/'
   assign support_email = settings.hp_support_email | default: shop.email
-  assign contact_url = '#hp-faq-help'
-  if shop.shipping_policy.body != blank
-    assign delivery_url = shop.shipping_policy.url
-  endif
-  if shop.refund_policy.body != blank
-    assign returns_url = shop.refund_policy.url
-  endif
-  if support_email != blank
-    assign contact_url = support_email | prepend: 'mailto:'
-  endif
+  assign contact_url = routes.root_url | append: '/pages/contact' | replace: '//', '/'
   if section.settings.contact_page != blank
     assign contact_url = section.settings.contact_page.url
   endif

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -217,6 +226,10 @@
     }
   },
   "templates": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "404"
+    },
     "search": {
       "no_results": "No results found for “{{ terms }}”. Check the spelling or use a different word or phrase.",
       "page": "Page",
@@ -260,10 +273,6 @@
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
       }
-    },
-    "404": {
-      "title": "Page not found",
-      "subtext": "404"
     }
   },
   "sections": {
@@ -622,6 +631,217 @@
       "instagram": "Instagram",
       "facebook": "Facebook",
       "tiktok": "TikTok"
+    }
+  },
+  "hp_store": {
+    "common": {
+      "home": "Home",
+      "help": "Help centre",
+      "contact": "Contact us",
+      "track": "Track order",
+      "about": "About HiParcelo",
+      "guides": "Useful guides",
+      "shipping": "Delivery information",
+      "returns": "Returns & refunds",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "cookies": "Cookies",
+      "choices": "Your privacy choices",
+      "first_find": "Our first find",
+      "learn_more": "Explore our approach",
+      "back_home": "Back to HiParcelo",
+      "read_guide": "Read the guide",
+      "draft": "Preparation draft",
+      "draft_copy": "This page is being prepared for our first launch. The final offer, seller details and service terms must be confirmed before orders open.",
+      "preview": "Store in preparation — our first offer is not available to order yet.",
+      "no_orders": "Orders are not open",
+      "support_copy": "Have a question? Use our contact page so we can help with the right information.",
+      "question": "A little clarity goes a long way.",
+      "currency": "Prices are displayed in {{ currency }}.",
+      "concept": "Concept illustration — not a selected product",
+      "offer_pending": "Our first offer is in preparation",
+      "page_kicker": "A little clarity",
+      "discover": "Discover",
+      "support": "Customer care",
+      "legal": "Information & policies",
+      "company": "Company-backed. Customer-focused."
+    },
+    "form": {
+      "heading": "Let's make it clear.",
+      "intro": "Ask about a product, an order or how HiParcelo works. Share only what we need to help.",
+      "name": "Your name",
+      "email": "Email address",
+      "topic": "What can we help with?",
+      "product": "Product question",
+      "delivery": "Delivery or tracking",
+      "return": "Return or refund",
+      "other": "Something else",
+      "order": "Order number (optional)",
+      "message": "Your message",
+      "send": "Send message",
+      "success": "Your message has been submitted. Keep an eye on the email address you provided.",
+      "error": "Please check the highlighted fields and try again.",
+      "notice": "Please do not include payment-card details, passwords, identity documents or sensitive health information.",
+      "privacy": "How we handle your information",
+      "preview": "Form preview only. Submission is disabled until our support destination has been checked.",
+      "email_us": "Email us",
+      "response": "We will publish our support availability before orders open.",
+      "disabled": "Form not activated"
+    },
+    "tracking": {
+      "heading": "Follow the parcel. Keep the clarity.",
+      "intro": "Your order's own status page is the place for confirmed updates.",
+      "step_one": "Open your confirmation email",
+      "step_one_copy": "Choose the order-status link in the confirmation sent when your order was placed.",
+      "step_two": "Check the latest order update",
+      "step_two_copy": "Tracking appears once a shipment has been created. A label alone does not mean the parcel is moving.",
+      "step_three": "Need a hand?",
+      "step_three_copy": "Use our contact page and include your order number. Never share your password or payment details.",
+      "login": "Sign in to your account",
+      "account_copy": "If your order is linked to a customer account, sign in to see it.",
+      "no_lookup": "We do not show order information from an order number alone. Use your secure order-status link or contact us for help.",
+      "prelaunch": "No live tracking service is connected to this preview. Shipment events will come from authenticated order data; no example events are presented as real."
+    },
+    "product": {
+      "kicker": "A useful everyday find",
+      "details": "The useful details",
+      "fit": "Check the fit before you choose",
+      "fit_copy": "Read the dimensions, materials, compatibility and care details for the actual product. Ask us if anything is unclear.",
+      "limits": "What to know",
+      "quantity": "Quantity",
+      "variant": "Choose your option",
+      "add": "Add to cart",
+      "unavailable": "Currently unavailable",
+      "preparing": "Ordering is not enabled",
+      "shipping": "Delivery details",
+      "returns": "Returns information",
+      "no_product": "No product has been selected",
+      "no_product_copy": "This is the reusable product-page layout. Choose the first product in the theme editor after the offer has been verified.",
+      "image": "Product image",
+      "no_image": "Product photography will appear here",
+      "price": "Current price",
+      "offer_note": "Review the total price, delivery availability and return conditions before ordering.",
+      "prep_copy": "This product page is a preparation preview. Purchase controls are disabled.",
+      "specifications": "Specifications",
+      "included": "What's included",
+      "guidance": "Use & care",
+      "ask": "Ask a product question",
+      "preview_title": "The next small upgrade starts with a real need.",
+      "preview_copy": "We are preparing our first useful find. Product, price, specifications and delivery details will be shared once the offer has been checked.",
+      "preview_label": "A look at the offer layout",
+      "preview_problem": "Start with the everyday problem",
+      "preview_problem_copy": "A product earns its place by making a familiar task simpler. The first launch will focus on one specific need.",
+      "preview_proof": "Show the product honestly",
+      "preview_proof_copy": "Expect clear dimensions, practical use information and real product imagery once our first item is selected.",
+      "preview_fit": "Know if it's right for you",
+      "preview_fit_copy": "Fit, compatibility, care and limitations belong beside the benefits — so you can make an informed choice.",
+      "preview_service": "Know what happens next",
+      "preview_service_copy": "The final offer will include its full price, destination availability, delivery information, returns and support.",
+      "preview_button": "First offer coming later",
+      "facts_kicker": "Before you choose"
+    },
+    "cart": {
+      "heading": "Your useful finds.",
+      "empty": "Your next useful find starts here.",
+      "empty_copy": "Your cart is empty. Explore our approach while we prepare the first offer.",
+      "item": "Item",
+      "quantity": "Quantity",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "update": "Update cart",
+      "checkout": "Continue to checkout",
+      "remove": "Remove",
+      "costs": "Delivery and any applicable taxes or charges will be confirmed before payment.",
+      "taxes": "Product taxes included where shown. Delivery and any other applicable charges are confirmed before payment.",
+      "preview": "This is a preparation preview. Checkout is disabled until the first offer and operating details are approved.",
+      "review": "Check the details before you order",
+      "help": "Questions about your order?",
+      "error": "The cart could not be updated. Please try again."
+    },
+    "faq": {
+      "heading": "The useful answers.",
+      "intro": "A clear starting point for questions about HiParcelo, ordering and customer care.",
+      "brand_q": "What is HiParcelo?",
+      "brand_a": "HiParcelo is being built around practical, problem-solving finds and clear product information. We are preparing one focused first offer.",
+      "order_q": "Can I order now?",
+      "order_a": "Not yet. The store is in preparation. We will open orders after the product, price, payment and service details have been verified.",
+      "products_q": "Is the product in the concept image for sale?",
+      "products_a": "No. Concept imagery shows the brand direction, not a selected product, tested sample or available offer.",
+      "delivery_q": "Where do you deliver and how long will it take?",
+      "delivery_a": "The first destination and delivery route are still being confirmed. The actual delivery estimate, processing and any import charges will be shown before an order is placed.",
+      "returns_q": "How will returns work?",
+      "returns_a": "The final return process, return address, costs, applicable cancellation rights and refund handling will be available before orders open. There is no blanket return promise in this preview.",
+      "tracking_q": "How can I track an order?",
+      "tracking_a": "Use the secure order-status link in your confirmation email. We do not provide order information from an order number alone.",
+      "support_q": "How can I contact you?",
+      "support_a": "Use the Contact page. Support availability and the form destination must be checked before launch.",
+      "health_q": "Do you provide medical advice?",
+      "health_a": "No. Product information is not a diagnosis or medical advice. Any product with health-related uses or claims needs its own safety and compliance review.",
+      "feedback_q": "Where are the customer reviews?",
+      "feedback_a": "We will add genuine, authorised customer feedback when it exists. We do not use invented reviews or customer counts."
+    },
+    "password": {
+      "eyebrow": "Something useful is taking shape.",
+      "heading": "See it online. Make it yours.",
+      "copy": "We're preparing HiParcelo's first everyday find. Clear information, a thoughtful offer and help within reach.",
+      "owner": "Store owner?",
+      "login": "Sign in to Shopify",
+      "enter": "Enter using password",
+      "password": "Store password",
+      "open": "Enter store",
+      "error": "That password was not accepted. Please try again.",
+      "privacy": "This preparation page does not collect newsletter sign-ups."
+    },
+    "not_found": {
+      "eyebrow": "A little detour",
+      "heading": "This page isn't in the parcel.",
+      "copy": "The link may have changed, or the page may still be in preparation. Head home or visit our help centre."
+    },
+    "localization": {
+      "label": "Language",
+      "submit": "Change language"
+    }
+  },
+  "hp_pages": {
+    "about": {
+      "kicker": "Useful finds. Clearly explained.",
+      "intro": "A small upgrade to everyday life should feel useful, understandable and worth choosing."
+    },
+    "shipping": {
+      "kicker": "From order to parcel",
+      "intro": "Know the destination, the full cost and what a delivery estimate actually includes."
+    },
+    "returns": {
+      "kicker": "Clear expectations",
+      "intro": "The right process starts with the actual product, destination and reason for the request."
+    },
+    "privacy": {
+      "kicker": "Your information",
+      "intro": "A preparation draft, to be completed against the actual store setup and launch market."
+    },
+    "terms": {
+      "kicker": "Before we open",
+      "intro": "The final trading terms depend on the verified seller, first offer and launch country."
+    },
+    "cookies": {
+      "kicker": "A clear view",
+      "intro": "Understand the actual services before choosing how information is used."
+    },
+    "guides": {
+      "kicker": "A little more useful",
+      "intro": "Simple questions that help an everyday find become a considered choice."
+    },
+    "guide_fit": {
+      "kicker": "Useful guide · 01",
+      "intro": "A few checks now can prevent a product that does not fit your routine."
+    },
+    "guide_before_ordering": {
+      "kicker": "Useful guide · 02",
+      "intro": "Five things worth finding before an order becomes a parcel."
+    },
+    "guide_use_and_care": {
+      "kicker": "Useful guide · 03",
+      "intro": "Good use starts with the instructions for the exact item."
     }
   }
 }

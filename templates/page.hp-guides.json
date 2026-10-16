@@ -1,0 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "A little more useful",
+        "intro": "Simple questions that help an everyday find become a considered choice.",
+        "show_draft": false,
+        "show_support": true,
+        "localization_key": "guides"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

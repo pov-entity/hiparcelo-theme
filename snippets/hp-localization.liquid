@@ -1,0 +1,23 @@
+{% doc %}
+Renders Shopify's available storefront languages using the native localization form.
+@param {string} placement - Unique placement name for the form and label.
+{% enddoc %}
+{% if localization.available_languages.size > 1 %}
+  {% liquid
+    assign language_form_id = 'HpLanguage-' | append: placement
+    assign language_select_id = language_form_id | append: '-select'
+  %}
+  <div class="hp-localization">
+    {% form 'localization', id: language_form_id %}
+      <label for="{{ language_select_id }}">{{ 'hp_store.localization.label' | t }}</label>
+      <div class="hp-localization__controls">
+        <select id="{{ language_select_id }}" name="locale_code">
+          {% for language in localization.available_languages %}
+            <option value="{{ language.iso_code }}" lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>{{ language.endonym_name | escape }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" aria-label="{{ 'hp_store.localization.submit' | t | escape }}">{% render 'hp-icon', name: 'arrow' %}</button>
+      </div>
+    {% endform %}
+  </div>
+{% endif %}

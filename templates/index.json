@@ -1,13 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hp-hero",
       "settings": {
         "show_concept": true,
-        "eyebrow": "HI PARCELO · USEFUL EVERYDAY FINDS",
+        "eyebrow": "HiParcelo  /  Finds for everyday life",
         "heading": "Little frustrations.",
         "accent": "Better possibilities.",
-        "copy": "Thoughtful ideas for the moments that make everyday life harder than it needs to be. Explore what matters, understand the details, and decide what fits you."
+        "copy": "Everyday problems deserve practical ideas. Discover the thinking behind our finds, explore useful guides, and see what's coming next."
       }
     },
     "principles": {
@@ -123,6 +132,10 @@
     "selection": {
       "type": "hp-selection",
       "settings": {}
+    },
+    "guides_feature": {
+      "type": "hp-guides-feature",
+      "settings": {}
     }
   },
   "order": [
@@ -130,6 +143,7 @@
     "principles",
     "selection",
     "discovery",
+    "guides_feature",
     "about",
     "help",
     "faq",

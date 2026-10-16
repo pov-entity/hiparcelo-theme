@@ -1,7 +1,7 @@
 {% assign default_heading = 'hiparcelo.faq.heading' | t %}
 <section class="hp hp-faq" aria-labelledby="hp-faq-title-{{ section.id }}">
   <div class="hp-shell hp-faq__grid">
-    <div class="hp-faq__intro">
+    <div class="hp-faq__intro" data-hp-reveal>
       <p class="hp-eyebrow">{{ 'hiparcelo.faq.eyebrow' | t }}</p>
       <h2 id="hp-faq-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>
       <p class="hp-copy">{{ 'hiparcelo.faq.copy' | t }}</p>
@@ -24,7 +24,7 @@
               assign default_answer = 'hiparcelo.faq.products_answer' | t
           endcase
         %}
-        <details id="hp-faq-{{ block.settings.topic }}"{% if section.settings.open_first and forloop.first %} open{% endif %} {{ block.shopify_attributes }}>
+        <details data-hp-reveal id="hp-faq-{{ block.settings.topic }}"{% if section.settings.open_first and forloop.first %} open{% endif %} {{ block.shopify_attributes }}>
           <summary>{{ block.settings.question | default: default_question | escape }}<span aria-hidden="true"></span></summary>
           <div class="hp-faq__answer">
             <p>{{ block.settings.answer | default: default_answer | escape | newline_to_br }}</p>

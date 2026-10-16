@@ -127,10 +127,15 @@
     "guides_feature": {
       "type": "hp-guides-feature",
       "settings": {}
+    },
+    "ribbon": {
+      "type": "hp-ribbon",
+      "settings": {}
     }
   },
   "order": [
     "hero",
+    "ribbon",
     "principles",
     "selection",
     "discovery",

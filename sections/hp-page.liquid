@@ -14,7 +14,7 @@
     <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}">
       <a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ page.title | escape }}</span>
     </nav>
-    <header class="hp-page__header">
+    <header class="hp-page__header" data-hp-reveal>
       <p class="hp-eyebrow">{{ kicker | escape }}</p>
       <h1 id="hp-page-title-{{ section.id }}">{{ page.title | escape }}</h1>
       {% if intro != blank %}<p class="hp-copy">{{ intro | escape }}</p>{% endif %}

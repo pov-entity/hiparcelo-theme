@@ -19,7 +19,7 @@
 %}
 <section class="hp hp-discovery" id="hp-discovery" aria-labelledby="hp-discovery-title-{{ section.id }}">
   <div class="hp-shell">
-    <div class="hp-discovery__heading">
+    <div class="hp-discovery__heading" data-hp-reveal>
       <div>
         <p class="hp-eyebrow">{{ 'hiparcelo.discovery.eyebrow' | t }}</p>
         <h2 id="hp-discovery-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>
@@ -28,7 +28,7 @@
     </div>
     <div class="hp-discovery__grid">
       {% if visual != blank or concept %}
-        <div class="hp-discovery__visual">
+        <div class="hp-discovery__visual" data-hp-reveal>
           {% if visual != blank %}
             {{ visual | image_url: width: 1400 | image_tag: widths: '480, 720, 960, 1400', sizes: '(min-width: 1000px) 600px, (min-width: 750px) 50vw, 100vw', loading: 'lazy', class: 'hp-discovery__image' }}
           {% else %}
@@ -69,7 +69,7 @@
                   assign default_text = 'hiparcelo.discovery.life_copy' | t
               endcase
             %}
-            <li {{ block.shopify_attributes }}>
+            <li data-hp-reveal data-hp-delay="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
               <span class="hp-discovery__number" aria-hidden="true">0{{ forloop.index }}</span>
               <div>
                 <h3>{{ block.settings.title | default: default_title | escape }}</h3>

@@ -69,7 +69,9 @@
 
     {{ 'hp-base.css' | asset_url | stylesheet_tag }}
     {{ 'hp-store.css' | asset_url | stylesheet_tag }}
+    {{ 'hp-future.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'hp-store.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'hp-future.js' | asset_url }}" defer="defer"></script>
     {% style %}
       :root {
         --hp-ink: {{ settings.hp_ink | default: '#102139' }};
@@ -347,7 +349,7 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    <div class="hp-sticky-wrap">{% sections 'header-group' %}</div>
 
     <main
       id="MainContent"

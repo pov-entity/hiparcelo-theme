@@ -3,7 +3,7 @@
   assign default_copy = 'hiparcelo.about.copy' | t
 %}
 <section class="hp hp-about" id="hp-about" aria-labelledby="hp-about-title-{{ section.id }}">
-  <div class="hp-shell hp-about__grid">
+  <div class="hp-shell hp-about__grid" data-hp-reveal>
     <div>
       <p class="hp-eyebrow">{{ 'hiparcelo.about.eyebrow' | t }}</p>
       <h2 id="hp-about-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>

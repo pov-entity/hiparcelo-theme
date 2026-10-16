@@ -14,7 +14,7 @@
             assign default_copy = 'hiparcelo.principles.useful_copy' | t
         endcase
       %}
-      <div class="hp-principles__item" {{ block.shopify_attributes }}>
+      <div class="hp-principles__item" data-hp-reveal data-hp-delay="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
         <span class="hp-principles__icon">{% render 'hp-icon', name: block.settings.icon %}</span>
         <div>
           <h2>{{ block.settings.title | default: default_title | escape }}</h2>

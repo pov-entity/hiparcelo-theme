@@ -9,7 +9,7 @@
   endif
 %}
 <section class="hp hp-closing" aria-labelledby="hp-closing-title-{{ section.id }}">
-  <div class="hp-shell hp-closing__inner">
+  <div class="hp-shell hp-closing__inner" data-hp-reveal>
     <div>
       <h2 id="hp-closing-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>
       <p>{{ 'hiparcelo.closing.copy' | t }}</p>

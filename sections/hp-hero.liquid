@@ -24,65 +24,52 @@
   endif
 %}
 <section class="hp hp-hero" data-hp-home aria-labelledby="hp-hero-title-{{ section.id }}">
-  {% if visual != blank or concept %}
-    <div class="hp-hero__media">
-      {% if visual != blank %}
-        {{ visual | image_url: width: 2000 | image_tag: widths: '640, 960, 1280, 1600, 2000', sizes: '100vw', loading: 'eager', fetchpriority: 'high', class: 'hp-hero__image' }}
-      {% else %}
-        <img class="hp-hero__image" src="{{ 'hp-hero-concept.webp' | asset_url }}" width="1536" height="1024" alt="{{ 'hiparcelo.hero.concept_alt' | t }}" loading="eager" fetchpriority="high">
-      {% endif %}
-      <div class="hp-hero__wash" aria-hidden="true"></div>
-      {% if concept or section.settings.image_is_concept %}
-        <span class="hp-concept hp-hero__caption">{{ 'hiparcelo.common.concept' | t }}</span>
-      {% endif %}
-    </div>
-  {% endif %}
   <div class="hp-shell hp-hero__inner">
     <div class="hp-hero__content">
-      <p class="hp-eyebrow">{{ eyebrow | escape }}</p>
-      <h1 id="hp-hero-title-{{ section.id }}">{{ heading | escape }}<span>{{ accent | escape }}</span></h1>
-      <p class="hp-copy hp-hero__copy">{{ copy | escape }}</p>
-      <div class="hp-hero__actions">
+      <div class="hp-hero__eyebrow-row hp-hero__entry">
+        <span class="hp-hero__signal" aria-hidden="true"></span>
+        <p class="hp-eyebrow">{{ eyebrow | escape }}</p>
+      </div>
+      <h1 id="hp-hero-title-{{ section.id }}" class="hp-hero__entry hp-hero__entry--2">{{ heading | escape }}<span>{{ accent | escape }}</span></h1>
+      <p class="hp-copy hp-hero__copy hp-hero__entry hp-hero__entry--3">{{ copy | escape }}</p>
+      <div class="hp-hero__actions hp-hero__entry hp-hero__entry--4">
         <a class="hp-button" href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}">
           <span data-hp-offer-label>{{ offer_label }}</span>{% render 'hp-icon', name: 'arrow' %}
         </a>
-        <a class="hp-hero__secondary" href="#hp-about">{{ 'hiparcelo.hero.about' | t }}</a>
+        <a class="hp-hero__secondary" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hiparcelo.hero.about' | t }}</a>
+      </div>
+      <div class="hp-hero__microcopy hp-hero__entry hp-hero__entry--4">A little curiosity. A lot of possibility.</div>
+    </div>
+    <div class="hp-hero__media">
+      <div class="hp-hero__stage" data-hp-stage>
+        <span class="hp-hero__orbit-dot" aria-hidden="true"></span>
+        <span class="hp-hero__ambient-word" aria-hidden="true">ease.</span>
+        {% if visual != blank or concept %}
+          <div class="hp-hero__photo-wrap">
+            {% if visual != blank %}
+              {{ visual | image_url: width: 1400 | image_tag: widths: '420, 640, 840, 1100, 1400', sizes: '(min-width: 1200px) 38vw, (min-width: 750px) 43vw, 74vw', loading: 'eager', fetchpriority: 'high', class: 'hp-hero__image' }}
+            {% else %}
+              <img class="hp-hero__image" src="{{ 'hp-hero-concept.webp' | asset_url }}" width="1536" height="1024" alt="{{ 'hiparcelo.hero.concept_alt' | t }}" loading="eager" fetchpriority="high">
+            {% endif %}
+            <span class="hp-hero__glass-shine" aria-hidden="true"></span>
+          </div>
+        {% endif %}
+        <div class="hp-hero__float hp-hero__float--top" aria-hidden="true">
+          <span class="hp-hero__float-kicker">THE LITTLE THINGS</span>
+          <strong>Worth looking at <span class="hp-hero__float-mark">↗</span></strong>
+        </div>
+        <div class="hp-hero__float hp-hero__float--bottom" aria-hidden="true">
+          <span class="hp-hero__float-kicker">CURIOUS BY NATURE</span>
+          <strong>Clear by design <span class="hp-hero__float-mark">✳</span></strong>
+        </div>
+        {% if concept or section.settings.image_is_concept %}
+          <span class="hp-concept hp-hero__caption">{{ 'hiparcelo.common.concept' | t }}</span>
+        {% endif %}
       </div>
     </div>
   </div>
+  <a class="hp-hero__scroll" href="#hp-approach">Scroll to explore <span class="hp-hero__scroll-arrow" aria-hidden="true">↓</span></a>
 </section>
-{% stylesheet %}
-  .hp-hero { position: relative; isolation: isolate; overflow: hidden; background: #fafcfb; }
-  .hp-hero__inner { display: flex; align-items: center; min-height: 590px; padding-block: 64px; }
-  .hp-hero__content { position: relative; z-index: 2; width: 55%; max-width: 610px; }
-  .hp-hero h1 { margin-top: 23px; font-size: clamp(48px, 5.5vw, 78px); line-height: 1.02; letter-spacing: -.065em; }
-  .hp-hero h1 span { display: block; color: var(--hp-teal); }
-  .hp-hero__copy { margin-top: 26px !important; max-width: 36ch; font-size: 18px; }
-  .hp-hero__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 32px; }
-  .hp-hero__secondary { font-size: 13px; padding-block: 12px; }
-  .hp-hero__media { position: absolute; inset: 0; z-index: 0; }
-  .hp-hero__image { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-  .hp-hero__wash { position: absolute; inset: 0; background: linear-gradient(90deg, #fafcfb 0%, #fafcfbf5 27%, #fafcfba6 44%, #fafcfb00 65%); }
-  .hp-hero__caption { position: absolute; bottom: 20px; right: 26px; }
-  @media (min-width: 750px) and (max-width: 1000px) {
-    .hp-hero__inner { min-height: 510px; }
-    .hp-hero__content { width: 63%; }
-    .hp-hero h1 { font-size: 52px; }
-    .hp-hero__wash { background: linear-gradient(90deg, #fafcfb 0%, #fafcfbe6 35%, #fafcfb80 60%, #fafcfb00 80%); }
-  }
-  @media (max-width: 749px) {
-    .hp-hero { display: flex; flex-direction: column; }
-    .hp-hero__inner { order: 1; min-height: auto; padding-block: 42px 34px; }
-    .hp-hero__content { width: 100%; max-width: 580px; }
-    .hp-hero h1 { margin-top: 17px; font-size: clamp(42px, 10.6vw, 66px); }
-    .hp-hero__copy { margin-top: 20px !important; font-size: 16px; }
-    .hp-hero__actions { margin-top: 25px; gap: 18px; }
-    .hp-hero__media { order: 2; position: relative; inset: auto; height: clamp(290px, 78vw, 450px); }
-    .hp-hero__image { object-position: 68% center; }
-    .hp-hero__wash { display: none; }
-    .hp-hero__caption { bottom: 15px; right: 16px; }
-  }
-{% endstylesheet %}
 {% schema %}
 {
   "name": "t:hiparcelo.hero.name",

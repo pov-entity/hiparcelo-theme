@@ -1,0 +1,19 @@
+<section class="hp hp-help" aria-labelledby="hp-help-title">
+  <div class="page-width">
+    <p class="hp-eyebrow">Customer care</p>
+    <h1 id="hp-help-title">How can we help?</h1>
+    <p>Find practical answers before choosing a product. HiParcelo is preparing its first offer; orders are not open yet.</p>
+    <div class="hp-faq-list">
+      {% assign topics = 'brand,order,products,delivery,returns,tracking,support,health,feedback' | split: ',' %}
+      {% for topic in topics %}
+        {% assign question_key = 'hp_store.faq.' | append: topic | append: '_q' %}
+        {% assign answer_key = 'hp_store.faq.' | append: topic | append: '_a' %}
+        <details><summary>{{ question_key | t }}</summary><div>{{ answer_key | t }}</div></details>
+      {% endfor %}
+    </div>
+    <p><a href="/pages/contact">Contact HiParcelo</a> · <a href="/pages/shipping">Delivery</a> · <a href="/pages/returns">Returns</a> · <a href="/pages/track-order">Order tracking</a></p>
+  </div>
+</section>
+{% schema %}
+{"name":"HiParcelo help centre","settings":[],"presets":[{"name":"HiParcelo help centre"}]}
+{% endschema %}

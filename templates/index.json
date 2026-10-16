@@ -3,7 +3,11 @@
     "hero": {
       "type": "hp-hero",
       "settings": {
-        "show_concept": true
+        "show_concept": true,
+        "eyebrow": "HI PARCELO · USEFUL EVERYDAY FINDS",
+        "heading": "Little frustrations.",
+        "accent": "Better possibilities.",
+        "copy": "Thoughtful ideas for the moments that make everyday life harder than it needs to be. Explore what matters, understand the details, and decide what fits you."
       }
     },
     "principles": {
@@ -115,11 +119,16 @@
     "closing": {
       "type": "hp-closing",
       "settings": {}
+    },
+    "selection": {
+      "type": "hp-selection",
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "principles",
+    "selection",
     "discovery",
     "about",
     "help",

@@ -1,0 +1,73 @@
+<section class="hp hp-selection" id="hp-selection" aria-labelledby="hp-selection-title-{{ section.id }}">
+  <div class="hp-shell hp-selection__shell">
+    <div class="hp-selection__heading">
+      <div>
+        <p class="hp-selection__kicker"><span class="hp-selection__spark" aria-hidden="true"></span> THE HIPARCELO STANDARD</p>
+        <h2 id="hp-selection-title-{{ section.id }}">Less guessing.<br><em>More knowing.</em></h2>
+      </div>
+      <div class="hp-selection__intro">
+        <p>Everyday frustrations deserve straightforward answers. Before we introduce a find, we want to explain the problem it addresses, show how it is intended to work, and make the important details easy to find.</p>
+        <a href="/pages/about" class="hp-selection__link">Get to know HiParcelo <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="hp-selection__cards" role="list">
+      <article class="hp-selection__card" role="listitem">
+        <span class="hp-selection__number" aria-hidden="true">01 / NOTICE</span>
+        <div class="hp-selection__symbol" aria-hidden="true">✳</div>
+        <h3>Start with the problem.</h3>
+        <p>A nagging inconvenience, a daily chore, or a small thing that could work better. A good find should have a reason to exist.</p>
+      </article>
+      <article class="hp-selection__card" role="listitem">
+        <span class="hp-selection__number" aria-hidden="true">02 / UNDERSTAND</span>
+        <div class="hp-selection__symbol" aria-hidden="true">◈</div>
+        <h3>Look beyond the demo.</h3>
+        <p>How it's used, what it's made for, and what it cannot promise. We want the useful details to be just as clear as the visuals.</p>
+      </article>
+      <article class="hp-selection__card" role="listitem">
+        <span class="hp-selection__number" aria-hidden="true">03 / DECIDE</span>
+        <div class="hp-selection__symbol" aria-hidden="true">↗</div>
+        <h3>Choose with context.</h3>
+        <p>Product facts, delivery and return information belong within reach. No mystery claims or invented countdowns.</p>
+      </article>
+    </div>
+    {% if settings.hp_store_preparation %}
+      <div class="hp-selection__status"><span aria-hidden="true">●</span><strong>Our first find is in preparation.</strong> We're not taking orders yet. <a href="/pages/contact">Have a question? Talk to us.</a></div>
+    {% endif %}
+  </div>
+</section>
+{% stylesheet %}
+.hp-selection { background:#102139; color:#ffffff; padding:clamp(68px,8vw,110px) 0 0; overflow:hidden; }
+.hp-selection__heading { display:grid; grid-template-columns:1.2fr 0.8fr; gap:clamp(36px,7vw,110px); align-items:end; padding-bottom:58px; }
+.hp-selection__kicker { margin:0 0 28px; color:#a5d5cf; font-size:11px; font-weight:800; letter-spacing:.18em; }
+.hp-selection__spark { display:inline-block; background:#9dd7cb; height:8px; width:8px; transform:rotate(45deg); margin-right:12px; }
+.hp-selection h2 { font-size:clamp(44px,6vw,84px); line-height:1; letter-spacing:-.065em; font-weight:650; }
+.hp-selection h2 em { font-style:normal; color:#9dd7cb; }
+.hp-selection__intro p { line-height:1.8; font-size:clamp(15px,1.3vw,18px); color:#d0dde2; max-width:46ch; }
+.hp-selection__link { display:inline-flex; gap:18px; align-items:center; padding:12px 0; margin-top:20px; color:white; font-weight:700; font-size:13px; border-bottom:1px solid #709397; text-decoration:none; }
+.hp-selection__link:hover { color:#9dd7cb; }
+.hp-selection__cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid #4d6972; }
+.hp-selection__card { padding:40px 32px 56px; border-left:1px solid #4d6972; display:flex; flex-direction:column; min-width:0; }
+.hp-selection__card:first-child { border-left:0; padding-left:0; }
+.hp-selection__number { font-size:11px; letter-spacing:.15em; color:#b6c9d0; font-weight:700; }
+.hp-selection__symbol { display:grid; place-items:center; width:58px; height:58px; border:1px solid #55747c; border-radius:18px; font-size:28px; color:#9dd7cb; margin:40px 0; }
+.hp-selection__card h3 { color:#fff; font-size:clamp(22px,2vw,31px); font-weight:650; letter-spacing:-.045em; }
+.hp-selection__card p { font-size:14px; line-height:1.8; color:#b7cad0; margin-top:14px; max-width:37ch; }
+.hp-selection__status { display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; padding:20px 0; border-top:1px solid #4d6972; color:#cedee1; font-size:13px; }
+.hp-selection__status strong { color:#fff; }
+.hp-selection__status > span { color:#9dd7cb; font-size:11px; }
+.hp-selection__status a { color:#a1dfd3; text-underline-offset:3px; }
+@media(max-width:749px) {
+  .hp-selection { padding-top:64px; }
+  .hp-selection__heading { grid-template-columns:1fr; gap:23px; padding-bottom:38px; }
+  .hp-selection h2 { font-size:clamp(46px,11vw,70px); }
+  .hp-selection__kicker { margin-bottom:20px; }
+  .hp-selection__cards { grid-template-columns:1fr; }
+  .hp-selection__card, .hp-selection__card:first-child { border:0; border-top:1px solid #4d6972; padding:26px 0 32px; }
+  .hp-selection__card:first-child { border-top:0; }
+  .hp-selection__symbol { margin:22px 0; height:48px; width:48px; font-size:24px; border-radius:13px; }
+  .hp-selection__card h3 { font-size:26px; }
+}
+{% endstylesheet %}
+{% schema %}
+{"name":"HiParcelo selection standard","settings":[],"presets":[{"name":"HiParcelo selection standard"}]}
+{% endschema %}

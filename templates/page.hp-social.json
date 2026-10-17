@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-social-reels",
+      "settings": {
+        "eyebrow": "THE HIPARCELO FEED",
+        "heading": "See it in real life.",
+        "intro": "Useful finds, shown clearly. Explore the details before you decide.",
+        "empty_title": "Real demonstrations. Coming soon.",
+        "empty_copy": "We're preparing our first short-form product demonstrations. No staged reviews, invented reactions or products that aren't ready."
+      }
+    }
+  },
+  "order": ["main"]
+}

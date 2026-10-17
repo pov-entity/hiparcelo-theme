@@ -24,4 +24,4 @@
 - Native video autoplay follows browser policy: muted by default, never guaranteed. Instagram iframes are click-to-load, and may require visiting Instagram.
 - One viewport-focused video plays at a time; IntersectionObserver pauses others. Supports keyboard up/down and next/previous buttons, scroll snapping, and user reduced-motion preferences.
 - Product cards never simulate inventory, ratings, orders or discounts. A product link does not enable checkout by itself.
-- Shopify Page publication and theme publication are separate. Only the unpublished review theme has this custom page design until the owner approves theme publication/deployment.
+- Shopify Page publication and theme publication are separate. The page resource is published, but the full video-feed design only exists in the unpublished review theme. The current MAIN theme is not changed. The store remains on a trial plan and may still require an online-store password.

@@ -122,9 +122,10 @@
       const after = roadPath.getPointAtLength(Math.min(pathLength, travelDist + 6));
       const x = at.x / 1000 * w, y = at.y / 1000 * h;
       const angle = Math.atan2((after.y - before.y) * h, (after.x - before.x) * w) * 180 / Math.PI - 90;
-      truck.style.transform = 'translate3d(' + px(x) + ',' + px(y) + ',0) translate(-50%,-50%) rotate(' + angle.toFixed(3) + 'deg) scale(' + mix(.76, .93, travel).toFixed(3) + ')';
-      // Slight moving camera sells progress while the truck stays anchored to the route.
-      road.style.transform = 'translateY(' + px(mix(13, -24, travel)) + ')';
+      const cameraPan = mix(13, -24, travel);
+      truck.style.transform = 'translate3d(' + px(x) + ',' + px(y + cameraPan) + ',0) translate(-50%,-50%) rotate(' + angle.toFixed(3) + 'deg) scale(' + mix(.76, .93, travel).toFixed(3) + ')';
+      // Pan the truck and road together so the wheels never drift off the road.
+      road.style.transform = 'translateY(' + px(cameraPan) + ')';
 
       // Home enters underneath the moving truck; the shared parcel takes over at
       // the driveway and travels to the front door without changing artwork.

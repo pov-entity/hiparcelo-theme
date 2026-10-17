@@ -1,61 +1,41 @@
 {
   "sections": {
     "cover": {
-      "type": "hi-editorial-hero",
+      "type": "hp27-hero",
       "settings": {}
     },
-    "recognize": {
-      "type": "hi-recognize",
+    "signal": {
+      "type": "hp27-band",
       "settings": {}
     },
-    "method": {
-      "type": "hi-method",
+    "explore": {
+      "type": "hp27-explorer",
       "settings": {}
     },
-    "manifesto": {
-      "type": "hi-manifesto",
+    "standard": {
+      "type": "hp27-system",
       "settings": {}
     },
-    "journal": {
-      "type": "hi-journal",
+    "stories": {
+      "type": "hp27-stories",
       "settings": {}
     },
-    "edition": {
-      "type": "hi-first-edition",
+    "trust": {
+      "type": "hp27-trust",
       "settings": {}
     },
-    "faq": {
-      "type": "hi-faq",
-      "settings": {}
-    },
-    "last": {
-      "type": "hi-last-word",
-      "settings": {}
-    },
-    "signals": {
-      "type": "hi-signals",
-      "settings": {}
-    },
-    "lens": {
-      "type": "hi-v2-lens",
-      "settings": {}
-    },
-    "clarity": {
-      "type": "hi-v2-clarity",
+    "finale": {
+      "type": "hp27-finale",
       "settings": {}
     }
   },
   "order": [
     "cover",
-    "signals",
-    "recognize",
-    "lens",
-    "method",
-    "manifesto",
-    "journal",
-    "edition",
-    "clarity",
-    "faq",
-    "last"
+    "signal",
+    "explore",
+    "standard",
+    "stories",
+    "trust",
+    "finale"
   ]
 }

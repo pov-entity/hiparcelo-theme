@@ -1,0 +1,9 @@
+<section class="hi hi-last" aria-labelledby="hi-last-title">
+  <div class="hi-wrap hi-last__grid">
+    <div><p class="hi-kicker">{{ 'hi_edit.last_kicker' | t }}</p><h2 id="hi-last-title" data-hi-reveal>{{ 'hi_edit.last_head_a' | t }}<em>{{ 'hi_edit.last_head_b' | t }}</em></h2><p>{{ 'hi_edit.last_copy' | t }}</p></div>
+    <div class="hi-last__actions"><a class="hi-btn hi-btn--dark" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.last_link' | t }} <span aria-hidden="true">↗</span></a><a class="hi-text-link" href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hi_edit.last_help' | t }} <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+{% schema %}
+{"name":"HiParcelo closing note","settings":[],"presets":[{"name":"HiParcelo closing note"}]}
+{% endschema %}

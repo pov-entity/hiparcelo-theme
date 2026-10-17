@@ -1,0 +1,33 @@
+<section class="hi hi-method" id="hi-approach" aria-labelledby="hi-method-title">
+  <div class="hi-wrap hi-method__layout">
+    <div class="hi-method__intro">
+      <p class="hi-kicker hi-kicker--light">{{ 'hi_edit.method_kicker' | t }}</p>
+      <h2 id="hi-method-title" data-hi-reveal>{{ 'hi_edit.method_head_a' | t }}<br><em>{{ 'hi_edit.method_head_b' | t }}</em></h2>
+      <p data-hi-reveal>{{ 'hi_edit.method_copy' | t }}</p>
+      <a class="hi-text-link hi-text-link--light" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.method_link' | t }} <span aria-hidden="true">↗</span></a>
+      <div class="hi-method__stamp" aria-hidden="true"><span>HI</span><span>PARCELO</span><i>THE METHOD<br>NOT THE HYPE</i></div>
+    </div>
+    <div class="hi-method__accordions">
+      <details class="hi-method__item" open data-hi-reveal>
+        <summary><span class="hi-method__item-number">01</span><span>{{ 'hi_edit.method_one_q' | t }}</span><span class="hi-method__plus" aria-hidden="true"></span></summary>
+        <div class="hi-method__answer"><p>{{ 'hi_edit.method_one_a' | t }}</p><span>THE REASON ↗</span></div>
+      </details>
+      <details class="hi-method__item" data-hi-reveal>
+        <summary><span class="hi-method__item-number">02</span><span>{{ 'hi_edit.method_two_q' | t }}</span><span class="hi-method__plus" aria-hidden="true"></span></summary>
+        <div class="hi-method__answer"><p>{{ 'hi_edit.method_two_a' | t }}</p><span>THE EVIDENCE ↗</span></div>
+      </details>
+      <details class="hi-method__item" data-hi-reveal>
+        <summary><span class="hi-method__item-number">03</span><span>{{ 'hi_edit.method_three_q' | t }}</span><span class="hi-method__plus" aria-hidden="true"></span></summary>
+        <div class="hi-method__answer"><p>{{ 'hi_edit.method_three_a' | t }}</p><span>THE FIT ↗</span></div>
+      </details>
+      <details class="hi-method__item" data-hi-reveal>
+        <summary><span class="hi-method__item-number">04</span><span>{{ 'hi_edit.method_four_q' | t }}</span><span class="hi-method__plus" aria-hidden="true"></span></summary>
+        <div class="hi-method__answer"><p>{{ 'hi_edit.method_four_a' | t }}</p><span>THE AFTERCARE ↗</span></div>
+      </details>
+      <p class="hi-method__footnote">{{ 'hi_edit.method_note' | t }}</p>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"HiParcelo the method","settings":[],"presets":[{"name":"HiParcelo the method"}]}
+{% endschema %}

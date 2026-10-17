@@ -1,0 +1,15 @@
+<section class="hi hi-manifesto" aria-labelledby="hi-manifesto-title">
+  <div class="hi-wrap hi-manifesto__inner">
+    <div class="hi-manifesto__index">02 / {{ 'hi_edit.manifesto_kicker' | t }}</div>
+    <div class="hi-manifesto__body" data-hi-reveal>
+      <span class="hi-manifesto__quote" aria-hidden="true">“</span>
+      <h2 id="hi-manifesto-title">{{ 'hi_edit.manifesto_head_a' | t }}<em>{{ 'hi_edit.manifesto_head_b' | t }}</em></h2>
+      <p>{{ 'hi_edit.manifesto_copy' | t }}</p>
+      <a class="hi-text-link" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.manifesto_link' | t }} <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="hi-manifesto__sign" aria-hidden="true">HiParcelo <span>✳</span></div>
+  </div>
+</section>
+{% schema %}
+{"name":"HiParcelo brand note","settings":[],"presets":[{"name":"HiParcelo brand note"}]}
+{% endschema %}

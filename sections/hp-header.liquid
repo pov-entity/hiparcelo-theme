@@ -18,6 +18,7 @@
     </a>
     <nav class="hp-header__desktop" aria-label="{{ 'hiparcelo.navigation.main' | t }}">
       <a href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}"><span data-hp-offer-label>{{ offer_label }}</span></a>
+      <a href="{{ routes.root_url | append: '/pages/social' | replace: '//', '/' }}">Social</a>
       <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hiparcelo.navigation.about' | t }}</a>
       <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hiparcelo.navigation.help' | t }}</a>
       <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>
@@ -34,6 +35,7 @@
         <summary aria-label="{{ 'hiparcelo.navigation.menu' | t }}">{% render 'hp-icon', name: 'menu' %}</summary>
         <nav aria-label="{{ 'hiparcelo.navigation.mobile' | t }}">
           <a href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}"><span data-hp-offer-label>{{ offer_label }}</span></a>
+          <a href="{{ routes.root_url | append: '/pages/social' | replace: '//', '/' }}">Social</a>
           <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hiparcelo.navigation.about' | t }}</a>
           <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hiparcelo.navigation.help' | t }}</a>
           <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>

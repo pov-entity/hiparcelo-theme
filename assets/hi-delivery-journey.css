@@ -140,3 +140,46 @@
 .hpj-static{display:block!important}
 .hpj *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
+
+
+/* v2 — Spatial continuity from the user's reference video.
+   One persistent parcel overlay; matching-position transfers; tracked curved road. */
+.hpj-scroll{height:535svh}
+.hpj-pin{background:#fff}
+.hpj-stage{background:#fff;border:1px solid #e3e8ef;box-shadow:0 18px 55px #162f4e0e}
+.hpj-stage__grid{opacity:.16}
+.hpj-world{will-change:opacity;transition:none!important}
+.hpj-shared-parcel{position:absolute;z-index:12;left:50%;top:58%;width:25%;height:auto;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.1);transform-origin:center;will-change:transform,opacity;filter:drop-shadow(0 9px 17px #1d36564a)}
+.hpj-world__package,.hpj-road__package,.hpj-home__box{display:none!important}
+.hpj-world--warehouse{background:#fff}
+.hpj-world--flight{background:linear-gradient(180deg,#f8fbff,#ebf3fb 55%,#fff)}
+.hpj-world--road{background:#fff}
+.hpj-world--home{background:#fff}
+.hpj-world__warehouse{left:4%;top:11%;width:92%;height:77%;transform-origin:center;will-change:transform}
+.hpj-flight__plane{left:25%;top:12%;width:50%;height:76%;transform-origin:center;will-change:transform,opacity}
+.hpj-flight__route{opacity:.26}
+.hpj-flight__customs{z-index:8;border-color:#cadbeb;background:#fff;border-radius:7px;max-width:230px;box-shadow:0 6px 22px #25476a16}
+.hpj-road__surface{display:none!important}
+.hpj-road__map{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:1;will-change:transform}
+.hpj-road__edge{fill:none;stroke:#1c2b3f;stroke-width:155;stroke-linecap:round;stroke-linejoin:round}
+.hpj-road__centerline{fill:none;stroke:#cad2de;stroke-width:3;stroke-dasharray:23 24;stroke-linecap:round}
+.hpj-road__truck{position:absolute;top:0;left:0;width:22%;height:46%;z-index:5;object-fit:contain;max-width:none;max-height:none;transform-origin:center;will-change:transform;filter:drop-shadow(0 11px 12px #17283e40)}
+.hpj-road__label{background:#fff;color:#1c3559;padding:8px 12px;border:1px solid #e2e8ef;border-radius:4px;z-index:6;bottom:76px;right:19px}
+.hpj-home__house{left:7%;width:86%;top:6%;height:85%;object-fit:contain;transform-origin:center;will-change:transform}
+.hpj-home__check{z-index:13}
+.hpj-home__delivered{z-index:13}
+.hpj-stage__bottom{z-index:15}
+.hpj-narrative{isolation:isolate}
+.hpj-chapter{will-change:opacity,transform}
+.hpj-progress__track{height:3px}
+@media(max-width:749px){
+.hpj-scroll{height:445svh}
+.hpj-stage{border-radius:16px}
+.hpj-shared-parcel{width:30%}
+.hpj-road__truck{width:25%;height:51%}
+.hpj-road__label{font-size:8px;bottom:37px;right:12px;padding:5px 8px}
+.hpj-flight__customs{max-width:140px}
+.hpj-world__warehouse{left:0;top:3%;width:100%;height:91%}
+.hpj-home__house{top:0;height:98%}
+}
+@media(prefers-reduced-motion:reduce){.hpj-shared-parcel{display:none!important}}

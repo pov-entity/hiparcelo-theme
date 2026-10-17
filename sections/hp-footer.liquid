@@ -4,7 +4,7 @@
     <div class="hi-footer__top">
       <div class="hi-footer__brand">
         <a href="{{ routes.root_url }}" class="hi-identity" aria-label="HiParcelo home">
-          <span class="hi-identity__symbol" aria-hidden="true"><svg viewBox="0 0 50 50" fill="none"><path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M6 15.5V36L25 46l19-10V15.5M25 26.5V46" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="m16 10 19 11" stroke="currentColor" stroke-width="1.5"/></svg></span>
+          {% if settings.logo == blank %}<span class="hi-identity__symbol" aria-hidden="true"><svg viewBox="0 0 50 50" fill="none"><path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M6 15.5V36L25 46l19-10V15.5M25 26.5V46" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="m16 10 19 11" stroke="currentColor" stroke-width="1.5"/></svg></span>{% endif %}
           {% if settings.logo != blank %}
             {{ settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', width: 175, alt: 'HiParcelo', class: 'hi-identity__logo' }}
           {% else %}

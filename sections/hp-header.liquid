@@ -1,14 +1,14 @@
 <header class="hi hi-header" role="banner">
   <div class="hi-wrap hi-header__row">
     <a href="{{ routes.root_url }}" class="hi-identity" aria-label="HiParcelo — Home">
-      <span class="hi-identity__symbol" aria-hidden="true">
+      {% if settings.logo == blank %}<span class="hi-identity__symbol" aria-hidden="true">
         <svg viewBox="0 0 50 50" fill="none" role="presentation">
           <path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
           <path d="M6 15.5V36L25 46l19-10V15.5M25 26.5V46" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
           <path d="m16 10 19 11M16 10 6 15.5M35 21l9-5.5" stroke="currentColor" stroke-width="1.5"/>
           <path d="m15 25 5 3 5-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-      </span>
+      </span>{% endif %}
       {% if settings.logo != blank %}
         {{ settings.logo | image_url: width: 300 | image_tag: loading: 'eager', widths: '150, 220, 300', sizes: '(min-width: 750px) 175px, 120px', alt: 'HiParcelo', class: 'hi-identity__logo' }}
       {% else %}

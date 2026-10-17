@@ -659,3 +659,29 @@ body{overflow-x:clip;background:var(--hi-cream)}
  .hi-home-faq .hi-support__grid{grid-template-columns:1fr;gap:28px}
  .hi-identity__logo{max-width:120px;max-height:38px}
 }
+
+
+/* Product and cart layouts are prepared to match the brand once an offer is verified. */
+.hp.hp-product{background:radial-gradient(ellipse at 93% 13%,#e7f0e8,transparent 38%),var(--hi-cream);padding-block:clamp(42px,5vw,90px) clamp(85px,9vw,135px)}
+.hp.hp-product .hp-product__grid{gap:clamp(30px,7vw,95px)}
+.hp.hp-product .hp-breadcrumbs{font-size:11px;letter-spacing:.1em;color:#667e70}
+.hp.hp-product .hp-product__media{border-radius:0;background:#e8eee5;border:1px solid #d6e1d3}
+.hp.hp-product .hp-product__image{aspect-ratio:1 / 1;object-fit:contain}
+.hp.hp-product .hp-product__information{padding-top:clamp(6px,2vw,24px)}
+.hp.hp-product h1{font:760 clamp(43px,5vw,76px)/1.02 "Avenir Next","Helvetica Neue",Arial,sans-serif;letter-spacing:-.07em;color:#204138}
+.hp.hp-product .hp-product__price{font-size:clamp(23px,2.7vw,35px);letter-spacing:-.05em;color:#214a3f}
+.hp.hp-product .hp-product__copy{font-size:15px;line-height:1.9;color:#5b7262}
+.hp.hp-product .hp-product__notice{font-size:12px;line-height:1.65;color:#637869}
+.hp.hp-product .hp-product__form{border-top:1px solid #ced8cd;margin-top:33px;padding-top:30px}
+.hp.hp-product .hp-field select,.hp.hp-product .hp-field input{border-radius:0;min-height:52px;background:#fffefa;border:1px solid #b9cbbd;font-size:16px}
+.hp.hp-product .hp-field label{font-size:12px;font-weight:770;color:#405a4b}
+.hp.hp-product .hp-product__form .hp-button{min-height:55px;font-weight:760;letter-spacing:.01em}
+.hp.hp-product .hp-product__links a{color:#a85c46;border-bottom:1px solid #cfb6a5;padding:4px 0;text-underline-offset:3px}
+.hp.hp-product-facts{background:#e8eee3}
+.hp.hp-product-facts .hp-fact{border-radius:0;background:#faf9f1;border:1px solid #d0ddd0;padding:30px}
+.hp.hp-product-facts .hp-fact h2,.hp.hp-product-facts .hp-fact h3{font-size:clamp(21px,2vw,31px);font-weight:740;letter-spacing:-.05em}
+.hp.hp-cart{background:var(--hi-cream)}
+.hp.hp-cart .hp-cart__summary{border-radius:0;background:#ebefe5}
+.hp.hp-cart .hp-button{border-radius:0;min-height:51px}
+.hp.hp-cart .hp-cart__item h2{font-size:21px}
+@media(max-width:749px){.hp.hp-product{padding-top:34px}.hp.hp-product .hp-product__grid{gap:24px}.hp.hp-product h1{font-size:clamp(41px,10vw,57px)}.hp.hp-product .hp-product__information{padding-top:12px}.hp.hp-product-facts .hp-fact-grid{grid-template-columns:1fr}}

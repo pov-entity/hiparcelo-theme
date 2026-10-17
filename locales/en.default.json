@@ -600,16 +600,16 @@
     },
     "faq": {
       "eyebrow": "GOOD TO KNOW",
-      "heading": "Confidence lives in the details.",
-      "copy": "Curiosity starts the journey. Clear answers make the next step feel easier.",
-      "products_question": "What kind of things will I find here?",
-      "products_answer": "We're shaping HiParcelo around useful ideas for familiar everyday moments. Our first offer is being prepared; the current images are concepts, not products available to order.",
-      "delivery_question": "Will I know when my order should arrive?",
-      "delivery_answer": "Before orders open, we'll provide the supported destinations, handling and delivery estimates, and applicable costs for each actual offer. An estimate won't be presented as a guarantee.",
-      "returns_question": "What if something isn't right for me?",
-      "returns_answer": "We'll provide the applicable cancellation and return rights, procedure and costs before purchases begin. Clear terms matter more than vague promises.",
-      "help_question": "What if I still have a question?",
-      "help_answer": "Reach us at the email below. Whether it's about fit, intended use or delivery, it's always worth asking."
+      "heading": "Good questions. Clear answers.",
+      "copy": "The everyday details worth knowing.",
+      "products_question": "What kind of things will HiParcelo feature?",
+      "products_answer": "We're building HiParcelo around practical ideas for familiar everyday frustrations. Our first focused offer is still being prepared; no products are available to order yet.",
+      "delivery_question": "Will I know when and where you deliver?",
+      "delivery_answer": "When ordering opens, each offer will show its supported destinations, processing and delivery estimate, relevant costs and customs information before checkout. We won't turn an unverified transit claim into a delivery promise.",
+      "returns_question": "What if something isn't right?",
+      "returns_answer": "The applicable cancellation and return rights, conditions, costs and instructions will be explained for the actual product and destination before purchases begin.",
+      "help_question": "Can I talk to someone before choosing?",
+      "help_answer": "Yes. Reach HiParcelo through the contact page or support email for questions about our brand and the information currently available. Our operating support hours will be confirmed before orders open."
     },
     "closing": {
       "heading": "Discovering something useful should feel good.",

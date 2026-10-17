@@ -1,41 +1,46 @@
 {
   "sections": {
     "cover": {
-      "type": "hp27-hero",
+      "type": "hi-editorial-hero",
       "settings": {}
     },
-    "signal": {
-      "type": "hp27-band",
+    "signals": {
+      "type": "hi-signals",
       "settings": {}
     },
-    "explore": {
-      "type": "hp27-explorer",
+    "recognize": {
+      "type": "hi-recognize",
       "settings": {}
     },
-    "standard": {
-      "type": "hp27-system",
+    "method": {
+      "type": "hi-method",
       "settings": {}
     },
-    "stories": {
-      "type": "hp27-stories",
+    "journal": {
+      "type": "hi-journal",
       "settings": {}
     },
-    "trust": {
-      "type": "hp27-trust",
+    "clarity": {
+      "type": "hi-v2-clarity",
       "settings": {}
     },
-    "finale": {
-      "type": "hp27-finale",
+    "faq": {
+      "type": "hi-faq",
+      "settings": {}
+    },
+    "last": {
+      "type": "hi-last-word",
       "settings": {}
     }
   },
   "order": [
     "cover",
-    "signal",
-    "explore",
-    "standard",
-    "stories",
-    "trust",
-    "finale"
+    "signals",
+    "recognize",
+    "method",
+    "journal",
+    "clarity",
+    "faq",
+    "last"
   ]
 }

@@ -950,7 +950,9 @@
     "preview_action": "Get to know our approach",
     "preview_next": "WHAT YOU'LL FIND HERE, WHEN WE'RE READY",
     "preview_subhead": "The exciting idea. And the useful details that make it real.",
-    "preview_guides": "Explore our buying guides"
+    "preview_guides": "Explore our buying guides",
+    "concept_notice": "Illustrative concept — not an item currently for sale",
+    "story_concept_alt": "Illustrative lifestyle photograph showing a desk organizer in use; not a verified product or customer scene"
   },
   "hi_v2": {
     "signals_aria": "The ideas behind HiParcelo",

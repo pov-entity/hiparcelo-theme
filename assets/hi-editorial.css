@@ -586,3 +586,76 @@ body{overflow-x:clip;background:var(--hi-cream)}
  .hi-motion-ready [data-hi-reveal]{opacity:1!important;transform:none!important}
  .hi-packet{transform:perspective(1200px) rotate(-8deg) rotateY(-8deg)}
 }
+
+
+/* The reading room has its own distinct page architecture. */
+.hi-page--guides .hi-page__content{display:block}
+.hi-page--guides .hi-page__rail{display:none}
+.hi-page--guides .hi-page__body{max-width:none}
+.hi-guides-opening{max-width:750px;margin:0 0 54px}
+.hi-page .hi-prose .hi-guides-opening h2{font-size:clamp(35px,4vw,58px);line-height:1.14;margin:0 0 23px;max-width:16ch;border:0;padding:0}
+.hi-guides-opening p{font-size:17px;line-height:1.9;max-width:55ch;color:#617367}
+.hi-guide-collection{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin:0 0 75px}
+.hi-guide-link{display:flex;min-height:465px;flex-direction:column;padding:26px 29px;background:#e7ede1;text-decoration:none!important;border:1px solid #cfdfd1;color:#193b34!important;transition:transform .3s var(--hi-ease),box-shadow .3s var(--hi-ease)}
+.hi-guide-link--two{background:#efddce;border-color:#dfc8b9}
+.hi-guide-link--three{background:#e5e8dc;border-color:#d4d9cb}
+.hi-guide-link:hover{transform:translateY(-5px);box-shadow:0 15px 35px #20483917}
+.hi-guide-link>span{font-size:10px;font-weight:780;letter-spacing:.16em;color:#627c67}
+.hi-guide-link__symbol{display:grid;place-items:center;height:165px;flex:0 0 165px;font:italic 115px/.8 Georgia,serif;color:#a6634d}
+.hi-guide-link--two .hi-guide-link__symbol{color:#75866d}.hi-guide-link--three .hi-guide-link__symbol{color:#6b9281}
+.hi-prose .hi-guide-link h3{font-size:clamp(24px,2.4vw,34px);line-height:1.12;margin:5px 0 13px;color:#193b34;font-weight:710;letter-spacing:-.06em}
+.hi-guide-link p{font-size:14px;line-height:1.75;color:#5c6e60;margin:0 0 25px}
+.hi-guide-link strong{margin-top:auto;border-top:1px solid #91a697;padding-top:19px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:10px;font-weight:800;letter-spacing:.11em}
+.hi-guide-link strong i{font:normal 21px/1 Arial}
+.hi-guides-end{max-width:740px;padding:35px 0 10px;border-top:1px solid #cbd9cc}
+.hi-page .hi-prose .hi-guides-end h2{margin:0 0 13px;font-size:clamp(26px,3vw,40px)}
+.hi-guides-end p{font-size:17px;line-height:1.75;color:#5d7062}
+
+/* The about page reads as a founder-style editorial letter, not a wall of FAQ copy. */
+.hi-about-prologue{max-width:780px}
+.hi-prose__eyebrow{font-size:10px!important;font-weight:800;letter-spacing:.19em;line-height:1.5;color:#ad6853!important;margin-bottom:25px!important}
+.hi-page .hi-prose .hi-about-prologue h2{font-size:clamp(35px,4vw,56px);max-width:16ch;margin:0 0 30px;border:0;padding:0}
+.hi-about-prologue p:not(.hi-prose__eyebrow){font-size:17px;line-height:1.92;color:#52685c}
+.hi-about-chapters{border-top:1px solid #bfcfc0;margin-top:60px}
+.hi-about-chapter{display:grid;grid-template-columns:175px minmax(0,1fr);gap:25px;padding:38px 0;border-bottom:1px solid #bfcfc0}
+.hi-about-chapter>span{font-size:10px;letter-spacing:.15em;color:#ac624c;font-weight:800;padding-top:8px}
+.hi-page .hi-prose .hi-about-chapter h2{margin:0 0 18px;max-width:19ch;font-size:clamp(28px,3vw,40px);border:0;padding:0}
+.hi-about-chapter p{font-size:16px;line-height:1.85;max-width:54ch}
+.hi-about-letter{background:#1c4539;color:#f5f2e7;padding:clamp(30px,4vw,55px);margin:55px 0;position:relative;overflow:hidden}
+.hi-about-letter::after{content:"✳";font-size:220px;position:absolute;right:-40px;bottom:-90px;color:#ffffff0c;pointer-events:none}
+.hi-about-letter>span{font-size:10px;font-weight:800;letter-spacing:.17em;color:#e8b69b}
+.hi-about-letter p{font:italic clamp(27px,3vw,40px)/1.22 Georgia,serif;color:#f1eadd;max-width:17ch;margin:30px 0 34px}
+.hi-about-letter strong{display:block;font:italic 28px/1 Georgia,serif;letter-spacing:-.04em;color:#edbd9d}
+.hi-about-letter strong i{font:normal 18px Arial;margin-left:7px}
+.hi-page .hi-prose .hi-about-next h2{font-size:clamp(30px,3.4vw,45px);margin:0 0 24px;border:0;padding:0}
+.hi-about-next p{font-size:16px;line-height:1.9}
+
+/* Header logo drop-in and localization on dark footer. */
+.hi-identity__logo{width:auto;max-width:185px;max-height:56px;height:auto;object-fit:contain}
+.hi-footer .hi-identity__logo{filter:brightness(0) invert(1)}
+.hi-footer .hp-localization{color:#e6ece3}
+.hi-footer .hp-localization label{color:#bdcfc0;font-size:10px}
+.hi-footer .hp-localization select,.hi-footer .hp-localization button{border-color:#88a998;background:#193e36;color:#e6f1e8;border-radius:0}
+.hi-footer .hp-localization button:hover{background:#255447}
+.hi-home-faq{background:#e9efe5;padding:clamp(83px,8vw,124px) 0}
+.hi-home-faq .hi-support__sidebar p:not(.hi-kicker){color:#667d6c}
+.hi-home-faq .hi-support__list details{border-color:#c3d2c3}
+.hi-home-faq .hi-support__sidebar{position:static}
+.hi-home-faq .hi-support__grid{grid-template-columns:.65fr 1fr;gap:clamp(50px,8vw,110px)}
+@media(max-width:950px){
+ .hi-guide-collection{gap:11px}
+ .hi-guide-link{padding:23px;min-height:470px}
+ .hi-guide-link__symbol{height:133px;flex-basis:133px;font-size:90px}
+ .hi-home-faq .hi-support__grid{gap:42px}
+}
+@media(max-width:749px){
+ .hi-guide-collection{grid-template-columns:1fr}
+ .hi-guide-link{min-height:0;padding:25px}
+ .hi-guide-link__symbol{height:100px;flex-basis:100px;font-size:80px}
+ .hi-guide-link strong{margin-top:28px}
+ .hi-about-chapter{grid-template-columns:1fr;gap:9px;padding:27px 0}
+ .hi-about-prologue p:not(.hi-prose__eyebrow){font-size:16px}
+ .hi-about-letter{margin:45px 0}
+ .hi-home-faq .hi-support__grid{grid-template-columns:1fr;gap:28px}
+ .hi-identity__logo{max-width:120px;max-height:38px}
+}

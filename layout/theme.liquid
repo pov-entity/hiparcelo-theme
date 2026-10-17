@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="#173a37">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -25,7 +25,7 @@
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% elsif template.name == 'index' %}
-      <meta name="description" content="Discover thoughtful ideas for the little moments you wish were easier. Get to know HiParcelo, explore helpful guides, and find confidence in the details.">
+      <meta name="description" content="HiParcelo is a thoughtful discovery brand for life's little frustrations. Explore practical ideas, useful guides and a clearer way to choose.">
     {% else %}
       <meta name="description" content="{{ page_title | escape }} — explore HiParcelo's practical guides, transparent brand approach and customer support information.">
     {% endif %}
@@ -69,9 +69,7 @@
 
     {{ 'hp-base.css' | asset_url | stylesheet_tag }}
     {{ 'hp-store.css' | asset_url | stylesheet_tag }}
-    {{ 'hp-future.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'hp-store.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'hp-future.js' | asset_url }}" defer="defer"></script>
     {% style %}
       :root {
         --hp-ink: {{ settings.hp_ink | default: '#102139' }};
@@ -332,6 +330,8 @@
       >
     {%- endif -%}
 
+    {{ 'hi-editorial.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'hi-editorial.js' | asset_url }}" defer="defer"></script>
     <script>
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
@@ -340,7 +340,6 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    {% render 'hp-store-status' %}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

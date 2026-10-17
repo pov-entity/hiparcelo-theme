@@ -1,148 +1,46 @@
 {
   "sections": {
-    "hero": {
-      "type": "hp-hero",
-      "settings": {
-        "show_concept": true,
-        "eyebrow": "For the moments you wish were easier",
-        "heading": "The little things",
-        "accent": "should feel easier.",
-        "copy": "That daily hassle you barely notice anymore. The routine you'd love to simplify. We believe a thoughtful find can make everyday moments feel a little lighter—and knowing if it's right for you should be simple."
-      }
-    },
-    "principles": {
-      "type": "hp-principles",
-      "blocks": {
-        "useful": {
-          "type": "principle",
-          "settings": {
-            "icon": "box"
-          }
-        },
-        "clarity": {
-          "type": "principle",
-          "settings": {
-            "icon": "eye"
-          }
-        },
-        "help": {
-          "type": "principle",
-          "settings": {
-            "icon": "heart"
-          }
-        }
-      },
-      "block_order": [
-        "useful",
-        "clarity",
-        "help"
-      ],
+    "cover": {
+      "type": "hi-editorial-hero",
       "settings": {}
     },
-    "discovery": {
-      "type": "hp-discovery",
-      "blocks": {
-        "life": {
-          "type": "detail",
-          "settings": {
-            "topic": "life"
-          }
-        },
-        "detail": {
-          "type": "detail",
-          "settings": {
-            "topic": "detail"
-          }
-        },
-        "choice": {
-          "type": "detail",
-          "settings": {
-            "topic": "choice"
-          }
-        }
-      },
-      "block_order": [
-        "life",
-        "detail",
-        "choice"
-      ],
-      "settings": {
-        "show_concept": true
-      }
-    },
-    "about": {
-      "type": "hp-about",
+    "recognize": {
+      "type": "hi-recognize",
       "settings": {}
     },
-    "help": {
-      "type": "hp-help",
+    "method": {
+      "type": "hi-method",
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "hi-manifesto",
+      "settings": {}
+    },
+    "journal": {
+      "type": "hi-journal",
+      "settings": {}
+    },
+    "edition": {
+      "type": "hi-first-edition",
       "settings": {}
     },
     "faq": {
-      "type": "hp-faq",
-      "blocks": {
-        "products": {
-          "type": "question",
-          "settings": {
-            "topic": "products"
-          }
-        },
-        "delivery": {
-          "type": "question",
-          "settings": {
-            "topic": "delivery"
-          }
-        },
-        "returns": {
-          "type": "question",
-          "settings": {
-            "topic": "returns"
-          }
-        },
-        "help": {
-          "type": "question",
-          "settings": {
-            "topic": "help"
-          }
-        }
-      },
-      "block_order": [
-        "products",
-        "delivery",
-        "returns",
-        "help"
-      ],
-      "settings": {
-        "open_first": false
-      }
-    },
-    "closing": {
-      "type": "hp-closing",
+      "type": "hi-faq",
       "settings": {}
     },
-    "selection": {
-      "type": "hp-selection",
-      "settings": {}
-    },
-    "guides_feature": {
-      "type": "hp-guides-feature",
-      "settings": {}
-    },
-    "ribbon": {
-      "type": "hp-ribbon",
+    "last": {
+      "type": "hi-last-word",
       "settings": {}
     }
   },
   "order": [
-    "hero",
-    "ribbon",
-    "principles",
-    "selection",
-    "discovery",
-    "guides_feature",
-    "about",
-    "help",
+    "cover",
+    "recognize",
+    "method",
+    "manifesto",
+    "journal",
+    "edition",
     "faq",
-    "closing"
+    "last"
   ]
 }

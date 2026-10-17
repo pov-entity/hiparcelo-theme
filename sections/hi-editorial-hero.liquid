@@ -1,18 +1,20 @@
-<section class="hi hi-ref-hero" aria-labelledby="hi-ref-hero-title">
-  <div class="hi-ref-container">
-    <div class="hi-ref-hero__panel">
-      <div class="hi-ref-hero__copy">
-        <p class="hi-ref-eyebrow">{{ 'hi_edit.hero_kicker' | t }}</p>
-        <h1 id="hi-ref-hero-title">{{ 'hi_edit.hero_line_one' | t }} <em>{{ 'hi_edit.hero_line_two' | t }}</em></h1>
-        <p class="hi-ref-hero__summary">{{ 'hi_edit.hero_copy' | t }}</p>
-        <div class="hi-ref-hero__actions"><a class="hi-ref-button hi-ref-button--light" href="#hi-approach">{{ 'hi_edit.hero_action' | t }}</a><a class="hi-ref-hero__textlink" href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.hero_second' | t }} <span aria-hidden="true">↗</span></a></div>
+<section class="hi hi-ec-hero" aria-labelledby="hi-ec-hero-title">
+  <div class="hi-ec-hero__surface">
+    <img class="hi-ec-hero__photo" src="{{ 'hp-hero-concept.webp' | asset_url }}" width="1536" height="1024" loading="eager" fetchpriority="high" alt="">
+    <div class="hi-ec-hero__grid">
+      <div class="hi-ec-hero__copy">
+        <span class="hi-ec-pill">{{ 'hi_ec.hero_badge' | t }}</span>
+        <h1 id="hi-ec-hero-title">{{ 'hi_ec.hero_line_one' | t }}<span>{{ 'hi_ec.hero_line_two' | t }}</span></h1>
+        <p>{{ 'hi_ec.hero_intro' | t }}</p>
+        <a class="hi-ec-btn hi-ec-btn--white" href="#hi-approach">{{ 'hi_ec.hero_action' | t }} <span aria-hidden="true">↗</span></a>
+        <div class="hi-ec-hero__status"><i aria-hidden="true"></i>{{ 'hi_ec.hero_status' | t }}</div>
       </div>
-      <div class="hi-ref-hero__visual">
-        <img src="{{ 'hp-hero-concept.webp' | asset_url }}" width="1536" height="1024" loading="eager" fetchpriority="high" alt="{{ 'hiparcelo.hero.concept_alt' | t }}">
-        <span class="hi-ref-hero__photo-label">{{ 'hi_edit.concept_notice' | t }}</span>
-      </div>
+      <a class="hi-ec-hero__tile" href="{{ routes.root_url | append: '/pages/guide-before-ordering' | replace: '//', '/' }}">
+        <span class="hi-ec-hero__thumb" aria-hidden="true"><img src="{{ 'hp-story-concept.webp' | asset_url }}" width="1536" height="1024" loading="lazy" alt=""></span>
+        <span class="hi-ec-hero__tile-copy"><small>{{ 'hi_ec.hero_tile_label' | t }}</small><strong>{{ 'hi_ec.hero_tile_title' | t }}</strong><span>{{ 'hi_ec.hero_tile_link' | t }} ↗</span></span>
+      </a>
     </div>
-    <div class="hi-ref-hero__under"><span>{{ 'hi_edit.hero_bottom' | t }}</span><a href="#hi-feeling">{{ 'hi_edit.hero_scroll' | t }} <span aria-hidden="true">↓</span></a></div>
+    <span class="hi-ec-hero__concept">{{ 'hi_ec.concept_label' | t }}</span>
   </div>
 </section>
 {% schema %}

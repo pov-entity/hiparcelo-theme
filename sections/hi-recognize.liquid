@@ -1,17 +1,22 @@
-<section class="hi hi-ref-banner" id="hi-feeling" aria-labelledby="hi-ref-banner-title">
-  <div class="hi-ref-container">
-    <div class="hi-ref-banner__panel">
-      <img src="{{ 'hp-story-concept.webp' | asset_url }}" alt="" aria-hidden="true" loading="lazy" width="1536" height="1024">
-      <div class="hi-ref-banner__content">
-        <p class="hi-ref-eyebrow">{{ 'hi_edit.feeling_kicker' | t }}</p>
-        <h2 id="hi-ref-banner-title">{{ 'hi_edit.feeling_head_a' | t }} <em>{{ 'hi_edit.feeling_head_b' | t }}</em></h2>
-        <p>{{ 'hi_edit.feeling_copy' | t }}</p>
-        <a class="hi-ref-button hi-ref-button--light" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.feeling_link' | t }}</a>
-      </div>
-      <span class="hi-ref-banner__note">{{ 'hi_edit.concept_notice' | t }}</span>
-    </div>
+<section class="hi hi-ec-feature" id="hi-feeling" aria-labelledby="hi-ec-feature-title"><div class="hi-ec-shell">
+  <div class="hi-ec-feature__heading"><span class="hi-ec-feature__kicker">✦ {{ 'hi_ec.feature_badge' | t }}</span><h2 id="hi-ec-feature-title">{{ 'hi_ec.feature_head' | t }}<span>{{ 'hi_ec.feature_head_sub' | t }}</span></h2></div>
+  <div class="hi-ec-feature__grid">
+    <article class="hi-ec-feature__card hi-ec-feature__card--one">
+      <h3>{{ 'hi_ec.feature_one_title' | t }}</h3><p>{{ 'hi_ec.feature_one_copy' | t }}</p>
+      <div class="hi-ec-feature__card-illustration"><strong>01.</strong><span>{{ 'hi_ec.feature_one_foot' | t }}</span></div>
+    </article>
+    <article class="hi-ec-feature__card hi-ec-feature__card--two">
+      <img src="{{ 'hp-story-concept.webp' | asset_url }}" class="hi-ec-feature__photo" alt="" width="1536" height="1024" loading="lazy">
+      <h3>{{ 'hi_ec.feature_two_title' | t }}</h3><p>{{ 'hi_ec.feature_two_copy' | t }}</p>
+      <div class="hi-ec-feature__card-bottom"><a href="{{ routes.root_url | append: '/pages/guide-fit' | replace: '//', '/' }}">{{ 'hi_ec.feature_two_link' | t }} ↗</a><small>{{ 'hi_ec.concept_short' | t }}</small></div>
+    </article>
+    <article class="hi-ec-feature__card hi-ec-feature__card--three">
+      <h3>{{ 'hi_ec.feature_three_title' | t }}</h3><p>{{ 'hi_ec.feature_three_copy' | t }}</p>
+      <div class="hi-ec-feature__checklist" role="img" aria-label="{{ 'hi_ec.feature_three_checks' | t }}"><span>01</span><span>02</span><span>03</span><span>04</span></div>
+    </article>
   </div>
-</section>
+  <p class="hi-ec-feature__card-foot">{{ 'hi_ec.feature_footnote' | t }}</p>
+</div></section>
 {% schema %}
 {"name":"HiParcelo everyday edit","settings":[],"presets":[{"name":"HiParcelo everyday edit"}]}
 {% endschema %}

@@ -1,19 +1,9 @@
-<section class="hi hi-ref-story" aria-labelledby="hi-ref-story-title">
-  <div class="hi-ref-story__scene hi-ref-story__scene--left">
-    <img src="{{ 'hp-story-concept.webp' | asset_url }}" alt="{{ 'hi_edit.story_concept_alt' | t }}" loading="lazy" width="1536" height="1024">
-  </div>
-  <div class="hi-ref-story__body">
-    <span class="hi-ref-story__ornament" aria-hidden="true">✦</span>
-    <p class="hi-ref-eyebrow">{{ 'hi_edit.manifesto_kicker' | t }}</p>
-    <h2 id="hi-ref-story-title">{{ 'hi_edit.manifesto_head_a' | t }} <em>{{ 'hi_edit.manifesto_head_b' | t }}</em></h2>
-    <p>{{ 'hi_edit.manifesto_copy' | t }}</p>
-    <a class="hi-ref-button hi-ref-button--dark" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.manifesto_link' | t }}</a>
-    <span class="hi-ref-story__notice">{{ 'hi_edit.concept_notice' | t }}</span>
-  </div>
-  <div class="hi-ref-story__scene hi-ref-story__scene--right">
-    <img src="{{ 'hp-hero-concept.webp' | asset_url }}" alt="{{ 'hiparcelo.hero.concept_alt' | t }}" loading="lazy" width="1536" height="1024">
-  </div>
-</section>
+<section class="hi hi-ec-values" aria-label="{{ 'hi_ec.values_aria' | t }}"><div class="hi-ec-shell hi-ec-values__grid">
+<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">✦</span><div><strong>{{ 'hi_ec.value_one' | t }}</strong><small>{{ 'hi_ec.value_one_sub' | t }}</small></div></div>
+<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">⌕</span><div><strong>{{ 'hi_ec.value_two' | t }}</strong><small>{{ 'hi_ec.value_two_sub' | t }}</small></div></div>
+<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">↗</span><div><strong>{{ 'hi_ec.value_three' | t }}</strong><small>{{ 'hi_ec.value_three_sub' | t }}</small></div></div>
+<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">◎</span><div><strong>{{ 'hi_ec.value_four' | t }}</strong><small>{{ 'hi_ec.value_four_sub' | t }}</small></div></div>
+</div></section>
 {% schema %}
 {"name":"HiParcelo brand signals","settings":[],"presets":[{"name":"HiParcelo brand signals"}]}
 {% endschema %}

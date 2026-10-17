@@ -1,49 +1,39 @@
 {% assign support_email = settings.hp_support_email | default: shop.email %}
-<section class="hp hp-contact" aria-labelledby="hp-contact-title-{{ section.id }}">
-  <div class="hp-shell">
-    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.contact' | t }}</span></nav>
-    <div class="hp-contact__layout">
-      <div>
-        <p class="hp-eyebrow">{{ 'hp_store.common.support' | t }}</p>
-        <h1 id="hp-contact-title-{{ section.id }}">{{ 'hp_store.form.heading' | t }}</h1>
-        <p class="hp-copy">{{ 'hp_store.form.intro' | t }}</p>
-        <div class="hp-contact__details">
-          {% if support_email != blank %}<a href="mailto:{{ support_email | escape }}">{{ support_email | escape }}</a>{% endif %}
-          <p>{{ 'hp_store.form.response' | t }}</p>
-          <p><a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a></p>
-        </div>
-      </div>
-      <div class="hp-form">
-        {% if settings.hp_contact_enabled %}
-          {% form 'contact', id: 'HiParceloContact' %}
-            {% if form.posted_successfully? %}<div class="hp-form__message" role="status">{{ 'hp_store.form.success' | t }}</div>{% endif %}
-            {% if form.errors %}<div role="alert"><p>{{ 'hp_store.form.error' | t }}</p>{{ form.errors | default_errors }}</div>{% endif %}
-            <div class="hp-field-row">
-              <div class="hp-field"><label for="HpContactName">{{ 'hp_store.form.name' | t }}</label><input id="HpContactName" name="contact[name]" autocomplete="name" type="text" value="{{ form.name | escape }}" required></div>
-              <div class="hp-field"><label for="HpContactEmail">{{ 'hp_store.form.email' | t }}</label><input id="HpContactEmail" name="contact[email]" autocomplete="email" type="email" value="{{ form.email | escape }}" required{% if form.errors contains 'email' %} aria-invalid="true"{% endif %}></div>
-            </div>
-            <div class="hp-field"><label for="HpContactTopic">{{ 'hp_store.form.topic' | t }}</label><select id="HpContactTopic" name="contact[topic]"><option>{{ 'hp_store.form.product' | t }}</option><option>{{ 'hp_store.form.delivery' | t }}</option><option>{{ 'hp_store.form.return' | t }}</option><option>{{ 'hp_store.form.other' | t }}</option></select></div>
-            <div class="hp-field"><label for="HpContactOrder">{{ 'hp_store.form.order' | t }}</label><input id="HpContactOrder" name="contact[order_number]" type="text" autocomplete="off" maxlength="80"></div>
-            <div class="hp-field"><label for="HpContactMessage">{{ 'hp_store.form.message' | t }}</label><textarea id="HpContactMessage" name="contact[body]" rows="7" required>{{ form.body | escape }}</textarea></div>
-            <p class="hp-form__note">{{ 'hp_store.form.notice' | t }} <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.form.privacy' | t }}</a></p>
-            <button class="hp-button" type="submit">{{ 'hp_store.form.send' | t }}</button>
-          {% endform %}
-        {% else %}
-          <form data-hp-preview-form>
-            <div class="hp-draft"><strong>{{ 'hp_store.common.draft' | t }}</strong><p>{{ 'hp_store.form.preview' | t }}</p></div>
-            <fieldset disabled style="border:0;padding:0;margin:0;min-width:0">
-              <div class="hp-field-row"><div class="hp-field"><label for="HpPreviewName">{{ 'hp_store.form.name' | t }}</label><input id="HpPreviewName" type="text" autocomplete="off"></div><div class="hp-field"><label for="HpPreviewEmail">{{ 'hp_store.form.email' | t }}</label><input id="HpPreviewEmail" type="email" autocomplete="off"></div></div>
-              <div class="hp-field"><label for="HpPreviewTopic">{{ 'hp_store.form.topic' | t }}</label><select id="HpPreviewTopic"><option>{{ 'hp_store.form.product' | t }}</option><option>{{ 'hp_store.form.delivery' | t }}</option><option>{{ 'hp_store.form.return' | t }}</option><option>{{ 'hp_store.form.other' | t }}</option></select></div>
-              <div class="hp-field"><label for="HpPreviewMessage">{{ 'hp_store.form.message' | t }}</label><textarea id="HpPreviewMessage" rows="7"></textarea></div>
-              <button class="hp-button" type="button" disabled>{{ 'hp_store.form.disabled' | t }}</button>
-            </fieldset>
-            <p class="hp-form__note">{{ 'hp_store.form.notice' | t }}</p>
-          </form>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+<section class="hi hi-contact" aria-labelledby="hi-contact-title">
+ <div class="hi-wrap">
+   <nav class="hi-breadcrumb" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.contact' | t }}</span></nav>
+   <div class="hi-contact__grid">
+     <div>
+       <p class="hi-kicker">{{ 'hi_edit.contact_kicker' | t }}</p>
+       <h1 id="hi-contact-title">{{ 'hi_edit.contact_head_a' | t }}<br><em>{{ 'hi_edit.contact_head_b' | t }}</em></h1>
+       <p class="hi-contact__lead">{{ 'hi_edit.contact_copy' | t }}</p>
+       {% if support_email != blank %}<a class="hi-contact__email" href="mailto:{{ support_email | escape }}">{{ support_email | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+       <div class="hi-contact__info"><span>{{ 'hi_edit.contact_small_kicker' | t }}</span><p>{{ 'hi_edit.contact_small_copy' | t }}</p><p><a class="hi-text-link" href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hp_store.common.help' | t }} ↗</a></p></div>
+     </div>
+     <div class="hi-contact__form">
+       <span>{{ 'hi_edit.contact_form_kicker' | t }}</span><h2>{{ 'hi_edit.contact_form_title' | t }}</h2>
+       {% if settings.hp_contact_enabled %}
+       {% form 'contact', id: 'HiParceloContact' %}
+         {% if form.posted_successfully? %}<div class="hp-form__message" role="status">{{ 'hp_store.form.success' | t }}</div>{% endif %}
+         {% if form.errors %}<div role="alert"><p>{{ 'hp_store.form.error' | t }}</p>{{ form.errors | default_errors }}</div>{% endif %}
+         <div class="hp-field-row">
+           <div class="hp-field"><label for="HiContactName">{{ 'hp_store.form.name' | t }}</label><input id="HiContactName" name="contact[name]" autocomplete="name" type="text" value="{{ form.name | escape }}" required></div>
+           <div class="hp-field"><label for="HiContactEmail">{{ 'hp_store.form.email' | t }}</label><input id="HiContactEmail" name="contact[email]" autocomplete="email" type="email" value="{{ form.email | escape }}" required{% if form.errors contains 'email' %} aria-invalid="true"{% endif %}></div>
+         </div>
+         <div class="hp-field"><label for="HiContactTopic">{{ 'hp_store.form.topic' | t }}</label><select id="HiContactTopic" name="contact[topic]"><option value="Product question">{{ 'hp_store.form.product' | t }}</option><option value="Delivery or tracking">{{ 'hp_store.form.delivery' | t }}</option><option value="Return or refund">{{ 'hp_store.form.return' | t }}</option><option value="Other">{{ 'hp_store.form.other' | t }}</option></select></div>
+         <div class="hp-field"><label for="HiContactOrder">{{ 'hp_store.form.order' | t }}</label><input id="HiContactOrder" name="contact[order_number]" type="text" autocomplete="off" maxlength="80"></div>
+         <div class="hp-field"><label for="HiContactMessage">{{ 'hp_store.form.message' | t }}</label><textarea id="HiContactMessage" name="contact[body]" rows="6" required>{{ form.body | escape }}</textarea></div>
+         <p class="hp-form__note">{{ 'hp_store.form.notice' | t }} <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.form.privacy' | t }}</a></p>
+         <button class="hp-button" type="submit">{{ 'hp_store.form.send' | t }} &nbsp;↗</button>
+       {% endform %}
+       {% else %}
+       <p class="hi-page__draft">{{ 'hp_store.form.preview' | t }}</p>
+       <p><a class="hi-text-link" href="mailto:{{ support_email | escape }}">{{ 'hp_store.form.email_us' | t }} ↗</a></p>
+       {% endif %}
+     </div>
+   </div>
+ </div>
 </section>
 {% schema %}
-{"name":"t:hp_store.contact_name","settings":[],"presets":[{"name":"t:hp_store.contact_name"}]}
+{"name":"HiParcelo contact desk","settings":[],"presets":[{"name":"HiParcelo contact desk"}]}
 {% endschema %}

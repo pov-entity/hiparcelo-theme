@@ -1,54 +1,50 @@
 {% assign support_email = settings.hp_support_email | default: shop.email %}
-<footer class="hp hp-footer">
-  <div class="hp-shell">
-    <div class="hp-page-footer">
-      <div class="hp-page-footer__brand">
-        <a class="hp-wordmark" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">{{ 'hiparcelo.brand.prefix' | t }}<span>{{ 'hiparcelo.brand.suffix' | t }}</span></a>
-        <p>{{ 'hiparcelo.footer.tagline' | t }}</p>
-        {% if support_email != blank %}<p><a href="mailto:{{ support_email | escape }}">{{ support_email | escape }}</a></p>{% endif %}
+<footer class="hi hi-footer" role="contentinfo">
+  <div class="hi-wrap">
+    <div class="hi-footer__top">
+      <div class="hi-footer__brand">
+        <a href="{{ routes.root_url }}" class="hi-identity" aria-label="HiParcelo home">
+          <span class="hi-identity__symbol" aria-hidden="true"><svg viewBox="0 0 50 50" fill="none"><path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M6 15.5V36L25 46l19-10V15.5M25 26.5V46" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="m16 10 19 11" stroke="currentColor" stroke-width="1.5"/></svg></span>
+          {% if settings.logo != blank %}
+            {{ settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', width: 175, alt: 'HiParcelo', class: 'hi-identity__logo' }}
+          {% else %}
+            <span class="hi-identity__type"><span class="hi-identity__word"><strong>Hi</strong><em>Parcelo.</em></span><span class="hi-identity__sub">{{ 'hi_edit.brand_sub' | t }}</span></span>
+          {% endif %}
+        </a>
+        <p>{{ 'hi_edit.footer_statement' | t }}</p>
+        {% if support_email != blank %}<a class="hi-footer__contact" href="mailto:{{ support_email | escape }}">{{ support_email | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
       </div>
-      <div><h2>{{ 'hp_store.common.discover' | t }}</h2><nav aria-label="{{ 'hp_store.common.discover' | t }}">
-        <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hp_store.common.first_find' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hp_store.common.about' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hp_store.common.guides' | t }}</a>
-      </nav></div>
-      <div><h2>{{ 'hp_store.common.support' | t }}</h2><nav aria-label="{{ 'hp_store.common.support' | t }}">
-        <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hp_store.common.help' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a>
-      </nav></div>
-      <div><h2>{{ 'hp_store.common.legal' | t }}</h2><nav aria-label="{{ 'hp_store.common.legal' | t }}">
-        <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.common.privacy' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/terms' | replace: '//', '/' }}">{{ 'hp_store.common.terms' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/cookies' | replace: '//', '/' }}">{{ 'hp_store.common.cookies' | t }}</a>
-        <a href="{{ routes.root_url | append: '/pages/data-sharing-opt-out' | replace: '//', '/' }}">{{ 'hp_store.common.choices' | t }}</a>
-        {% unless settings.hp_store_preparation %}{% for policy in shop.policies %}{% if policy.body != blank %}<a href="{{ policy.url }}">{{ policy.title | escape }}</a>{% endif %}{% endfor %}{% endunless %}
-      </nav></div>
-    </div>
-    <div class="hp-footer__bottom">
-      {% render 'hp-localization', placement: 'footer' %}
-      <div>{% assign year = 'now' | date: '%Y' %}<p>{{ 'hiparcelo.footer.copyright' | t: year: year, brand: shop.name }}</p>{% if settings.hp_seller_identity != blank %}<p>{{ settings.hp_seller_identity | escape }}</p>{% endif %}</div>
-      <div class="hp-footer__links">
-        {% if settings.social_instagram_link != blank %}<a href="{{ settings.social_instagram_link | escape }}">{{ 'hiparcelo.footer.instagram' | t }}</a>{% endif %}
-        {% if settings.social_facebook_link != blank %}<a href="{{ settings.social_facebook_link | escape }}">{{ 'hiparcelo.footer.facebook' | t }}</a>{% endif %}
-        {% if settings.social_tiktok_link != blank %}<a href="{{ settings.social_tiktok_link | escape }}">{{ 'hiparcelo.footer.tiktok' | t }}</a>{% endif %}
+      <div class="hi-footer__columns">
+        <div><h2>{{ 'hi_edit.footer_explore' | t }}</h2><nav aria-label="{{ 'hi_edit.footer_explore' | t }}">
+          <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.nav_story' | t }}</a>
+          <a href="{{ routes.root_url }}#hi-approach">{{ 'hi_edit.nav_method' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.nav_first' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }}</a>
+        </nav></div>
+        <div><h2>{{ 'hi_edit.footer_here' | t }}</h2><nav aria-label="{{ 'hi_edit.footer_here' | t }}">
+          <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hp_store.common.help' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>
+        </nav></div>
+        <div><h2>{{ 'hi_edit.footer_fine' | t }}</h2><nav aria-label="{{ 'hi_edit.footer_fine' | t }}">
+          <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.common.privacy' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/terms' | replace: '//', '/' }}">{{ 'hp_store.common.terms' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/cookies' | replace: '//', '/' }}">{{ 'hp_store.common.cookies' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/data-sharing-opt-out' | replace: '//', '/' }}">{{ 'hp_store.common.choices' | t }}</a>
+        </nav></div>
       </div>
     </div>
+    <div class="hi-footer__low">
+      <span>{% assign year = 'now' | date: '%Y' %}© {{ year }} HiParcelo. {{ 'hi_edit.footer_copyright' | t }}</span>
+      <div class="hi-langs">{% render 'hp-localization', placement: 'footer' %}</div>
+      {% if settings.hp_seller_identity != blank %}<span>{{ settings.hp_seller_identity | escape }}</span>{% endif %}
+    </div>
+    <div class="hi-footer__oversize" aria-hidden="true">HiParcelo.</div>
+    {% if settings.hp_store_preparation %}<p class="hi-footer__status">{{ 'hi_edit.footer_status' | t }}</p>{% endif %}
   </div>
-  <div class="hp-footer__signature" aria-hidden="true">HiParcelo</div>
 </footer>
-{% stylesheet %}
-.hp-footer{background:var(--hp-ink);color:#fff;padding-block:40px 28px}
-.hp-footer .hp-wordmark{color:#fff}.hp-footer .hp-wordmark span{color:#47c4bd}
-.hp-footer__bottom{display:flex;justify-content:space-between;align-items:start;gap:28px;padding-top:24px;border-top:1px solid #ffffff24}
-.hp-footer__bottom p{font-size:11px;color:#c4d1df;margin-bottom:5px}
-.hp-footer__links{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:13px 22px;max-width:60%}
-.hp-footer__links a{color:#d1dfeb;font-size:11px}
-.hp-footer a:focus-visible{outline-color:#68d5cd}
-@media(max-width:749px){.hp-footer__bottom{display:block}.hp-footer__links{justify-content:flex-start;max-width:100%;margin-top:20px}}
-{% endstylesheet %}
 {% schema %}
-{"name":"t:hiparcelo.footer.name","enabled_on":{"groups":["footer"]},"settings":[]}
+{"name":"HiParcelo editorial foot","enabled_on":{"groups":["footer"]},"settings":[]}
 {% endschema %}

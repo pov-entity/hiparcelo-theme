@@ -1,20 +1,22 @@
-<section class="hp hp-tracking" aria-labelledby="hp-tracking-title-{{ section.id }}">
-  <div class="hp-shell">
-    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.track' | t }}</span></nav>
-    <header class="hp-tracking__intro"><p class="hp-eyebrow">{{ 'hp_store.common.support' | t }}</p><h1 id="hp-tracking-title-{{ section.id }}">{{ 'hp_store.tracking.heading' | t }}</h1><p class="hp-copy">{{ 'hp_store.tracking.intro' | t }}</p></header>
-    <div class="hp-steps">
-      <article class="hp-step"><span class="hp-step__number" aria-hidden="true">01</span><h2>{{ 'hp_store.tracking.step_one' | t }}</h2><p>{{ 'hp_store.tracking.step_one_copy' | t }}</p></article>
-      <article class="hp-step"><span class="hp-step__number" aria-hidden="true">02</span><h2>{{ 'hp_store.tracking.step_two' | t }}</h2><p>{{ 'hp_store.tracking.step_two_copy' | t }}</p></article>
-      <article class="hp-step"><span class="hp-step__number" aria-hidden="true">03</span><h2>{{ 'hp_store.tracking.step_three' | t }}</h2><p>{{ 'hp_store.tracking.step_three_copy' | t }}</p></article>
-    </div>
-    <div class="hp-tracking__actions">
-      <a class="hp-button" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
-      {% if shop.customer_accounts_enabled %}<a class="hp-button hp-button--outline" href="{{ routes.account_login_url }}">{{ 'hp_store.tracking.login' | t }}</a>{% endif %}
-    </div>
-    <p class="hp-tracking__privacy">{{ 'hp_store.tracking.no_lookup' | t }}</p>
-    {% if settings.hp_store_preparation %}<div class="hp-draft" style="margin-top:28px"><strong>{{ 'hp_store.common.draft' | t }}</strong><p>{{ 'hp_store.tracking.prelaunch' | t }}</p></div>{% endif %}
-  </div>
+<section class="hi hi-track" aria-labelledby="hi-track-title">
+ <div class="hi-wrap">
+   <nav class="hi-breadcrumb" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.track' | t }}</span></nav>
+   <div class="hi-track__top">
+      <p class="hi-kicker">{{ 'hi_edit.track_kicker' | t }}</p>
+      <h1 id="hi-track-title">{{ 'hi_edit.track_head_a' | t }}<br><em>{{ 'hi_edit.track_head_b' | t }}</em></h1>
+      <p>{{ 'hi_edit.track_copy' | t }}</p>
+   </div>
+   <div class="hi-track__steps">
+     <article class="hi-track__step"><span>01 / THE EMAIL</span><h2>{{ 'hp_store.tracking.step_one' | t }}</h2><p>{{ 'hp_store.tracking.step_one_copy' | t }}</p></article>
+     <article class="hi-track__step"><span>02 / YOUR UPDATE</span><h2>{{ 'hp_store.tracking.step_two' | t }}</h2><p>{{ 'hp_store.tracking.step_two_copy' | t }}</p></article>
+     <article class="hi-track__step"><span>03 / HERE TO HELP</span><h2>{{ 'hp_store.tracking.step_three' | t }}</h2><p>{{ 'hp_store.tracking.step_three_copy' | t }}</p></article>
+   </div>
+   <div class="hi-track__foot"><p>{{ 'hp_store.tracking.no_lookup' | t }}</p>
+     {% if settings.hp_store_preparation %}<p style="margin-top:12px">{{ 'hp_store.tracking.prelaunch' | t }}</p>{% endif %}
+     <a class="hi-btn hi-btn--dark" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} <span aria-hidden="true">↗</span></a>
+   </div>
+ </div>
 </section>
 {% schema %}
-{"name":"t:hp_store.tracking_name","settings":[],"presets":[{"name":"t:hp_store.tracking_name"}]}
+{"name":"HiParcelo order updates","settings":[],"presets":[{"name":"HiParcelo order updates"}]}
 {% endschema %}

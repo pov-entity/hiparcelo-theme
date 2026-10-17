@@ -8,39 +8,47 @@
     assign kicker = kicker_key | t
     assign intro = intro_key | t
   endif
+  assign page_class = page.handle
+  assign is_legal = false
+  if page.handle == 'privacy' or page.handle == 'terms' or page.handle == 'cookies' or page.handle == 'returns' or page.handle == 'shipping' or page.handle == 'data-sharing-opt-out'
+    assign is_legal = true
+  endif
 %}
-<section class="hp hp-page" aria-labelledby="hp-page-title-{{ section.id }}">
-  <div class="hp-shell">
-    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}">
-      <a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ page.title | escape }}</span>
-    </nav>
-    <header class="hp-page__header" data-hp-reveal>
-      <p class="hp-eyebrow">{{ kicker | escape }}</p>
-      <h1 id="hp-page-title-{{ section.id }}">{{ page.title | escape }}</h1>
-      {% if intro != blank %}<p class="hp-copy">{{ intro | escape }}</p>{% endif %}
-    </header>
-    <div class="hp-page__layout">
-      <article class="hp-article">
-        {% if section.settings.show_draft %}
-          <div class="hp-draft"><strong>{{ 'hp_store.common.draft' | t }}</strong><p>{{ 'hp_store.common.draft_copy' | t }}</p></div>
-        {% endif %}
-        {{ page.content }}
-      </article>
-      {% if section.settings.show_support %}
-        <aside class="hp-aside">
-          <h2>{{ 'hp_store.common.question' | t }}</h2>
-          <p>{{ 'hp_store.common.support_copy' | t }}</p>
-          <a class="hp-button" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
-          <nav aria-label="{{ 'hp_store.common.support' | t }}">
-            <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a>
-            <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a>
-            <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>
-          </nav>
-        </aside>
-      {% endif %}
+<section class="hi hi-page hi-page--{{ page_class | escape }}{% if is_legal %} hi-page--legal{% endif %}" aria-labelledby="hi-page-title-{{ section.id }}">
+  <div class="hi-page__cover"><div class="hi-wrap">
+    <nav class="hi-breadcrumb" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ page.title | escape }}</span></nav>
+    <div class="hi-page__title">
+      <span>{{ kicker | escape }}</span>
+      <h1 id="hi-page-title-{{ section.id }}">
+        {% if page.handle == 'about' %}{{ 'hi_edit.about_hero_a' | t }} <em>{{ 'hi_edit.about_hero_b' | t }}</em>
+        {% elsif page.handle == 'guides' %}{{ 'hi_edit.guides_hero_a' | t }} <em>{{ 'hi_edit.guides_hero_b' | t }}</em>
+        {% else %}{{ page.title | escape }}{% endif %}
+      </h1>
+      {% if intro != blank %}<p>{{ intro | escape }}</p>{% endif %}
     </div>
+  </div></div>
+  <div class="hi-wrap hi-page__content">
+    <div class="hi-page__body">
+      {% if page.handle == 'about' %}<p class="hi-page__pullquote">{{ 'hi_edit.about_quote' | t }}</p>{% endif %}
+      {% if section.settings.show_draft %}<div class="hi-page__draft"><strong>{{ 'hp_store.common.draft' | t }}</strong><p>{{ 'hp_store.common.draft_copy' | t }}</p></div>{% endif %}
+      <div class="hi-prose">{{ page.content }}</div>
+      <div class="hi-page__bottom-links"><a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }} ↗</a><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} ↗</a></div>
+    </div>
+    {% if section.settings.show_support %}
+    <aside class="hi-page__rail">
+      <span>{{ 'hi_edit.rail_kicker' | t }}</span>
+      <h2>{{ 'hi_edit.rail_title' | t }}</h2>
+      <p>{{ 'hi_edit.rail_copy' | t }}</p>
+      <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.rail_action' | t }} <span aria-hidden="true">↗</span></a>
+      <nav aria-label="{{ 'hp_store.common.support' | t }}">
+        <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hp_store.common.help' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a>
+        <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a>
+      </nav>
+    </aside>
+    {% endif %}
   </div>
 </section>
 {% schema %}
-{"name":"t:hp_store.name","settings":[{"type":"text","id":"localization_key","label":"t:hp_store.localization_key","info":"t:hp_store.localization_info"},{"type":"text","id":"kicker","label":"t:hp_store.kicker"},{"type":"textarea","id":"intro","label":"t:hp_store.copy"},{"type":"checkbox","id":"show_draft","label":"t:hp_store.draft","default":false},{"type":"checkbox","id":"show_support","label":"t:hp_store.show_support","default":true}],"presets":[{"name":"t:hp_store.name"}]}
+{"name":"HiParcelo editorial page","settings":[{"type":"text","id":"localization_key","label":"Localization key"},{"type":"text","id":"kicker","label":"Kicker"},{"type":"textarea","id":"intro","label":"Intro"},{"type":"checkbox","id":"show_draft","label":"Show draft notice","default":false},{"type":"checkbox","id":"show_support","label":"Show help rail","default":true}],"presets":[{"name":"HiParcelo editorial page"}]}
 {% endschema %}

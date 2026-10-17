@@ -1,16 +1,15 @@
-# HiParcelo 2027 — brand palette
+# HiParcelo — reference palette
 
-Approved visual distribution target for the 2027 preview:
+The approved palette was supplied as a visual reference on 2026-10-17.
 
-| Role | Target visual share | Hex | Recommended usage |
-|---|---:|---|---|
-| White | 50% | `#FFFFFF` | Page canvas, content, articles, guides |
-| Navy | 33% | `#0F2747` | Hero, navigation, footer, dark finale, strong typography |
-| Light grey | 12% | `#F2F4F7` | Alternate surfaces, cards, dividers |
-| Red accent | 5% | `#E53935` | Details, status marks, active states, focus |
+| Role | Name in reference | Hex | Usage |
+| --- | --- | --- | --- |
+| Base dark | Charleston Green | `#2A2829` | Brand header/footer, hero, text |
+| Quiet highlight | Dark Sky Blue | `#97B4DE` | Abstract parcel, minimal details |
+| Functional accent | Blue | `#263A99` | Primary actions, active tab, links |
+| Primary canvas | Alabaster | `#F0EBE5` | Main content and page surfaces |
+| Secondary neutral | Pastel Gray | `#DCD0BE` | Cards, information sections |
 
-These proportions are design targets, not automatic measurements of every viewport. Responsive layouts change coverage.
+This replaces the previous navy/white/red scheme. The main visual objective is **fewer competing accents and a calmer premium feeling**, retaining the 2027 motion/interaction language without neon effects. This is a palette implementation, not an assertion of conversion lift.
 
-Accessibility: use `#C62828` as the button/text red where smaller text needs stronger contrast; retain brand red `#E53935` as the designated accent. No external fonts, apps, or paid assets. Animations honor reduced-motion preferences.
-
-Implementation: `assets/hp27-palette.css` loads after `assets/hp27.css`. It overrides brand colors without replacing the homepage sections and keeps the base interactive behavior.
+Implementation: `assets/hp27-palette.css` loads after `assets/hp27.css`; `sections/hp27-hero.liquid` uses the five approved colors in its abstract parcel graphic. Both are reusable in the unpublished Shopify 2027 preview.

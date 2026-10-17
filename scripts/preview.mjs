@@ -1,5 +1,5 @@
 import { Liquid } from 'liquidjs';
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { resolve, dirname, sep, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,15 +7,22 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(root, 'preview-output');
 const read = (path) => readFile(resolve(root, path), 'utf8');
-const stripBlocks = (source) => source.replace(/{%-?\s*(schema|stylesheet|javascript|doc)\s*-?%}[\s\S]*?{%-?\s*end\1\s*-?%}/g, '');
+const parseJson = (source) => JSON.parse(source.replace(/^\s*\/\*[\s\S]*?\*\/\s*/, ''));
+const stripBlocks = (source) => source.replace(/{%-?\s*(schema|stylesheet|javascript|doc)\s*-?%}[\s\S]*?{%-?\s*end\1\s*-?%}/g, '').replace(/{%-?\s*form\s+[^%]*%}/g, '<form data-preview-form>').replace(/{%-?\s*endform\s*-?%}/g, '</form>');
 const extract = (source, name) => [...source.matchAll(new RegExp('{%-?\\s*' + name + '\\s*-?%}([\\s\\S]*?){%-?\\s*end' + name + '\\s*-?%}', 'g'))].map((match) => match[1]).join('\n');
 const escape = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 await mkdir(resolve(output, 'snippets'), { recursive: true });
-await writeFile(resolve(output, 'snippets/hp-icon.liquid'), stripBlocks(await read('snippets/hp-icon.liquid')));
+for (const filename of await readdir(resolve(root, 'snippets'))) {
+  if (filename.endsWith('.liquid')) await writeFile(resolve(output, 'snippets', filename), stripBlocks(await read('snippets/' + filename)));
+}
 const engine = new Liquid({ root: resolve(output, 'snippets'), extname: '.liquid', strictFilters: true });
-const translations = JSON.parse(await read('locales/en.default.json'));
+const translations = parseJson(await read('locales/en.default.json'));
 engine.registerFilter('t', (key, ...parameters) => {
   let text = String(key).split('.').reduce((value, part) => value?.[part], translations);
+  if (text && typeof text === 'object') {
+    const count = parameters.find(parameter => Array.isArray(parameter) && parameter[0] === 'count')?.[1];
+    text = Number(count) === 1 ? text.one : text.other;
+  }
   if (typeof text !== 'string') throw new Error('Missing translation: ' + key);
   for (const parameter of parameters) {
     if (Array.isArray(parameter)) text = text.replaceAll('{{ ' + parameter[0] + ' }}', String(parameter[1]));
@@ -23,6 +30,7 @@ engine.registerFilter('t', (key, ...parameters) => {
   return text;
 });
 engine.registerFilter('asset_url', (name) => '/assets/' + name);
+engine.registerFilter('stylesheet_tag', (url) => '<link rel="stylesheet" href="' + escape(url) + '">');
 engine.registerFilter('json', (value) => JSON.stringify(value));
 engine.registerFilter('money_with_currency', (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value / 100) + ' USD');
 engine.registerFilter('image_url', (image) => image?.src || image);
@@ -31,8 +39,8 @@ engine.registerFilter('image_tag', (url, ...parameters) => {
   const allowed = ['alt', 'class', 'loading', 'fetchpriority', 'sizes'];
   return '<img src="' + escape(url) + '" width="1536" height="1024" ' + allowed.filter((key) => attributes[key] !== undefined).map((key) => key + '="' + escape(attributes[key]) + '"').join(' ') + (attributes.alt === undefined ? ' alt=""' : '') + '>';
 });
-const settings = JSON.parse(await read('config/settings_data.json')).current;
-const globalSchema = JSON.parse(await read('config/settings_schema.json'));
+const settings = parseJson(await read('config/settings_data.json')).current;
+const globalSchema = parseJson(await read('config/settings_schema.json'));
 for (const group of globalSchema) {
   for (const setting of group.settings || []) {
     if (settings[setting.id] === undefined && setting.default !== undefined) settings[setting.id] = setting.default;
@@ -46,16 +54,18 @@ const context = {
   template: { name: 'index' },
   request: { locale: { iso_code: 'en' } }
 };
-const home = JSON.parse(await read('templates/index.json'));
-const header = JSON.parse(await read('sections/header-group.json'));
-const footer = JSON.parse(await read('sections/footer-group.json'));
+const home = parseJson(await read('templates/index.json'));
+const header = parseJson(await read('sections/header-group.json'));
+const footer = parseJson(await read('sections/footer-group.json'));
 const sources = new Map();
 for (const group of [header, home, footer]) {
   for (const data of Object.values(group.sections)) {
     if (!sources.has(data.type)) sources.set(data.type, await read('sections/' + data.type + '.liquid'));
   }
 }
-const css = await read('assets/hp-base.css') + '\n' + [...sources.values()].map((source) => extract(source, 'stylesheet')).join('\n');
+const layoutSource = await read('layout/theme.liquid');
+const styleAssets = [...new Set([...layoutSource.matchAll(/{{\s*'([^']+\.css)'\s*\|\s*asset_url\s*\|\s*stylesheet_tag/g)].map(match => match[1]))];
+const css = (await Promise.all(styleAssets.map(name => read('assets/' + name)))).join('\n') + '\n' + [...sources.values()].map((source) => extract(source, 'stylesheet')).join('\n');
 const javascript = [...sources.values()].map((source) => extract(source, 'javascript')).join('\n');
 const sectionContext = (id, data) => {
   const source = sources.get(data.type);
@@ -93,10 +103,10 @@ const render = async (product = false) => {
 const homepage = await render();
 const productPage = await render(true);
 if (process.argv.includes('--write')) {
-  await writeFile(resolve(output, 'index.html'), homepage.replace('<script src="/preview.js" defer></script>', '<script>' + javascript + '</script>').replaceAll('src="/assets/', 'src="../assets/'));
+  await writeFile(resolve(output, 'index.html'), homepage.replace('<script src="/preview.js" defer></script>', '<script>' + javascript + '</script>').replaceAll('src="/assets/', 'src="../assets/').replaceAll('href="/assets/', 'href="../assets/'));
   console.log('Wrote preview-output/index.html from the actual homepage Liquid sections.');
 } else {
-  const types = { '.png': 'image/png', '.webp': 'image/webp', '.css': 'text/css', '.svg': 'image/svg+xml' };
+  const types = { '.png': 'image/png', '.webp': 'image/webp', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml' };
   const server = createServer(async (request, response) => {
     const url = new URL(request.url, 'http://127.0.0.1');
     try {

@@ -1,194 +1,91 @@
-/**
- * HiParcelo Delivery Journey v2.
- * Scrubbed (not timed) animation inspired by continuous freight-motion storytelling.
- * All visuals and durations are illustrative. No customer shipment data is used.
- */
 (() => {
   'use strict';
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
-  const range = (p, a, b) => clamp((p - a) / (b - a));
-  const smooth = v => {const t = clamp(v); return t * t * (3 - 2 * t)};
-  const within = (p, a, b) => smooth(range(p, a, b));
-  const mix = (a, b, k) => a + (b - a) * k;
-  const pct = n => n.toFixed(3) + '%';
-  const px = n => n.toFixed(2) + 'px';
-  const alpha = n => clamp(n).toFixed(4);
-  const show = (e, n) => {
-    if (!e) return;
-    const opacity = clamp(n);
-    e.style.opacity = alpha(opacity);
-    e.setAttribute('aria-hidden', opacity > .06 ? 'false' : 'true');
-  };
-  const linearPoint = (list, p) => {
-    if (p <= list[0][0]) return list[0].slice(1);
-    for (let i = 1; i < list.length; i++) {
-      if (p <= list[i][0]) {
-        const prev = list[i - 1], next = list[i];
-        const k = smooth((p - prev[0]) / (next[0] - prev[0]));
-        return prev.slice(1).map((x, j) => mix(x, next[j + 1], k));
-      }
-    }
-    return list[list.length - 1].slice(1);
-  };
-  // [scroll %, centerX %, centerY %, relative zoom, visibility]
-  // A single overlay maintains parcel identity between each vehicle and the home.
-  const parcelPath = [
-    [0.000, 50, 77, .12, 0],
-    [0.082, 50, 77, .17, 0],
-    [0.150, 50, 75, .30, 1],
-    [0.230, 50, 53, 2.75, 1],
-    [0.300, 50, 49, .20, 1],
-    [0.327, 50, 49, .07, 0],
-    [0.615, 50, 49, .07, 0],
-    [0.659, 50, 49, 1.80, 1],
-    [0.705, 50, 49, .52, 1],
-    [0.741, 49, 49, .09, 0],
-    [0.860, 65, 71, .09, 0],
-    [0.899, 61, 72, .42, 1],
-    [0.957, 52, 68, .27, 1],
-    [1.000, 52, 68, .27, 1]
-  ];
+  if (window.hiParceloJourneyMounted) return;
+  window.hiParceloJourneyMounted = true;
+  const mounted = new Map(), motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = x => Math.max(0, Math.min(1, x));
   function init(section) {
-    if (!section || section.dataset.hpjMounted === 'v2') return;
-    const q = sel => section.querySelector(sel);
-    const track = q('[data-hpj-track]');
-    const stage = q('.hpj-stage');
-    const worlds = ['warehouse', 'flight', 'road', 'home'].map(key => q('[data-hpj-world="' + key + '"]'));
-    const chapters = [...section.querySelectorAll('[data-hpj-chapter]')];
-    const parcel = q('[data-hpj-parcel]');
-    const warehouse = q('.hpj-world__warehouse');
-    const plane = q('.hpj-flight__plane');
-    const clouds = [q('.hpj-flight__cloud--a'), q('.hpj-flight__cloud--b')];
-    const customs = q('.hpj-flight__customs');
-    const road = q('[data-hpj-map]');
-    const roadPath = q('[data-hpj-roadline]');
-    const truck = q('.hpj-road__truck');
-    const house = q('.hpj-home__house');
-    const check = q('.hpj-home__check');
-    const delivered = q('.hpj-home__delivered');
-    const counter = q('[data-hpj-counter]');
-    const sceneName = q('[data-hpj-scene-name]');
-    const fill = q('[data-hpj-fill]');
-    if (!track || !stage || !parcel || !roadPath || !truck || worlds.some(x => !x) || chapters.length !== 3) return;
-    section.dataset.hpjMounted = 'v2';
-    if (reduced.matches) return;
-    section.classList.add('is-ready');
-    let raf = 0, prev = -1, currentStep = -1, active = true;
-    let w = 0, h = 0, pathLength = 0;
-    function dimensions() {
-      const bounds = stage.getBoundingClientRect();
-      w = bounds.width;
-      h = bounds.height;
-      pathLength = roadPath.getTotalLength();
-    }
+    if (mounted.has(section)) return;
+    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]');
+    if (!track || !pin || !canvas) return;
+    const abort = new AbortController(), { signal } = abort;
+    const copy = JSON.parse(q('[data-hpj-copy]').textContent);
+    const title = q('[data-hpj-caption-title]'), body = q('[data-hpj-caption-body]'), caption = q('[data-hpj-caption]'), scene = q('[data-hpj-scene-name]'), counter = q('[data-hpj-counter]'), completed = q('[data-hpj-completion]');
+    const stages = [...section.querySelectorAll('[data-hpj-stage]')], fills = stages.map(s => s.querySelector('[data-hpj-stage-fill]'));
+    let renderer, model, frame = 0, measureFrame = 0, started = false, disposed = false, active = false, lastChapter = -1, lastStage = -1, failed = false;
+    let start = 0, distance = 1, mobile = false, width = 1, height = 1, renderCount = 0, generation = 0;
+    const stageLimits = [0, .20, .69, 1];
     function draw() {
-      raf = 0;
-      if (!section.isConnected || reduced.matches) return;
-      const rect = track.getBoundingClientRect();
-      const length = Math.max(1, rect.height - innerHeight);
-      const p = clamp(-rect.top / length);
-      if (p === prev) return;
-      prev = p;
-      if (fill) fill.style.width = pct(p * 100);
-
-      // Warehouse pull-in: the warehouse recedes while the parcel grows to fill frame.
-      const departure = within(p, .045, .235);
-      warehouse.style.transform = 'translate3d(0,' + px(mix(0, -65, departure)) + ',0) scale(' + mix(.93, 1.22, departure).toFixed(4) + ')';
-      show(worlds[0], 1 - within(p, .245, .324));
-
-      // The aircraft enters at exactly the parcel's center during the pullback.
-      // A matched-position transfer replaces an abrupt full-scene crossfade.
-      const airborne = within(p, .316, .598);
-      const planeScale = p < .338 ? mix(.20, .76, within(p, .267, .34)) : mix(.76, 1.06, airborne);
-      const planeY = mix(-95, 151, airborne) + mix(0, 76, within(p, .602, .682));
-      plane.style.transform = 'translate3d(0,' + px(planeY) + ',0) rotate(180deg) scale(' + planeScale.toFixed(4) + ')';
-      show(worlds[1], within(p, .264, .325) * (1 - within(p, .622, .703)));
-      if (clouds[0]) clouds[0].style.transform = 'translateY(' + px(mix(-35, 46, airborne)) + ')';
-      if (clouds[1]) clouds[1].style.transform = 'translateY(' + px(mix(42, -55, airborne)) + ')';
-      if (customs) {
-        show(customs, within(p, .462, .49) * (1 - within(p, .603, .64)));
-        customs.style.transform = 'translateY(' + px(mix(15, 0, within(p, .462, .54))) + ')';
+      frame = 0;
+      if (!renderer || !model || !active || motion.matches || disposed || document.hidden) return;
+      const p = clamp((window.scrollY - start) / distance), s = model.evaluateJourney(p, mobile);
+      renderer.render(s); renderCount++;
+      section.dataset.hpjProgress = p.toFixed(6); section.dataset.hpjParent = s.parent;
+      if (lastChapter !== s.chapter) {
+        lastChapter = s.chapter; title.textContent = copy.titles[s.chapter]; body.textContent = copy.bodies[s.chapter]; scene.textContent = copy.scenes[s.chapter]; counter.textContent = `${String(s.chapter + 1).padStart(2, '0')} / 09`;
       }
-
-      // Local route and vehicle are part of one scene. The truck follows the same
-      // road through its right-hand turn instead of jumping into another camera.
-      const roadOpacity = within(p, .633, .714) * (1 - within(p, .871, .935));
-      show(worlds[2], roadOpacity);
-      const travel = within(p, .683, .917);
-      const travelDist = mix(pathLength * .17, pathLength * .88, travel);
-      const at = roadPath.getPointAtLength(travelDist);
-      const before = roadPath.getPointAtLength(Math.max(0, travelDist - 6));
-      const after = roadPath.getPointAtLength(Math.min(pathLength, travelDist + 6));
-      const x = at.x / 1000 * w, y = at.y / 1000 * h;
-      const angle = Math.atan2((after.y - before.y) * h, (after.x - before.x) * w) * 180 / Math.PI - 90;
-      const cameraPan = mix(13, -24, travel);
-      truck.style.transform = 'translate3d(' + px(x) + ',' + px(y + cameraPan) + ',0) translate(-50%,-50%) rotate(' + angle.toFixed(3) + 'deg) scale(' + mix(.76, .93, travel).toFixed(3) + ')';
-      // Pan the truck and road together so the wheels never drift off the road.
-      road.style.transform = 'translateY(' + px(cameraPan) + ')';
-
-      // Home enters underneath the moving truck; the shared parcel takes over at
-      // the driveway and travels to the front door without changing artwork.
-      const homeReveal = within(p, .856, .932);
-      show(worlds[3], homeReveal);
-      house.style.transform = 'translate3d(0,' + px(mix(18, -8, homeReveal)) + ',0) scale(' + mix(.84, 1.00, homeReveal).toFixed(3) + ')';
-      const done = within(p, .948, .994);
-      show(check, done);
-      check.style.transform = 'scale(' + mix(.58, 1, done).toFixed(3) + ')';
-      show(delivered, done);
-      delivered.style.transform = 'translate(-50%,' + px(mix(15, 0, done)) + ')';
-
-      // Cross-vehicle parcel pose, computed from a single timeline and one DOM
-      // element. Never create a new package object in the middle of a handoff.
-      const [bx, by, scale, visibility] = linearPoint(parcelPath, p);
-      parcel.style.left = pct(bx);
-      parcel.style.top = pct(by);
-      parcel.style.transform = 'translate3d(-50%,-50%,0) scale(' + scale.toFixed(4) + ')';
-      parcel.style.opacity = alpha(visibility);
-
-      const step = p < .332 ? 0 : p < .674 ? 1 : 2;
-      if (step !== currentStep) {
-        currentStep = step;
-        if (counter) counter.textContent = String(step + 1).padStart(2, '0') + ' / 03';
-      }
-      if (sceneName) {
-        sceneName.textContent = p >= .935 ? 'AT THE DOOR' : p >= .695 ? 'ON THE ROAD' : p >= .60 ? 'LOCAL TRANSFER' : p >= .36 ? 'IN FLIGHT' : p >= .24 ? 'AIRCRAFT LOADING' : 'WAREHOUSE';
-      }
-      chapters.forEach((node, i) => {
-        const a = i === 0 ? 1 - within(p, .294, .37)
-          : i === 1 ? within(p, .294, .37) * (1 - within(p, .635, .711))
-          : within(p, .635, .711);
-        node.style.opacity = alpha(a);
-        node.style.transform = 'translateY(' + px(mix(15, 0, a)) + ')';
-        node.setAttribute('aria-hidden', i === step ? 'false' : 'true');
-      });
+      const a = model.chapters[s.chapter], b = model.chapters[s.chapter + 1] ?? 1.03;
+      const fade = Math.min(model.span(p, a, a + .003) || (p < .003 ? 1 : 0), 1 - model.span(p, b - .003, b));
+      caption.style.opacity = (.75 + .25 * fade).toFixed(4);
+      if (lastStage !== s.stage) { lastStage = s.stage; stages.forEach((el, i) => { if (i === s.stage) el.setAttribute('aria-current', 'step'); else el.removeAttribute('aria-current'); }); }
+      fills.forEach((fill, i) => { fill.style.transform = `scaleX(${clamp((p - stageLimits[i]) / (stageLimits[i + 1] - stageLimits[i])).toFixed(5)})`; });
+      completed.style.opacity = s.complete.toFixed(4); completed.setAttribute('aria-hidden', s.complete > .5 ? 'false' : 'true');
+      section.classList.toggle('is-complete', s.complete > .99);
     }
-    function queue() {
-      if (raf || !active || reduced.matches) return;
-      raf = requestAnimationFrame(draw);
+    function queue() { if (!frame && active && renderer && !motion.matches && !document.hidden) frame = requestAnimationFrame(draw); }
+    function measure() {
+      measureFrame = 0;
+      if (disposed || motion.matches) return;
+      const header = document.querySelector('.hi-header'), style = header && getComputedStyle(header);
+      const headerSize = header && ['sticky', 'fixed'].includes(style.position) ? Math.min(header.getBoundingClientRect().height, innerHeight * .25) : 0;
+      section.style.setProperty('--hpj-top', `${Math.round(headerSize)}px`);
+      const bounds = canvas.getBoundingClientRect(); width = bounds.width; height = bounds.height; mobile = matchMedia('(max-width: 749px)').matches;
+      start = track.getBoundingClientRect().top + window.scrollY - headerSize;
+      distance = Math.max(1, track.offsetHeight - pin.offsetHeight);
+      renderer?.resize(width, height, window.devicePixelRatio || 1); queue();
     }
-    function resize() { dimensions(); prev = -1; queue(); }
-    dimensions();
-    window.addEventListener('scroll', queue, {passive:true});
-    window.addEventListener('resize', resize, {passive:true});
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        active = entries.some(entry => entry.isIntersecting);
-        if (active) {prev = -1; queue();}
-      }, {rootMargin:'300px 0px'});
-      observer.observe(track);
+    function scheduleMeasure() { if (!measureFrame && !disposed) measureFrame = requestAnimationFrame(measure); }
+    function fallback() {
+      failed = true; section.classList.add('is-static'); section.classList.remove('is-ready'); renderer?.dispose(); renderer = null; started = false; cancelAnimationFrame(frame); frame = 0;
     }
-    reduced.addEventListener?.('change', e => {
-      section.classList.toggle('is-ready', !e.matches);
-      if (!e.matches) {dimensions(); prev = -1; queue();}
-    });
-    draw();
+    async function begin() {
+      if (started || motion.matches || failed || disposed) return;
+      started = true;
+      const ticket = ++generation;
+      try {
+        const [world, timeline] = await Promise.all([import(section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
+        if (ticket !== generation || disposed || motion.matches) { if (ticket === generation) started = false; return; }
+        model = timeline; renderer = world.createRenderer(canvas, section.dataset.hpjTexture, queue); measure();
+        section.classList.add('is-ready'); section.classList.remove('is-static'); queue();
+      } catch (error) { section.dataset.hpjError = error.message; fallback(); }
+    }
+    function motionChange() {
+      if (motion.matches) { generation++; cancelAnimationFrame(frame); frame = 0; renderer?.dispose(); renderer = null; started = false; section.classList.remove('is-ready'); }
+      else if (active) { failed = false; section.classList.remove('is-static'); begin(); scheduleMeasure(); }
+    }
+    const observer = new IntersectionObserver(entries => {
+      active = entries.some(e => e.isIntersecting);
+      if (active) { begin(); scheduleMeasure(); queue(); } else { cancelAnimationFrame(frame); frame = 0; }
+    }, { rootMargin: '350px 0px' }); observer.observe(track);
+    const resize = new ResizeObserver(scheduleMeasure); resize.observe(canvas); resize.observe(document.body);
+    window.addEventListener('scroll', queue, { passive: true, signal });
+    window.addEventListener('resize', scheduleMeasure, { passive: true, signal });
+    window.addEventListener('pageshow', scheduleMeasure, { signal });
+    window.addEventListener('load', scheduleMeasure, { once: true, signal });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) { scheduleMeasure(); queue(); } }, { signal });
+    motion.addEventListener('change', motionChange, { signal });
+    canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); fallback(); }, { signal });
+    q('[data-hpj-skip]').addEventListener('click', event => {
+      event.preventDefault(); const target = document.getElementById(`hpj-after-${section.id.replace('hi-delivery-journey-', '')}`);
+      target?.scrollIntoView({ behavior: 'instant', block: 'start' }); target?.focus({ preventScroll: true });
+    }, { signal });
+    document.fonts?.ready.then(scheduleMeasure);
+    section.hiJourney = { state: p => model?.evaluateJourney(p ?? clamp((scrollY - start) / distance), mobile), stats: () => ({ renderCount, ...renderer?.stats() }), measure: scheduleMeasure };
+    mounted.set(section, () => { disposed = true; generation++; abort.abort(); observer.disconnect(); resize.disconnect(); cancelAnimationFrame(frame); cancelAnimationFrame(measureFrame); renderer?.dispose(); delete section.hiJourney; mounted.delete(section); });
+    measure();
   }
-  function boot(root) {
-    if (root.matches?.('[data-hpj]')) init(root);
-    root.querySelectorAll?.('[data-hpj]').forEach(init);
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => boot(document), {once:true});
-  else boot(document);
+  function boot(root) { if (root.matches?.('[data-hpj]')) init(root); root.querySelectorAll?.('[data-hpj]').forEach(init); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => boot(document), { once: true }); else boot(document);
   document.addEventListener('shopify:section:load', e => boot(e.target));
+  document.addEventListener('shopify:section:unload', e => { for (const [section, dispose] of mounted) if (e.target === section || e.target.contains(section)) dispose(); });
 })();

@@ -1,106 +1,74 @@
-{% comment %}
-HiParcelo delivery journey: illustrative scroll-led visualization, not order tracking.
-Times shown are user-requested planning scenarios and are not verified shipping estimates.
-{% endcomment %}
 {{ 'hi-delivery-journey.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'hi-delivery-journey.js' | asset_url }}" defer="defer"></script>
-<section class="hpj" id="hi-delivery-journey" aria-labelledby="hpj-title" data-hpj>
+{% liquid
+  assign shipping_url = section.settings.shipping_link
+  if shipping_url == blank
+    assign shipping_url = shop.shipping_policy.url
+  endif
+  if shipping_url == blank
+    assign shipping_url = routes.root_url | append: '/pages/shipping' | replace: '//', '/'
+  endif
+%}
+<section class="hpj" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
   <div class="hpj-intro">
-    <div class="hpj-wrap hpj-intro__inner">
-      <p class="hpj-eyebrow"><span class="hpj-eyebrow__dot" aria-hidden="true"></span> HIPARCELO / THE DELIVERY JOURNEY</p>
-      <div class="hpj-intro__grid">
-        <h2 id="hpj-title">From a package<br>to <em>your doorstep.</em></h2>
-        <div class="hpj-intro__side">
-          <p>Follow our illustrative package on a journey from preparation to international transport, and finally to a home.</p>
-          <div class="hpj-duration"><strong>11 days</strong><span>illustrative planning timeline<br>2 + 7 + 2 days</span></div>
-        </div>
-      </div>
-      <div class="hpj-intro__footer"><span>SCROLL TO FOLLOW THE JOURNEY</span><span aria-hidden="true">↓</span></div>
-    </div>
-  </div>
-  <div class="hpj-static" aria-label="Illustrative three-stage delivery timeline">
-    <div class="hpj-wrap hpj-static__grid">
-      <article><span class="hpj-static__num">01 / 02 DAYS</span><h3>Preparation &amp; dispatch</h3><p>A possible two-day window for preparing a parcel, packing it, and handing it off for transport.</p></article>
-      <article><span class="hpj-static__num">02 / 07 DAYS</span><h3>International transport &amp; customs</h3><p>An illustrative seven-day stage covering transportation and border processing.</p></article>
-      <article><span class="hpj-static__num">03 / 02 DAYS</span><h3>Local delivery</h3><p>A possible two-day stage for local carrier routing and delivery to the destination.</p></article>
-    </div>
+    <p class="hpj-eyebrow">{{ 'hi_journey.eyebrow' | t }}</p>
+    <h2 id="hpj-title-{{ section.id }}">{{ 'hi_journey.heading' | t }}</h2>
+    <p class="hpj-intro__body">{{ 'hi_journey.introduction' | t }}</p>
   </div>
   <div class="hpj-scroll" data-hpj-track>
     <div class="hpj-pin">
-      <div class="hpj-wrap hpj-pin__grid">
-        <div class="hpj-narrative">
-          <div class="hpj-topline"><span>YOUR PARCEL'S STORY</span><span class="hpj-counter" data-hpj-counter>01 / 03</span></div>
-          <div class="hpj-chapter" data-hpj-chapter="0">
-            <span class="hpj-chapter__step">01 <i></i> DAYS 1–2</span>
-            <h3>Every journey<br><em>has a beginning.</em></h3>
-            <p>We follow a sample package as it leaves a warehouse, moves into dispatch, and gets ready for the journey ahead.</p>
-            <div class="hpj-chapter__duration"><strong>2 days</strong><span>Packing &amp; dispatch</span></div>
-          </div>
-          <div class="hpj-chapter" data-hpj-chapter="1">
-            <span class="hpj-chapter__step">02 <i></i> DAYS 3–9</span>
-            <h3>Across the skies.<br><em>Across borders.</em></h3>
-            <p>The parcel is represented loading into an aircraft. The camera pulls back, then travels with the plane as international transport and customs stages unfold.</p>
-            <div class="hpj-chapter__duration"><strong>7 days</strong><span>Flight &amp; customs</span></div>
-          </div>
-          <div class="hpj-chapter" data-hpj-chapter="2">
-            <span class="hpj-chapter__step">03 <i></i> DAYS 10–11</span>
-            <h3>The final stretch.<br><em>Right to the door.</em></h3>
-            <p>A close-up parcel bridges the aircraft-to-truck handoff. The truck follows a continuous turning road to the home, where the parcel reaches the doorstep.</p>
-            <div class="hpj-chapter__duration"><strong>2 days</strong><span>Local delivery</span></div>
-          </div>
-          <div class="hpj-progress">
-            <span class="hpj-progress__labels"><span>WAREHOUSE</span><span>FLIGHT</span><span>DOORSTEP</span></span>
-            <div class="hpj-progress__track"><span class="hpj-progress__fill" data-hpj-fill></span></div>
-          </div>
-          <p class="hpj-narrative__caption"><span aria-hidden="true">◈</span> Illustrative sequence, not live order tracking.</p>
-        </div>
-        <div class="hpj-visual">
-          <div class="hpj-stage">
-            <div class="hpj-stage__grid" aria-hidden="true"></div>
-            <img class="hpj-shared-parcel" data-hpj-parcel src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" width="1042" height="751" loading="lazy" alt="" aria-hidden="true">
-            <div class="hpj-world hpj-world--warehouse" data-hpj-world="warehouse">
-              <span class="hpj-world__tag">01 / DISPATCH</span>
-              <img class="hpj-world__warehouse" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-warehouse-2026.webp?v=1792266311" loading="lazy" width="1258" height="867" alt="Illustration of a blue-roofed logistics warehouse seen from above">
-              <img class="hpj-world__package" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" loading="lazy" width="1042" height="751" alt="">
-              <span class="hpj-world__small" aria-hidden="true">THE PACKAGE LEAVES THE WAREHOUSE</span>
-            </div>
-            <div class="hpj-world hpj-world--flight" data-hpj-world="flight" aria-hidden="true">
-              <span class="hpj-world__tag">02 / INTERNATIONAL TRANSIT</span>
-              <div class="hpj-flight__cloud hpj-flight__cloud--a"></div><div class="hpj-flight__cloud hpj-flight__cloud--b"></div>
-              <svg class="hpj-flight__route" viewBox="0 0 520 520" fill="none" aria-hidden="true"><path d="M255 0C175 110 363 121 255 249S140 413 266 520" stroke="#97B4DE" stroke-width="2" stroke-dasharray="6 11"/><circle cx="255" cy="18" r="5" fill="#194081"/><circle cx="265" cy="504" r="5" fill="#194081"/></svg>
-              <img class="hpj-flight__plane" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-airplane-2026.webp?v=1792266296" width="1060" height="1044" loading="lazy" alt="">
-              <span class="hpj-flight__customs"><b>✳</b> INTERNATIONAL HANDLING &amp; CUSTOMS</span>
-            </div>
-            <div class="hpj-world hpj-world--road" data-hpj-world="road" aria-hidden="true">
-              <span class="hpj-world__tag">03 / FINAL MILE</span>
-              <svg class="hpj-road__map" data-hpj-map viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path class="hpj-road__edge" d="M-180 335H414C555 335 626 405 626 550V1150"></path><path class="hpj-road__centerline" data-hpj-roadline d="M-180 335H414C555 335 626 405 626 550V1150"></path></svg>
-              <div class="hpj-road__surface"><span class="hpj-road__lines"></span></div>
-              <img class="hpj-road__package" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" width="1042" height="751" loading="lazy" alt="">
-              <img class="hpj-road__truck" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-truck-2026.webp?v=1792266301" width="394" height="828" loading="lazy" alt="">
-              <span class="hpj-road__label">LOCAL DELIVERY</span>
-            </div>
-            <div class="hpj-world hpj-world--home" data-hpj-world="home" aria-hidden="true">
-              <span class="hpj-world__tag">04 / DESTINATION</span>
-              <img class="hpj-home__house" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-home-2026.webp?v=1792266306" width="967" height="947" loading="lazy" alt="">
-              <img class="hpj-home__box" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" width="1042" height="751" loading="lazy" alt="">
-              <span class="hpj-home__check" aria-hidden="true">✓</span>
-              <div class="hpj-home__delivered"><strong>The journey is complete.</strong><span>A package arrives at the doorstep.</span></div>
-            </div>
-            <div class="hpj-stage__bottom"><span>HI / PARCELO</span><span data-hpj-scene-name>WAREHOUSE</span></div>
-          </div>
-        </div>
+      <div class="hpj-film" aria-hidden="true">
+        <canvas class="hpj-canvas" data-hpj-canvas></canvas>
+        <div class="hpj-poster" data-hpj-poster><img src="{{ 'hi-journey-package-2026.webp' | asset_url }}" width="1042" height="751" alt="" loading="lazy" decoding="async"></div>
       </div>
+      <div class="hpj-toolbar"><span class="hpj-eyebrow">{{ 'hi_journey.story' | t }}</span><a class="hpj-skip" href="#hpj-after-{{ section.id }}" data-hpj-skip>{{ 'hi_journey.skip' | t }} <span aria-hidden="true">↘</span></a></div>
+      <div class="hpj-copy">
+        <p class="hpj-scene"><span data-hpj-counter>01 / 09</span><span class="hpj-scene__line" aria-hidden="true"></span><span data-hpj-scene-name>{{ 'hi_journey.scenes.preparation' | t }}</span></p>
+        <div class="hpj-caption" data-hpj-caption>
+          <h3 data-hpj-caption-title>{{ 'hi_journey.captions.preparation' | t }}</h3>
+          <p data-hpj-caption-body>{{ 'hi_journey.bodies.preparation' | t }}</p>
+        </div>
+        <p class="hpj-instruction"><span aria-hidden="true">↓</span> {{ 'hi_journey.scroll' | t }}</p>
+      </div>
+      <div class="hpj-completion" data-hpj-completion aria-hidden="true">
+        <img src="{{ 'hi-journey-approved-logo.png' | asset_url }}" width="1600" height="1600" loading="lazy" decoding="async" alt="{{ 'hi_journey.brand' | t | escape }}">
+        <p>{{ 'hi_journey.supporting' | t }}</p>
+      </div>
+      <div class="hpj-bottom">
+        <ol class="hpj-timeline" aria-label="{{ 'hi_journey.static_label' | t }}">
+          <li data-hpj-stage="0"><span class="hpj-timeline__number">01</span><div><span class="hpj-timeline__label">{{ 'hi_journey.prep_title' | t }}</span><strong>{{ 'hi_journey.days' | t: count: section.settings.preparation_days }} <small>{{ 'hi_journey.illustrative' | t }}</small></strong></div><span class="hpj-timeline__rail" aria-hidden="true"><i data-hpj-stage-fill></i></span></li>
+          <li data-hpj-stage="1"><span class="hpj-timeline__number">02</span><div><span class="hpj-timeline__label">{{ 'hi_journey.flight_title' | t }}</span><strong>{{ 'hi_journey.days' | t: count: section.settings.international_days }} <small>{{ 'hi_journey.illustrative' | t }}</small></strong></div><span class="hpj-timeline__rail" aria-hidden="true"><i data-hpj-stage-fill></i></span></li>
+          <li data-hpj-stage="2"><span class="hpj-timeline__number">03</span><div><span class="hpj-timeline__label">{{ 'hi_journey.local_title' | t }}</span><strong>{{ 'hi_journey.days' | t: count: section.settings.delivery_days }} <small>{{ 'hi_journey.illustrative' | t }}</small></strong></div><span class="hpj-timeline__rail" aria-hidden="true"><i data-hpj-stage-fill></i></span></li>
+        </ol>
+        <p class="hpj-disclosure">{{ 'hi_journey.disclosure' | t }} <a href="{{ shipping_url }}">{{ 'hi_journey.delivery_link' | t }} <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <script type="application/json" data-hpj-copy>{"titles":[{{ 'hi_journey.captions.preparation' | t | json }},{{ 'hi_journey.captions.dispatch' | t | json }},{{ 'hi_journey.captions.loading' | t | json }},{{ 'hi_journey.captions.ocean' | t | json }},{{ 'hi_journey.captions.arrival' | t | json }},{{ 'hi_journey.captions.truck' | t | json }},{{ 'hi_journey.captions.road' | t | json }},{{ 'hi_journey.captions.house' | t | json }},{{ 'hi_journey.captions.delivered' | t | json }}],"bodies":[{{ 'hi_journey.bodies.preparation' | t | json }},{{ 'hi_journey.bodies.dispatch' | t | json }},{{ 'hi_journey.bodies.loading' | t | json }},{{ 'hi_journey.bodies.ocean' | t | json }},{{ 'hi_journey.bodies.arrival' | t | json }},{{ 'hi_journey.bodies.truck' | t | json }},{{ 'hi_journey.bodies.road' | t | json }},{{ 'hi_journey.bodies.house' | t | json }},{{ 'hi_journey.bodies.delivered' | t | json }}],"scenes":[{{ 'hi_journey.scenes.preparation' | t | json }},{{ 'hi_journey.scenes.dispatch' | t | json }},{{ 'hi_journey.scenes.loading' | t | json }},{{ 'hi_journey.scenes.ocean' | t | json }},{{ 'hi_journey.scenes.arrival' | t | json }},{{ 'hi_journey.scenes.truck' | t | json }},{{ 'hi_journey.scenes.road' | t | json }},{{ 'hi_journey.scenes.house' | t | json }},{{ 'hi_journey.scenes.delivered' | t | json }}]}</script>
     </div>
   </div>
-  <div class="hpj-outro">
-    <div class="hpj-wrap hpj-outro__inner">
-      <p class="hpj-eyebrow">THE DETAILS MATTER</p>
-      <h3>Exciting to imagine.<br><em>Important to verify.</em></h3>
-      <p><strong>2 + 7 + 2 = 11 days</strong> is an illustrative planning example, not a verified delivery estimate or guarantee. Actual processing, international transport, customs, and local delivery depend on the product, provider, and destination. Confirmed delivery information will be shown before checkout.</p>
-      <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}" class="hpj-outro__link">Delivery information <span aria-hidden="true">↗</span></a>
-    </div>
+  <div class="hpj-static" data-hpj-static>
+    <ol>
+      <li><span>01</span><div><h3>{{ 'hi_journey.prep_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.preparation_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.prep_body' | t }}</p></div></li>
+      <li><span>02</span><div><h3>{{ 'hi_journey.flight_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.international_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.flight_body' | t }}</p></div></li>
+      <li><span>03</span><div><h3>{{ 'hi_journey.local_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.delivery_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.local_body' | t }}</p></div></li>
+    </ol>
+    <p class="hpj-disclosure">{{ 'hi_journey.disclosure' | t }} <a href="{{ shipping_url }}">{{ 'hi_journey.delivery_link' | t }} ↗</a></p>
   </div>
+  <div id="hpj-after-{{ section.id }}" class="hpj-after" tabindex="-1"><p>{{ 'hi_journey.supporting' | t }}</p></div>
+  <noscript><style>.hpj-scroll{display:none}.hpj-static{display:block;position:static;width:auto;height:auto;overflow:visible;clip-path:none;padding:20px 5vw 60px}</style></noscript>
 </section>
 {% schema %}
-{"name":"HiParcelo journey","settings":[],"presets":[{"name":"HiParcelo journey"}]}
+{
+  "name": "t:hi_journey.name",
+  "enabled_on": {"templates": ["index"]},
+  "settings": [
+    {"type":"paragraph","content":"t:hi_journey.estimates_info"},
+    {"type":"range","id":"preparation_days","min":1,"max":10,"step":1,"default":2,"label":"t:hi_journey.preparation_days"},
+    {"type":"range","id":"international_days","min":1,"max":30,"step":1,"default":7,"label":"t:hi_journey.international_days"},
+    {"type":"range","id":"delivery_days","min":1,"max":10,"step":1,"default":2,"label":"t:hi_journey.delivery_days"},
+    {"type":"url","id":"shipping_link","label":"t:hi_journey.shipping_link"},
+    {"type":"range","id":"desktop_length","min":800,"max":1800,"step":100,"default":1200,"unit":"vh","label":"t:hi_journey.desktop_length"},
+    {"type":"range","id":"mobile_length","min":800,"max":1800,"step":100,"default":1400,"unit":"vh","label":"t:hi_journey.mobile_length"}
+  ],
+  "presets": [{"name":"t:hi_journey.name"}]
+}
 {% endschema %}

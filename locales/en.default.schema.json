@@ -3513,5 +3513,15 @@
       "teal": "Teal accent color",
       "surface": "Light surface color"
     }
+  },
+  "hi_journey": {
+    "name": "HiParcelo journey",
+    "estimates_info": "These stage durations illustrate a possible route. They are not verified promises. Confirm shipping evidence before making customer delivery commitments.",
+    "preparation_days": "Illustrative packing duration (days)",
+    "international_days": "Illustrative international duration (days)",
+    "delivery_days": "Illustrative local delivery duration (days)",
+    "shipping_link": "Shipping policy link",
+    "desktop_length": "Desktop scroll distance",
+    "mobile_length": "Mobile scroll distance"
   }
 }

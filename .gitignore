@@ -4,3 +4,5 @@ preview-output/
 test-results/
 *.zip
 .DS_Store
+
+verification/

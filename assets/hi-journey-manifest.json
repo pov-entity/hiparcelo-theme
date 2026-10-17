@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "section": "hi-delivery-journey",
+  "renderer": "Native WebGL 1; no third-party runtime libraries or paid services",
+  "units": "Consistent scene units; object dimensions are never animated",
+  "runtime": {
+    "controller": "hi-delivery-journey.js",
+    "model": "hi-journey-model.js",
+    "world": "hi-journey-world.js",
+    "styles": "hi-delivery-journey.css",
+    "parcel_texture": "hi-journey-package-2026.webp",
+    "approved_logo": "hi-journey-approved-logo.png"
+  },
+  "reference_assets": [
+    "hi-journey-warehouse-2026.webp",
+    "hi-journey-airplane-2026.webp",
+    "hi-journey-truck-2026.webp",
+    "hi-journey-home-2026.webp"
+  ],
+  "geometry": {
+    "warehouse": "Procedural cutaway warehouse, shelves, packing arm and conveyor",
+    "parcel": "One persistent hollow box and hinged lid, using the existing parcel texture",
+    "aircraft": "Unbranded navy aircraft, cargo opening, hinged door and retractable landing gear",
+    "ocean": "One continuous ocean surface between physical coastlines, with scroll-dependent water and clouds",
+    "customs": "Handling trolley, scanner, sorting belt and loading platform",
+    "truck": "Navy truck, rear doors, cabin door, rotating and steering wheels",
+    "home": "Cream facade, navy roof, visible front door and doorstep",
+    "courier": "Articulated courier with distance-driven walking, parcel pickup, placement and departure"
+  },
+  "chapters": [
+    {
+      "range": [
+        0,
+        0.1
+      ],
+      "name": "Preparation"
+    },
+    {
+      "range": [
+        0.1,
+        0.2
+      ],
+      "name": "Dispatch"
+    },
+    {
+      "range": [
+        0.2,
+        0.3
+      ],
+      "name": "Loading and takeoff"
+    },
+    {
+      "range": [
+        0.3,
+        0.53
+      ],
+      "name": "Ocean crossing"
+    },
+    {
+      "range": [
+        0.53,
+        0.69
+      ],
+      "name": "Arrival and customs"
+    },
+    {
+      "range": [
+        0.69,
+        0.78
+      ],
+      "name": "Truck handoff"
+    },
+    {
+      "range": [
+        0.78,
+        0.89
+      ],
+      "name": "Road journey"
+    },
+    {
+      "range": [
+        0.89,
+        0.96
+      ],
+      "name": "Neighborhood and courier"
+    },
+    {
+      "range": [
+        0.96,
+        1
+      ],
+      "name": "Doorstep delivery"
+    }
+  ],
+  "settings": {
+    "preparation_days": 2,
+    "international_days": 7,
+    "delivery_days": 2,
+    "desktop_length_svh": 1200,
+    "mobile_length_svh": 1400,
+    "durations_status": "Illustrative and editable; not verified delivery promises"
+  },
+  "fallbacks": [
+    "Reduced motion",
+    "No JavaScript",
+    "WebGL unavailable",
+    "Graphics context loss"
+  ],
+  "asset_policy": "Existing approved logo is copied unchanged. The parcel lid retains the existing package artwork. References guide procedural 3D models; the image sprites are not animated as scene substitutes."
+}

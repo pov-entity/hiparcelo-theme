@@ -1,0 +1,56 @@
+{
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "forwardPoses": 37,
+      "reversePoses": 5
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "forwardPoses": 37,
+      "reversePoses": 5
+    },
+    {
+      "name": "small-phone",
+      "width": 320,
+      "height": 568,
+      "forwardPoses": 37,
+      "reversePoses": 5
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "forwardPoses": 37,
+      "reversePoses": 5
+    },
+    {
+      "name": "landscape",
+      "width": 844,
+      "height": 390,
+      "forwardPoses": 37,
+      "reversePoses": 5
+    }
+  ],
+  "checks": [
+    "Stopped scroll: zero additional frames and identical canvas pixels",
+    "Reduced motion switches to complete readable sequence",
+    "Motion preference can be toggled without duplicate canvases",
+    "Keyboard skip exits story and moves focus to next section",
+    "Theme editor section unload/reload works",
+    "No JavaScript: readable full three-stage sequence",
+    "WebGL unavailable: automatic readable fallback",
+    "Graphics context loss: safe static fallback"
+  ],
+  "errors": [],
+  "callbackMilliseconds": {
+    "median": 4.7000000001862645,
+    "p95": 16.299999999813735,
+    "max": 23.399999999906868,
+    "scope": "CPU render-submission callback in headless Chromium with software graphics, not device FPS"
+  }
+}

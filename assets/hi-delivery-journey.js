@@ -1,124 +1,193 @@
-/* HiParcelo illustrative scroll animation. No tracking data or shipment state is used. */
-(function () {
+/**
+ * HiParcelo Delivery Journey v2.
+ * Scrubbed (not timed) animation inspired by continuous freight-motion storytelling.
+ * All visuals and durations are illustrative. No customer shipment data is used.
+ */
+(() => {
   'use strict';
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
-  const mix = (a, b, t) => a + (b - a) * clamp(t);
-  const progress = (v, a, b) => clamp((v - a) / (b - a));
-  const smooth = t => { t = clamp(t); return t * t * (3 - 2 * t); };
-  const fade = (v, a, b, c, d) => progress(v, a, b) * (1 - progress(v, c, d));
-  const percent = v => (v * 100).toFixed(2) + '%';
-  const px = v => v.toFixed(1) + 'px';
-  const select = (root, selector) => root.querySelector(selector);
-  const setScene = (element, opacity, active) => {
-    if (!element) return;
-    element.style.opacity = opacity.toFixed(3);
-    element.setAttribute('aria-hidden', active ? 'false' : 'true');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+  const range = (p, a, b) => clamp((p - a) / (b - a));
+  const smooth = v => {const t = clamp(v); return t * t * (3 - 2 * t)};
+  const within = (p, a, b) => smooth(range(p, a, b));
+  const mix = (a, b, k) => a + (b - a) * k;
+  const pct = n => n.toFixed(3) + '%';
+  const px = n => n.toFixed(2) + 'px';
+  const alpha = n => clamp(n).toFixed(4);
+  const show = (e, n) => {
+    if (!e) return;
+    const opacity = clamp(n);
+    e.style.opacity = alpha(opacity);
+    e.setAttribute('aria-hidden', opacity > .06 ? 'false' : 'true');
   };
-  function setup(section) {
-    if (section.dataset.hpjMounted === 'true' || reduced.matches) return;
-    const track = select(section, '[data-hpj-track]');
-    const worlds = ['warehouse', 'flight', 'road', 'home'].map(name => select(section, '[data-hpj-world="' + name + '"]'));
+  const linearPoint = (list, p) => {
+    if (p <= list[0][0]) return list[0].slice(1);
+    for (let i = 1; i < list.length; i++) {
+      if (p <= list[i][0]) {
+        const prev = list[i - 1], next = list[i];
+        const k = smooth((p - prev[0]) / (next[0] - prev[0]));
+        return prev.slice(1).map((x, j) => mix(x, next[j + 1], k));
+      }
+    }
+    return list[list.length - 1].slice(1);
+  };
+  // [scroll %, centerX %, centerY %, relative zoom, visibility]
+  // A single overlay maintains parcel identity between each vehicle and the home.
+  const parcelPath = [
+    [0.000, 50, 77, .12, 0],
+    [0.082, 50, 77, .17, 0],
+    [0.150, 50, 75, .30, 1],
+    [0.230, 50, 53, 2.75, 1],
+    [0.300, 50, 49, .20, 1],
+    [0.327, 50, 49, .07, 0],
+    [0.615, 50, 49, .07, 0],
+    [0.659, 50, 49, 1.80, 1],
+    [0.705, 50, 49, .52, 1],
+    [0.741, 49, 49, .09, 0],
+    [0.860, 65, 71, .09, 0],
+    [0.899, 61, 72, .42, 1],
+    [0.957, 52, 68, .27, 1],
+    [1.000, 52, 68, .27, 1]
+  ];
+  function init(section) {
+    if (!section || section.dataset.hpjMounted === 'v2') return;
+    const q = sel => section.querySelector(sel);
+    const track = q('[data-hpj-track]');
+    const stage = q('.hpj-stage');
+    const worlds = ['warehouse', 'flight', 'road', 'home'].map(key => q('[data-hpj-world="' + key + '"]'));
     const chapters = [...section.querySelectorAll('[data-hpj-chapter]')];
-    const counter = select(section, '[data-hpj-counter]');
-    const fill = select(section, '[data-hpj-fill]');
-    const sceneName = select(section, '[data-hpj-scene-name]');
-    const warehouse = select(section, '.hpj-world__warehouse');
-    const packageOut = select(section, '.hpj-world__package');
-    const plane = select(section, '.hpj-flight__plane');
-    const customs = select(section, '.hpj-flight__customs');
-    const road = select(section, '.hpj-road__surface');
-    const roadLines = select(section, '.hpj-road__lines');
-    const truck = select(section, '.hpj-road__truck');
-    const transferPackage = select(section, '.hpj-road__package');
-    const house = select(section, '.hpj-home__house');
-    const doorstep = select(section, '.hpj-home__box');
-    const check = select(section, '.hpj-home__check');
-    const arrival = select(section, '.hpj-home__delivered');
-    if (!track || worlds.some(v => !v) || chapters.length !== 3) return;
-    section.dataset.hpjMounted = 'true';
+    const parcel = q('[data-hpj-parcel]');
+    const warehouse = q('.hpj-world__warehouse');
+    const plane = q('.hpj-flight__plane');
+    const clouds = [q('.hpj-flight__cloud--a'), q('.hpj-flight__cloud--b')];
+    const customs = q('.hpj-flight__customs');
+    const road = q('[data-hpj-map]');
+    const roadPath = q('[data-hpj-roadline]');
+    const truck = q('.hpj-road__truck');
+    const house = q('.hpj-home__house');
+    const check = q('.hpj-home__check');
+    const delivered = q('.hpj-home__delivered');
+    const counter = q('[data-hpj-counter]');
+    const sceneName = q('[data-hpj-scene-name]');
+    const fill = q('[data-hpj-fill]');
+    if (!track || !stage || !parcel || !roadPath || !truck || worlds.some(x => !x) || chapters.length !== 3) return;
+    section.dataset.hpjMounted = 'v2';
+    if (reduced.matches) return;
     section.classList.add('is-ready');
-    let scheduled = false;
-    let chapterIndex = -1;
-    let frameProgress = -1;
-    function render() {
-      scheduled = false;
+    let raf = 0, prev = -1, currentStep = -1, active = true;
+    let w = 0, h = 0, pathLength = 0;
+    function dimensions() {
+      const bounds = stage.getBoundingClientRect();
+      w = bounds.width;
+      h = bounds.height;
+      pathLength = roadPath.getTotalLength();
+    }
+    function draw() {
+      raf = 0;
       if (!section.isConnected || reduced.matches) return;
       const rect = track.getBoundingClientRect();
-      const travel = Math.max(1, rect.height - window.innerHeight);
-      const p = clamp(-rect.top / travel);
-      if (p === frameProgress) return;
-      frameProgress = p;
-      if (fill) fill.style.width = percent(p);
-      // Warehouse: pull out and zoom into the package before the flight reveal.
-      const depart = smooth(progress(p, 0.045, 0.29));
-      setScene(worlds[0], 1 - smooth(progress(p, 0.265, 0.35)), p < 0.325);
-      warehouse.style.transform = 'translateY(' + px(mix(0, -70, depart)) + ') scale(' + mix(0.94, 1.24, depart).toFixed(3) + ')';
-      packageOut.style.opacity = (fade(p, 0.075, 0.125, 0.282, 0.345)).toFixed(3);
-      packageOut.style.transform = 'translate(' + px(mix(-45, 8, depart)) + ', ' + px(mix(55, -80, depart)) + ') scale(' + mix(0.30, 2.25, depart).toFixed(3) + ')';
-      // Long-distance transit: camera pulls back; aircraft travels downward as the page scrolls.
-      const fly = smooth(progress(p, 0.32, 0.63));
-      setScene(worlds[1], fade(p, 0.27, 0.355, 0.617, 0.71), p >= 0.315 && p < 0.673);
-      plane.style.transform = 'translateY(' + px(mix(-165, 142, fly)) + ') scale(' + mix(0.70, 1.10, fly).toFixed(3) + ') rotate(180deg)';
-      customs.style.opacity = fade(p, 0.45, 0.49, 0.605, 0.68).toFixed(3);
-      customs.style.transform = 'translateY(' + px(mix(18, 0, smooth(progress(p, 0.45, 0.53)))) + ')';
-      // At the destination hub the package becomes visible then gets smaller as it loads into the local truck.
-      const drive = smooth(progress(p, 0.66, 0.89));
-      setScene(worlds[2], fade(p, 0.62, 0.71, 0.842, 0.915), p >= 0.68 && p < 0.895);
-      transferPackage.style.opacity = fade(p, 0.625, 0.665, 0.73, 0.775).toFixed(3);
-      transferPackage.style.transform = 'translateY(' + px(mix(-85, 23, smooth(progress(p, 0.62, 0.76)))) + ') scale(' + mix(1.25, 0.30, smooth(progress(p, 0.62, 0.76))).toFixed(3) + ')';
-      truck.style.transform = 'translateY(' + px(mix(-155, 150, drive)) + ') scale(' + mix(0.85, 1.02, drive).toFixed(3) + ')';
-      road.style.transform = 'translateY(' + px(mix(22, -14, drive)) + ')';
-      roadLines.style.transform = 'translate(-50%, ' + px(mix(-100, 140, drive)) + ')';
-      // Home: reveal the house and move the same box toward its entrance.
-      const arrive = smooth(progress(p, 0.85, 1));
-      setScene(worlds[3], smooth(progress(p, 0.83, 0.925)), p >= 0.88);
-      house.style.transform = 'translateY(' + px(mix(36, -12, arrive)) + ') scale(' + mix(0.84, 1.04, arrive).toFixed(3) + ')';
-      doorstep.style.opacity = progress(p, 0.897, 0.932).toFixed(3);
-      doorstep.style.transform = 'translate(' + px(mix(-48, 0, arrive)) + ', ' + px(mix(40, 0, arrive)) + ') scale(' + mix(0.6, 0.9, arrive).toFixed(3) + ')';
-      const done = smooth(progress(p, 0.951, 0.992));
-      check.style.opacity = done.toFixed(3);
-      check.style.transform = 'scale(' + mix(0.55, 1, done).toFixed(3) + ')';
-      arrival.style.opacity = done.toFixed(3);
-      arrival.style.transform = 'translate(-50%, ' + px(mix(18, 0, done)) + ')';
-      // The three captions match the three proposed time windows; no realtime status data.
-      const nextChapter = p < 0.336 ? 0 : p < 0.665 ? 1 : 2;
-      if (nextChapter !== chapterIndex) {
-        chapterIndex = nextChapter;
-        if (counter) counter.textContent = String(chapterIndex + 1).padStart(2, '0') + ' / 03';
-        if (sceneName) sceneName.textContent = ['DISPATCH', 'INTERNATIONAL TRANSIT', 'LOCAL DELIVERY'][chapterIndex];
+      const length = Math.max(1, rect.height - innerHeight);
+      const p = clamp(-rect.top / length);
+      if (p === prev) return;
+      prev = p;
+      if (fill) fill.style.width = pct(p * 100);
+
+      // Warehouse pull-in: the warehouse recedes while the parcel grows to fill frame.
+      const departure = within(p, .045, .235);
+      warehouse.style.transform = 'translate3d(0,' + px(mix(0, -65, departure)) + ',0) scale(' + mix(.93, 1.22, departure).toFixed(4) + ')';
+      show(worlds[0], 1 - within(p, .245, .324));
+
+      // The aircraft enters at exactly the parcel's center during the pullback.
+      // A matched-position transfer replaces an abrupt full-scene crossfade.
+      const airborne = within(p, .316, .598);
+      const planeScale = p < .338 ? mix(.20, .76, within(p, .267, .34)) : mix(.76, 1.06, airborne);
+      const planeY = mix(-95, 151, airborne) + mix(0, 76, within(p, .602, .682));
+      plane.style.transform = 'translate3d(0,' + px(planeY) + ',0) rotate(180deg) scale(' + planeScale.toFixed(4) + ')';
+      show(worlds[1], within(p, .264, .325) * (1 - within(p, .622, .703)));
+      if (clouds[0]) clouds[0].style.transform = 'translateY(' + px(mix(-35, 46, airborne)) + ')';
+      if (clouds[1]) clouds[1].style.transform = 'translateY(' + px(mix(42, -55, airborne)) + ')';
+      if (customs) {
+        show(customs, within(p, .462, .49) * (1 - within(p, .603, .64)));
+        customs.style.transform = 'translateY(' + px(mix(15, 0, within(p, .462, .54))) + ')';
       }
-      chapters.forEach((chapter, index) => {
-        let opacity = 0;
-        if (index === 0) opacity = 1 - smooth(progress(p, 0.30, 0.37));
-        else if (index === 1) opacity = smooth(progress(p, 0.30, 0.37)) * (1 - smooth(progress(p, 0.635, 0.71)));
-        else opacity = smooth(progress(p, 0.635, 0.71));
-        chapter.style.opacity = opacity.toFixed(3);
-        chapter.style.transform = 'translateY(' + px(mix(13, 0, opacity)) + ')';
-        chapter.setAttribute('aria-hidden', index === nextChapter ? 'false' : 'true');
+
+      // Local route and vehicle are part of one scene. The truck follows the same
+      // road through its right-hand turn instead of jumping into another camera.
+      const roadOpacity = within(p, .633, .714) * (1 - within(p, .871, .935));
+      show(worlds[2], roadOpacity);
+      const travel = within(p, .683, .917);
+      const travelDist = mix(pathLength * .17, pathLength * .88, travel);
+      const at = roadPath.getPointAtLength(travelDist);
+      const before = roadPath.getPointAtLength(Math.max(0, travelDist - 6));
+      const after = roadPath.getPointAtLength(Math.min(pathLength, travelDist + 6));
+      const x = at.x / 1000 * w, y = at.y / 1000 * h;
+      const angle = Math.atan2((after.y - before.y) * h, (after.x - before.x) * w) * 180 / Math.PI - 90;
+      truck.style.transform = 'translate3d(' + px(x) + ',' + px(y) + ',0) translate(-50%,-50%) rotate(' + angle.toFixed(3) + 'deg) scale(' + mix(.76, .93, travel).toFixed(3) + ')';
+      // Slight moving camera sells progress while the truck stays anchored to the route.
+      road.style.transform = 'translateY(' + px(mix(13, -24, travel)) + ')';
+
+      // Home enters underneath the moving truck; the shared parcel takes over at
+      // the driveway and travels to the front door without changing artwork.
+      const homeReveal = within(p, .856, .932);
+      show(worlds[3], homeReveal);
+      house.style.transform = 'translate3d(0,' + px(mix(18, -8, homeReveal)) + ',0) scale(' + mix(.84, 1.00, homeReveal).toFixed(3) + ')';
+      const done = within(p, .948, .994);
+      show(check, done);
+      check.style.transform = 'scale(' + mix(.58, 1, done).toFixed(3) + ')';
+      show(delivered, done);
+      delivered.style.transform = 'translate(-50%,' + px(mix(15, 0, done)) + ')';
+
+      // Cross-vehicle parcel pose, computed from a single timeline and one DOM
+      // element. Never create a new package object in the middle of a handoff.
+      const [bx, by, scale, visibility] = linearPoint(parcelPath, p);
+      parcel.style.left = pct(bx);
+      parcel.style.top = pct(by);
+      parcel.style.transform = 'translate3d(-50%,-50%,0) scale(' + scale.toFixed(4) + ')';
+      parcel.style.opacity = alpha(visibility);
+
+      const step = p < .332 ? 0 : p < .674 ? 1 : 2;
+      if (step !== currentStep) {
+        currentStep = step;
+        if (counter) counter.textContent = String(step + 1).padStart(2, '0') + ' / 03';
+      }
+      if (sceneName) {
+        sceneName.textContent = p >= .935 ? 'AT THE DOOR' : p >= .695 ? 'ON THE ROAD' : p >= .60 ? 'LOCAL TRANSFER' : p >= .36 ? 'IN FLIGHT' : p >= .24 ? 'AIRCRAFT LOADING' : 'WAREHOUSE';
+      }
+      chapters.forEach((node, i) => {
+        const a = i === 0 ? 1 - within(p, .294, .37)
+          : i === 1 ? within(p, .294, .37) * (1 - within(p, .635, .711))
+          : within(p, .635, .711);
+        node.style.opacity = alpha(a);
+        node.style.transform = 'translateY(' + px(mix(15, 0, a)) + ')';
+        node.setAttribute('aria-hidden', i === step ? 'false' : 'true');
       });
     }
-    function requestRender() {
-      if (scheduled) return;
-      scheduled = true;
-      window.requestAnimationFrame(render);
+    function queue() {
+      if (raf || !active || reduced.matches) return;
+      raf = requestAnimationFrame(draw);
     }
-    window.addEventListener('scroll', requestRender, { passive: true });
-    window.addEventListener('resize', requestRender, { passive: true });
-    reduced.addEventListener?.('change', () => {
-      if (reduced.matches) {
-        section.classList.remove('is-ready');
-        section.querySelectorAll('[aria-hidden]').forEach(element => {
-          if (element.classList.contains('hpj-chapter')) element.removeAttribute('aria-hidden');
-        });
-      } else { section.classList.add('is-ready'); requestRender(); }
+    function resize() { dimensions(); prev = -1; queue(); }
+    dimensions();
+    window.addEventListener('scroll', queue, {passive:true});
+    window.addEventListener('resize', resize, {passive:true});
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        active = entries.some(entry => entry.isIntersecting);
+        if (active) {prev = -1; queue();}
+      }, {rootMargin:'300px 0px'});
+      observer.observe(track);
+    }
+    reduced.addEventListener?.('change', e => {
+      section.classList.toggle('is-ready', !e.matches);
+      if (!e.matches) {dimensions(); prev = -1; queue();}
     });
-    render();
+    draw();
   }
   function boot(root) {
-    root.querySelectorAll('.hpj[data-hpj]').forEach(setup);
+    if (root.matches?.('[data-hpj]')) init(root);
+    root.querySelectorAll?.('[data-hpj]').forEach(init);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => boot(document), { once: true });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => boot(document), {once:true});
   else boot(document);
   document.addEventListener('shopify:section:load', e => boot(e.target));
 })();

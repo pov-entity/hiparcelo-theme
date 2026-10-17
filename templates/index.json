@@ -31,12 +31,17 @@
     "last": {
       "type": "hi-last-word",
       "settings": {}
+    },
+    "journey": {
+      "type": "hi-delivery-journey",
+      "settings": {}
     }
   },
   "order": [
     "cover",
     "signals",
     "recognize",
+    "journey",
     "method",
     "journal",
     "clarity",

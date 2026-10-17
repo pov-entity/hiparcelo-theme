@@ -1,3 +1,5 @@
+/* Social is mobile-only. Shopify theme editor remains available for desktop configuration. */
+@media (min-width:750px){.hp-social:not([data-shopify-design-mode="true"]){display:none!important}}
 /* HiParcelo Social — contained to the Social page */
 .hp-social{--s-ink:#0a1827;--s-bg:#f2f5f4;--s-teal:#70d4cb;max-width:100%;background:var(--s-bg);color:var(--s-ink);min-height:70vh;padding:54px clamp(18px,4vw,76px) 72px;font-family:inherit}
 .hp-social *{box-sizing:border-box}

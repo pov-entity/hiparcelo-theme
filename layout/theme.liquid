@@ -333,7 +333,9 @@
     {%- endif -%}
 
     {{ 'hi-editorial.css' | asset_url | stylesheet_tag }}
+    {{ 'hi-v2.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'hi-editorial.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'hi-v2.js' | asset_url }}" defer="defer"></script>
     <script>
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');

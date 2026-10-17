@@ -31,15 +31,30 @@
     "last": {
       "type": "hi-last-word",
       "settings": {}
+    },
+    "signals": {
+      "type": "hi-signals",
+      "settings": {}
+    },
+    "lens": {
+      "type": "hi-v2-lens",
+      "settings": {}
+    },
+    "clarity": {
+      "type": "hi-v2-clarity",
+      "settings": {}
     }
   },
   "order": [
     "cover",
+    "signals",
     "recognize",
+    "lens",
     "method",
     "manifesto",
     "journal",
     "edition",
+    "clarity",
     "faq",
     "last"
   ]

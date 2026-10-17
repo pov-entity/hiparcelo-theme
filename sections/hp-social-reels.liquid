@@ -1,0 +1,168 @@
+{{ 'hp-social.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'hp-social.js' | asset_url }}" defer></script>
+{% liquid
+  assign valid_reels = 0
+  for block in section.blocks
+    if block.settings.video != blank or block.settings.instagram_url != blank
+      assign valid_reels = valid_reels | plus: 1
+    endif
+  endfor
+%}
+<section class="hp-social" data-hp-social data-section-id="{{ section.id }}" aria-labelledby="hp-social-heading-{{ section.id }}">
+  <div class="hp-social__intro">
+    <p class="hp-social__eyebrow"><span class="hp-social__live-dot" aria-hidden="true"></span>{{ section.settings.eyebrow | escape }}</p>
+    <h1 id="hp-social-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+    <p>{{ section.settings.intro | escape }}</p>
+  </div>
+
+  <div class="hp-social__layout">
+    <aside class="hp-social__profile" aria-label="HiParcelo social profile">
+      <div class="hp-social__profile-card">
+        <div class="hp-social__avatar" aria-hidden="true">H<span>.</span></div>
+        <p class="hp-social__profile-overline">THE THOUGHTFUL FIND</p>
+        <h2>HiParcelo<span class="hp-social__profile-check" aria-label="HiParcelo's own website">✓</span></h2>
+        <p>Less guesswork. More clarity.</p>
+        <p class="hp-social__profile-body">Watch the details, understand how each find works, and decide whether it belongs in your day.</p>
+        {% if settings.social_instagram_link != blank %}
+          <a class="hp-social__profile-link" href="{{ settings.social_instagram_link | escape }}" target="_blank" rel="noopener noreferrer">Our Instagram <span aria-hidden="true">↗</span></a>
+        {% endif %}
+      </div>
+      <div class="hp-social__side-note">
+        <span>01 / WATCH</span>
+        <span>02 / UNDERSTAND</span>
+        <span>03 / DECIDE</span>
+      </div>
+    </aside>
+
+    <div class="hp-social__stage">
+      {% if valid_reels > 0 %}
+        <div class="hp-social__stage-heading">
+          <span>THE SOCIAL EDIT</span>
+          <span>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span>
+        </div>
+        <div class="hp-social__feed" role="region" tabindex="0" aria-label="Product video feed. Scroll or use arrow keys to move between videos." data-hp-social-feed>
+          {% for block in section.blocks %}
+            {% liquid
+              assign reel_video = block.settings.video
+              assign reel_instagram = block.settings.instagram_url
+              assign reel_product = block.settings.product
+            %}
+            {% if reel_video != blank or reel_instagram != blank %}
+              <article class="hp-social__reel" id="hp-social-reel-{{ section.id }}-{{ block.id }}" data-hp-social-reel {{ block.shopify_attributes }}>
+                <div class="hp-social__media">
+                  {% if reel_video != blank %}
+                    {{ reel_video | video_tag: class: 'hp-social__video', autoplay: false, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '900x' }}
+                  {% else %}
+                    <div class="hp-social__instagram" data-hp-social-instagram data-instagram-url="{{ reel_instagram | escape }}">
+                      {% if block.settings.cover != blank %}
+                        {{ block.settings.cover | image_url: width: 900 | image_tag: widths: '320, 600, 900', sizes: '(max-width: 750px) 100vw, 480px', loading: 'lazy', class: 'hp-social__poster', alt: block.settings.title }}
+                      {% else %}
+                        <div class="hp-social__instagram-brand" aria-hidden="true"><span>◎</span><span>REEL</span></div>
+                      {% endif %}
+                      <button class="hp-social__load-instagram" type="button" data-hp-social-load>
+                        <span aria-hidden="true">▶</span> Play Instagram Reel
+                      </button>
+                      <p class="hp-social__embed-note">Instagram controls playback. Some posts may only play on Instagram.</p>
+                    </div>
+                  {% endif %}
+                  <div class="hp-social__shade" aria-hidden="true"></div>
+                  <div class="hp-social__video-top">
+                    <span class="hp-social__creator"><span class="hp-social__creator-mark" aria-hidden="true">H</span> HiParcelo <span class="hp-social__creator-tag">/ SOCIAL</span></span>
+                    <span class="hp-social__reel-count">{{ valid_reels }} REEL{% if valid_reels != 1 %}S{% endif %}</span>
+                  </div>
+                  <div class="hp-social__video-side">
+                    {% if reel_video != blank %}
+                      <button class="hp-social__icon-button" type="button" data-hp-social-play aria-label="Play or pause video" aria-pressed="false">
+                        <span data-hp-social-play-icon aria-hidden="true">▶</span>
+                      </button>
+                      <button class="hp-social__icon-button" type="button" data-hp-social-mute aria-label="Unmute video" aria-pressed="false">
+                        <span data-hp-social-mute-icon aria-hidden="true">♪</span>
+                      </button>
+                    {% endif %}
+                    {% if reel_instagram != blank %}
+                      <a class="hp-social__icon-button" href="{{ reel_instagram | escape }}" target="_blank" rel="noopener noreferrer" aria-label="View original Instagram Reel"><span aria-hidden="true">↗</span></a>
+                    {% endif %}
+                  </div>
+                  <div class="hp-social__video-bottom">
+                    <span class="hp-social__reel-label">{{ block.settings.label | default: 'THE EVERYDAY EDIT' | escape }}</span>
+                    <h2>{{ block.settings.title | default: 'See the details' | escape }}</h2>
+                    {% if block.settings.description != blank %}
+                      <p>{{ block.settings.description | escape }}</p>
+                    {% endif %}
+                    {% if reel_product != blank %}
+                      <a class="hp-social__product-pill" href="{{ reel_product.url }}">
+                        {% if reel_product.featured_image != blank %}
+                          {{ reel_product.featured_image | image_url: width: 140 | image_tag: width: 52, height: 52, loading: 'lazy', alt: reel_product.title }}
+                        {% endif %}
+                        <span class="hp-social__product-text"><strong>{{ reel_product.title | escape }}</strong><span>{{ reel_product.price | money_with_currency }}</span></span>
+                        <span class="hp-social__product-cta">View product <span aria-hidden="true">↗</span></span>
+                      </a>
+                    {% else %}
+                      <span class="hp-social__no-product">See the idea. Explore the details.</span>
+                    {% endif %}
+                  </div>
+                  {% if reel_video != blank %}
+                    <div class="hp-social__progress" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-hp-social-progress><span></span></div>
+                  {% endif %}
+                </div>
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="hp-social__nav" aria-label="Navigate reels">
+          <span class="hp-social__nav-position" aria-live="polite">01 / {{ valid_reels }}</span>
+          <div>
+            <button type="button" data-hp-social-prev aria-label="Previous reel" disabled>↑</button>
+            <button type="button" data-hp-social-next aria-label="Next reel">↓</button>
+          </div>
+        </div>
+      {% else %}
+        <div class="hp-social__empty" role="status">
+          <div class="hp-social__empty-screen">
+            <div class="hp-social__empty-orbit" aria-hidden="true"><span>H<span class="hp-social__teal">.</span></span></div>
+            <span class="hp-social__empty-icon" aria-hidden="true">▶</span>
+            <span class="hp-social__empty-line">THE SOCIAL EDIT / 00</span>
+          </div>
+          <div class="hp-social__empty-copy">
+            <span class="hp-social__empty-overline">THE FIRST CHAPTER</span>
+            <h2>{{ section.settings.empty_title | escape }}</h2>
+            <p>{{ section.settings.empty_copy | escape }}</p>
+            <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">Get to know HiParcelo <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      {% endif %}
+      <p class="hp-social__disclaimer">Videos are for demonstration and product education. Always review product specifications and policies before ordering.</p>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "HiParcelo social reels",
+  "tag": "section",
+  "class": "hp-social-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE HIPARCELO FEED" },
+    { "type": "text", "id": "heading", "label": "Page heading", "default": "See it in real life." },
+    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "Useful finds, shown clearly. Explore the details before you decide." },
+    { "type": "text", "id": "empty_title", "label": "Empty state heading", "default": "Real demonstrations. Coming soon." },
+    { "type": "textarea", "id": "empty_copy", "label": "Empty state copy", "default": "We're preparing our first short-form product demonstrations. No staged reviews, invented reactions or products that aren't ready." }
+  ],
+  "blocks": [
+    {
+      "type": "reel",
+      "name": "Product reel",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Shopify-hosted video", "info": "Recommended for swipe-style autoplay. Use a video you own or have licensed." },
+        { "type": "text", "id": "instagram_url", "label": "Instagram Reel URL", "info": "Public Reel URL, e.g. https://www.instagram.com/reel/SHORTCODE/. Embeds are click-to-play; Instagram controls availability." },
+        { "type": "image_picker", "id": "cover", "label": "Instagram cover image", "info": "Optional licensed thumbnail. Not needed for uploaded videos." },
+        { "type": "text", "id": "label", "label": "Kicker", "default": "THE EVERYDAY EDIT" },
+        { "type": "text", "id": "title", "label": "Video heading", "default": "See the details" },
+        { "type": "textarea", "id": "description", "label": "Short description" },
+        { "type": "product", "id": "product", "label": "Linked Shopify product", "info": "Displays an authentic price and links to the product page. Nothing is added to cart automatically." }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [ { "name": "HiParcelo social reels" } ]
+}
+{% endschema %}

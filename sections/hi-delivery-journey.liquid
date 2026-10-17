@@ -1,0 +1,104 @@
+{% comment %}
+HiParcelo delivery journey: illustrative scroll-led visualization, not order tracking.
+Times shown are user-requested planning scenarios and are not verified shipping estimates.
+{% endcomment %}
+{{ 'hi-delivery-journey.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'hi-delivery-journey.js' | asset_url }}" defer="defer"></script>
+<section class="hpj" id="hi-delivery-journey" aria-labelledby="hpj-title" data-hpj>
+  <div class="hpj-intro">
+    <div class="hpj-wrap hpj-intro__inner">
+      <p class="hpj-eyebrow"><span class="hpj-eyebrow__dot" aria-hidden="true"></span> HIPARCELO / THE DELIVERY JOURNEY</p>
+      <div class="hpj-intro__grid">
+        <h2 id="hpj-title">From a package<br>to <em>your doorstep.</em></h2>
+        <div class="hpj-intro__side">
+          <p>Follow our illustrative package on a journey from preparation to international transport, and finally to a home.</p>
+          <div class="hpj-duration"><strong>11 days</strong><span>illustrative planning timeline<br>2 + 7 + 2 days</span></div>
+        </div>
+      </div>
+      <div class="hpj-intro__footer"><span>SCROLL TO FOLLOW THE JOURNEY</span><span aria-hidden="true">↓</span></div>
+    </div>
+  </div>
+  <div class="hpj-static" aria-label="Illustrative three-stage delivery timeline">
+    <div class="hpj-wrap hpj-static__grid">
+      <article><span class="hpj-static__num">01 / 02 DAYS</span><h3>Preparation &amp; dispatch</h3><p>A possible two-day window for preparing a parcel, packing it, and handing it off for transport.</p></article>
+      <article><span class="hpj-static__num">02 / 07 DAYS</span><h3>International transport &amp; customs</h3><p>An illustrative seven-day stage covering transportation and border processing.</p></article>
+      <article><span class="hpj-static__num">03 / 02 DAYS</span><h3>Local delivery</h3><p>A possible two-day stage for local carrier routing and delivery to the destination.</p></article>
+    </div>
+  </div>
+  <div class="hpj-scroll" data-hpj-track>
+    <div class="hpj-pin">
+      <div class="hpj-wrap hpj-pin__grid">
+        <div class="hpj-narrative">
+          <div class="hpj-topline"><span>YOUR PARCEL'S STORY</span><span class="hpj-counter" data-hpj-counter>01 / 03</span></div>
+          <div class="hpj-chapter" data-hpj-chapter="0">
+            <span class="hpj-chapter__step">01 <i></i> DAYS 1–2</span>
+            <h3>Every journey<br><em>has a beginning.</em></h3>
+            <p>We follow a sample package as it leaves a warehouse, moves into dispatch, and gets ready for the journey ahead.</p>
+            <div class="hpj-chapter__duration"><strong>2 days</strong><span>Packing &amp; dispatch</span></div>
+          </div>
+          <div class="hpj-chapter" data-hpj-chapter="1">
+            <span class="hpj-chapter__step">02 <i></i> DAYS 3–9</span>
+            <h3>Across the skies.<br><em>Across borders.</em></h3>
+            <p>The camera pulls away from the package and follows an aircraft across the screen, with international handling and customs represented along the route.</p>
+            <div class="hpj-chapter__duration"><strong>7 days</strong><span>Flight &amp; customs</span></div>
+          </div>
+          <div class="hpj-chapter" data-hpj-chapter="2">
+            <span class="hpj-chapter__step">03 <i></i> DAYS 10–11</span>
+            <h3>The final stretch.<br><em>Right to the door.</em></h3>
+            <p>The parcel transfers to local transport. Follow the blue truck along the road to a home and watch the package reach the doorstep.</p>
+            <div class="hpj-chapter__duration"><strong>2 days</strong><span>Local delivery</span></div>
+          </div>
+          <div class="hpj-progress">
+            <span class="hpj-progress__labels"><span>WAREHOUSE</span><span>FLIGHT</span><span>DOORSTEP</span></span>
+            <div class="hpj-progress__track"><span class="hpj-progress__fill" data-hpj-fill></span></div>
+          </div>
+          <p class="hpj-narrative__caption"><span aria-hidden="true">◈</span> Illustrative sequence, not live order tracking.</p>
+        </div>
+        <div class="hpj-visual">
+          <div class="hpj-stage">
+            <div class="hpj-stage__grid" aria-hidden="true"></div>
+            <div class="hpj-world hpj-world--warehouse" data-hpj-world="warehouse">
+              <span class="hpj-world__tag">01 / DISPATCH</span>
+              <img class="hpj-world__warehouse" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-warehouse-2026.webp?v=1792266311" loading="lazy" width="1258" height="867" alt="Illustration of a blue-roofed logistics warehouse seen from above">
+              <img class="hpj-world__package" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" loading="lazy" width="1042" height="751" alt="">
+              <span class="hpj-world__small" aria-hidden="true">THE PACKAGE LEAVES THE WAREHOUSE</span>
+            </div>
+            <div class="hpj-world hpj-world--flight" data-hpj-world="flight" aria-hidden="true">
+              <span class="hpj-world__tag">02 / INTERNATIONAL TRANSIT</span>
+              <div class="hpj-flight__cloud hpj-flight__cloud--a"></div><div class="hpj-flight__cloud hpj-flight__cloud--b"></div>
+              <svg class="hpj-flight__route" viewBox="0 0 520 520" fill="none" aria-hidden="true"><path d="M255 0C175 110 363 121 255 249S140 413 266 520" stroke="#97B4DE" stroke-width="2" stroke-dasharray="6 11"/><circle cx="255" cy="18" r="5" fill="#194081"/><circle cx="265" cy="504" r="5" fill="#194081"/></svg>
+              <img class="hpj-flight__plane" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-airplane-2026.webp?v=1792266296" width="1060" height="1044" loading="lazy" alt="">
+              <span class="hpj-flight__customs"><b>✳</b> INTERNATIONAL HANDLING &amp; CUSTOMS</span>
+            </div>
+            <div class="hpj-world hpj-world--road" data-hpj-world="road" aria-hidden="true">
+              <span class="hpj-world__tag">03 / FINAL MILE</span>
+              <div class="hpj-road__surface"><span class="hpj-road__lines"></span></div>
+              <img class="hpj-road__package" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" width="1042" height="751" loading="lazy" alt="">
+              <img class="hpj-road__truck" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-truck-2026.webp?v=1792266301" width="394" height="828" loading="lazy" alt="">
+              <span class="hpj-road__label">LOCAL DELIVERY</span>
+            </div>
+            <div class="hpj-world hpj-world--home" data-hpj-world="home" aria-hidden="true">
+              <span class="hpj-world__tag">04 / DESTINATION</span>
+              <img class="hpj-home__house" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-home-2026.webp?v=1792266306" width="967" height="947" loading="lazy" alt="">
+              <img class="hpj-home__box" src="https://cdn.shopify.com/s/files/1/1000/6603/4031/files/hiparcelo-journey-package-2026.webp?v=1792266291" width="1042" height="751" loading="lazy" alt="">
+              <span class="hpj-home__check" aria-hidden="true">✓</span>
+              <div class="hpj-home__delivered"><strong>The journey is complete.</strong><span>A package arrives at the doorstep.</span></div>
+            </div>
+            <div class="hpj-stage__bottom"><span>HI / PARCELO</span><span data-hpj-scene-name>WAREHOUSE</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hpj-outro">
+    <div class="hpj-wrap hpj-outro__inner">
+      <p class="hpj-eyebrow">THE DETAILS MATTER</p>
+      <h3>Exciting to imagine.<br><em>Important to verify.</em></h3>
+      <p><strong>2 + 7 + 2 = 11 days</strong> is an illustrative planning example, not a verified delivery estimate or guarantee. Actual processing, international transport, customs, and local delivery depend on the product, provider, and destination. Confirmed delivery information will be shown before checkout.</p>
+      <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}" class="hpj-outro__link">Delivery information <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"HiParcelo journey","settings":[],"presets":[{"name":"HiParcelo journey"}]}
+{% endschema %}

@@ -1,5 +1,17 @@
 {{ 'hp-social.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'hp-social.js' | asset_url }}" defer></script>
+{% unless request.design_mode %}
+  <script>
+    (() => {
+      const desktop = window.matchMedia('(min-width: 750px)');
+      const redirectDesktop = () => {
+        if (desktop.matches) window.location.replace({{ routes.root_url | json }});
+      };
+      redirectDesktop();
+      if (desktop.addEventListener) desktop.addEventListener('change', redirectDesktop);
+    })();
+  </script>
+{% endunless %}
 {% liquid
   assign valid_reels = 0
   for block in section.blocks
@@ -8,7 +20,7 @@
     endif
   endfor
 %}
-<section class="hp-social" data-hp-social data-section-id="{{ section.id }}" aria-labelledby="hp-social-heading-{{ section.id }}">
+<section class="hp-social" data-hp-social data-shopify-design-mode="{% if request.design_mode %}true{% else %}false{% endif %}" data-section-id="{{ section.id }}" aria-labelledby="hp-social-heading-{{ section.id }}">
   <div class="hp-social__intro">
     <p class="hp-social__eyebrow"><span class="hp-social__live-dot" aria-hidden="true"></span>{{ section.settings.eyebrow | escape }}</p>
     <h1 id="hp-social-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h1>

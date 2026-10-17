@@ -1,0 +1,47 @@
+{% liquid
+  assign selected = product.selected_or_first_available_variant
+  assign preparing_label = 'hp_store.product.preparing' | t
+  assign add_label = 'hp_store.product.add' | t
+  assign unavailable_label = 'hp_store.product.unavailable' | t
+%}
+<section class="hp hp-product" data-hp-product-section aria-labelledby="hp-product-title-{{ section.id }}">
+  <div class="hp-shell">
+    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ product.title | escape }}</span></nav>
+    {% if product != blank %}
+      <div class="hp-product__grid">
+        <div data-hp-gallery>
+          <div class="hp-product__media">
+            {% if product.featured_image != blank %}
+              {{ product.featured_image | image_url: width: 1400 | image_tag: widths: '400, 650, 900, 1400', sizes: '(min-width: 750px) 50vw, 100vw', class: 'hp-product__image', loading: 'eager', fetchpriority: 'high', data-hp-main-image: '' }}
+            {% else %}<div class="hp-product__placeholder">{{ 'hp_store.product.no_image' | t }}</div>{% endif %}
+          </div>
+          {% if product.images.size > 1 %}<div class="hp-product__gallery">
+            {% for image in product.images limit: 8 %}<button class="hp-product__thumb" type="button" data-hp-thumbnail data-src="{{ image | image_url: width: 1400 }}" data-alt="{{ image.alt | default: product.title | escape }}" aria-label="{{ 'hp_store.product.image' | t }} {{ forloop.index }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ image | image_url: width: 160 | image_tag: loading: 'lazy' }}</button>{% endfor %}
+          </div>{% endif %}
+        </div>
+        <div class="hp-product__information">
+          <p class="hp-eyebrow">{{ 'hp_store.product.kicker' | t }}</p>
+          <h1 id="hp-product-title-{{ section.id }}">{{ product.title | escape }}</h1>
+          <p class="hp-product__price" data-hp-current-price aria-live="polite">{{ selected.price | money_with_currency }}</p>
+          {% if product.description != blank %}<div class="hp-product__copy">{{ product.description }}</div>{% endif %}
+          {% form 'product', product, id: 'HiParceloProduct', class: 'hp-product__form', data-hp-product-form: '', data-commerce: settings.hp_commerce_enabled, data-preparing: preparing_label, data-add: add_label, data-unavailable: unavailable_label %}
+            {{ form.errors | default_errors }}
+            <div class="hp-field"><label for="HpProductVariant-{{ section.id }}">{{ 'hp_store.product.variant' | t }}</label><select id="HpProductVariant-{{ section.id }}" name="id"{% unless settings.hp_commerce_enabled %} disabled{% endunless %}>
+              {% for variant in product.variants %}<option value="{{ variant.id }}" data-price="{{ variant.price | money_with_currency | escape }}" data-available="{{ variant.available }}"{% if variant.id == selected.id %} selected{% endif %}>{{ variant.title | escape }}{% unless variant.available %} — {{ 'hp_store.product.unavailable' | t }}{% endunless %}</option>{% endfor %}
+            </select></div>
+            <div class="hp-field"><label for="HpProductQuantity-{{ section.id }}">{{ 'hp_store.product.quantity' | t }}</label><input id="HpProductQuantity-{{ section.id }}" name="quantity" type="number" value="1" min="1" step="1" inputmode="numeric"{% unless settings.hp_commerce_enabled %} disabled{% endunless %}></div>
+            <button type="submit" name="add" class="hp-button"{% if settings.hp_commerce_enabled != true or selected.available == false %} disabled{% endif %}>{% unless settings.hp_commerce_enabled %}{{ 'hp_store.product.preparing' | t }}{% elsif selected.available %}{{ 'hp_store.product.add' | t }}{% else %}{{ 'hp_store.product.unavailable' | t }}{% endunless %}</button>
+          {% endform %}
+          {% unless settings.hp_commerce_enabled %}<p class="hp-product__notice">{{ 'hp_store.product.prep_copy' | t }}</p>{% endunless %}
+          <div class="hp-product__links"><a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.product.shipping' | t }}</a><a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.product.returns' | t }}</a><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.product.ask' | t }}</a></div>
+          <p class="hp-product__notice">{{ 'hp_store.product.offer_note' | t }}</p>
+        </div>
+      </div>
+    {% else %}
+      <p class="hp-eyebrow">{{ 'hp_store.product.kicker' | t }}</p><h1 id="hp-product-title-{{ section.id }}">{{ 'hp_store.product.no_product' | t }}</h1><p class="hp-copy">{{ 'hp_store.product.no_product_copy' | t }}</p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{"name":"t:hp_store.product_name","settings":[],"presets":[{"name":"t:hp_store.product_name"}]}
+{% endschema %}

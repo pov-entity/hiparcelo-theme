@@ -1,0 +1,50 @@
+{% assign support_email = settings.hp_support_email | default: shop.email %}
+<footer class="hi hi-footer" role="contentinfo">
+  <div class="hi-wrap">
+    <div class="hi-footer__top">
+      <div class="hi-footer__brand">
+        <a href="{{ routes.root_url }}" class="hi-identity" aria-label="HiParcelo home">
+          {% if settings.logo == blank %}<span class="hi-identity__symbol" aria-hidden="true"><svg viewBox="0 0 50 50" fill="none"><path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M6 15.5V36L25 46l19-10V15.5M25 26.5V46" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="m16 10 19 11" stroke="currentColor" stroke-width="1.5"/></svg></span>{% endif %}
+          {% if settings.logo != blank %}
+            {{ settings.logo | image_url: width: 320 | image_tag: loading: 'lazy', width: 175, alt: 'HiParcelo', class: 'hi-identity__logo' }}
+          {% else %}
+            <span class="hi-identity__type"><span class="hi-identity__word"><strong>Hi</strong><em>Parcelo.</em></span><span class="hi-identity__sub">{{ 'hi_edit.brand_sub' | t }}</span></span>
+          {% endif %}
+        </a>
+        <p>{{ 'hi_edit.footer_statement' | t }}</p>
+        {% if support_email != blank %}<a class="hi-footer__contact" href="mailto:{{ support_email | escape }}">{{ support_email | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+      </div>
+      <div class="hi-footer__columns">
+        <div><h2>{{ 'hi_edit.footer_explore' | t }}</h2><nav aria-label="{{ 'hi_edit.footer_explore' | t }}">
+          <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.nav_story' | t }}</a>
+          <a href="{{ routes.root_url }}#hp27-system">{{ 'hp27.nav_standard' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.nav_first' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }}</a>
+        </nav></div>
+        <div><h2>{{ 'hi_edit.footer_here' | t }}</h2><nav aria-label="{{ 'hi_edit.footer_here' | t }}">
+          <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hp_store.common.help' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.common.contact' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}">{{ 'hp_store.common.track' | t }}</a>
+        </nav></div>
+        <div><h2>{{ 'hi_edit.footer_fine' | t }}</h2><nav aria-label="{{ 'hi_edit.footer_fine' | t }}">
+          <a href="{{ routes.root_url | append: '/pages/privacy' | replace: '//', '/' }}">{{ 'hp_store.common.privacy' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/terms' | replace: '//', '/' }}">{{ 'hp_store.common.terms' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/cookies' | replace: '//', '/' }}">{{ 'hp_store.common.cookies' | t }}</a>
+          <a href="{{ routes.root_url | append: '/pages/data-sharing-opt-out' | replace: '//', '/' }}">{{ 'hp_store.common.choices' | t }}</a>
+        </nav></div>
+      </div>
+    </div>
+    <div class="hi-footer__low">
+      <span>{% assign year = 'now' | date: '%Y' %}© {{ year }} HiParcelo. {{ 'hi_edit.footer_copyright' | t }}</span>
+      <div class="hi-langs">{% render 'hp-localization', placement: 'footer' %}</div>
+      {% if settings.hp_seller_identity != blank %}<span>{{ settings.hp_seller_identity | escape }}</span>{% endif %}
+    </div>
+    <div class="hi-footer__oversize" aria-hidden="true">HiParcelo.</div>
+    {% if settings.hp_store_preparation %}<p class="hi-footer__status">{{ 'hi_edit.footer_status' | t }}</p>{% endif %}
+  </div>
+</footer>
+{% schema %}
+{"name":"HiParcelo editorial foot","enabled_on":{"groups":["footer"]},"settings":[]}
+{% endschema %}

@@ -1,0 +1,38 @@
+<section class="hi hi-hero" aria-labelledby="hi-hero-title">
+  <div class="hi-hero__texture" aria-hidden="true"></div>
+  <div class="hi-wrap hi-hero__topline"><span>{{ 'hi_edit.hero_mark' | t }}</span><span>EST. IN CURIOSITY <span class="hi-star" aria-hidden="true">✳</span> BUILT ON CLARITY</span></div>
+  <div class="hi-wrap hi-hero__grid">
+    <div class="hi-hero__story">
+      <p class="hi-kicker hi-kicker--light"><span class="hi-dot" aria-hidden="true"></span>{{ 'hi_edit.hero_kicker' | t }}</p>
+      <h1 id="hi-hero-title">{{ 'hi_edit.hero_line_one' | t }}<br><span class="hi-hero__italic">{{ 'hi_edit.hero_line_two' | t }}</span></h1>
+      <p class="hi-hero__lead">{{ 'hi_edit.hero_copy' | t }}</p>
+      <div class="hi-actions">
+        <a class="hi-btn hi-btn--cream" href="#hi-approach">{{ 'hi_edit.hero_action' | t }} <span aria-hidden="true">↗</span></a>
+        <a class="hi-text-link hi-text-link--light" href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.hero_second' | t }} <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="hi-hero__aside"><span class="hi-hero__aside-line" aria-hidden="true"></span>{{ 'hi_edit.hero_footnote' | t }}</p>
+    </div>
+    <div class="hi-hero__art" role="img" aria-label="Abstract illustrated HiParcelo parcel; an illustration of the brand, not a product for sale">
+      <div class="hi-hero__halo" aria-hidden="true"></div>
+      <div class="hi-hero__ring hi-hero__ring--one" aria-hidden="true"></div>
+      <div class="hi-hero__ring hi-hero__ring--two" aria-hidden="true"></div>
+      <div class="hi-packet" aria-hidden="true">
+        <div class="hi-packet__top"><span>GOOD THINGS START SMALL</span></div>
+        <div class="hi-packet__side"><span>01</span></div>
+        <div class="hi-packet__face">
+          <div class="hi-packet__edge">HI / PARCELO <span>✳</span></div>
+          <span class="hi-packet__brand">Hi<br><em>Parcelo.</em></span>
+          <span class="hi-packet__caption">A LITTLE MORE EASE.<br>A LOT MORE INTENTION.</span>
+          <span class="hi-packet__seal">HP<br><small>01</small></span>
+        </div>
+      </div>
+      <div class="hi-hero__note hi-hero__note--left" aria-hidden="true"><span>NOTE / 001</span><strong>Wonderfully<br>ordinary.</strong><i>↗</i></div>
+      <div class="hi-hero__note hi-hero__note--right" aria-hidden="true"><span>OUR KIND OF THINKING</span><strong>Useful looks<br>good on you.</strong><i>✳</i></div>
+      <div class="hi-hero__orbit-label" aria-hidden="true">CURIOSITY → CLARITY → CONFIDENCE</div>
+    </div>
+  </div>
+  <div class="hi-hero__bottom"><div class="hi-wrap hi-hero__bottom-inner"><span>{{ 'hi_edit.hero_bottom' | t }}</span><a href="#hi-feeling">{{ 'hi_edit.hero_scroll' | t }} <span aria-hidden="true">↓</span></a><span>01 / 06</span></div></div>
+</section>
+{% schema %}
+{"name":"HiParcelo cover story","settings":[],"presets":[{"name":"HiParcelo cover story"}]}
+{% endschema %}

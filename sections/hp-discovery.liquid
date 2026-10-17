@@ -1,0 +1,161 @@
+{% liquid
+  assign default_heading = 'hiparcelo.discovery.heading' | t
+  assign default_copy = 'hiparcelo.discovery.copy' | t
+  assign featured = section.settings.featured_product | default: settings.hp_featured_product
+  assign visual = section.settings.image
+  if visual == blank and featured != blank
+    assign visual = featured.featured_image
+  endif
+  assign concept = false
+  if visual == blank and section.settings.show_concept
+    assign concept = true
+  endif
+  assign offer_url = '#hp-about'
+  assign offer_label = 'hiparcelo.discovery.about' | t
+  if featured != blank
+    assign offer_url = featured.url
+    assign offer_label = 'hiparcelo.discovery.product' | t
+  endif
+%}
+<section class="hp hp-discovery" id="hp-discovery" aria-labelledby="hp-discovery-title-{{ section.id }}">
+  <div class="hp-shell">
+    <div class="hp-discovery__heading" data-hp-reveal>
+      <div>
+        <p class="hp-eyebrow">{{ 'hiparcelo.discovery.eyebrow' | t }}</p>
+        <h2 id="hp-discovery-title-{{ section.id }}">{{ section.settings.heading | default: default_heading | escape }}</h2>
+      </div>
+      <p class="hp-copy">{{ section.settings.copy | default: default_copy | escape }}</p>
+    </div>
+    <div class="hp-discovery__grid">
+      {% if visual != blank or concept %}
+        <div class="hp-discovery__visual" data-hp-reveal>
+          {% if visual != blank %}
+            {{ visual | image_url: width: 1400 | image_tag: widths: '480, 720, 960, 1400', sizes: '(min-width: 1000px) 600px, (min-width: 750px) 50vw, 100vw', loading: 'lazy', class: 'hp-discovery__image' }}
+          {% else %}
+            <img class="hp-discovery__image" src="{{ 'hp-story-concept.webp' | asset_url }}" width="1536" height="1024" alt="{{ 'hiparcelo.discovery.concept_alt' | t }}" loading="lazy">
+          {% endif %}
+          {% if concept or section.settings.image_is_concept %}
+            <span class="hp-concept">{{ 'hiparcelo.common.concept' | t }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="hp-discovery__details">
+        {% if featured != blank %}
+          <div class="hp-discovery__product">
+            <h3>{{ featured.title | escape }}</h3>
+            <p>
+              {% assign price = featured.price | money_with_currency %}
+              {% if featured.price_varies %}
+                {{ 'hiparcelo.discovery.from_price' | t: price: price }}
+              {% else %}
+                {{ price }}
+              {% endif %}
+            </p>
+            <small>{{ 'hiparcelo.discovery.price_details' | t }}</small>
+          </div>
+        {% endif %}
+        <ol class="hp-discovery__steps">
+          {% for block in section.blocks %}
+            {% liquid
+              case block.settings.topic
+                when 'detail'
+                  assign default_title = 'hiparcelo.discovery.detail_title' | t
+                  assign default_text = 'hiparcelo.discovery.detail_copy' | t
+                when 'choice'
+                  assign default_title = 'hiparcelo.discovery.choice_title' | t
+                  assign default_text = 'hiparcelo.discovery.choice_copy' | t
+                else
+                  assign default_title = 'hiparcelo.discovery.life_title' | t
+                  assign default_text = 'hiparcelo.discovery.life_copy' | t
+              endcase
+            %}
+            <li data-hp-reveal data-hp-delay="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <span class="hp-discovery__number" aria-hidden="true">0{{ forloop.index }}</span>
+              <div>
+                <h3>{{ block.settings.title | default: default_title | escape }}</h3>
+                <p class="hp-copy">{{ block.settings.copy | default: default_text | escape }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ol>
+        <a class="hp-button hp-button--navy" href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}">
+          <span data-hp-offer-label>{{ offer_label }}</span>{% render 'hp-icon', name: 'arrow' %}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% stylesheet %}
+  .hp-discovery { padding-block: 72px; background: #fff; }
+  .hp-discovery__heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 33px; }
+  .hp-discovery__heading h2 { margin-top: 12px; }
+  .hp-discovery__heading > p { max-width: 40ch; font-size: 14px; }
+  .hp-discovery__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+  .hp-discovery__visual { position: relative; overflow: hidden; border-radius: 5px; aspect-ratio: 1.35; background: var(--hp-surface); }
+  .hp-discovery__image { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hp-discovery__visual .hp-concept { position: absolute; bottom: 17px; left: 17px; }
+  .hp-discovery__steps { margin: 0 0 28px; padding: 0; list-style: none; }
+  .hp-discovery__steps li { display: flex; gap: 18px; padding-block: 19px; }
+  .hp-discovery__steps li + li { border-top: 1px solid var(--hp-line); }
+  .hp-discovery__number { color: var(--hp-teal); font-size: 13px; font-weight: 700; padding-top: 4px; }
+  .hp-discovery__steps p { font-size: 14px; margin-top: 7px; }
+  .hp-discovery__product { padding-bottom: 14px; }
+  .hp-discovery__product p { margin-top: 7px; color: var(--hp-teal); font-weight: 700; }
+  .hp-discovery__product small { display: block; margin-top: 6px; color: var(--hp-muted); font-size: 12px; }
+  .hp-discovery__grid:not(:has(.hp-discovery__visual)) { grid-template-columns: 1fr; }
+  @media (max-width: 1000px) { .hp-discovery__grid { gap: 32px; } }
+  @media (max-width: 749px) {
+    .hp-discovery { padding-block: 48px; }
+    .hp-discovery__heading { display: block; margin-bottom: 24px; }
+    .hp-discovery__heading > p { margin-top: 17px; }
+    .hp-discovery__grid { grid-template-columns: 1fr; gap: 22px; }
+    .hp-discovery__visual { aspect-ratio: 1.35; }
+    .hp-discovery__steps { margin-bottom: 20px; }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:hiparcelo.discovery.name",
+  "limit": 1,
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:hiparcelo.fields.heading" },
+    { "type": "textarea", "id": "copy", "label": "t:hiparcelo.fields.copy" },
+    { "type": "product", "id": "featured_product", "label": "t:hiparcelo.fields.product" },
+    { "type": "image_picker", "id": "image", "label": "t:hiparcelo.fields.image" },
+    { "type": "checkbox", "id": "image_is_concept", "label": "t:hiparcelo.fields.concept_label", "default": false },
+    { "type": "checkbox", "id": "show_concept", "label": "t:hiparcelo.fields.show_concept", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "detail",
+      "name": "t:hiparcelo.discovery.block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "topic",
+          "label": "t:hiparcelo.fields.topic",
+          "options": [
+            { "value": "life", "label": "t:hiparcelo.discovery.life" },
+            { "value": "detail", "label": "t:hiparcelo.discovery.detail" },
+            { "value": "choice", "label": "t:hiparcelo.discovery.choice" }
+          ],
+          "default": "life"
+        },
+        { "type": "text", "id": "title", "label": "t:hiparcelo.fields.heading" },
+        { "type": "textarea", "id": "copy", "label": "t:hiparcelo.fields.copy" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:hiparcelo.discovery.name",
+      "blocks": [
+        { "type": "detail", "settings": { "topic": "life" } },
+        { "type": "detail", "settings": { "topic": "detail" } },
+        { "type": "detail", "settings": { "topic": "choice" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "Useful guide · 03",
+        "intro": "Good use starts with the instructions for the exact item.",
+        "show_draft": false,
+        "show_support": true,
+        "localization_key": "guide_use_and_care"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

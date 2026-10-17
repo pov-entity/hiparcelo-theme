@@ -1,0 +1,6 @@
+{% doc %}
+Renders the preparation notice without enabling orders or claiming launch readiness.
+{% enddoc %}
+{% if settings.hp_store_preparation %}
+  <div class="hp-store-notice" role="status">{{ 'hp_store.common.preview' | t }}</div>
+{% endif %}

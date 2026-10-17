@@ -1,0 +1,47 @@
+<header class="hi hi-header" role="banner">
+  <div class="hi-wrap hi-header__row">
+    <a href="{{ routes.root_url }}" class="hi-identity" aria-label="HiParcelo — Home">
+      {% if settings.logo == blank %}<span class="hi-identity__symbol" aria-hidden="true">
+        <svg viewBox="0 0 50 50" fill="none" role="presentation">
+          <path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M6 15.5V36L25 46l19-10V15.5M25 26.5V46" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="m16 10 19 11M16 10 6 15.5M35 21l9-5.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="m15 25 5 3 5-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>{% endif %}
+      {% if settings.logo != blank %}
+        {{ settings.logo | image_url: width: 300 | image_tag: loading: 'eager', widths: '150, 220, 300', sizes: '(min-width: 750px) 175px, 120px', alt: 'HiParcelo', class: 'hi-identity__logo' }}
+      {% else %}
+        <span class="hi-identity__type"><span class="hi-identity__word"><strong>Hi</strong><em>Parcelo.</em></span><span class="hi-identity__sub">{{ 'hi_edit.brand_sub' | t }}</span></span>
+      {% endif %}
+    </a>
+    <nav class="hi-nav" aria-label="{{ 'hiparcelo.navigation.main' | t }}">
+      <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.nav_story' | t }}</a>
+      <a href="{{ routes.root_url }}#hp27-explore">{{ 'hp27.nav_explore' | t }}</a>
+      <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }}</a>
+      <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.nav_first' | t }}</a>
+      <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hi_edit.nav_help' | t }}</a>
+    </nav>
+    <div class="hi-header__right">
+      <a class="hi-header__contact" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} <span aria-hidden="true">↗</span></a>
+      <details class="hi-mobile" data-hi-mobile-nav>
+        <summary aria-label="{{ 'hiparcelo.navigation.menu' | t }}"><span class="hi-mobile__hamburger" aria-hidden="true"><span></span></span></summary>
+        <div class="hi-mobile__menu">
+          <p class="hi-mobile__label">{{ 'hi_edit.nav_mobile_label' | t }}</p>
+          <nav aria-label="{{ 'hiparcelo.navigation.mobile' | t }}">
+            <a href="{{ routes.root_url }}">{{ 'hi_edit.nav_home' | t }}<span aria-hidden="true">↗</span></a>
+            <a href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.nav_story' | t }}<span aria-hidden="true">↗</span></a>
+            <a href="{{ routes.root_url }}#hp27-explore">{{ 'hp27.nav_explore' | t }}<span aria-hidden="true">↗</span></a>
+            <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }}<span aria-hidden="true">↗</span></a>
+            <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.nav_first' | t }}<span aria-hidden="true">↗</span></a>
+            <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hi_edit.nav_help' | t }}<span aria-hidden="true">↗</span></a>
+          </nav>
+          <div class="hi-mobile__bottom"><span>HiParcelo / The Everyday Edit</span><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} ↗</a></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+{% schema %}
+{"name":"HiParcelo editorial nav","enabled_on":{"groups":["header"]},"settings":[]}
+{% endschema %}

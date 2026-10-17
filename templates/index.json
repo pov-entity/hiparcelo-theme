@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "cover": {
+      "type": "hp27-hero",
+      "settings": {}
+    },
+    "signal": {
+      "type": "hp27-band",
+      "settings": {}
+    },
+    "explore": {
+      "type": "hp27-explorer",
+      "settings": {}
+    },
+    "standard": {
+      "type": "hp27-system",
+      "settings": {}
+    },
+    "stories": {
+      "type": "hp27-stories",
+      "settings": {}
+    },
+    "trust": {
+      "type": "hp27-trust",
+      "settings": {}
+    },
+    "finale": {
+      "type": "hp27-finale",
+      "settings": {}
+    }
+  },
+  "order": [
+    "cover",
+    "signal",
+    "explore",
+    "standard",
+    "stories",
+    "trust",
+    "finale"
+  ]
+}

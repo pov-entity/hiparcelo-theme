@@ -1,0 +1,89 @@
+{% liquid
+  assign default_eyebrow = 'hiparcelo.hero.eyebrow' | t
+  assign default_heading = 'hiparcelo.hero.heading' | t
+  assign default_accent = 'hiparcelo.hero.accent' | t
+  assign default_copy = 'hiparcelo.hero.copy' | t
+  assign heading = section.settings.heading | default: default_heading
+  assign accent = section.settings.accent | default: default_accent
+  assign eyebrow = section.settings.eyebrow | default: default_eyebrow
+  assign copy = section.settings.copy | default: default_copy
+  assign offer_url = '#hp-discovery'
+  assign offer_label = 'hiparcelo.hero.explore' | t
+  assign visual = section.settings.image
+  assign featured = section.settings.featured_product | default: settings.hp_featured_product
+  if featured != blank
+    assign offer_url = featured.url
+    assign offer_label = 'hiparcelo.navigation.first_find' | t
+    if visual == blank
+      assign visual = featured.featured_image
+    endif
+  endif
+  assign concept = false
+  if visual == blank and section.settings.show_concept
+    assign concept = true
+  endif
+%}
+<section class="hp hp-hero" data-hp-home aria-labelledby="hp-hero-title-{{ section.id }}">
+  <div class="hp-shell hp-hero__inner">
+    <div class="hp-hero__content">
+      <div class="hp-hero__eyebrow-row hp-hero__entry">
+        <span class="hp-hero__signal" aria-hidden="true"></span>
+        <p class="hp-eyebrow">{{ eyebrow | escape }}</p>
+      </div>
+      <h1 id="hp-hero-title-{{ section.id }}" class="hp-hero__entry hp-hero__entry--2">{{ heading | escape }}<span>{{ accent | escape }}</span></h1>
+      <p class="hp-copy hp-hero__copy hp-hero__entry hp-hero__entry--3">{{ copy | escape }}</p>
+      <div class="hp-hero__actions hp-hero__entry hp-hero__entry--4">
+        <a class="hp-button" href="{{ offer_url }}" data-hp-offer-link data-return-label="{{ 'hiparcelo.navigation.return_product' | t: product: '__HP_PRODUCT__' | escape }}">
+          <span data-hp-offer-label>{{ offer_label }}</span>{% render 'hp-icon', name: 'arrow' %}
+        </a>
+        <a class="hp-hero__secondary" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hiparcelo.hero.about' | t }}</a>
+      </div>
+      <div class="hp-hero__microcopy hp-hero__entry hp-hero__entry--4">A little curiosity. A lot of possibility.</div>
+    </div>
+    <div class="hp-hero__media">
+      <div class="hp-hero__stage" data-hp-stage>
+        <span class="hp-hero__orbit-dot" aria-hidden="true"></span>
+        <span class="hp-hero__ambient-word" aria-hidden="true">ease.</span>
+        {% if visual != blank or concept %}
+          <div class="hp-hero__photo-wrap">
+            {% if visual != blank %}
+              {{ visual | image_url: width: 1400 | image_tag: widths: '420, 640, 840, 1100, 1400', sizes: '(min-width: 1200px) 38vw, (min-width: 750px) 43vw, 74vw', loading: 'eager', fetchpriority: 'high', class: 'hp-hero__image' }}
+            {% else %}
+              <img class="hp-hero__image" src="{{ 'hp-hero-concept.webp' | asset_url }}" width="1536" height="1024" alt="{{ 'hiparcelo.hero.concept_alt' | t }}" loading="eager" fetchpriority="high">
+            {% endif %}
+            <span class="hp-hero__glass-shine" aria-hidden="true"></span>
+          </div>
+        {% endif %}
+        <div class="hp-hero__float hp-hero__float--top" aria-hidden="true">
+          <span class="hp-hero__float-kicker">THE LITTLE THINGS</span>
+          <strong>Worth looking at <span class="hp-hero__float-mark">↗</span></strong>
+        </div>
+        <div class="hp-hero__float hp-hero__float--bottom" aria-hidden="true">
+          <span class="hp-hero__float-kicker">CURIOUS BY NATURE</span>
+          <strong>Clear by design <span class="hp-hero__float-mark">✳</span></strong>
+        </div>
+        {% if concept or section.settings.image_is_concept %}
+          <span class="hp-concept hp-hero__caption">{{ 'hiparcelo.common.concept' | t }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <a class="hp-hero__scroll" href="#hp-approach">Scroll to explore <span class="hp-hero__scroll-arrow" aria-hidden="true">↓</span></a>
+</section>
+{% schema %}
+{
+  "name": "t:hiparcelo.hero.name",
+  "limit": 1,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:hiparcelo.fields.eyebrow" },
+    { "type": "text", "id": "heading", "label": "t:hiparcelo.fields.heading" },
+    { "type": "text", "id": "accent", "label": "t:hiparcelo.fields.accent" },
+    { "type": "textarea", "id": "copy", "label": "t:hiparcelo.fields.copy" },
+    { "type": "product", "id": "featured_product", "label": "t:hiparcelo.fields.product" },
+    { "type": "image_picker", "id": "image", "label": "t:hiparcelo.fields.image" },
+    { "type": "checkbox", "id": "image_is_concept", "label": "t:hiparcelo.fields.concept_label", "default": false },
+    { "type": "checkbox", "id": "show_concept", "label": "t:hiparcelo.fields.show_concept", "default": true }
+  ],
+  "presets": [{ "name": "t:hiparcelo.hero.name" }]
+}
+{% endschema %}

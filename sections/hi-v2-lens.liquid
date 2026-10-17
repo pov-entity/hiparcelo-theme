@@ -1,0 +1,17 @@
+<section class="hi hi-v2-lens" id="hi-questions" aria-labelledby="hi-v2-lens-head">
+  <div class="hi-wrap">
+    <div class="hi-section-topline"><span>02 / {{ 'hi_v2.lens_index' | t }}</span><span>{{ 'hi_v2.lens_topline' | t }} ↗</span></div>
+    <div class="hi-v2-lens__heading"><div><p class="hi-kicker">{{ 'hi_v2.lens_kicker' | t }}</p><h2 id="hi-v2-lens-head" data-hi-reveal>{{ 'hi_v2.lens_head' | t }}<em>{{ 'hi_v2.lens_head_em' | t }}</em></h2></div><p>{{ 'hi_v2.lens_intro' | t }}</p></div>
+    <div class="hi-v2-lens__split">
+      <div class="hi-v2-orbit" aria-hidden="true" data-hi-lens><div class="hi-v2-orbit__ring"></div><div class="hi-v2-orbit__ring hi-v2-orbit__ring--inner"></div><span class="hi-v2-orbit__upper">HIPARCELO / THE EVERYDAY EDIT</span><strong>why<span>?</span></strong><small>{{ 'hi_v2.lens_orbit_small' | t }}</small><span class="hi-v2-orbit__label hi-v2-orbit__label--a">01 / {{ 'hi_v2.lens_label_a' | t }}</span><span class="hi-v2-orbit__label hi-v2-orbit__label--b">02 / {{ 'hi_v2.lens_label_b' | t }}</span></div>
+      <div class="hi-v2-lens__questions">
+        <p class="hi-v2-eyebrow">{{ 'hi_v2.lens_invite' | t }}</p>
+        <details open><summary><span>01</span>{{ 'hi_v2.lens_a' | t }}<b aria-hidden="true">+</b></summary><div class="hi-v2-lens__answer"><p>{{ 'hi_v2.lens_a_copy' | t }}</p><a href="{{ routes.root_url | append: '/pages/guide-fit' | replace: '//', '/' }}">{{ 'hi_v2.lens_a_link' | t }} <span aria-hidden="true">↗</span></a></div></details>
+        <details ><summary><span>02</span>{{ 'hi_v2.lens_b' | t }}<b aria-hidden="true">+</b></summary><div class="hi-v2-lens__answer"><p>{{ 'hi_v2.lens_b_copy' | t }}</p><a href="{{ routes.root_url | append: '/pages/guide-before-ordering' | replace: '//', '/' }}">{{ 'hi_v2.lens_b_link' | t }} <span aria-hidden="true">↗</span></a></div></details>
+        <details ><summary><span>03</span>{{ 'hi_v2.lens_c' | t }}<b aria-hidden="true">+</b></summary><div class="hi-v2-lens__answer"><p>{{ 'hi_v2.lens_c_copy' | t }}</p><a href="{{ routes.root_url | append: '/pages/guide-use-and-care' | replace: '//', '/' }}">{{ 'hi_v2.lens_c_link' | t }} <span aria-hidden="true">↗</span></a></div></details>
+        <p class="hi-v2-lens__note">{{ 'hi_v2.lens_note' | t }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}{"name":"HiParcelo discovery lens","settings":[],"presets":[{"name":"HiParcelo discovery lens"}]}{% endschema %}

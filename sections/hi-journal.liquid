@@ -1,31 +1,13 @@
-<section class="hi hi-journal" id="hi-journal" aria-labelledby="hi-journal-title">
-  <div class="hi-wrap">
-    <div class="hi-section-topline"><span>03 / THE LITTLE NOTES</span><span>GOOD QUESTIONS, BETTER CHOICES</span></div>
-    <div class="hi-journal__intro"><div><p class="hi-kicker">{{ 'hi_edit.journal_kicker' | t }}</p><h2 id="hi-journal-title" data-hi-reveal>{{ 'hi_edit.journal_head_a' | t }}<em>{{ 'hi_edit.journal_head_b' | t }}</em></h2></div><p data-hi-reveal>{{ 'hi_edit.journal_copy' | t }}</p></div>
-    <div class="hi-journal__grid">
-      <a href="{{ routes.root_url | append: '/pages/guide-before-ordering' | replace: '//', '/' }}" class="hi-journal__entry hi-journal__entry--feature" data-hi-reveal>
-        <div class="hi-journal__visual hi-journal__visual--check">
-          <div class="hi-journal__paper" aria-hidden="true"><span class="hi-journal__paper-label">A BETTER WAY TO CHOOSE</span><span class="hi-journal__paper-line"></span><span class="hi-journal__paper-line"></span><span class="hi-journal__paper-line"></span><span class="hi-journal__paper-check">✓</span><span class="hi-journal__paper-dot">✳</span></div>
-          <span class="hi-journal__visual-index">THE READING ROOM / 01</span>
-        </div>
-        <div class="hi-journal__text"><div><span>5 MIN READ · BEFORE YOU CHOOSE</span><h3>{{ 'hi_edit.journal_one' | t }}</h3><p>{{ 'hi_edit.journal_one_copy' | t }}</p></div><span class="hi-round-arrow" aria-hidden="true">↗</span></div>
-      </a>
-      <a href="{{ routes.root_url | append: '/pages/guide-fit' | replace: '//', '/' }}" class="hi-journal__entry" data-hi-reveal>
-        <div class="hi-journal__visual hi-journal__visual--fit">
-          <div class="hi-journal__visual-type" aria-hidden="true">fit<span>.</span></div><span class="hi-journal__visual-index">THE READING ROOM / 02</span>
-        </div>
-        <div class="hi-journal__text"><div><span>THE DETAILS · REAL LIFE</span><h3>{{ 'hi_edit.journal_two' | t }}</h3><p>{{ 'hi_edit.journal_two_copy' | t }}</p></div><span class="hi-round-arrow" aria-hidden="true">↗</span></div>
-      </a>
-      <a href="{{ routes.root_url | append: '/pages/guide-use-and-care' | replace: '//', '/' }}" class="hi-journal__entry" data-hi-reveal>
-        <div class="hi-journal__visual hi-journal__visual--care">
-          <div class="hi-journal__care-mark" aria-hidden="true">✳<span>USE IT WELL<br>LOVE IT LONGER</span></div><span class="hi-journal__visual-index">THE READING ROOM / 03</span>
-        </div>
-        <div class="hi-journal__text"><div><span>BEYOND THE UNBOXING</span><h3>{{ 'hi_edit.journal_three' | t }}</h3><p>{{ 'hi_edit.journal_three_copy' | t }}</p></div><span class="hi-round-arrow" aria-hidden="true">↗</span></div>
-      </a>
-    </div>
-    <a class="hi-btn hi-btn--outline" href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.journal_link' | t }} <span aria-hidden="true">↗</span></a>
+<section class="hi hi-ref-guides" id="hi-journal" aria-labelledby="hi-ref-guides-title">
+<div class="hi-ref-container">
+  <div class="hi-ref-guides__intro"><p class="hi-ref-eyebrow">{{ 'hi_edit.journal_kicker' | t }}</p><h2 id="hi-ref-guides-title">{{ 'hi_edit.journal_head_a' | t }} <em>{{ 'hi_edit.journal_head_b' | t }}</em></h2><p>{{ 'hi_edit.journal_copy' | t }}</p></div>
+  <div class="hi-ref-guides__grid">
+    <a href="{{ routes.root_url | append: '/pages/guide-before-ordering' | replace: '//', '/' }}" class="hi-ref-guides__card"><span>01 / THE DECISION</span><span class="hi-ref-guides__graphic" aria-hidden="true">01<span>✦</span></span><h3>{{ 'hi_edit.journal_one' | t }}</h3><p>{{ 'hi_edit.journal_one_copy' | t }}</p><span class="hi-ref-guides__arrow" aria-hidden="true">↗</span></a>
+    <a href="{{ routes.root_url | append: '/pages/guide-fit' | replace: '//', '/' }}" class="hi-ref-guides__card"><span>02 / THE DETAILS</span><span class="hi-ref-guides__graphic" aria-hidden="true">02<span>✦</span></span><h3>{{ 'hi_edit.journal_two' | t }}</h3><p>{{ 'hi_edit.journal_two_copy' | t }}</p><span class="hi-ref-guides__arrow" aria-hidden="true">↗</span></a>
+    <a href="{{ routes.root_url | append: '/pages/guide-use-and-care' | replace: '//', '/' }}" class="hi-ref-guides__card"><span>03 / THE EVERYDAY</span><span class="hi-ref-guides__graphic" aria-hidden="true">03<span>✦</span></span><h3>{{ 'hi_edit.journal_three' | t }}</h3><p>{{ 'hi_edit.journal_three_copy' | t }}</p><span class="hi-ref-guides__arrow" aria-hidden="true">↗</span></a>
   </div>
-</section>
+  <a class="hi-ref-inline-link hi-ref-guides__more" href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.journal_link' | t }} <span aria-hidden="true">↗</span></a>
+</div></section>
 {% schema %}
 {"name":"HiParcelo reading room","settings":[],"presets":[{"name":"HiParcelo reading room"}]}
 {% endschema %}

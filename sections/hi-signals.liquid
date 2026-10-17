@@ -1,13 +1,19 @@
-<section class="hi hi-v2-signals" aria-label="{{ 'hi_v2.signals_aria' | t }}">
-  <div class="hi-v2-ticker" aria-hidden="true"><div class="hi-v2-ticker__track"><span>{{ 'hi_v2.ticker_a' | t }} ✳ {{ 'hi_v2.ticker_b' | t }} ✳ {{ 'hi_v2.ticker_c' | t }} ✳</span><span>{{ 'hi_v2.ticker_a' | t }} ✳ {{ 'hi_v2.ticker_b' | t }} ✳ {{ 'hi_v2.ticker_c' | t }} ✳</span></div></div>
-  <div class="hi-wrap hi-v2-signals__intro">
-    <div><span class="hi-v2-eyebrow">HP / 001—003</span><h2>{{ 'hi_v2.signals_head' | t }}<em>{{ 'hi_v2.signals_head_em' | t }}</em></h2></div>
-    <p>{{ 'hi_v2.signals_intro' | t }}</p>
+<section class="hi hi-ref-story" aria-labelledby="hi-ref-story-title">
+  <div class="hi-ref-story__scene hi-ref-story__scene--left">
+    <img src="{{ 'hp-story-concept.webp' | asset_url }}" alt="{{ 'hi_edit.story_concept_alt' | t }}" loading="lazy" width="1536" height="1024">
   </div>
-  <div class="hi-wrap hi-v2-signals__cards">
-    <article data-hi-reveal><div class="hi-v2-numeral">01<span aria-hidden="true">↗</span></div><h3>{{ 'hi_v2.signals_a' | t }}</h3><p>{{ 'hi_v2.signals_a_copy' | t }}</p></article>
-    <article data-hi-reveal><div class="hi-v2-numeral">02<span aria-hidden="true">↗</span></div><h3>{{ 'hi_v2.signals_b' | t }}</h3><p>{{ 'hi_v2.signals_b_copy' | t }}</p></article>
-    <article data-hi-reveal><div class="hi-v2-numeral">03<span aria-hidden="true">↗</span></div><h3>{{ 'hi_v2.signals_c' | t }}</h3><p>{{ 'hi_v2.signals_c_copy' | t }}</p></article>
+  <div class="hi-ref-story__body">
+    <span class="hi-ref-story__ornament" aria-hidden="true">✦</span>
+    <p class="hi-ref-eyebrow">{{ 'hi_edit.manifesto_kicker' | t }}</p>
+    <h2 id="hi-ref-story-title">{{ 'hi_edit.manifesto_head_a' | t }} <em>{{ 'hi_edit.manifesto_head_b' | t }}</em></h2>
+    <p>{{ 'hi_edit.manifesto_copy' | t }}</p>
+    <a class="hi-ref-button hi-ref-button--dark" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.manifesto_link' | t }}</a>
+    <span class="hi-ref-story__notice">{{ 'hi_edit.concept_notice' | t }}</span>
+  </div>
+  <div class="hi-ref-story__scene hi-ref-story__scene--right">
+    <img src="{{ 'hp-hero-concept.webp' | asset_url }}" alt="{{ 'hiparcelo.hero.concept_alt' | t }}" loading="lazy" width="1536" height="1024">
   </div>
 </section>
-{% schema %}{"name":"HiParcelo brand signals","settings":[],"presets":[{"name":"HiParcelo brand signals"}]}{% endschema %}
+{% schema %}
+{"name":"HiParcelo brand signals","settings":[],"presets":[{"name":"HiParcelo brand signals"}]}
+{% endschema %}

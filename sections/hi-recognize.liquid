@@ -1,39 +1,15 @@
-<section class="hi hi-feeling" id="hi-feeling" aria-labelledby="hi-feeling-title">
-  <div class="hi-wrap">
-    <div class="hi-section-topline"><span>01 / {{ 'hi_edit.feeling_top' | t }}</span><span>THE EVERYDAY EDIT <span aria-hidden="true">↗</span></span></div>
-    <div class="hi-feeling__intro">
-      <p class="hi-kicker" data-hi-reveal>{{ 'hi_edit.feeling_kicker' | t }}</p>
-      <h2 id="hi-feeling-title" data-hi-reveal>{{ 'hi_edit.feeling_head_a' | t }} <em>{{ 'hi_edit.feeling_head_b' | t }}</em></h2>
-      <p class="hi-feeling__introcopy" data-hi-reveal>{{ 'hi_edit.feeling_copy' | t }}</p>
+<section class="hi hi-ref-banner" id="hi-feeling" aria-labelledby="hi-ref-banner-title">
+  <div class="hi-ref-container">
+    <div class="hi-ref-banner__panel">
+      <img src="{{ 'hp-story-concept.webp' | asset_url }}" alt="" aria-hidden="true" loading="lazy" width="1536" height="1024">
+      <div class="hi-ref-banner__content">
+        <p class="hi-ref-eyebrow">{{ 'hi_edit.feeling_kicker' | t }}</p>
+        <h2 id="hi-ref-banner-title">{{ 'hi_edit.feeling_head_a' | t }} <em>{{ 'hi_edit.feeling_head_b' | t }}</em></h2>
+        <p>{{ 'hi_edit.feeling_copy' | t }}</p>
+        <a class="hi-ref-button hi-ref-button--light" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.feeling_link' | t }}</a>
+      </div>
+      <span class="hi-ref-banner__note">{{ 'hi_edit.concept_notice' | t }}</span>
     </div>
-    <div class="hi-feeling__grid">
-      <article class="hi-feeling__card hi-feeling__card--space" data-hi-reveal>
-        <div class="hi-feeling__card-top"><span>01 / SPACE</span><span class="hi-mini-cross" aria-hidden="true">✳</span></div>
-        <div class="hi-feeling__art hi-feeling__art--space" aria-hidden="true">
-          <div class="hi-drawer"><div class="hi-drawer__top"></div><div class="hi-drawer__body"><span></span><span></span></div><div class="hi-drawer__handle"></div></div>
-          <div class="hi-feeling__scribble">a little room<br>to breathe ↗</div>
-        </div>
-        <h3>{{ 'hi_edit.feeling_space_title' | t }}</h3><p>{{ 'hi_edit.feeling_space_copy' | t }}</p>
-      </article>
-      <article class="hi-feeling__card hi-feeling__card--effort" data-hi-reveal>
-        <div class="hi-feeling__card-top"><span>02 / EFFORT</span><span class="hi-mini-cross" aria-hidden="true">✳</span></div>
-        <div class="hi-feeling__art hi-feeling__art--effort" aria-hidden="true">
-          <svg viewBox="0 0 320 222" fill="none" role="presentation"><path d="M85 167c-30-30-33-76-12-108 19-28 61-35 85-11s22 58 4 77c-18 21-52 20-68-2-13-18-3-48 18-54 27-7 46 21 32 39" stroke="#193E3A" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 11"/><path d="m135 92 10 17 19-10M210 146l24 0m-12-12v24" stroke="#193E3A" stroke-width="3" stroke-linecap="round"/><circle cx="228" cy="72" r="37" fill="#F1BD92" stroke="#193E3A" stroke-width="2"/><path d="m209 73 14 12 24-26" stroke="#193E3A" stroke-width="4" stroke-linecap="round"/></svg>
-          <div class="hi-feeling__scribble">one less<br>workaround ↗</div>
-        </div>
-        <h3>{{ 'hi_edit.feeling_effort_title' | t }}</h3><p>{{ 'hi_edit.feeling_effort_copy' | t }}</p>
-      </article>
-      <article class="hi-feeling__card hi-feeling__card--comfort" data-hi-reveal>
-        <div class="hi-feeling__card-top"><span>03 / COMFORT</span><span class="hi-mini-cross" aria-hidden="true">✳</span></div>
-        <div class="hi-feeling__art hi-feeling__art--comfort" aria-hidden="true">
-          <div class="hi-comfort__arches"><span></span><span></span><span></span></div>
-          <div class="hi-comfort__sun"></div>
-          <div class="hi-feeling__scribble">more ease in<br>the everyday ↗</div>
-        </div>
-        <h3>{{ 'hi_edit.feeling_comfort_title' | t }}</h3><p>{{ 'hi_edit.feeling_comfort_copy' | t }}</p>
-      </article>
-    </div>
-    <div class="hi-feeling__end"><span>NOT MORE THINGS. BETTER REASONS.</span><a class="hi-text-link" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.feeling_link' | t }} <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 {% schema %}

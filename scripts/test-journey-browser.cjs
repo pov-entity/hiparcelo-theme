@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const assert=require('node:assert/strict');
 fs.mkdirSync('verification',{recursive:true});
 const report={viewports:[],checks:[],errors:[],durations:[]};
-const server=spawn(process.execPath,['scripts/preview.mjs'],{env:{...process.env,HP_PREVIEW_PORT:'4184'}});
+const server=spawn(process.execPath,['scripts/preview.mjs'],{env:{...process.env,HP_PREVIEW_PORT:'4184',HP_PREVIEW_JOURNEY_STYLE:'three_dimensional'}});
 let browser;
 const poses=[0,.04,.10,.135,.18,.20,.218,.228,.24,.25,.282,.30,.4,.53,.565,.58,.615,.625,.645,.67,.69,.72,.73,.75,.78,.84,.889,.895,.912,.918,.93,.945,.963,.975,.979,.99,1];
 async function pose(page,p){

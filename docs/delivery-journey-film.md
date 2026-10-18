@@ -1,12 +1,12 @@
 # Photographic delivery film
 
-Status: prepared on `homepage/photographic-film`; not published. The current production branch remains `homepage/design-09`. No production footage is included. The test clips are synthetic color patterns for verifying the player, not delivery footage.
+Status: optional film support is included alongside the default photographic still-image story. No production footage is included. The test clips are synthetic color patterns for verifying the player, not delivery footage. The production branch is `homepage/design-09`.
 
 The requested look is a real camera observing real materials and people: natural smartphone exposure, daylight white balance, tactile cardboard, ordinary fabric creases, imperfect stone and timber, believable hand contact and camera depth. Further shading of the procedural 3D scene cannot supply that photographic quality. A filmed or generated video supplies the visuals; the existing scroll controller supplies the timing.
 
 ## Visual reference
 
-`assets/hi-journey-film-doorstep-reference.webp` is a generated photographic art-direction keyframe. It is not proof of an actual HiParcelo delivery, a video, or a replacement for the full journey. It is not shown in the live storefront. The existing package photograph was the brand reference. The built-in image-generation tool created the new photograph; its output was encoded as WebP for this project.
+`assets/hi-journey-film-doorstep-reference.webp` is a generated photographic art-direction keyframe. It is not proof of an actual HiParcelo delivery, a video, or a replacement for the full journey. Its derived placing image is used as an illustrated scene in the photographic story. The existing package photograph was the brand reference. The built-in image-generation tool created the new photograph; its output was encoded as WebP for this project.
 
 Generation prompt:
 
@@ -52,4 +52,4 @@ Prepare an equivalent portrait master for mobile. Inspect the actual Shopify MP4
 
 Run `npm run test:film` with Playwright, Chromium and FFmpeg available. It creates ignored synthetic fixtures and tests the real Liquid output. `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` select existing installations. The existing `npm test` and `npm run test:browser` continue to verify the original motion and renderer when no film is selected.
 
-The draft passed 110 film seek poses across five viewport sizes and the checks recorded in `delivery-journey-film-validation.json`. The original model passed 14 tests and the 3D mode passed its existing 210-pose browser suite. These checks validate integration using synthetic clips; they do not verify footage quality or photographic motion.
+The optional renderer passed 110 film seek poses across five viewport sizes and the checks recorded in `delivery-journey-film-validation.json`. The original model passed 14 tests and the 3D mode passed its existing 210-pose browser suite. These checks validate integration using synthetic clips; they do not verify footage quality or photographic motion.

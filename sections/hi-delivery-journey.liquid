@@ -14,8 +14,13 @@
   if film_sources.size > 0
     assign film_enabled = true
   endif
+  assign photo_enabled = false
+  if section.settings.presentation == 'photographic' and film_enabled == false
+    assign photo_enabled = true
+  endif
+  assign photo_keys = 'packing,dispatch,cargo,takeoff,ocean,arrival,customs,truck-loading,road,carrying,placing,delivered' | split: ','
 %}
-<section class="hpj{% if film_enabled %} is-film{% endif %}" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-film-url="{{ 'hi-journey-film.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-surface="{{ 'hi-journey-materials-color.webp' | asset_url }}" data-hpj-detail="{{ 'hi-journey-materials-detail.webp' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
+<section class="hpj{% if film_enabled %} is-film{% endif %}{% if photo_enabled %} is-photo{% endif %}" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-film-url="{{ 'hi-journey-film.js' | asset_url }}" data-hpj-photo-url="{{ 'hi-journey-photography.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-surface="{{ 'hi-journey-materials-color.webp' | asset_url }}" data-hpj-detail="{{ 'hi-journey-materials-detail.webp' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
   <div class="hpj-intro">
     <p class="hpj-eyebrow">{{ 'hi_journey.eyebrow' | t }}</p>
     <h2 id="hpj-title-{{ section.id }}">{{ 'hi_journey.heading' | t }}</h2>
@@ -25,11 +30,14 @@
     <div class="hpj-pin">
       <div class="hpj-film" aria-hidden="true">
         <canvas class="hpj-canvas" data-hpj-canvas></canvas>
+        {% if photo_enabled %}
+          <script type="application/json" data-hpj-photos>[{% for key in photo_keys %}{% assign photo_name = 'hi-journey-photo-' | append: key | append: '.webp' %}{% assign mobile_photo_name = 'hi-journey-photo-' | append: key | append: '-mobile.webp' %}{"key":{{ key | json }},"desktop":{{ photo_name | asset_url | json }},"mobile":{{ mobile_photo_name | asset_url | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>
+        {% endif %}
         {% if film_enabled %}
           <video class="hpj-video" data-hpj-video muted playsinline preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
           <script type="application/json" data-hpj-film-sources>{"desktop":[{% for source in film_sources %}{"url":{{ source.url | json }},"type":{{ source.mime_type | json }},"width":{{ source.width | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}],"mobile":[{% for source in mobile_film_sources %}{"url":{{ source.url | json }},"type":{{ source.mime_type | json }},"width":{{ source.width | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
         {% endif %}
-        <div class="hpj-poster" data-hpj-poster>{% if film_enabled and section.settings.journey_film.preview_image != blank %}<img src="{{ section.settings.journey_film.preview_image | image_url: width: 1920 }}" width="{{ section.settings.journey_film.preview_image.width }}" height="{{ section.settings.journey_film.preview_image.height }}" alt="" loading="lazy" decoding="async">{% else %}<img src="{{ 'hi-journey-package-2026.webp' | asset_url }}" width="1042" height="751" alt="" loading="lazy" decoding="async">{% endif %}</div>
+        <div class="hpj-poster" data-hpj-poster>{% if photo_enabled %}<img src="{{ 'hi-journey-photo-packing.webp' | asset_url }}" srcset="{{ 'hi-journey-photo-packing-mobile.webp' | asset_url }} 840w, {{ 'hi-journey-photo-packing.webp' | asset_url }} 1536w" sizes="(max-width:749px) 100vw, 76vw" width="1536" height="1024" alt="" loading="lazy" decoding="async">{% elsif film_enabled and section.settings.journey_film.preview_image != blank %}<img src="{{ section.settings.journey_film.preview_image | image_url: width: 1920 }}" width="{{ section.settings.journey_film.preview_image.width }}" height="{{ section.settings.journey_film.preview_image.height }}" alt="" loading="lazy" decoding="async">{% else %}<img src="{{ 'hi-journey-package-2026.webp' | asset_url }}" width="1042" height="751" alt="" loading="lazy" decoding="async">{% endif %}</div>
       </div>
       <div class="hpj-toolbar"><span class="hpj-eyebrow">{{ 'hi_journey.story' | t }}</span><a class="hpj-skip" href="#hpj-after-{{ section.id }}" data-hpj-skip>{{ 'hi_journey.skip' | t }} <span aria-hidden="true">↘</span></a></div>
       <div class="hpj-copy">
@@ -57,9 +65,9 @@
   </div>
   <div class="hpj-static" data-hpj-static>
     <ol>
-      <li><span>01</span><div><h3>{{ 'hi_journey.prep_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.preparation_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.prep_body' | t }}</p></div></li>
-      <li><span>02</span><div><h3>{{ 'hi_journey.flight_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.international_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.flight_body' | t }}</p></div></li>
-      <li><span>03</span><div><h3>{{ 'hi_journey.local_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.delivery_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.local_body' | t }}</p></div></li>
+      <li><span>01</span><div>{% if photo_enabled %}<img class="hpj-static__photo" src="{{ 'hi-journey-photo-packing-mobile.webp' | asset_url }}" width="840" height="560" loading="lazy" decoding="async" alt="">{% endif %}<h3>{{ 'hi_journey.prep_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.preparation_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.prep_body' | t }}</p></div></li>
+      <li><span>02</span><div>{% if photo_enabled %}<img class="hpj-static__photo" src="{{ 'hi-journey-photo-ocean-mobile.webp' | asset_url }}" width="840" height="560" loading="lazy" decoding="async" alt="">{% endif %}<h3>{{ 'hi_journey.flight_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.international_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.flight_body' | t }}</p></div></li>
+      <li><span>03</span><div>{% if photo_enabled %}<img class="hpj-static__photo" src="{{ 'hi-journey-photo-delivered-mobile.webp' | asset_url }}" width="840" height="560" loading="lazy" decoding="async" alt="">{% endif %}<h3>{{ 'hi_journey.local_title' | t }}</h3><strong>{{ 'hi_journey.days' | t: count: section.settings.delivery_days }} · {{ 'hi_journey.illustrative' | t }}</strong><p>{{ 'hi_journey.local_body' | t }}</p></div></li>
     </ol>
     <p class="hpj-disclosure">{{ 'hi_journey.disclosure' | t }} <a href="{{ shipping_url }}">{{ 'hi_journey.delivery_link' | t }} ↗</a></p>
   </div>
@@ -71,6 +79,7 @@
   "name": "t:hi_journey.name",
   "enabled_on": {"templates": ["index"]},
   "settings": [
+    {"type":"select","id":"presentation","label":"t:hi_journey.presentation","default":"photographic","options":[{"value":"photographic","label":"t:hi_journey.photographic"},{"value":"three_dimensional","label":"t:hi_journey.three_dimensional"}]},
     {"type":"video","id":"journey_film","label":"t:hi_journey.journey_film","info":"t:hi_journey.journey_film_info"},
     {"type":"video","id":"journey_film_mobile","label":"t:hi_journey.journey_film_mobile","info":"t:hi_journey.journey_film_mobile_info"},
     {"type":"paragraph","content":"t:hi_journey.estimates_info"},

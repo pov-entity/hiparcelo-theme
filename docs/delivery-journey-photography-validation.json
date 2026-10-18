@@ -1,0 +1,78 @@
+{
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "forwardPoses": 64,
+      "reversePoses": 5
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "forwardPoses": 64,
+      "reversePoses": 5
+    },
+    {
+      "name": "small-phone",
+      "width": 320,
+      "height": 568,
+      "forwardPoses": 64,
+      "reversePoses": 5
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "forwardPoses": 64,
+      "reversePoses": 5
+    },
+    {
+      "name": "landscape",
+      "width": 844,
+      "height": 390,
+      "forwardPoses": 64,
+      "reversePoses": 5
+    }
+  ],
+  "checks": [
+    "Photographic renderer and later scenes are deferred until the story approaches",
+    "Photographic mode loads neither WebGL materials nor the video renderer",
+    "Stopped scrolling holds identical pixels with no additional render frames",
+    "Camera movement visibly changes the photograph within a scene",
+    "Rapid arbitrary seeking settles on the latest requested scene",
+    "Reduced motion shows the complete static illustrated sequence and can be toggled back",
+    "Keyboard skip exits the pinned story and moves focus",
+    "Theme editor unload/reload releases and restores the renderer",
+    "A phone loads the smaller image variants",
+    "Initial reduced motion downloads no animation modules",
+    "Disabled JavaScript retains the complete illustrated text sequence",
+    "Image failure uses the readable fallback",
+    "Unavailable canvas uses the readable fallback"
+  ],
+  "errors": [],
+  "callbackMilliseconds": {
+    "median": 0.10000000055879354,
+    "p95": 8.599999999627471,
+    "max": 46.5,
+    "scope": "CPU render-submission callback in headless Chromium, not customer-device FPS"
+  },
+  "scope": "Default photographic still-image scroll story, with camera movement and dissolves. No filmed action or production video is claimed.",
+  "modelTests": {
+    "passed": 17,
+    "originalMotionPoses": 10001,
+    "photographicCameraPoses": 20001
+  },
+  "themeValidation": {
+    "status": "valid",
+    "files": 32,
+    "source": "Current Shopify theme schemas"
+  },
+  "assetBytes": {
+    "desktop": 2694042,
+    "mobile": 961516
+  },
+  "originalMotionModelSha256": "02a227c947dbb0617507a9d0fd61ba7a45866b0aaf94fff1fbd4e92233a78123",
+  "original3DModeBrowserPosesPassed": 210
+}

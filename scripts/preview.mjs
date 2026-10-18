@@ -84,7 +84,9 @@ const sectionContext = (id, data) => {
     }
     return { id: blockId, type: block.type, settings: { ...blockSettings, ...block.settings }, shopify_attributes: '' };
   });
-  return { id, settings: { ...sectionSettings, ...data.settings }, blocks };
+  const resolvedSettings = { ...sectionSettings, ...data.settings };
+  if (data.type === 'hi-delivery-journey' && process.env.HP_PREVIEW_JOURNEY_STYLE) resolvedSettings.presentation = process.env.HP_PREVIEW_JOURNEY_STYLE;
+  return { id, settings: resolvedSettings, blocks };
 };
 const renderGroup = async (group, pageContext) => {
   let html = '';

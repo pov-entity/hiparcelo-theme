@@ -6,7 +6,7 @@
   const clamp = x => Math.max(0, Math.min(1, x));
   function init(section) {
     if (mounted.has(section)) return;
-    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]'), video = q('[data-hpj-video]'), media = video || canvas;
+    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]'), video = q('[data-hpj-video]'), photos = q('[data-hpj-photos]'), media = video || canvas;
     if (!track || !pin || !media) return;
     const abort = new AbortController(), { signal } = abort;
     const copy = JSON.parse(q('[data-hpj-copy]').textContent);
@@ -54,12 +54,13 @@
       delete section.dataset.hpjError;
       const ticket = ++generation;
       try {
-        const [world, timeline] = await Promise.all([import(video ? section.dataset.hpjFilmUrl : section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
+        const [world, timeline] = await Promise.all([import(video ? section.dataset.hpjFilmUrl : photos ? section.dataset.hpjPhotoUrl : section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
         if (ticket !== generation || disposed || motion.matches) { if (ticket === generation) started = false; return; }
         model = timeline;
-        renderer = video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, error => { section.dataset.hpjError = error.message; fallback(); }) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
+        const mediaError = error => { section.dataset.hpjError = error.message; fallback(); };
+        renderer = video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, mediaError) : photos ? world.createRenderer(canvas, JSON.parse(photos.textContent), queue, mediaError) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
         measure();
-        if (video) await renderer.ready;
+        if (video || photos) await renderer.ready;
         if (ticket !== generation || disposed || motion.matches) return;
         section.classList.add('is-ready'); section.classList.remove('is-static'); queue();
       } catch (error) { if (ticket !== generation || disposed || motion.matches) return; section.dataset.hpjError = error.message; fallback(); }

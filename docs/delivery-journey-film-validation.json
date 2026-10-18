@@ -50,7 +50,7 @@
     "A server without usable range seeking cannot cause a retry loop and times out to the static fallback"
   ],
   "errors": [],
-  "status": "Unpublished draft player verified; production photographic footage is still required",
+  "status": "Optional film renderer verified with synthetic clips; photographic stills are the default presentation. No production film is available.",
   "syntheticTestMedia": true,
   "productionFilmAvailable": false,
   "photographicMotionVerified": false,

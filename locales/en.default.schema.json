@@ -3515,6 +3515,9 @@
     }
   },
   "hi_journey": {
+    "presentation": "Journey visuals",
+    "photographic": "Photographic scenes",
+    "three_dimensional": "Original 3D journey",
     "journey_film": "Photographic journey film",
     "journey_film_info": "Select the completed full-journey MP4. Scroll position controls the paused video. Leave blank to keep the existing 3D journey.",
     "journey_film_mobile": "Mobile journey film (optional)",

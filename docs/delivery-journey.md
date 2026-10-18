@@ -1,12 +1,12 @@
-# Continuous HiParcelo delivery journey
+# HiParcelo delivery journey
 
-The homepage's existing `hi-delivery-journey` section now renders a continuous 3D environment. It replaces the flat image animation. It uses native WebGL, custom geometry and the existing parcel artwork. No paid services, runtime libraries, external font requests or tracking are added.
+The homepage's `hi-delivery-journey` section defaults to a photographic scroll story with twelve generated illustrations, camera movement and dissolves. See [delivery-journey-photography.md](delivery-journey-photography.md) for its behavior, assets and validation. The original continuous 3D journey remains available as a theme-editor option; the geometry and motion details below describe that mode. No paid services, runtime libraries, external font requests or tracking are added.
 
 The approved logo is preserved unchanged in `assets/hi-journey-approved-logo.png`. The five existing visual references are retained in the asset manifest. They guide the navy and cream models; they are not used as moving background layers.
 
 ## Integration and controls
 
-The unpublished photographic-film draft adds an optional MP4 renderer. Its visual reference, shot contract, implementation, validation and remaining footage requirement are documented in [delivery-journey-film.md](delivery-journey-film.md). With no film selected, this 3D journey remains the default.
+An optional MP4 renderer is also included. Its visual reference, shot contract, implementation, validation and remaining footage requirement are documented in [delivery-journey-film.md](delivery-journey-film.md). With no film selected, the Journey visuals setting selects photographic scenes or the original 3D mode.
 
 `templates/index.json` already places the section after `recognize`. The section loads its controller and styles from Shopify's asset CDN. Versioned world and model URLs are passed by Liquid, preventing stale relative module imports after theme updates. Model and renderer modules load only as the storytelling section approaches the viewport.
 

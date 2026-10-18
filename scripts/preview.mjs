@@ -74,6 +74,7 @@ const sectionContext = (id, data) => {
   for (const setting of schema.settings || []) {
     if (setting.default !== undefined) sectionSettings[setting.id] = setting.default;
   }
+  if (data.type === 'hi-delivery-journey' && process.env.HP_PREVIEW_JOURNEY_FILM) Object.assign(sectionSettings, JSON.parse(process.env.HP_PREVIEW_JOURNEY_FILM));
   const blocks = (data.block_order || []).map((blockId) => {
     const block = data.blocks[blockId];
     const blockSchema = schema.blocks?.find((item) => item.type === block.type);

@@ -6,6 +6,8 @@ The approved logo is preserved unchanged in `assets/hi-journey-approved-logo.png
 
 ## Integration and controls
 
+The unpublished photographic-film draft adds an optional MP4 renderer. Its visual reference, shot contract, implementation, validation and remaining footage requirement are documented in [delivery-journey-film.md](delivery-journey-film.md). With no film selected, this 3D journey remains the default.
+
 `templates/index.json` already places the section after `recognize`. The section loads its controller and styles from Shopify's asset CDN. Versioned world and model URLs are passed by Liquid, preventing stale relative module imports after theme updates. Model and renderer modules load only as the storytelling section approaches the viewport.
 
 The theme editor exposes illustrative durations for packing, international transit/customs and local delivery, plus the shipping policy link and desktop/mobile scroll distance. Defaults are 2 / 7 / 2 days. These are not route evidence or promises. The section's disclosure links to the configured shipping page, otherwise Shopify's shipping policy, otherwise the theme's `/pages/shipping` route. The real shipping commitment remains the published policy and checkout information.

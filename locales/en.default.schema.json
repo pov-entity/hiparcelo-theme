@@ -3515,6 +3515,10 @@
     }
   },
   "hi_journey": {
+    "journey_film": "Photographic journey film",
+    "journey_film_info": "Select the completed full-journey MP4. Scroll position controls the paused video. Leave blank to keep the existing 3D journey.",
+    "journey_film_mobile": "Mobile journey film (optional)",
+    "journey_film_mobile_info": "Use a portrait edit with the same chapter positions. The main film is used when this is blank.",
     "name": "HiParcelo journey",
     "estimates_info": "These stage durations illustrate a possible route. They are not verified promises. Confirm shipping evidence before making customer delivery commitments.",
     "preparation_days": "Illustrative packing duration (days)",

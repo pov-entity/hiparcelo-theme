@@ -14,6 +14,10 @@
 .hpj-film::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#f5f2e8 0,transparent 15%)}
 .hpj-canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity .25s;touch-action:pan-y}
 .hpj.is-ready .hpj-canvas{opacity:1}
+.hpj-video{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+.hpj.is-ready .hpj-video{opacity:1}
+.hpj.is-film .hpj-canvas{display:none}
+.hpj.is-film .hpj-poster img{width:100%;height:100%;object-fit:cover;mix-blend-mode:normal}
 .hpj-poster{position:absolute;inset:0;display:grid;place-items:center;background:#f5f2e8}
 .hpj-poster img{width:40%;height:auto;mix-blend-mode:multiply}
 .hpj.is-ready .hpj-poster{display:none}

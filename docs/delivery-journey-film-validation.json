@@ -1,0 +1,65 @@
+{
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "forwardPoses": 17,
+      "reversePoses": 5
+    },
+    {
+      "name": "phone",
+      "width": 390,
+      "height": 844,
+      "forwardPoses": 17,
+      "reversePoses": 5
+    },
+    {
+      "name": "small-phone",
+      "width": 320,
+      "height": 568,
+      "forwardPoses": 17,
+      "reversePoses": 5
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "forwardPoses": 17,
+      "reversePoses": 5
+    },
+    {
+      "name": "landscape",
+      "width": 844,
+      "height": 390,
+      "forwardPoses": 17,
+      "reversePoses": 5
+    }
+  ],
+  "checks": [
+    "No video download before the section approaches the viewport",
+    "Film mode never loads the 3D renderer or material maps",
+    "Paused scroll produces identical film pixels with zero additional render frames",
+    "Rapid forward/reverse scrolling settles on the latest requested frame",
+    "Reduced motion releases media and restores the readable sequence; it can be toggled back",
+    "Theme editor unload/reload disposes and restores one film element",
+    "Keyboard skip still exits the pinned film",
+    "Initial reduced motion downloads neither film nor renderer",
+    "Disabled JavaScript retains the complete readable sequence",
+    "Unavailable film activates the static fallback",
+    "A server without usable range seeking cannot cause a retry loop and times out to the static fallback"
+  ],
+  "errors": [],
+  "status": "Unpublished draft player verified; production photographic footage is still required",
+  "syntheticTestMedia": true,
+  "productionFilmAvailable": false,
+  "photographicMotionVerified": false,
+  "originalMotionModelSha256": "02a227c947dbb0617507a9d0fd61ba7a45866b0aaf94fff1fbd4e92233a78123",
+  "originalModelTestsPassed": 14,
+  "original3DBrowserPosesPassed": 210,
+  "themeValidation": {
+    "status": "valid",
+    "sourceFiles": 5,
+    "schemaSource": "Bundled Shopify schema fallback"
+  }
+}

@@ -6,8 +6,8 @@
   const clamp = x => Math.max(0, Math.min(1, x));
   function init(section) {
     if (mounted.has(section)) return;
-    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]');
-    if (!track || !pin || !canvas) return;
+    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]'), video = q('[data-hpj-video]'), media = video || canvas;
+    if (!track || !pin || !media) return;
     const abort = new AbortController(), { signal } = abort;
     const copy = JSON.parse(q('[data-hpj-copy]').textContent);
     const title = q('[data-hpj-caption-title]'), body = q('[data-hpj-caption-body]'), caption = q('[data-hpj-caption]'), scene = q('[data-hpj-scene-name]'), counter = q('[data-hpj-counter]'), completed = q('[data-hpj-completion]');
@@ -39,10 +39,10 @@
       const header = document.querySelector('.hi-header'), style = header && getComputedStyle(header);
       const headerSize = header && ['sticky', 'fixed'].includes(style.position) ? Math.min(header.getBoundingClientRect().height, innerHeight * .25) : 0;
       section.style.setProperty('--hpj-top', `${Math.round(headerSize)}px`);
-      const bounds = canvas.getBoundingClientRect(); width = bounds.width; height = bounds.height; mobile = matchMedia('(max-width: 749px)').matches;
+      const bounds = media.getBoundingClientRect(); width = bounds.width; height = bounds.height; mobile = matchMedia('(max-width: 749px)').matches;
       start = track.getBoundingClientRect().top + window.scrollY - headerSize;
       distance = Math.max(1, track.offsetHeight - pin.offsetHeight);
-      renderer?.resize(width, height, window.devicePixelRatio || 1); queue();
+      renderer?.resize(width, height, window.devicePixelRatio || 1, mobile); queue();
     }
     function scheduleMeasure() { if (!measureFrame && !disposed) measureFrame = requestAnimationFrame(measure); }
     function fallback() {
@@ -51,13 +51,18 @@
     async function begin() {
       if (started || motion.matches || failed || disposed) return;
       started = true;
+      delete section.dataset.hpjError;
       const ticket = ++generation;
       try {
-        const [world, timeline] = await Promise.all([import(section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
+        const [world, timeline] = await Promise.all([import(video ? section.dataset.hpjFilmUrl : section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
         if (ticket !== generation || disposed || motion.matches) { if (ticket === generation) started = false; return; }
-        model = timeline; renderer = world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail}); measure();
+        model = timeline;
+        renderer = video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, error => { section.dataset.hpjError = error.message; fallback(); }) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
+        measure();
+        if (video) await renderer.ready;
+        if (ticket !== generation || disposed || motion.matches) return;
         section.classList.add('is-ready'); section.classList.remove('is-static'); queue();
-      } catch (error) { section.dataset.hpjError = error.message; fallback(); }
+      } catch (error) { if (ticket !== generation || disposed || motion.matches) return; section.dataset.hpjError = error.message; fallback(); }
     }
     function motionChange() {
       if (motion.matches) { generation++; cancelAnimationFrame(frame); frame = 0; renderer?.dispose(); renderer = null; started = false; section.classList.remove('is-ready'); }
@@ -67,14 +72,14 @@
       active = entries.some(e => e.isIntersecting);
       if (active) { begin(); scheduleMeasure(); queue(); } else { cancelAnimationFrame(frame); frame = 0; }
     }, { rootMargin: '350px 0px' }); observer.observe(track);
-    const resize = new ResizeObserver(scheduleMeasure); resize.observe(canvas); resize.observe(document.body);
+    const resize = new ResizeObserver(scheduleMeasure); resize.observe(media); resize.observe(document.body);
     window.addEventListener('scroll', queue, { passive: true, signal });
     window.addEventListener('resize', scheduleMeasure, { passive: true, signal });
     window.addEventListener('pageshow', scheduleMeasure, { signal });
     window.addEventListener('load', scheduleMeasure, { once: true, signal });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) { scheduleMeasure(); queue(); } }, { signal });
     motion.addEventListener('change', motionChange, { signal });
-    canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); fallback(); }, { signal });
+    canvas?.addEventListener('webglcontextlost', event => { event.preventDefault(); fallback(); }, { signal });
     q('[data-hpj-skip]').addEventListener('click', event => {
       event.preventDefault(); const target = document.getElementById(`hpj-after-${section.id.replace('hi-delivery-journey-', '')}`);
       target?.scrollIntoView({ behavior: 'instant', block: 'start' }); target?.focus({ preventScroll: true });

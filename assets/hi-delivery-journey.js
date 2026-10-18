@@ -55,7 +55,7 @@
       try {
         const [world, timeline] = await Promise.all([import(section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
         if (ticket !== generation || disposed || motion.matches) { if (ticket === generation) started = false; return; }
-        model = timeline; renderer = world.createRenderer(canvas, section.dataset.hpjTexture, queue); measure();
+        model = timeline; renderer = world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail}); measure();
         section.classList.add('is-ready'); section.classList.remove('is-static'); queue();
       } catch (error) { section.dataset.hpjError = error.message; fallback(); }
     }

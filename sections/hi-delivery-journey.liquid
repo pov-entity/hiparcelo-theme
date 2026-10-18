@@ -9,7 +9,7 @@
     assign shipping_url = routes.root_url | append: '/pages/shipping' | replace: '//', '/'
   endif
 %}
-<section class="hpj" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
+<section class="hpj" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-surface="{{ 'hi-journey-materials-color.webp' | asset_url }}" data-hpj-detail="{{ 'hi-journey-materials-detail.webp' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
   <div class="hpj-intro">
     <p class="hpj-eyebrow">{{ 'hi_journey.eyebrow' | t }}</p>
     <h2 id="hpj-title-{{ section.id }}">{{ 'hi_journey.heading' | t }}</h2>

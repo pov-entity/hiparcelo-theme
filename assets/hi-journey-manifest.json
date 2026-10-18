@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "section": "hi-delivery-journey",
   "renderer": "Native WebGL 1; no third-party runtime libraries or paid services",
   "units": "Consistent scene units; object dimensions are never animated",
@@ -9,7 +9,9 @@
     "world": "hi-journey-world.js",
     "styles": "hi-delivery-journey.css",
     "parcel_texture": "hi-journey-package-2026.webp",
-    "approved_logo": "hi-journey-approved-logo.png"
+    "approved_logo": "hi-journey-approved-logo.png",
+    "material_color": "hi-journey-materials-color.webp",
+    "material_normal_roughness": "hi-journey-materials-detail.webp"
   },
   "reference_assets": [
     "hi-journey-warehouse-2026.webp",
@@ -20,12 +22,12 @@
   "geometry": {
     "warehouse": "Procedural cutaway warehouse, shelves, packing arm and conveyor",
     "parcel": "One persistent hollow box and hinged lid, using the existing parcel texture",
-    "aircraft": "Unbranded navy aircraft, cargo opening, hinged door and retractable landing gear",
+    "aircraft": "Profiled navy fuselage, curved cargo hatch, cockpit glazing, panel seams, engine fans, chrome intake rings and retractable landing gear",
     "ocean": "One continuous ocean surface between physical coastlines, with scroll-dependent water and clouds",
     "customs": "Handling trolley, scanner, sorting belt and loading platform",
-    "truck": "Navy truck, rear doors, cabin door, rotating and steering wheels",
-    "home": "Cream facade, navy roof, visible front door and doorstep",
-    "courier": "Articulated courier with distance-driven walking, parcel pickup, placement and departure"
+    "truck": "Rounded navy cab, corrugated cargo panels, chrome grille, mirrors, lights, hinged doors and rounded rotating tyres",
+    "home": "Textured plaster, timber door, reflective glazing, stone paving, planted foliage and doorstep",
+    "courier": "Articulated courier with fabric uniform, facial and hand detail; original distance-driven walking, parcel pickup, placement and departure"
   },
   "chapters": [
     {
@@ -106,5 +108,37 @@
     "WebGL unavailable",
     "Graphics context loss"
   ],
-  "asset_policy": "Existing approved logo is copied unchanged. The parcel lid retains the existing package artwork. References guide procedural 3D models; the image sprites are not animated as scene substitutes."
+  "asset_policy": "Existing approved logo is copied unchanged. The parcel lid retains the existing package artwork. References guide procedural 3D models; the image sprites are not animated as scene substitutes.",
+  "materials": {
+    "source": "scripts/build-journey-materials.py; deterministic procedural textures",
+    "atlas_dimensions": [
+      1024,
+      1024
+    ],
+    "shading": "Metallic/roughness shading, Fresnel reflections, directional lighting, filtered shadows, contact shading and tone mapping",
+    "surfaces": [
+      "paint",
+      "brushed metal",
+      "plaster",
+      "concrete",
+      "asphalt",
+      "grass",
+      "cardboard",
+      "leaves",
+      "timber",
+      "fabric",
+      "rubber",
+      "paving",
+      "skin",
+      "ocean",
+      "sand",
+      "clouds"
+    ],
+    "foliage": "Two-sided individual leaf geometry with matching clipped shadows",
+    "water": "Scroll-driven irregular wave normals, reflected sky, sun glints and shoreline foam"
+  },
+  "motion_preserved": {
+    "model_sha256": "02a227c947dbb0617507a9d0fd61ba7a45866b0aaf94fff1fbd4e92233a78123",
+    "scope": "Paths, timing, handoffs, camera choreography and scroll progress unchanged"
+  }
 }

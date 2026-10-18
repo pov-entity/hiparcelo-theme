@@ -48,9 +48,24 @@
   ],
   "errors": [],
   "callbackMilliseconds": {
-    "median": 4.7000000001862645,
-    "p95": 16.299999999813735,
-    "max": 23.399999999906868,
+    "median": 10.199999999953434,
+    "p95": 22.699999999953434,
+    "max": 60.199999999953434,
     "scope": "CPU render-submission callback in headless Chromium with software graphics, not device FPS"
+  },
+  "scope": "Material and geometry realism update; original motion model unchanged",
+  "motionModelSha256": "02a227c947dbb0617507a9d0fd61ba7a45866b0aaf94fff1fbd4e92233a78123",
+  "modelTests": {
+    "passed": 14,
+    "sampledPoses": 10001
+  },
+  "themeValidation": {
+    "status": "valid",
+    "files": 4,
+    "source": "Shopify theme validator with bundled schema fallback"
+  },
+  "materialAssets": {
+    "assets/hi-journey-materials-detail.webp": 407310,
+    "assets/hi-journey-materials-color.webp": 220652
   }
 }

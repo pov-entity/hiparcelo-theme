@@ -202,10 +202,10 @@ body:has(.ha-hero) .hi-header .hi-mobile>summary{border-color:#ffffff4d;color:#f
 .hp-password.ha-password{position:relative;isolation:isolate;background:var(--ha-navy);color:#fff;min-height:100svh;display:grid;place-items:center;padding:65px 24px;overflow:hidden}
 .ha-password__image{position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover;object-position:57% 60%}
 .ha-password__shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#0b192c75,#0b192c49 60%,#0b192c70)}
-.ha-password .hp-password__inner{position:relative;padding:50px 45px;max-width:760px;width:100%;background:#ffffff0b;border:1px solid #ffffff26;backdrop-filter:blur(9px);border-radius:26px;box-shadow:0 25px 90px #00000012;text-align:center}
+.ha-password .hp-password__inner{position:relative;padding:50px 45px;max-width:760px;width:100%;background:#10213966;border:1px solid #ffffff26;backdrop-filter:blur(9px);border-radius:26px;box-shadow:0 25px 90px #00000012;text-align:center}
 .ha-password .hp-wordmark,.ha-password .hp-wordmark span{color:#fff;font-weight:500;letter-spacing:-.07em}
 .ha-password h1{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(43px,6vw,76px);font-weight:400;letter-spacing:-.06em;line-height:1.05;color:#fff}
-.ha-password .hp-copy{color:#fffffff0;font-size:14px;line-height:1.85}
+.ha-password .hp-copy{color:#fffffff0!important;font-size:14px;line-height:1.85}
 .ha-password .hp-eyebrow{color:#fff;font-weight:400;font-size:9px;letter-spacing:.1em}
 .ha-password .hp-password__owner,.ha-password .hp-password__owner a,.ha-password summary{color:#fff!important}
 .ha-password .hp-password__owner{opacity:.8;font-size:10px}

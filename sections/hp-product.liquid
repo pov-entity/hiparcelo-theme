@@ -30,6 +30,13 @@
               {% for variant in product.variants %}<option value="{{ variant.id }}" data-price="{{ variant.price | money_with_currency | escape }}" data-available="{{ variant.available }}"{% if variant.id == selected.id %} selected{% endif %}>{{ variant.title | escape }}{% unless variant.available %} — {{ 'hp_store.product.unavailable' | t }}{% endunless %}</option>{% endfor %}
             </select></div>
             <div class="hp-field"><label for="HpProductQuantity-{{ section.id }}">{{ 'hp_store.product.quantity' | t }}</label><input id="HpProductQuantity-{{ section.id }}" name="quantity" type="number" value="1" min="1" step="1" inputmode="numeric"{% unless settings.hp_commerce_enabled %} disabled{% endunless %}></div>
+            <div class="hp-decision-details">
+              <strong>{{ 'hp_store.product.decision_title' | t }}</strong>
+              <p>{{ 'hp_store.product.decision_fit' | t }}</p>
+              <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.product.decision_delivery' | t }}</a>
+              <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.product.decision_returns' | t }}</a>
+              <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.product.decision_help' | t }}</a>
+            </div>
             <button type="submit" name="add" class="hp-button"{% if settings.hp_commerce_enabled != true or selected.available == false %} disabled{% endif %}>{% unless settings.hp_commerce_enabled %}{{ 'hp_store.product.preparing' | t }}{% elsif selected.available %}{{ 'hp_store.product.add' | t }}{% else %}{{ 'hp_store.product.unavailable' | t }}{% endunless %}</button>
           {% endform %}
           {% unless settings.hp_commerce_enabled %}<p class="hp-product__notice">{{ 'hp_store.product.prep_copy' | t }}</p>{% endunless %}

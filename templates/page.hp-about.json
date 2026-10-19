@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "hp-page",
       "settings": {
-        "kicker": "Useful finds. Clearly explained.",
-        "intro": "A small upgrade to everyday life should feel useful, understandable and worth choosing.",
+        "kicker": "WHY HIPARCELO",
+        "intro": "For the little jobs, extra steps and familiar hassles that deserve an easier moment.",
         "show_draft": false,
         "show_support": true,
         "localization_key": "about"

@@ -21,6 +21,7 @@
             <div class="hp-cart__subtotal"><span>{{ 'hp_store.cart.subtotal' | t }}</span><span>{{ cart.total_price | money_with_currency }}</span></div>
             <p>{% if cart.taxes_included %}{{ 'hp_store.cart.taxes' | t }}{% else %}{{ 'hp_store.cart.costs' | t }}{% endif %}</p>
             {% unless settings.hp_commerce_enabled %}<p>{{ 'hp_store.cart.preview' | t }}</p>{% endunless %}
+            <div class="hp-decision-details"><strong>{{ 'hp_store.cart.review' | t }}</strong><p>{{ 'hp_store.cart.review_copy' | t }}</p><a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a><a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a></div>
             <button class="hp-button" type="submit" name="checkout"{% unless settings.hp_commerce_enabled %} disabled{% endunless %}>{{ 'hp_store.cart.checkout' | t }}</button>
             <p><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.cart.help' | t }}</a></p>
           </aside>

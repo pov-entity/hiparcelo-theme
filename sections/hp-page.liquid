@@ -2,11 +2,20 @@
   assign default_kicker = 'hp_store.common.page_kicker' | t
   assign kicker = section.settings.kicker | default: default_kicker
   assign intro = section.settings.intro
+  assign page_title_copy = page.title
+  assign body_copy = page.content
   if section.settings.localization_key != blank
     assign kicker_key = 'hp_pages.' | append: section.settings.localization_key | append: '.kicker'
     assign intro_key = 'hp_pages.' | append: section.settings.localization_key | append: '.intro'
     assign kicker = kicker_key | t
     assign intro = intro_key | t
+  endif
+  assign content_key = page.handle | replace: '-', '_'
+  if content_key == 'about' or content_key == 'shipping' or content_key == 'returns' or content_key == 'privacy' or content_key == 'terms' or content_key == 'cookies' or content_key == 'guides' or content_key == 'guide_fit' or content_key == 'guide_before_ordering' or content_key == 'guide_use_and_care' or content_key == 'social'
+    assign content_title_key = 'hp_content.' | append: content_key | append: '.title'
+    assign content_body_key = 'hp_content.' | append: content_key | append: '.body_html'
+    assign page_title_copy = content_title_key | t
+    assign body_copy = content_body_key | t
   endif
   assign page_class = page.handle
   assign is_legal = false
@@ -16,13 +25,13 @@
 %}
 <section class="hi hi-page hi-page--{{ page_class | escape }}{% if is_legal %} hi-page--legal{% endif %}" aria-labelledby="hi-page-title-{{ section.id }}">
   <div class="hi-page__cover"><div class="hi-wrap">
-    <nav class="hi-breadcrumb" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ page.title | escape }}</span></nav>
+    <nav class="hi-breadcrumb" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ page_title_copy | escape }}</span></nav>
     <div class="hi-page__title">
       <span>{{ kicker | escape }}</span>
       <h1 id="hi-page-title-{{ section.id }}">
         {% if page.handle == 'about' %}{{ 'hi_edit.about_hero_a' | t }} <em>{{ 'hi_edit.about_hero_b' | t }}</em>
         {% elsif page.handle == 'guides' %}{{ 'hi_edit.guides_hero_a' | t }} <em>{{ 'hi_edit.guides_hero_b' | t }}</em>
-        {% else %}{{ page.title | escape }}{% endif %}
+        {% else %}{{ page_title_copy | escape }}{% endif %}
       </h1>
       {% if intro != blank %}<p>{{ intro | escape }}</p>{% endif %}
     </div>
@@ -31,7 +40,7 @@
     <div class="hi-page__body">
       {% if page.handle == 'about' %}<p class="hi-page__pullquote">{{ 'hi_edit.about_quote' | t }}</p>{% endif %}
       {% if section.settings.show_draft %}<div class="hi-page__draft"><strong>{{ 'hp_store.common.draft' | t }}</strong><p>{{ 'hp_store.common.draft_copy' | t }}</p></div>{% endif %}
-      <div class="hi-prose">{{ page.content }}</div>
+      <div class="hi-prose">{{ body_copy }}</div>
       <div class="hi-page__bottom-links"><a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }} ↗</a><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} ↗</a></div>
     </div>
     {% if section.settings.show_support %}

@@ -1,3 +1,4 @@
+{% assign support_email = settings.hp_support_email | default: shop.email %}
 <section class="hi hi-support" aria-labelledby="hi-help-title">
  <div class="hi-wrap">
    <nav class="hi-breadcrumb" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hp_store.common.help' | t }}</span></nav>
@@ -6,16 +7,16 @@
      <p>{{ 'hi_edit.help_copy' | t }}</p>
    </div>
    <div class="hi-support__cards">
-     <a class="hi-support__card" href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}"><span>01 / DELIVERY</span><strong>{{ 'hp_store.common.shipping' | t }} <i aria-hidden="true">↗</i></strong></a>
-     <a class="hi-support__card" href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}"><span>02 / AFTER YOUR ORDER</span><strong>{{ 'hp_store.common.returns' | t }} <i aria-hidden="true">↗</i></strong></a>
-     <a class="hi-support__card" href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}"><span>03 / UPDATES</span><strong>{{ 'hp_store.common.track' | t }} <i aria-hidden="true">↗</i></strong></a>
+     <a class="hi-support__card" href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}"><span>{{ 'hi_edit.help_delivery_label' | t }}</span><strong>{{ 'hp_store.common.shipping' | t }} <i aria-hidden="true">↗</i></strong></a>
+     <a class="hi-support__card" href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}"><span>{{ 'hi_edit.help_returns_label' | t }}</span><strong>{{ 'hp_store.common.returns' | t }} <i aria-hidden="true">↗</i></strong></a>
+     <a class="hi-support__card" href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}"><span>{{ 'hi_edit.help_tracking_label' | t }}</span><strong>{{ 'hp_store.common.track' | t }} <i aria-hidden="true">↗</i></strong></a>
    </div>
    <div class="hi-support__grid">
       <aside class="hi-support__sidebar"><p class="hi-kicker">{{ 'hi_edit.help_faq_kicker' | t }}</p><h2>{{ 'hi_edit.help_faq_title' | t }}</h2><p>{{ 'hi_edit.help_faq_copy' | t }}</p></aside>
       <div class="hi-support__list">
         {% assign topics = 'brand,order,products,delivery,returns,tracking,support,health,feedback' | split: ',' %}
         {% for topic in topics %}{% assign q = 'hp_store.faq.' | append: topic | append: '_q' %}{% assign a = 'hp_store.faq.' | append: topic | append: '_a' %}
-          <details {% if forloop.first %}open{% endif %}><summary>{{ q | t }}</summary><div>{{ a | t }}</div></details>
+          <details {% if forloop.first %}open{% endif %}><summary>{{ q | t }}</summary><div>{{ a | t: email: support_email }}</div></details>
         {% endfor %}
         {% for block in section.blocks %}
           <details {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }}</summary><div>{{ block.settings.answer }}</div></details>

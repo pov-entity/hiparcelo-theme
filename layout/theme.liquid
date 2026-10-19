@@ -17,19 +17,33 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {% liquid
+      assign hp_page_key = page.handle | replace: '-', '_'
+      if template.name == 'index'
+        assign page_title = 'hp_meta.home_title' | t
+        assign page_description = 'hp_meta.home_description' | t
+      elsif template.name == 'page'
+        if hp_page_key == 'about' or hp_page_key == 'contact' or hp_page_key == 'help' or hp_page_key == 'shipping' or hp_page_key == 'returns' or hp_page_key == 'privacy' or hp_page_key == 'terms' or hp_page_key == 'cookies' or hp_page_key == 'track_order' or hp_page_key == 'first_find' or hp_page_key == 'guides' or hp_page_key == 'guide_fit' or hp_page_key == 'guide_before_ordering' or hp_page_key == 'guide_use_and_care' or hp_page_key == 'social'
+          assign hp_title_key = 'hp_content.' | append: hp_page_key | append: '.title'
+          assign hp_description_key = 'hp_content.' | append: hp_page_key | append: '.description'
+          assign page_title = hp_title_key | t
+          assign page_description = hp_description_key | t
+        endif
+      endif
+    %}
     <title>
-      {{ page_title }}
+      {% if template.name == 'index' %}{{ 'hp_meta.home_title' | t }}{% else %}{{ page_title }}{% endif %}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- unless page_title contains shop.name or template.name == 'index' %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
+    {% if template.name == 'index' %}
+      <meta name="description" content="{{ 'hp_meta.home_description' | t | escape }}">
+    {% elsif page_description %}
       <meta name="description" content="{{ page_description | escape }}">
-    {% elsif template.name == 'index' %}
-      <meta name="description" content="HiParcelo explores everyday problems and smarter possibilities through future-facing discovery, practical guides and transparent product information.">
     {% else %}
-      <meta name="description" content="{{ page_title | escape }} — explore HiParcelo's practical guides, transparent brand approach and customer support information.">
+      <meta name="description" content="{{ 'hp_meta.page_description' | t: title: page_title | escape }}">
     {% endif %}
 
     {% render 'meta-tags' %}
@@ -336,6 +350,7 @@
     {{ 'hp27.css' | asset_url | stylesheet_tag }}
     {{ 'hp27-palette.css' | asset_url | stylesheet_tag }}
     {{ 'hi-sky-editorial.css' | asset_url | stylesheet_tag }}
+    {{ 'hp-considered-copy.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'hi-editorial.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'hp27.js' | asset_url }}" defer="defer"></script>
     <script>

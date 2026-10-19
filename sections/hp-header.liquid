@@ -1,6 +1,6 @@
 <header class="hi hi-header" role="banner">
   <div class="hi-wrap hi-header__row">
-    <a href="{{ routes.root_url }}" class="hi-identity" aria-label="HiParcelo — Home">
+    <a href="{{ routes.root_url }}" class="hi-identity" aria-label="{{ 'hp_meta.home_label' | t }}">
       {% if settings.logo == blank %}<span class="hi-identity__symbol" aria-hidden="true">
         <svg viewBox="0 0 50 50" fill="none" role="presentation">
           <path d="M6 15.5 25 5l19 10.5-19 11L6 15.5Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
@@ -34,9 +34,10 @@
             <a href="{{ routes.root_url }}#hi-approach">{{ 'hi_edit.nav_method' | t }}<span aria-hidden="true">↗</span></a>
             <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.nav_guides' | t }}<span aria-hidden="true">↗</span></a>
             <a href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.nav_first' | t }}<span aria-hidden="true">↗</span></a>
+            <a class="hi-mobile-social-link" href="{{ routes.root_url | append: '/pages/social' | replace: '//', '/' }}">{{ 'hp_social.navigation' | t }}<span aria-hidden="true">↗</span></a>
             <a href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}">{{ 'hi_edit.nav_help' | t }}<span aria-hidden="true">↗</span></a>
           </nav>
-          <div class="hi-mobile__bottom"><span>HiParcelo / The Everyday Edit</span><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} ↗</a></div>
+          <div class="hi-mobile__bottom"><span>{{ 'hi_edit.nav_mobile_signature' | t }}</span><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hi_edit.nav_contact' | t }} ↗</a></div>
         </div>
       </details>
     </div>

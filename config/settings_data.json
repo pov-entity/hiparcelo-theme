@@ -203,7 +203,8 @@
     "hp_surface": "#F4F8F8",
     "hp_store_preparation": true,
     "hp_commerce_enabled": false,
-    "hp_contact_enabled": true
+    "hp_contact_enabled": true,
+    "hp_support_email": "support@entity-e.com"
   },
   "presets": {
     "HiParcelo": {

@@ -32,6 +32,7 @@ engine.registerFilter('t', (key, ...parameters) => {
 engine.registerFilter('asset_url', (name) => '/assets/' + name);
 engine.registerFilter('stylesheet_tag', (url) => '<link rel="stylesheet" href="' + escape(url) + '">');
 engine.registerFilter('json', (value) => JSON.stringify(value));
+engine.registerFilter('default_errors', () => '');
 engine.registerFilter('money_with_currency', (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value / 100) + ' USD');
 engine.registerFilter('image_url', (image) => image?.src || image);
 engine.registerFilter('image_tag', (url, ...parameters) => {
@@ -57,8 +58,16 @@ const context = {
 const home = parseJson(await read('templates/index.json'));
 const header = parseJson(await read('sections/header-group.json'));
 const footer = parseJson(await read('sections/footer-group.json'));
+const pageContent = parseJson(await read('docs/store-pages.json')).pages;
+const pageGroups = new Map();
+for (const filename of await readdir(resolve(root, 'templates'))) {
+  if (filename.startsWith('page') && filename.endsWith('.json')) pageGroups.set(filename, parseJson(await read('templates/' + filename)));
+}
+const templateNames = { contact: 'contact', about: 'hp-about', help: 'hp-help', shipping: 'hp-shipping', returns: 'hp-returns', privacy: 'hp-privacy', terms: 'hp-terms', cookies: 'hp-cookies', 'track-order': 'hp-tracking', 'first-find': 'hp-first-find', guides: 'hp-guides', 'guide-fit': 'hp-guide-fit', 'guide-before-ordering': 'hp-guide-order', 'guide-use-and-care': 'hp-guide-care', social: 'hp-social' };
+const productGroup = parseJson(await read('templates/product.json'));
+const cartGroup = parseJson(await read('templates/cart.json'));
 const sources = new Map();
-for (const group of [header, home, footer]) {
+for (const group of [header, home, footer, ...pageGroups.values(), productGroup, cartGroup]) {
   for (const data of Object.values(group.sections)) {
     if (!sources.has(data.type)) sources.set(data.type, await read('sections/' + data.type + '.liquid'));
   }
@@ -105,6 +114,25 @@ const render = async (product = false) => {
 };
 const homepage = await render();
 const productPage = await render(true);
+const renderPage = async (data, group) => {
+  const pageContext = { ...context, template: { name: 'page' }, page: { title: data.title, handle: data.handle, content: data.body } };
+  const contents = await renderGroup(header, pageContext) + '<main id="MainContent">' + await renderGroup(group, pageContext) + '</main>' + await renderGroup(footer, pageContext);
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + escape(data.title) + ' | HiParcelo</title><meta name="description" content="' + escape(data.description) + '"><style>body{margin:0}' + css + '</style><script src="/preview.js" defer></script></head><body>' + contents + '</body></html>';
+};
+const renderedPages = new Map();
+for (const data of pageContent) {
+  const templateName = templateNames[data.handle];
+  const group = pageGroups.get(templateName ? 'page.' + templateName + '.json' : 'page.json');
+  renderedPages.set('/pages/' + data.handle, await renderPage(data, group));
+}
+const renderFixture = async (group, extra = {}) => {
+  const fixtureContext = { ...context, ...extra, template: { name: extra.product ? 'product' : 'cart' } };
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HiParcelo local fixture</title><style>body{margin:0}' + css + '</style></head><body>' + await renderGroup(header, fixtureContext) + '<main id="MainContent">' + await renderGroup(group, fixtureContext) + '</main>' + await renderGroup(footer, fixtureContext) + '</body></html>';
+};
+const sampleProduct = { title: 'Local preview item', url: '/products/preview-find', description: '<p>Local layout fixture. This is not an available product.</p>', selected_or_first_available_variant: { id: 1, price: 4900, available: true }, variants: [{ id: 1, title: 'Preview option', price: 4900, available: true }], images: [], featured_image: null };
+const productFixture = await renderFixture(productGroup, { product: sampleProduct });
+const cartEmpty = await renderFixture(cartGroup);
+const cartFixture = await renderFixture(cartGroup, { cart: { item_count: 1, total_price: 4900, taxes_included: false, items: [{ url: sampleProduct.url, product: sampleProduct, variant: { title: 'Preview option' }, final_line_price: 4900, quantity: 1 }] } });
 if (process.argv.includes('--write')) {
   await writeFile(resolve(output, 'index.html'), homepage.replace('<script src="/preview.js" defer></script>', '<script>' + javascript + '</script>').replaceAll('src="/assets/', 'src="../assets/').replaceAll('href="/assets/', 'href="../assets/'));
   console.log('Wrote preview-output/index.html from the actual homepage Liquid sections.');
@@ -126,6 +154,12 @@ if (process.argv.includes('--write')) {
       } else if (url.pathname === '/' || url.pathname === '/products/preview-find') {
         response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         response.end(url.pathname === '/' ? homepage : productPage);
+      } else if (renderedPages.has(url.pathname)) {
+        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        response.end(renderedPages.get(url.pathname));
+      } else if (url.pathname === '/products/layout-fixture' || url.pathname === '/cart') {
+        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        response.end(url.pathname === '/products/layout-fixture' ? productFixture : url.searchParams.has('filled') ? cartFixture : cartEmpty);
       } else {
         response.writeHead(404);
         response.end('Not part of the local homepage preview.');

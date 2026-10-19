@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "hp-page",
       "settings": {
-        "kicker": "From order to parcel",
-        "intro": "Know the destination, the full cost and what a delivery estimate actually includes.",
+        "kicker": "FROM YOUR ORDER TO YOUR DOOR",
+        "intro": "Knowing when it may arrive is part of knowing whether it is right for you.",
         "show_draft": true,
         "show_support": true,
         "localization_key": "shipping"

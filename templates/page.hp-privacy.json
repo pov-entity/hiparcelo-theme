@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "hp-page",
       "settings": {
-        "kicker": "Your information",
-        "intro": "A preparation draft, to be completed against the actual store setup and launch market.",
+        "kicker": "THE INFORMATION YOU SHARE",
+        "intro": "What we need to explain about your information, and where to ask a privacy question.",
         "show_draft": true,
         "show_support": true,
         "localization_key": "privacy"

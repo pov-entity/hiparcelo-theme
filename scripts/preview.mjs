@@ -107,7 +107,7 @@ const renderGroup = async (group, pageContext) => {
 };
 const render = async (product = false) => {
   const pageContext = product ? { ...context, template: { name: 'product' }, product: { title: 'Preview find', url: '/products/preview-find' } } : context;
-  const headerHtml = await renderGroup(header, pageContext);
+  const headerHtml = '<div class="hp-sticky-wrap">' + await renderGroup(header, pageContext) + '</div>';
   const mainHtml = product ? '<main style="padding:60px 24px"><h1>Local journey test</h1><a href="/">Return to homepage</a></main>' : '<main id="MainContent">' + await renderGroup(home, pageContext) + '</main>';
   const footerHtml = await renderGroup(footer, pageContext);
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HiParcelo homepage preview</title><style>html{scroll-behavior:smooth}body{margin:0;background:#fff}' + css + '</style><script src="/preview.js" defer></script></head><body>' + headerHtml + mainHtml + footerHtml + '</body></html>';
@@ -116,7 +116,7 @@ const homepage = await render();
 const productPage = await render(true);
 const renderPage = async (data, group) => {
   const pageContext = { ...context, template: { name: 'page' }, page: { title: data.title, handle: data.handle, content: data.body } };
-  const contents = await renderGroup(header, pageContext) + '<main id="MainContent">' + await renderGroup(group, pageContext) + '</main>' + await renderGroup(footer, pageContext);
+  const contents = '<div class="hp-sticky-wrap">' + await renderGroup(header, pageContext) + '</div><main id="MainContent">' + await renderGroup(group, pageContext) + '</main>' + await renderGroup(footer, pageContext);
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + escape(data.title) + ' | HiParcelo</title><meta name="description" content="' + escape(data.description) + '"><style>body{margin:0}' + css + '</style><script src="/preview.js" defer></script></head><body>' + contents + '</body></html>';
 };
 const renderedPages = new Map();
@@ -127,7 +127,7 @@ for (const data of pageContent) {
 }
 const renderFixture = async (group, extra = {}) => {
   const fixtureContext = { ...context, ...extra, template: { name: extra.product ? 'product' : 'cart' } };
-  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HiParcelo local fixture</title><style>body{margin:0}' + css + '</style></head><body>' + await renderGroup(header, fixtureContext) + '<main id="MainContent">' + await renderGroup(group, fixtureContext) + '</main>' + await renderGroup(footer, fixtureContext) + '</body></html>';
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HiParcelo local fixture</title><style>body{margin:0}' + css + '</style></head><body><div class="hp-sticky-wrap">' + await renderGroup(header, fixtureContext) + '</div><main id="MainContent">' + await renderGroup(group, fixtureContext) + '</main>' + await renderGroup(footer, fixtureContext) + '</body></html>';
 };
 const sampleProduct = { title: 'Local preview item', url: '/products/preview-find', description: '<p>Local layout fixture. This is not an available product.</p>', selected_or_first_available_variant: { id: 1, price: 4900, available: true }, variants: [{ id: 1, title: 'Preview option', price: 4900, available: true }], images: [], featured_image: null };
 const productFixture = await renderFixture(productGroup, { product: sampleProduct });

@@ -1,13 +1,12 @@
-<section class="hi hi-ref-clarity" aria-labelledby="hi-ref-clarity-title"><div class="hi-ref-container">
-  <div class="hi-ref-clarity__heading"><p class="hi-ref-eyebrow">{{ 'hi_v2.clarity_kicker' | t }}</p><h2 id="hi-ref-clarity-title">{{ 'hi_v2.clarity_head' | t }} <em>{{ 'hi_v2.clarity_head_em' | t }}</em></h2><p>{{ 'hi_v2.clarity_intro' | t }}</p></div>
-  <div class="hi-ref-clarity__links">
-    <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}"><span>01</span><div><strong>{{ 'hi_v2.clarity_delivery' | t }}</strong><p class="hi-copy-answer">{{ 'hi_v2.clarity_delivery_copy' | t }}</p></div><span aria-hidden="true">↗</span></a>
-    <a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}"><span>02</span><div><strong>{{ 'hi_v2.clarity_returns' | t }}</strong><p class="hi-copy-answer">{{ 'hi_v2.clarity_returns_copy' | t }}</p></div><span aria-hidden="true">↗</span></a>
-    <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}"><span>03</span><div><strong>{{ 'hi_v2.clarity_support' | t }}</strong><p class="hi-copy-answer">{{ 'hi_v2.clarity_support_copy' | t }}</p></div><span aria-hidden="true">↗</span></a>
-    <a href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}"><span>04</span><div><strong>{{ 'hi_v2.clarity_tracking' | t }}</strong><p class="hi-copy-answer">{{ 'hi_v2.clarity_tracking_copy' | t }}</p></div><span aria-hidden="true">↗</span></a>
-  </div>
-  <p class="hi-ref-clarity__note">{{ 'hi_v2.clarity_note' | t }}</p>
+<section class="hi ha-clarity" aria-labelledby="hi-ref-clarity-title"><div class="ha-shell">
+  <header class="ha-heading"><p class="ha-eyebrow"><span aria-hidden="true">✦</span> {{ 'hi_v2.clarity_kicker' | t }}</p><h2 id="hi-ref-clarity-title">{{ 'hi_v2.clarity_head' | t }} <em>{{ 'hi_v2.clarity_head_em' | t }}</em></h2><p>{{ 'hi_v2.clarity_intro' | t }}</p></header>
+  <div class="ha-care-grid">
+    <a class="ha-care" href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}"><span class="ha-care__icon" aria-hidden="true">↗</span><small>{{ 'hi_v2.clarity_delivery_label' | t }}</small><h3>{{ 'hi_v2.clarity_delivery' | t }}</h3><p>{{ 'hi_v2.clarity_delivery_copy' | t }}</p><span class="ha-care__link">{{ 'hi_v2.clarity_delivery_link' | t }} <i aria-hidden="true">↗</i></span></a>
+    <a class="ha-care" href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}"><span class="ha-care__icon" aria-hidden="true">↶</span><small>{{ 'hi_v2.clarity_returns_label' | t }}</small><h3>{{ 'hi_v2.clarity_returns' | t }}</h3><p>{{ 'hi_v2.clarity_returns_copy' | t }}</p><span class="ha-care__link">{{ 'hi_v2.clarity_returns_link' | t }} <i aria-hidden="true">↗</i></span></a>
+    <a class="ha-care" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}"><span class="ha-care__icon" aria-hidden="true">✦</span><small>{{ 'hi_v2.clarity_support_label' | t }}</small><h3>{{ 'hi_v2.clarity_support' | t }}</h3><p>{{ 'hi_v2.clarity_support_copy' | t }}</p><span class="ha-care__link">{{ 'hi_v2.clarity_support_link' | t }} <i aria-hidden="true">↗</i></span></a>
+    <a class="ha-care" href="{{ routes.root_url | append: '/pages/track-order' | replace: '//', '/' }}"><span class="ha-care__icon" aria-hidden="true">⌁</span><small>{{ 'hi_v2.clarity_tracking_label' | t }}</small><h3>{{ 'hi_v2.clarity_tracking' | t }}</h3><p>{{ 'hi_v2.clarity_tracking_copy' | t }}</p><span class="ha-care__link">{{ 'hi_v2.clarity_tracking_link' | t }} <i aria-hidden="true">↗</i></span></a>
+  </div><p class="ha-note ha-clarity__note">{{ 'hi_v2.clarity_note' | t }}</p>
 </div></section>
 {% schema %}
-{"name":"HiParcelo buying clarity","settings":[],"presets":[{"name":"HiParcelo buying clarity"}]}
+{"name":"HiParcelo care cards","settings":[],"presets":[{"name":"HiParcelo care cards"}]}
 {% endschema %}

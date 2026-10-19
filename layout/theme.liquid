@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#173a37">
+    <meta name="theme-color" content="#102139">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -94,6 +94,7 @@
       }
     {% endstyle %}
 
+    {{ 'hp-atmosphere.css' | asset_url | preload_tag: as: 'style' }}
     {{ content_for_header }}
 
     {%- liquid
@@ -351,6 +352,7 @@
     {{ 'hp27-palette.css' | asset_url | stylesheet_tag }}
     {{ 'hi-sky-editorial.css' | asset_url | stylesheet_tag }}
     {{ 'hp-considered-copy.css' | asset_url | stylesheet_tag }}
+    {{ 'hp-atmosphere.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'hi-editorial.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'hp27.js' | asset_url }}" defer="defer"></script>
     <script>

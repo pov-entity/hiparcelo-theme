@@ -1,9 +1,7 @@
-<section class="hi hi-ec-values" aria-label="{{ 'hi_ec.values_aria' | t }}"><div class="hi-ec-shell hi-ec-values__grid">
-<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">✦</span><div><strong>{{ 'hi_ec.value_one' | t }}</strong><small>{{ 'hi_ec.value_one_sub' | t }}</small></div></div>
-<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">⌕</span><div><strong>{{ 'hi_ec.value_two' | t }}</strong><small>{{ 'hi_ec.value_two_sub' | t }}</small></div></div>
-<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">↗</span><div><strong>{{ 'hi_ec.value_three' | t }}</strong><small>{{ 'hi_ec.value_three_sub' | t }}</small></div></div>
-<div class="hi-ec-values__item"><span class="hi-ec-values__glyph" aria-hidden="true">◎</span><div><strong>{{ 'hi_ec.value_four' | t }}</strong><small>{{ 'hi_ec.value_four_sub' | t }}</small></div></div>
+<section class="hi ha-signals" aria-label="{{ 'hi_ec.values_aria' | t }}"><div class="ha-shell ha-signals__grid">
+{% assign signals = 'one,two,three,four' | split: ',' %}
+{% for signal in signals %}{% assign title_key = 'hi_ec.value_' | append: signal %}{% assign sub_key = title_key | append: '_sub' %}<div><span aria-hidden="true">✦</span><p><strong>{{ title_key | t }}</strong><small>{{ sub_key | t }}</small></p></div>{% endfor %}
 </div></section>
 {% schema %}
-{"name":"HiParcelo brand signals","settings":[],"presets":[{"name":"HiParcelo brand signals"}]}
+{"name":"HiParcelo quiet signals","settings":[],"presets":[{"name":"HiParcelo quiet signals"}]}
 {% endschema %}

@@ -18,7 +18,9 @@ The initial concept photographs are visibly labeled. No product has been selecte
 
 The published Shopify theme is connected to branch `homepage/design-09`. The repository default `main` remains the original setup branch. Verify Shopify's theme-file sync after updating the connected branch.
 
-See [content purpose and implementation](docs/CONTENT-STRATEGY.md), [complete page copy](docs/store-pages.json), [homepage controls](docs/HOMEPAGE.md) and [image provenance](docs/ASSETS.md).
+The current visual direction uses a cinematic photographic hero, floating pill navigation, serif accents, overlapping discovery cards, glass panels and a navy/cream identity adapted from the owner's reference.
+
+See [visual direction and image prompt](docs/ATMOSPHERE-DESIGN.md), [content purpose and implementation](docs/CONTENT-STRATEGY.md), [complete page copy](docs/store-pages.json), [homepage controls](docs/HOMEPAGE.md) and [image provenance](docs/ASSETS.md).
 
 For local preview, run `npm ci` and `npm run preview`. The preview renders actual custom Liquid sections and all owned content pages against mock Shopify objects. `/products/layout-fixture` and `/cart?filled=1` are explicitly local fixtures. Native Shopify preview and checkout verification are separate checks.
 

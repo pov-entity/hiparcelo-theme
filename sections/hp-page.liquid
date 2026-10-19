@@ -13,9 +13,10 @@
   assign content_key = page.handle | replace: '-', '_'
   if content_key == 'about' or content_key == 'shipping' or content_key == 'returns' or content_key == 'privacy' or content_key == 'terms' or content_key == 'cookies' or content_key == 'guides' or content_key == 'guide_fit' or content_key == 'guide_before_ordering' or content_key == 'guide_use_and_care' or content_key == 'social'
     assign content_title_key = 'hp_content.' | append: content_key | append: '.title'
-    assign content_body_key = 'hp_content.' | append: content_key | append: '.body_html'
     assign page_title_copy = content_title_key | t
-    assign body_copy = content_body_key | t
+    capture body_copy
+      render 'hp-page-copy', page: page
+    endcapture
   endif
   assign page_class = page.handle
   assign is_legal = false

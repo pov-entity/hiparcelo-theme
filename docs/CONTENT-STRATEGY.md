@@ -19,7 +19,7 @@ The desired response is recognition, imagined everyday use, practical confidence
 
 Active theme copy lives in `locales/en.default.json`. The `hp_content` namespace contains complete page bodies, titles and descriptions for the existing HiParcelo page handles. `hp-page.liquid` uses these for the owned editorial and policy pages; other pages retain native `page.content`. Shopify’s existing privacy-choice page and its controls are preserved.
 
-`docs/store-pages.json` is the readable page-content source with the purpose of each page. Keep its customer-visible values in sync with `hp_content` when editing. Existing Shopify page IDs, handles, publication states and template assignments are retained. The theme controls the visible owned-page bodies and metadata; native Admin body fields are not overwritten by this update.
+`docs/store-pages.json` is the readable page-content source with the purpose of each page. Run `npm run copy:build` after editing it. This regenerates `hp_content` and the native HTML in the shared `hp-page-copy` snippet. Each text node is translated individually, keeping HTML structure intact while enforcing Shopify’s 1000-character value and 3400-entry limits. Existing Shopify page IDs, handles, publication states and template assignments are retained. The theme controls the visible owned-page bodies and metadata; native Admin body fields are not overwritten by this update.
 
 The published theme is connected to `homepage/design-09`. Verify the connected theme’s files after the Git update. A repository commit by itself is not evidence of a completed storefront sync.
 

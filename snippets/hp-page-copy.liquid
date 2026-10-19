@@ -1,0 +1,188 @@
+{% doc %}
+Renders owned page markup with length-limited text translations.
+@param {object} page - Current Shopify page.
+{% enddoc %}
+{%- case page.handle -%}
+{%- when 'about' -%}
+<div class="hi-about-prologue">
+  <p class="hi-prose__eyebrow">{{ 'hp_content.about.copy_1' | t }}</p>
+  <h2>{{ 'hp_content.about.copy_2' | t }}</h2>
+  <p>{{ 'hp_content.about.copy_3' | t }}</p>
+  <p>{{ 'hp_content.about.copy_4' | t }}</p>
+  <p>{{ 'hp_content.about.copy_5' | t }}</p>
+</div>
+<div class="hi-about-chapters">
+  <article class="hi-about-chapter"><span>{{ 'hp_content.about.copy_6' | t }}</span><div>
+    <h2>{{ 'hp_content.about.copy_7' | t }}</h2>
+    <p>{{ 'hp_content.about.copy_8' | t }}</p>
+  </div></article>
+  <article class="hi-about-chapter"><span>{{ 'hp_content.about.copy_9' | t }}</span><div>
+    <h2>{{ 'hp_content.about.copy_10' | t }}</h2>
+    <p>{{ 'hp_content.about.copy_11' | t }}</p>
+  </div></article>
+  <article class="hi-about-chapter"><span>{{ 'hp_content.about.copy_12' | t }}</span><div>
+    <h2>{{ 'hp_content.about.copy_13' | t }}</h2>
+    <p>{{ 'hp_content.about.copy_14' | t }}</p>
+  </div></article>
+</div>
+<div class="hi-about-letter"><span>{{ 'hp_content.about.copy_15' | t }}</span>
+  <p>{{ 'hp_content.about.copy_16' | t }}</p>
+  <strong>{{ 'hp_content.about.copy_17' | t }}<i>{{ 'hp_content.about.copy_18' | t }}</i></strong>
+</div>
+<div class="hi-about-next">
+  <h2>{{ 'hp_content.about.copy_19' | t }}</h2>
+  <p>{{ 'hp_content.about.copy_20' | t }}</p>
+  <p><a href="/pages/first-find">{{ 'hp_content.about.copy_21' | t }}</a>{{ 'hp_content.about.copy_22' | t }}<a href="/pages/guides">{{ 'hp_content.about.copy_23' | t }}</a>{{ 'hp_content.about.copy_24' | t }}<a href="/pages/contact">{{ 'hp_content.about.copy_25' | t }}</a></p>
+</div>
+{%- when 'contact' -%}
+<h2>{{ 'hp_content.contact.copy_1' | t }}</h2>
+<p>{{ 'hp_content.contact.copy_2' | t }}</p>
+<p>{{ 'hp_content.contact.copy_3' | t }}<a href="mailto:support@entity-e.com">{{ 'hp_content.contact.copy_4' | t }}</a>{{ 'hp_content.contact.copy_5' | t }}</p>
+<h2>{{ 'hp_content.contact.copy_6' | t }}</h2>
+<p>{{ 'hp_content.contact.copy_7' | t }}</p>
+<h2>{{ 'hp_content.contact.copy_8' | t }}</h2>
+<p>{{ 'hp_content.contact.copy_9' | t }}</p>
+<h2>{{ 'hp_content.contact.copy_10' | t }}</h2>
+<p>{{ 'hp_content.contact.copy_11' | t }}<a href="/pages/privacy">{{ 'hp_content.contact.copy_12' | t }}</a>{{ 'hp_content.contact.copy_13' | t }}</p>
+<p>{{ 'hp_content.contact.copy_14' | t }}</p>
+{%- when 'help' -%}
+<h2>{{ 'hp_content.help.copy_1' | t }}</h2>
+<p>{{ 'hp_content.help.copy_2' | t }}</p>
+<ul>
+<li><a href="/pages/shipping">{{ 'hp_content.help.copy_3' | t }}</a>{{ 'hp_content.help.copy_4' | t }}</li>
+<li><a href="/pages/returns">{{ 'hp_content.help.copy_5' | t }}</a>{{ 'hp_content.help.copy_6' | t }}</li>
+<li><a href="/pages/track-order">{{ 'hp_content.help.copy_7' | t }}</a>{{ 'hp_content.help.copy_8' | t }}</li>
+<li><a href="/pages/contact">{{ 'hp_content.help.copy_9' | t }}</a>{{ 'hp_content.help.copy_10' | t }}</li>
+</ul>
+<h2>{{ 'hp_content.help.copy_11' | t }}</h2>
+<p>{{ 'hp_content.help.copy_12' | t }}<a href="/pages/first-find">{{ 'hp_content.help.copy_13' | t }}</a>{{ 'hp_content.help.copy_14' | t }}</p>
+<h2>{{ 'hp_content.help.copy_15' | t }}</h2>
+<p>{{ 'hp_content.help.copy_16' | t }}</p>
+<h2>{{ 'hp_content.help.copy_17' | t }}</h2>
+<p>{{ 'hp_content.help.copy_18' | t }}<a href="/pages/guides">{{ 'hp_content.help.copy_19' | t }}</a>{{ 'hp_content.help.copy_20' | t }}</p>
+<h2>{{ 'hp_content.help.copy_21' | t }}</h2>
+<p>{{ 'hp_content.help.copy_22' | t }}<a href="mailto:support@entity-e.com">{{ 'hp_content.help.copy_23' | t }}</a>{{ 'hp_content.help.copy_24' | t }}<a href="/pages/contact">{{ 'hp_content.help.copy_25' | t }}</a>{{ 'hp_content.help.copy_26' | t }}</p>
+{%- when 'shipping' -%}
+<h2>{{ 'hp_content.shipping.copy_1' | t }}</h2>
+<p>{{ 'hp_content.shipping.copy_2' | t }}</p>
+<h2>{{ 'hp_content.shipping.copy_3' | t }}</h2>
+<p>{{ 'hp_content.shipping.copy_4' | t }}</p>
+<h2>{{ 'hp_content.shipping.copy_5' | t }}</h2>
+<p>{{ 'hp_content.shipping.copy_6' | t }}</p>
+<p>{{ 'hp_content.shipping.copy_7' | t }}</p>
+<h2>{{ 'hp_content.shipping.copy_8' | t }}</h2>
+<p>{{ 'hp_content.shipping.copy_9' | t }}<strong>{{ 'hp_content.shipping.copy_10' | t }}</strong>{{ 'hp_content.shipping.copy_11' | t }}</p>
+<h2>{{ 'hp_content.shipping.copy_12' | t }}</h2>
+<p>{{ 'hp_content.shipping.copy_13' | t }}</p>
+<h2>{{ 'hp_content.shipping.copy_14' | t }}</h2>
+<p><a href="/pages/contact">{{ 'hp_content.shipping.copy_15' | t }}</a>{{ 'hp_content.shipping.copy_16' | t }}</p>
+{%- when 'returns' -%}
+<h2>{{ 'hp_content.returns.copy_1' | t }}</h2>
+<p>{{ 'hp_content.returns.copy_2' | t }}</p>
+<h2>{{ 'hp_content.returns.copy_3' | t }}</h2>
+<p>{{ 'hp_content.returns.copy_4' | t }}</p>
+<h2>{{ 'hp_content.returns.copy_5' | t }}</h2>
+<p>{{ 'hp_content.returns.copy_6' | t }}</p>
+<h2>{{ 'hp_content.returns.copy_7' | t }}</h2>
+<p><a href="/pages/contact">{{ 'hp_content.returns.copy_8' | t }}</a>{{ 'hp_content.returns.copy_9' | t }}</p>
+<h2>{{ 'hp_content.returns.copy_10' | t }}</h2>
+<p>{{ 'hp_content.returns.copy_11' | t }}</p>
+<p>{{ 'hp_content.returns.copy_12' | t }}<a href="/pages/contact">{{ 'hp_content.returns.copy_13' | t }}</a>{{ 'hp_content.returns.copy_14' | t }}</p>
+{%- when 'track-order' -%}
+<h2>{{ 'hp_content.track_order.copy_1' | t }}</h2>
+<p>{{ 'hp_content.track_order.copy_2' | t }}</p>
+<h2>{{ 'hp_content.track_order.copy_3' | t }}</h2>
+<p>{{ 'hp_content.track_order.copy_4' | t }}</p>
+<h2>{{ 'hp_content.track_order.copy_5' | t }}</h2>
+<p><a href="/pages/contact">{{ 'hp_content.track_order.copy_6' | t }}</a>{{ 'hp_content.track_order.copy_7' | t }}</p>
+<p>{{ 'hp_content.track_order.copy_8' | t }}</p>
+{%- when 'first-find' -%}
+<h2>{{ 'hp_content.first_find.copy_1' | t }}</h2>
+<p>{{ 'hp_content.first_find.copy_2' | t }}</p>
+<p>{{ 'hp_content.first_find.copy_3' | t }}</p>
+<p>{{ 'hp_content.first_find.copy_4' | t }}</p>
+<p><a href="/pages/about">{{ 'hp_content.first_find.copy_5' | t }}</a>{{ 'hp_content.first_find.copy_6' | t }}<a href="/pages/guides">{{ 'hp_content.first_find.copy_7' | t }}</a>{{ 'hp_content.first_find.copy_8' | t }}<a href="/pages/contact">{{ 'hp_content.first_find.copy_9' | t }}</a></p>
+{%- when 'guides' -%}
+<div class="hi-guides-opening">
+<h2>{{ 'hp_content.guides.copy_1' | t }}</h2>
+<p>{{ 'hp_content.guides.copy_2' | t }}</p>
+</div>
+<h2><a href="/pages/guide-before-ordering">{{ 'hp_content.guides.copy_3' | t }}</a></h2>
+<p>{{ 'hp_content.guides.copy_4' | t }}</p>
+<h2><a href="/pages/guide-fit">{{ 'hp_content.guides.copy_5' | t }}</a></h2>
+<p>{{ 'hp_content.guides.copy_6' | t }}</p>
+<h2><a href="/pages/guide-use-and-care">{{ 'hp_content.guides.copy_7' | t }}</a></h2>
+<p>{{ 'hp_content.guides.copy_8' | t }}</p>
+<p>{{ 'hp_content.guides.copy_9' | t }}</p>
+{%- when 'guide-before-ordering' -%}
+<h2>{{ 'hp_content.guide_before_ordering.copy_1' | t }}</h2>
+<p>{{ 'hp_content.guide_before_ordering.copy_2' | t }}</p>
+<ol>
+<li><strong>{{ 'hp_content.guide_before_ordering.copy_3' | t }}</strong>{{ 'hp_content.guide_before_ordering.copy_4' | t }}</li>
+<li><strong>{{ 'hp_content.guide_before_ordering.copy_5' | t }}</strong>{{ 'hp_content.guide_before_ordering.copy_6' | t }}</li>
+<li><strong>{{ 'hp_content.guide_before_ordering.copy_7' | t }}</strong>{{ 'hp_content.guide_before_ordering.copy_8' | t }}</li>
+<li><strong>{{ 'hp_content.guide_before_ordering.copy_9' | t }}</strong>{{ 'hp_content.guide_before_ordering.copy_10' | t }}</li>
+<li><strong>{{ 'hp_content.guide_before_ordering.copy_11' | t }}</strong>{{ 'hp_content.guide_before_ordering.copy_12' | t }}</li>
+</ol>
+<h2>{{ 'hp_content.guide_before_ordering.copy_13' | t }}</h2>
+<p>{{ 'hp_content.guide_before_ordering.copy_14' | t }}<a href="/pages/contact">{{ 'hp_content.guide_before_ordering.copy_15' | t }}</a>{{ 'hp_content.guide_before_ordering.copy_16' | t }}</p>
+{%- when 'guide-fit' -%}
+<h2>{{ 'hp_content.guide_fit.copy_1' | t }}</h2>
+<p>{{ 'hp_content.guide_fit.copy_2' | t }}</p>
+<h2>{{ 'hp_content.guide_fit.copy_3' | t }}</h2>
+<p>{{ 'hp_content.guide_fit.copy_4' | t }}</p>
+<h2>{{ 'hp_content.guide_fit.copy_5' | t }}</h2>
+<p>{{ 'hp_content.guide_fit.copy_6' | t }}</p>
+<h2>{{ 'hp_content.guide_fit.copy_7' | t }}</h2>
+<p>{{ 'hp_content.guide_fit.copy_8' | t }}</p>
+<h2>{{ 'hp_content.guide_fit.copy_9' | t }}</h2>
+<p>{{ 'hp_content.guide_fit.copy_10' | t }}<a href="/pages/contact">{{ 'hp_content.guide_fit.copy_11' | t }}</a>{{ 'hp_content.guide_fit.copy_12' | t }}</p>
+{%- when 'guide-use-and-care' -%}
+<h2>{{ 'hp_content.guide_use_and_care.copy_1' | t }}</h2>
+<p>{{ 'hp_content.guide_use_and_care.copy_2' | t }}</p>
+<h2>{{ 'hp_content.guide_use_and_care.copy_3' | t }}</h2>
+<p>{{ 'hp_content.guide_use_and_care.copy_4' | t }}</p>
+<h2>{{ 'hp_content.guide_use_and_care.copy_5' | t }}</h2>
+<p>{{ 'hp_content.guide_use_and_care.copy_6' | t }}</p>
+<h2>{{ 'hp_content.guide_use_and_care.copy_7' | t }}</h2>
+<p>{{ 'hp_content.guide_use_and_care.copy_8' | t }}</p>
+<h2>{{ 'hp_content.guide_use_and_care.copy_9' | t }}</h2>
+<p><a href="/pages/contact">{{ 'hp_content.guide_use_and_care.copy_10' | t }}</a>{{ 'hp_content.guide_use_and_care.copy_11' | t }}</p>
+{%- when 'privacy' -%}
+<h2>{{ 'hp_content.privacy.copy_1' | t }}</h2>
+<p>{{ 'hp_content.privacy.copy_2' | t }}</p>
+<h2>{{ 'hp_content.privacy.copy_3' | t }}</h2>
+<p>{{ 'hp_content.privacy.copy_4' | t }}</p>
+<h2>{{ 'hp_content.privacy.copy_5' | t }}</h2>
+<p>{{ 'hp_content.privacy.copy_6' | t }}</p>
+<h2>{{ 'hp_content.privacy.copy_7' | t }}</h2>
+<p>{{ 'hp_content.privacy.copy_8' | t }}</p>
+<h2>{{ 'hp_content.privacy.copy_9' | t }}</h2>
+<p><a href="/pages/contact">{{ 'hp_content.privacy.copy_10' | t }}</a>{{ 'hp_content.privacy.copy_11' | t }}<a href="/pages/data-sharing-opt-out">{{ 'hp_content.privacy.copy_12' | t }}</a>{{ 'hp_content.privacy.copy_13' | t }}<a href="/pages/cookies">{{ 'hp_content.privacy.copy_14' | t }}</a>{{ 'hp_content.privacy.copy_15' | t }}</p>
+{%- when 'terms' -%}
+<h2>{{ 'hp_content.terms.copy_1' | t }}</h2>
+<p>{{ 'hp_content.terms.copy_2' | t }}</p>
+<h2>{{ 'hp_content.terms.copy_3' | t }}</h2>
+<p>{{ 'hp_content.terms.copy_4' | t }}<a href="/pages/contact">{{ 'hp_content.terms.copy_5' | t }}</a>{{ 'hp_content.terms.copy_6' | t }}</p>
+<h2>{{ 'hp_content.terms.copy_7' | t }}</h2>
+<p>{{ 'hp_content.terms.copy_8' | t }}</p>
+<h2>{{ 'hp_content.terms.copy_9' | t }}</h2>
+<p>{{ 'hp_content.terms.copy_10' | t }}</p>
+<p>{{ 'hp_content.terms.copy_11' | t }}<a href="/pages/shipping">{{ 'hp_content.terms.copy_12' | t }}</a>{{ 'hp_content.terms.copy_13' | t }}<a href="/pages/returns">{{ 'hp_content.terms.copy_14' | t }}</a>{{ 'hp_content.terms.copy_15' | t }}</p>
+<h2>{{ 'hp_content.terms.copy_16' | t }}</h2>
+<p>{{ 'hp_content.terms.copy_17' | t }}<a href="/pages/contact">{{ 'hp_content.terms.copy_18' | t }}</a>{{ 'hp_content.terms.copy_19' | t }}</p>
+{%- when 'cookies' -%}
+<h2>{{ 'hp_content.cookies.copy_1' | t }}</h2>
+<p>{{ 'hp_content.cookies.copy_2' | t }}</p>
+<h2>{{ 'hp_content.cookies.copy_3' | t }}</h2>
+<p>{{ 'hp_content.cookies.copy_4' | t }}</p>
+<h2>{{ 'hp_content.cookies.copy_5' | t }}</h2>
+<p>{{ 'hp_content.cookies.copy_6' | t }}<a href="/pages/data-sharing-opt-out">{{ 'hp_content.cookies.copy_7' | t }}</a>{{ 'hp_content.cookies.copy_8' | t }}</p>
+<h2>{{ 'hp_content.cookies.copy_9' | t }}</h2>
+<p>{{ 'hp_content.cookies.copy_10' | t }}<a href="/pages/privacy">{{ 'hp_content.cookies.copy_11' | t }}</a>{{ 'hp_content.cookies.copy_12' | t }}<a href="/pages/contact">{{ 'hp_content.cookies.copy_13' | t }}</a>{{ 'hp_content.cookies.copy_14' | t }}</p>
+{%- when 'social' -%}
+<h2>{{ 'hp_content.social.copy_1' | t }}</h2>
+<p>{{ 'hp_content.social.copy_2' | t }}</p>
+<p>{{ 'hp_content.social.copy_3' | t }}</p>
+<p><a href="/pages/first-find">{{ 'hp_content.social.copy_4' | t }}</a>{{ 'hp_content.social.copy_5' | t }}<a href="/pages/contact">{{ 'hp_content.social.copy_6' | t }}</a></p>
+{%- endcase -%}

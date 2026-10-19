@@ -7,7 +7,7 @@
     </div>
   </div></div>
   <div class="hi-wrap hi-page__content"><div class="hi-prose">
-    {{ 'hp_content.social.body_html' | t }}
+    {% render 'hp-page-copy', page: page %}
   </div></div>
 </section>
 {% schema %}

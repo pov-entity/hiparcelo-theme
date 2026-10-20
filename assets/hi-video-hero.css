@@ -39,8 +39,8 @@
   filter:saturate(.96) contrast(1.02);
 }
 .hi-vhero__still{
-  display:none;
-  z-index:2;
+  display:block;
+  z-index:0;
 }
 .hi-vhero__shade{
   position:absolute;
@@ -300,7 +300,7 @@ body:has(.hi-vhero) .hi-mobile__menu nav a{
   body:has(.hi-vhero) .hi-header__row{width:calc(100% - 36px)}
 }
 @media(prefers-reduced-motion:reduce){
-  .hi-vhero__motion{display:none}
+  .hi-vhero__film{display:none}
   .hi-vhero__still{display:block}
   .hi-vhero__discover,.hi-vhero__chapters a{transition:none}
 }

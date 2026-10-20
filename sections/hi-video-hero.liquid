@@ -19,20 +19,28 @@
       </video>
     {% else %}
       {%- comment -%}
-        Shopify trial blocks video uploads. This is the original 240-frame, 1280x720
-        footage encoded as one animated WebP (10s, 24fps), not a scroll scrubber.
-        It moves automatically, with no JS and no additional hosting cost.
-        A native MP4 takes priority as soon as one is configured above.
+        High-quality original 24fps footage delivered as independent responsive
+        animated WebP files while this Shopify trial blocks native MP4 upload.
+        Desktop uses a 1920x1080 Lanczos-enhanced, sharpened 1080p export; 
+        mobile retains native 1280x720 detail with higher-quality encoding.
+        These are enhanced exports from the 720p original, not native 1080p capture.
+        A native MP4 takes precedence whenever configured above.
       {%- endcomment -%}
-      <img
-        class="hi-vhero__film hi-vhero__motion"
-        src="{{ 'hiparcelo-motion-hero.webp' | file_url }}"
-        alt=""
-        width="1280"
-        height="720"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async">
+      <picture class="hi-vhero__motion-picture">
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ 'hiparcelo-hero-mobile-hq.webp' | file_url }}"
+          type="image/webp">
+        <img
+          class="hi-vhero__film hi-vhero__motion"
+          src="{{ 'hiparcelo-hero-1080p-hq.webp' | file_url }}"
+          alt=""
+          width="1920"
+          height="1080"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async">
+      </picture>
     {% endif %}
     <img
       class="hi-vhero__still"

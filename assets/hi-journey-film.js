@@ -1,7 +1,7 @@
-export function createRenderer(video, sources, onReady, onError) {
+export function createRenderer(video, sources, onReady, onError, fpsHint = 24) {
   const events = new AbortController();
   const { signal } = events;
-  const fps = 30, epsilon = .45 / fps;
+  const fps = Math.max(12, Math.min(120, Number(fpsHint) || 24)), epsilon = .45 / fps;
   let disposed = false, loaded = false, settled = false, selected = '', progress = 0, seeks = 0, width = 1, height = 1, timeout, seekTimeout, requestedTime, rejectedTime;
   let resolveReady, rejectReady;
   const ready = new Promise((resolve, reject) => { resolveReady = resolve; rejectReady = reject; });

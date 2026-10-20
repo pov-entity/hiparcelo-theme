@@ -139,3 +139,14 @@
   .hpj.is-film .hpj-film::after{display:none}
   .hpj.is-film .hpj-poster img{object-fit:cover;width:100%;height:100%}
 }
+
+/* Actual 240-frame delivery footage: Shopify CDN sprite sheets. */
+.hpj.is-sprite .hpj-film{inset:0}
+.hpj.is-sprite .hpj-film::after{background:linear-gradient(90deg,#f5f2e8 0%,rgba(245,242,232,.96) 17%,rgba(245,242,232,.78) 32%,rgba(245,242,232,0) 63%)}
+.hpj.is-sprite .hpj-poster img{width:100%;height:100%;object-fit:cover;mix-blend-mode:normal}
+.hpj.is-sprite .hpj-canvas{background:#f5f2e8}
+@media(max-width:749px){
+ .hpj.is-sprite .hpj-film{inset:36% 0 auto;aspect-ratio:16 / 9;border-radius:8px}
+ .hpj.is-sprite .hpj-film::after{display:none}
+ .hpj.is-sprite .hpj-poster img{object-fit:contain}
+}

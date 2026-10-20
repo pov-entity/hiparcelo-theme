@@ -24,6 +24,7 @@
       { at:.610, stage:2, scene:'FINAL MILE', title:'Closer to home.', body:'A local courier carries the package along the route toward your address.' },
       { at:.787, stage:2, scene:'ARRIVAL', title:'Right where it belongs.', body:'The package is carefully placed at the doorstep.' }
     ];
+// Scroll stage boundaries are aligned to the actual 240 source frames.
     const stageLimits = (video || sprites) ? [0, .157, .510, 1] : [0, .20, .69, 1];
     function draw() {
       frame = 0;

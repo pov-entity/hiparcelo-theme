@@ -14,17 +14,39 @@
     const stages = [...section.querySelectorAll('[data-hpj-stage]')], fills = stages.map(s => s.querySelector('[data-hpj-stage-fill]'));
     let renderer, model, frame = 0, measureFrame = 0, started = false, disposed = false, active = false, lastChapter = -1, lastStage = -1, failed = false;
     let start = 0, distance = 1, mobile = false, width = 1, height = 1, renderCount = 0, generation = 0;
-    const stageLimits = [0, .20, .69, 1];
+    // Scene cuts mapped to the supplied 10s, 24fps film (240 source frames).
+    // Describes the footage; does not imply that we are displaying live order tracking.
+    const filmChapters = [
+      { at:0, stage:0, scene:'PREPARATION', title:'Packed with purpose.', body:'Your parcel is carefully prepared and sealed before dispatch.' },
+      { at:.157, stage:1, scene:'DISPATCH', title:'The journey begins.', body:'After dispatch, the package joins the international shipping network.' },
+      { at:.310, stage:1, scene:'INTERNATIONAL TRANSIT', title:'Across the distance.', body:'Freight travels toward the destination country as the parcel moves through its international journey.' },
+      { at:.510, stage:2, scene:'LOCAL DELIVERY', title:'Into trusted hands.', body:'The parcel is handed into the local delivery network for the final part of its journey.' },
+      { at:.610, stage:2, scene:'FINAL MILE', title:'Closer to home.', body:'A local courier carries the package along the route toward your address.' },
+      { at:.787, stage:2, scene:'ARRIVAL', title:'Right where it belongs.', body:'The package is carefully placed at the doorstep.' }
+    ];
+    const stageLimits = video ? [0, .157, .510, 1] : [0, .20, .69, 1];
     function draw() {
       frame = 0;
       if (!renderer || !model || !active || motion.matches || disposed || document.hidden) return;
-      const p = clamp((window.scrollY - start) / distance), s = model.evaluateJourney(p, mobile);
+      const p = clamp((window.scrollY - start) / distance);
+      const chapterIndex = filmChapters.findLastIndex(ch => p >= ch.at);
+      const filmChapter = filmChapters[Math.max(0, chapterIndex)];
+      const s = video ? { p, chapter:Math.max(0, chapterIndex), stage:filmChapter.stage, parent:'real-film', complete:clamp((p - .965) / .03) } : model.evaluateJourney(p, mobile);
       renderer.render(s); renderCount++;
       section.dataset.hpjProgress = p.toFixed(6); section.dataset.hpjParent = s.parent;
       if (lastChapter !== s.chapter) {
-        lastChapter = s.chapter; title.textContent = copy.titles[s.chapter]; body.textContent = copy.bodies[s.chapter]; scene.textContent = copy.scenes[s.chapter]; counter.textContent = `${String(s.chapter + 1).padStart(2, '0')} / 09`;
+        lastChapter = s.chapter;
+        if (video) {
+          const chapter = filmChapters[s.chapter];
+          title.textContent = chapter.title; body.textContent = chapter.body; scene.textContent = chapter.scene;
+          counter.textContent = `${String(s.chapter + 1).padStart(2, '0')} / 06`;
+        } else {
+          title.textContent = copy.titles[s.chapter]; body.textContent = copy.bodies[s.chapter]; scene.textContent = copy.scenes[s.chapter];
+          counter.textContent = `${String(s.chapter + 1).padStart(2, '0')} / 09`;
+        }
       }
-      const a = model.chapters[s.chapter], b = model.chapters[s.chapter + 1] ?? 1.03;
+      const markers = video ? filmChapters.map(ch => ch.at) : model.chapters;
+      const a = markers[s.chapter], b = markers[s.chapter + 1] ?? 1.03;
       const fade = Math.min(model.span(p, a, a + .003) || (p < .003 ? 1 : 0), 1 - model.span(p, b - .003, b));
       caption.style.opacity = (.75 + .25 * fade).toFixed(4);
       if (lastStage !== s.stage) { lastStage = s.stage; stages.forEach((el, i) => { if (i === s.stage) el.setAttribute('aria-current', 'step'); else el.removeAttribute('aria-current'); }); }
@@ -58,7 +80,7 @@
         if (ticket !== generation || disposed || motion.matches) { if (ticket === generation) started = false; return; }
         model = timeline;
         const mediaError = error => { section.dataset.hpjError = error.message; fallback(); };
-        renderer = video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, mediaError) : photos ? world.createRenderer(canvas, JSON.parse(photos.textContent), queue, mediaError) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
+        renderer = video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, mediaError, Number(section.dataset.hpjFilmFps || 24)) : photos ? world.createRenderer(canvas, JSON.parse(photos.textContent), queue, mediaError) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
         measure();
         if (video || photos) await renderer.ready;
         if (ticket !== generation || disposed || motion.matches) return;

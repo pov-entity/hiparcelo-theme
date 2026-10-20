@@ -34,8 +34,8 @@
       <div class="hpj-film" aria-hidden="true">
         <canvas class="hpj-canvas" data-hpj-canvas></canvas>
         {% if sprite_enabled %}
-          {% assign frame_sheet_indexes = "00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19" | split: "," %}
-          <script type="application/json" data-hpj-sprites>[{% for index in frame_sheet_indexes %}{% assign frame_sheet_filename = "hiparcelo-delivery-sheet-" | append: index | append: ".webp" %}{{ frame_sheet_filename | file_url | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>
+          {% assign frame_sheet_indexes = "00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39" | split: "," %}
+          <script type="application/json" data-hpj-sprites>[{% for index in frame_sheet_indexes %}{% assign frame_sheet_filename = "hiparcelo-delivery-hd-" | append: index | append: ".webp" %}{{ frame_sheet_filename | file_url | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>
         {% endif %}
         {% if photo_enabled %}
           <script type="application/json" data-hpj-photos>[{% for key in photo_keys %}{% assign photo_name = 'hi-journey-photo-' | append: key | append: '.webp' %}{% assign mobile_photo_name = 'hi-journey-photo-' | append: key | append: '-mobile.webp' %}{"key":{{ key | json }},"desktop":{{ photo_name | asset_url | json }},"mobile":{{ mobile_photo_name | asset_url | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]</script>

@@ -62,7 +62,7 @@ export function createRenderer(canvas, urls, onReady, onError) {
       else dw = h * sourceRatio;
     }
     const dx = (w - dw) / 2, dy = (h - dh) / 2;
-    ctx.fillStyle = '#f5f2e8'; ctx.fillRect(0, 0, w, h);
+    ctx.fillStyle = '#0b1f3a'; ctx.fillRect(0, 0, w, h);
     ctx.drawImage(image, x, y, frameWidth, frameHeight, dx, dy, dw, dh);
     draws++;
   }

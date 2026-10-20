@@ -1,11 +1,11 @@
 // HiParcelo delivery: native-frame sprite renderer.
-// Source sequence: 240 captured frames at 24 FPS, 20 images, 12 frames each.
-// Source frame size: 720x405; sprite grid: 4 columns by 3 rows.
+// Source sequence: 240 full-HD source frames at 24 FPS, 40 images, 6 frames each.
+// Source frame size: 1280x720; sprite grid: 3 columns by 2 rows.
 export function createRenderer(canvas, urls, onReady, onError) {
   const ctx = canvas.getContext('2d', { alpha: false });
-  if (!ctx || !Array.isArray(urls) || urls.length !== 20) throw new Error('Delivery frames unavailable');
-  const columns = 4, frameWidth = 720, frameHeight = 405, perSheet = 12, frameCount = 240;
-  const frames = new Map(), maxSheets = 4;
+  if (!ctx || !Array.isArray(urls) || urls.length !== 40) throw new Error('Delivery frames unavailable');
+  const columns = 3, frameWidth = 1280, frameHeight = 720, perSheet = 6, frameCount = 240;
+  const frames = new Map(), maxSheets = 3;
   let disposed = false, currentProgress = 0, pixelWidth = 0, pixelHeight = 0;
   let mobileMode = false, draws = 0, requested = 0, failures = 0;
   let resolved = false, readyResolve, readyReject;
@@ -85,7 +85,7 @@ export function createRenderer(canvas, urls, onReady, onError) {
     ready,
     resize(width, height, dpr, mobile) {
       mobileMode = !!mobile;
-      const ratio = Math.max(1, Math.min(1.75, dpr || 1));
+      const ratio = Math.max(1, Math.min(1.5, dpr || 1));
       pixelWidth = Math.max(1, Math.round(width * ratio));
       pixelHeight = Math.max(1, Math.round(height * ratio));
       if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {

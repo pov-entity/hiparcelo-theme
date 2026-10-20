@@ -38,6 +38,15 @@ export function createRenderer(canvas, urls, onReady, onError) {
     queueSheet(index - direction, weight + 8);
     queueSheet(index + direction * 2, weight + 3);
     if (!mobile) queueSheet(index - direction * 2, weight);
+    // Drop stale speculative requests after rapid direction changes.
+    if (pending.size > 12) {
+      const wanted = sheetIndex(Math.round(target * (frameCount - 1)));
+      for (const pendingIndex of pending.keys()) {
+        if (Math.abs(pendingIndex - index) > 3 && Math.abs(pendingIndex - wanted) > 3) {
+          pending.delete(pendingIndex);
+        }
+      }
+    }
     pump();
   }
 
@@ -228,6 +237,14 @@ export function createRenderer(canvas, urls, onReady, onError) {
       if (disposed) return;
       const next = clamp(Number(state?.p) || 0);
       direction = next >= target ? 1 : -1;
+      // Dragging the scrollbar far ahead is a seek, not an invitation to download
+      // all intervening sheets; go straight to the intended HD frame.
+      if (Math.abs(next - visual) > .18) {
+        visual = next;
+        lastStamp = 0;
+        paintKey = '';
+        pending.clear();
+      }
       target = next;
       requestWindow(target * (frameCount - 1), 160);
       schedule();

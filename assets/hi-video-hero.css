@@ -304,3 +304,35 @@ body:has(.hi-vhero) .hi-mobile__menu nav a{
   .hi-vhero__still{display:block}
   .hi-vhero__discover,.hi-vhero__chapters a{transition:none}
 }
+
+
+/* Rich navy cinematic tint — retain bright footage, improve text contrast. */
+.hi-vhero{background:#0b1f3a;}
+.hi-vhero__media{background:#0b1f3a;}
+.hi-vhero__film{filter:none;image-rendering:auto;}
+.hi-vhero__shade{
+  background:
+    linear-gradient(180deg,
+      rgba(5,18,43,.42) 0%,
+      rgba(7,25,55,.14) 23%,
+      rgba(7,25,55,.13) 54%,
+      rgba(3,17,41,.77) 100%),
+    linear-gradient(90deg,
+      rgba(4,22,53,.75) 0%,
+      rgba(8,33,70,.56) 27%,
+      rgba(11,31,58,.30) 55%,
+      rgba(11,31,58,.21) 100%);
+}
+@media(max-width:749px){
+  .hi-vhero__shade{
+    background:
+      linear-gradient(180deg,
+        rgba(4,20,48,.69) 0%,
+        rgba(5,23,54,.32) 27%,
+        rgba(6,22,48,.22) 48%,
+        rgba(4,20,45,.84) 100%),
+      linear-gradient(90deg,
+        rgba(7,26,58,.42),
+        rgba(7,26,58,.24));
+  }
+}

@@ -34,7 +34,10 @@
     },
     "journey": {
       "type": "hi-delivery-journey",
-      "settings": {"presentation":"photographic"}
+      "settings": {
+        "presentation": "photographic",
+        "use_sprite_sequence": true
+      }
     }
   },
   "order": [

@@ -34,7 +34,7 @@
         "presentation": "photographic",
         "use_sprite_sequence": true,
         "hero_mode": true,
-        "desktop_length": 500,
+        "desktop_length":500,
         "mobile_length": 600
       }
     }

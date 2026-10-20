@@ -6,7 +6,7 @@
   const clamp = x => Math.max(0, Math.min(1, x));
   function init(section) {
     if (mounted.has(section)) return;
-    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]'), video = q('[data-hpj-video]'), photos = q('[data-hpj-photos]'), media = video || canvas;
+    const q = s => section.querySelector(s), track = q('[data-hpj-track]'), pin = q('.hpj-pin'), canvas = q('[data-hpj-canvas]'), video = q('[data-hpj-video]'), photos = q('[data-hpj-photos]'), sprites = q('[data-hpj-sprites]'), media = video || canvas;
     if (!track || !pin || !media) return;
     const abort = new AbortController(), { signal } = abort;
     const copy = JSON.parse(q('[data-hpj-copy]').textContent);
@@ -24,19 +24,19 @@
       { at:.610, stage:2, scene:'FINAL MILE', title:'Closer to home.', body:'A local courier carries the package along the route toward your address.' },
       { at:.787, stage:2, scene:'ARRIVAL', title:'Right where it belongs.', body:'The package is carefully placed at the doorstep.' }
     ];
-    const stageLimits = video ? [0, .157, .510, 1] : [0, .20, .69, 1];
+    const stageLimits = (video || sprites) ? [0, .157, .510, 1] : [0, .20, .69, 1];
     function draw() {
       frame = 0;
       if (!renderer || !model || !active || motion.matches || disposed || document.hidden) return;
       const p = clamp((window.scrollY - start) / distance);
       const chapterIndex = filmChapters.findLastIndex(ch => p >= ch.at);
       const filmChapter = filmChapters[Math.max(0, chapterIndex)];
-      const s = video ? { p, chapter:Math.max(0, chapterIndex), stage:filmChapter.stage, parent:'real-film', complete:clamp((p - .965) / .03) } : model.evaluateJourney(p, mobile);
+      const s = (video || sprites) ? { p, chapter:Math.max(0, chapterIndex), stage:filmChapter.stage, parent:'real-film', complete:clamp((p - .965) / .03) } : model.evaluateJourney(p, mobile);
       renderer.render(s); renderCount++;
       section.dataset.hpjProgress = p.toFixed(6); section.dataset.hpjParent = s.parent;
       if (lastChapter !== s.chapter) {
         lastChapter = s.chapter;
-        if (video) {
+        if (video || sprites) {
           const chapter = filmChapters[s.chapter];
           title.textContent = chapter.title; body.textContent = chapter.body; scene.textContent = chapter.scene;
           counter.textContent = `${String(s.chapter + 1).padStart(2, '0')} / 06`;
@@ -45,7 +45,7 @@
           counter.textContent = `${String(s.chapter + 1).padStart(2, '0')} / 09`;
         }
       }
-      const markers = video ? filmChapters.map(ch => ch.at) : model.chapters;
+      const markers = (video || sprites) ? filmChapters.map(ch => ch.at) : model.chapters;
       const a = markers[s.chapter], b = markers[s.chapter + 1] ?? 1.03;
       const fade = Math.min(model.span(p, a, a + .003) || (p < .003 ? 1 : 0), 1 - model.span(p, b - .003, b));
       caption.style.opacity = (.75 + .25 * fade).toFixed(4);
@@ -76,13 +76,13 @@
       delete section.dataset.hpjError;
       const ticket = ++generation;
       try {
-        const [world, timeline] = await Promise.all([import(video ? section.dataset.hpjFilmUrl : photos ? section.dataset.hpjPhotoUrl : section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
+        const [world, timeline] = await Promise.all([import(sprites ? section.dataset.hpjSpriteUrl : video ? section.dataset.hpjFilmUrl : photos ? section.dataset.hpjPhotoUrl : section.dataset.hpjWorldUrl), import(section.dataset.hpjModelUrl)]);
         if (ticket !== generation || disposed || motion.matches) { if (ticket === generation) started = false; return; }
         model = timeline;
         const mediaError = error => { section.dataset.hpjError = error.message; fallback(); };
-        renderer = video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, mediaError, Number(section.dataset.hpjFilmFps || 24)) : photos ? world.createRenderer(canvas, JSON.parse(photos.textContent), queue, mediaError) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
+        renderer = sprites ? world.createRenderer(canvas, JSON.parse(sprites.textContent), queue, mediaError) : video ? world.createRenderer(video, JSON.parse(q('[data-hpj-film-sources]').textContent), queue, mediaError, Number(section.dataset.hpjFilmFps || 24)) : photos ? world.createRenderer(canvas, JSON.parse(photos.textContent), queue, mediaError) : world.createRenderer(canvas, section.dataset.hpjTexture, queue, {color:section.dataset.hpjSurface,detail:section.dataset.hpjDetail});
         measure();
-        if (video || photos) await renderer.ready;
+        if (video || photos || sprites) await renderer.ready;
         if (ticket !== generation || disposed || motion.matches) return;
         section.classList.add('is-ready'); section.classList.remove('is-static'); queue();
       } catch (error) { if (ticket !== generation || disposed || motion.matches) return; section.dataset.hpjError = error.message; fallback(); }
@@ -108,7 +108,7 @@
       target?.scrollIntoView({ behavior: 'instant', block: 'start' }); target?.focus({ preventScroll: true });
     }, { signal });
     document.fonts?.ready.then(scheduleMeasure);
-    section.hiJourney = { state: p => model?.evaluateJourney(p ?? clamp((scrollY - start) / distance), mobile), stats: () => ({ renderCount, ...renderer?.stats() }), measure: scheduleMeasure };
+    section.hiJourney = { state: p => (video || sprites) ? { p:p ?? clamp((scrollY - start) / distance), mode:'original-video-frames' } : model?.evaluateJourney(p ?? clamp((scrollY - start) / distance), mobile), stats: () => ({ renderCount, ...renderer?.stats() }), measure: scheduleMeasure };
     mounted.set(section, () => { disposed = true; generation++; abort.abort(); observer.disconnect(); resize.disconnect(); cancelAnimationFrame(frame); cancelAnimationFrame(measureFrame); renderer?.dispose(); delete section.hiJourney; mounted.delete(section); });
     measure();
   }

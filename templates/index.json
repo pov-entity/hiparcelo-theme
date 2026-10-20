@@ -28,19 +28,13 @@
       "type": "hi-last-word",
       "settings": {}
     },
-    "journey": {
-      "type": "hi-delivery-journey",
-      "settings": {
-        "presentation": "photographic",
-        "use_sprite_sequence": true,
-        "hero_mode": true,
-        "desktop_length":500,
-        "mobile_length": 600
-      }
+    "video_hero": {
+      "type": "hi-video-hero",
+      "settings": {}
     }
   },
   "order": [
-    "journey",
+    "video_hero",
     "signals",
     "recognize",
     "method",

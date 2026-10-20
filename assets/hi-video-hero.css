@@ -313,27 +313,27 @@ body:has(.hi-vhero) .hi-mobile__menu nav a{
 .hi-vhero__shade{
   background:
     linear-gradient(180deg,
-      rgba(5,18,43,.42) 0%,
-      rgba(7,25,55,.14) 23%,
-      rgba(7,25,55,.13) 54%,
-      rgba(3,17,41,.77) 100%),
+      rgba(5,18,43,0.52) 0%,
+      rgba(7,25,55,0.24) 23%,
+      rgba(7,25,55,0.23) 54%,
+      rgba(3,17,41,0.87) 100%),
     linear-gradient(90deg,
-      rgba(4,22,53,.75) 0%,
-      rgba(8,33,70,.56) 27%,
-      rgba(11,31,58,.30) 55%,
-      rgba(11,31,58,.21) 100%);
+      rgba(4,22,53,0.85) 0%,
+      rgba(8,33,70,0.66) 27%,
+      rgba(11,31,58,0.40) 55%,
+      rgba(11,31,58,0.31) 100%);
 }
 @media(max-width:749px){
   .hi-vhero__shade{
     background:
       linear-gradient(180deg,
-        rgba(4,20,48,.69) 0%,
-        rgba(5,23,54,.32) 27%,
-        rgba(6,22,48,.22) 48%,
-        rgba(4,20,45,.84) 100%),
+        rgba(4,20,48,0.79) 0%,
+        rgba(5,23,54,0.42) 27%,
+        rgba(6,22,48,0.32) 48%,
+        rgba(4,20,45,0.94) 100%),
       linear-gradient(90deg,
-        rgba(7,26,58,.42),
-        rgba(7,26,58,.24));
+        rgba(7,26,58,0.52),
+        rgba(7,26,58,0.34));
   }
 }
 

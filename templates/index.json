@@ -30,7 +30,12 @@
     },
     "video_hero": {
       "type": "hi-video-hero",
-      "settings": {}
+      "settings": {
+        "eyebrow": "THE ART OF A GOOD FIND",
+        "headline": "Good things start with a little discovery.",
+        "description": "Thoughtful everyday finds, clearly explained. Because the experience should feel right long after you click.",
+        "cta_label": "Get to know us"
+      }
     }
   },
   "order": [

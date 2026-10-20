@@ -1,9 +1,5 @@
 {
   "sections": {
-    "cover": {
-      "type": "hi-editorial-hero",
-      "settings": {}
-    },
     "signals": {
       "type": "hi-signals",
       "settings": {}
@@ -36,15 +32,17 @@
       "type": "hi-delivery-journey",
       "settings": {
         "presentation": "photographic",
-        "use_sprite_sequence":true
+        "use_sprite_sequence": true,
+        "hero_mode": true,
+        "desktop_length": 500,
+        "mobile_length": 600
       }
     }
   },
   "order": [
-    "cover",
+    "journey",
     "signals",
     "recognize",
-    "journey",
     "method",
     "journal",
     "clarity",

@@ -150,3 +150,9 @@
  .hpj.is-sprite .hpj-film::after{display:none}
  .hpj.is-sprite .hpj-poster img{object-fit:contain}
 }
+
+/* Keep the 720p source at approximately native display size on wide monitors. */
+@media(min-width:1200px){
+  .hpj.is-sprite .hpj-film{inset:0 0 0 auto;width:min(78vw,1440px)}
+  .hpj.is-sprite .hpj-film::after{background:linear-gradient(90deg,#f5f2e8 0%,rgba(245,242,232,.74) 8%,rgba(245,242,232,0) 38%)}
+}

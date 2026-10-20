@@ -128,3 +128,7 @@
   .hpj .hpj-static{display:block;position:static;width:auto;height:auto;overflow:visible;clip-path:none;padding:20px 5vw 60px}
   .hpj-canvas{transition:none}
 }
+
+/* Native-film mode preserves readable captions without hiding the footage. */
+.hpj.is-film .hpj-film::after{background:linear-gradient(90deg,rgba(245,242,232,.82) 0%,rgba(245,242,232,.18) 13%,transparent 33%)}
+@media(max-width:749px){.hpj.is-film .hpj-film::after{background:linear-gradient(0deg,#f5f2e8 0%,rgba(245,242,232,.18) 11%,transparent 30%,transparent 76%,rgba(245,242,232,.88) 99%)}}

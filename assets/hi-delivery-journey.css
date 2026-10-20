@@ -128,3 +128,14 @@
   .hpj .hpj-static{display:block;position:static;width:auto;height:auto;overflow:visible;clip-path:none;padding:20px 5vw 60px}
   .hpj-canvas{transition:none}
 }
+
+/* Film follows native 16:9 composition instead of cropping the action.
+   Desktop uses a soft paper gradient for readable copy; mobile preserves the full video frame. */
+.hpj.is-film .hpj-film{inset:0}
+.hpj.is-film .hpj-film::after{background:linear-gradient(90deg,#f5f2e8 0%,rgba(245,242,232,.95) 17%,rgba(245,242,232,.76) 32%,rgba(245,242,232,0) 62%)}
+@media(max-width:749px){
+  .hpj.is-film .hpj-film{inset:36% 0 auto;aspect-ratio:16 / 9;border-radius:8px}
+  .hpj.is-film .hpj-video{object-fit:contain}
+  .hpj.is-film .hpj-film::after{display:none}
+  .hpj.is-film .hpj-poster img{object-fit:cover;width:100%;height:100%}
+}

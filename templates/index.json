@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "signals": {
@@ -30,12 +39,7 @@
     },
     "video_hero": {
       "type": "hi-video-hero",
-      "settings": {
-        "eyebrow": "THE ART OF A GOOD FIND",
-        "headline": "Good things start with a little discovery.",
-        "description": "Thoughtful everyday finds, clearly explained. Because the experience should feel right long after you click.",
-        "cta_label": "Get to know us"
-      }
+      "settings": {}
     }
   },
   "order": [

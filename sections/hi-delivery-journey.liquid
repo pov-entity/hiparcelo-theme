@@ -11,7 +11,7 @@
   assign film_sources = section.settings.journey_film.sources | where: 'mime_type', 'video/mp4'
   assign mobile_film_sources = section.settings.journey_film_mobile.sources | where: 'mime_type', 'video/mp4'
   assign film_enabled = false
-  if film_sources.size > 0
+  if film_sources.size > 0 or section.settings.film_url != blank
     assign film_enabled = true
   endif
   assign photo_enabled = false
@@ -20,7 +20,7 @@
   endif
   assign photo_keys = 'packing,dispatch,cargo,takeoff,ocean,arrival,customs,truck-loading,road,carrying,placing,delivered' | split: ','
 %}
-<section class="hpj{% if film_enabled %} is-film{% endif %}{% if photo_enabled %} is-photo{% endif %}" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-film-url="{{ 'hi-journey-film.js' | asset_url }}" data-hpj-photo-url="{{ 'hi-journey-photography.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-surface="{{ 'hi-journey-materials-color.webp' | asset_url }}" data-hpj-detail="{{ 'hi-journey-materials-detail.webp' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
+<section class="hpj{% if film_enabled %} is-film{% endif %}{% if photo_enabled %} is-photo{% endif %}" id="hi-delivery-journey-{{ section.id }}" aria-labelledby="hpj-title-{{ section.id }}" data-hpj data-hpj-world-url="{{ 'hi-journey-world.js' | asset_url }}" data-hpj-film-url="{{ 'hi-journey-film.js' | asset_url }}" data-hpj-photo-url="{{ 'hi-journey-photography.js' | asset_url }}" data-hpj-model-url="{{ 'hi-journey-model.js' | asset_url }}" data-hpj-surface="{{ 'hi-journey-materials-color.webp' | asset_url }}" data-hpj-detail="{{ 'hi-journey-materials-detail.webp' | asset_url }}" data-hpj-texture="{{ 'hi-journey-package-2026.webp' | asset_url }}" data-hpj-film-fps="{{ section.settings.film_fps | default: 24 }}" style="--hpj-desktop-length:{{ section.settings.desktop_length }}svh;--hpj-mobile-length:{{ section.settings.mobile_length }}svh">
   <div class="hpj-intro">
     <p class="hpj-eyebrow">{{ 'hi_journey.eyebrow' | t }}</p>
     <h2 id="hpj-title-{{ section.id }}">{{ 'hi_journey.heading' | t }}</h2>
@@ -35,7 +35,7 @@
         {% endif %}
         {% if film_enabled %}
           <video class="hpj-video" data-hpj-video muted playsinline preload="none" tabindex="-1" disablepictureinpicture disableremoteplayback></video>
-          <script type="application/json" data-hpj-film-sources>{"desktop":[{% for source in film_sources %}{"url":{{ source.url | json }},"type":{{ source.mime_type | json }},"width":{{ source.width | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}],"mobile":[{% for source in mobile_film_sources %}{"url":{{ source.url | json }},"type":{{ source.mime_type | json }},"width":{{ source.width | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
+          <script type="application/json" data-hpj-film-sources>{"desktop":[{% for source in film_sources %}{"url":{{ source.url | json }},"type":{{ source.mime_type | json }},"width":{{ source.width | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}{% if film_sources.size == 0 and section.settings.film_url != blank %}{"url":{{ section.settings.film_url | json }},"type":"video/mp4","width":1280}{% endif %}],"mobile":[{% for source in mobile_film_sources %}{"url":{{ source.url | json }},"type":{{ source.mime_type | json }},"width":{{ source.width | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
         {% endif %}
         <div class="hpj-poster" data-hpj-poster>{% if photo_enabled %}<img src="{{ 'hi-journey-photo-packing.webp' | asset_url }}" srcset="{{ 'hi-journey-photo-packing-mobile.webp' | asset_url }} 840w, {{ 'hi-journey-photo-packing.webp' | asset_url }} 1536w" sizes="(max-width:749px) 100vw, 76vw" width="1536" height="1024" alt="" loading="lazy" decoding="async">{% elsif film_enabled and section.settings.journey_film.preview_image != blank %}<img src="{{ section.settings.journey_film.preview_image | image_url: width: 1920 }}" width="{{ section.settings.journey_film.preview_image.width }}" height="{{ section.settings.journey_film.preview_image.height }}" alt="" loading="lazy" decoding="async">{% else %}<img src="{{ 'hi-journey-package-2026.webp' | asset_url }}" width="1042" height="751" alt="" loading="lazy" decoding="async">{% endif %}</div>
       </div>
@@ -82,6 +82,8 @@
     {"type":"select","id":"presentation","label":"t:hi_journey.presentation","default":"photographic","options":[{"value":"photographic","label":"t:hi_journey.photographic"},{"value":"three_dimensional","label":"t:hi_journey.three_dimensional"}]},
     {"type":"video","id":"journey_film","label":"t:hi_journey.journey_film","info":"t:hi_journey.journey_film_info"},
     {"type":"video","id":"journey_film_mobile","label":"t:hi_journey.journey_film_mobile","info":"t:hi_journey.journey_film_mobile_info"},
+    {"type":"text","id":"film_url","label":"Hosted MP4 URL (optional)","info":"Use an HTTPS MP4 URL if Shopify Files is unavailable. Leave blank when selecting a video above."},
+    {"type":"range","id":"film_fps","min":24,"max":60,"step":12,"default":24,"label":"Source video frame rate"},
     {"type":"paragraph","content":"t:hi_journey.estimates_info"},
     {"type":"range","id":"preparation_days","min":1,"max":10,"step":1,"default":2,"label":"t:hi_journey.preparation_days"},
     {"type":"range","id":"international_days","min":1,"max":30,"step":1,"default":7,"label":"t:hi_journey.international_days"},

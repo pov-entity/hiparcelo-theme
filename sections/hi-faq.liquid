@@ -1,0 +1,19 @@
+<section class="hi hi-support hi-home-faq" aria-labelledby="hi-home-faq-title">
+  <div class="hi-wrap hi-support__grid">
+    <div class="hi-support__sidebar">
+      <p class="hi-kicker">{{ 'hiparcelo.faq.eyebrow' | t }}</p>
+      <h2 id="hi-home-faq-title">{{ 'hiparcelo.faq.heading' | t }}</h2>
+      <p>{{ 'hiparcelo.faq.copy' | t }}</p>
+      <a class="hi-text-link" href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}" style="margin-top:23px">{{ 'hp_store.common.help' | t }} <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="hi-support__list">
+      <details open><summary>{{ 'hiparcelo.faq.products_question' | t }}</summary><div>{{ 'hiparcelo.faq.products_answer' | t }}</div></details>
+      <details><summary>{{ 'hiparcelo.faq.delivery_question' | t }}</summary><div>{{ 'hiparcelo.faq.delivery_answer' | t }}</div></details>
+      <details><summary>{{ 'hiparcelo.faq.returns_question' | t }}</summary><div>{{ 'hiparcelo.faq.returns_answer' | t }}</div></details>
+      <details><summary>{{ 'hiparcelo.faq.help_question' | t }}</summary><div>{{ 'hiparcelo.faq.help_answer' | t }}</div></details>
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"HiParcelo FAQs","settings":[],"presets":[{"name":"HiParcelo FAQs"}]}
+{% endschema %}

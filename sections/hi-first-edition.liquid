@@ -1,0 +1,16 @@
+<section class="hi hi-first" id="hi-first" aria-labelledby="hi-first-title">
+ <div class="hi-wrap hi-first__layout">
+   <div class="hi-first__seal"><span class="hi-first__seal-outer" aria-hidden="true">FIRST EDITION • CONSIDERED FINDS •</span><span class="hi-first__seal-middle">H<span>✳</span>P</span><span class="hi-first__seal-caption">EST. / IN PROGRESS</span></div>
+   <div class="hi-first__story" data-hi-reveal>
+     <p class="hi-kicker">{{ 'hi_edit.first_kicker' | t }}</p>
+     <h2 id="hi-first-title">{{ 'hi_edit.first_head_a' | t }}<em>{{ 'hi_edit.first_head_b' | t }}</em></h2>
+     <p>{{ 'hi_edit.first_copy' | t }}</p>
+     <p class="hi-first__status"><span class="hi-first__status-dot" aria-hidden="true"></span>{{ 'hi_edit.first_status' | t }}</p>
+     <a class="hi-btn hi-btn--dark" href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hi_edit.first_link' | t }} <span aria-hidden="true">↗</span></a>
+   </div>
+   <div class="hi-first__no" aria-hidden="true">NO.<br>001</div>
+ </div>
+</section>
+{% schema %}
+{"name":"HiParcelo first edition","settings":[],"presets":[{"name":"HiParcelo first edition"}]}
+{% endschema %}

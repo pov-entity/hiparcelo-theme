@@ -1,0 +1,8 @@
+node_modules
+.shopify/
+preview-output/
+test-results/
+*.zip
+.DS_Store
+
+verification/

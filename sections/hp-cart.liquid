@@ -1,0 +1,35 @@
+<section class="hp hp-cart" aria-labelledby="hp-cart-title-{{ section.id }}">
+  <div class="hp-shell">
+    <nav class="hp-breadcrumbs" aria-label="{{ 'hp_store.common.home' | t }}"><a href="{{ routes.root_url }}">{{ 'hp_store.common.home' | t }}</a><span aria-hidden="true">/</span><span>{{ 'hiparcelo.navigation.cart' | t }}</span></nav>
+    {% if cart.item_count == 0 %}
+      <div class="hp-cart__empty"><p class="hp-eyebrow">{{ 'hiparcelo.brand.prefix' | t }}{{ 'hiparcelo.brand.suffix' | t }}</p><h1 id="hp-cart-title-{{ section.id }}">{{ 'hp_store.cart.empty' | t }}</h1><p>{{ 'hp_store.cart.empty_copy' | t }}</p><a class="hp-button" href="{{ routes.root_url | append: '/pages/first-find' | replace: '//', '/' }}">{{ 'hp_store.common.first_find' | t }}</a></div>
+    {% else %}
+      <h1 id="hp-cart-title-{{ section.id }}">{{ 'hp_store.cart.heading' | t }}</h1>
+      <form action="{{ routes.cart_url }}" method="post" id="HiParceloCart">
+        <div class="hp-cart__grid">
+          <div>
+            {% for item in cart.items %}
+              <div class="hp-cart__item">
+                <a href="{{ item.url }}">{% if item.image != blank %}{{ item.image | image_url: width: 240 | image_tag: loading: 'lazy' }}{% endif %}</a>
+                <div><h2><a href="{{ item.url }}">{{ item.product.title | escape }}</a></h2>{% unless item.product.has_only_default_variant %}<p>{{ item.variant.title | escape }}</p>{% endunless %}<p>{{ item.final_line_price | money_with_currency }}</p><p><a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0">{{ 'hp_store.cart.remove' | t }}</a></p></div>
+                <div><label class="hp-sr" for="HpCartQty-{{ forloop.index }}">{{ 'hp_store.cart.quantity' | t }} — {{ item.product.title | escape }}</label><input class="hp-cart__quantity" id="HpCartQty-{{ forloop.index }}" name="updates[]" value="{{ item.quantity }}" min="0" step="1" type="number" inputmode="numeric"></div>
+              </div>
+            {% endfor %}
+            <button class="hp-button hp-button--outline hp-cart__update" type="submit" name="update">{{ 'hp_store.cart.update' | t }}</button>
+          </div>
+          <aside class="hp-cart__summary">
+            <div class="hp-cart__subtotal"><span>{{ 'hp_store.cart.subtotal' | t }}</span><span>{{ cart.total_price | money_with_currency }}</span></div>
+            <p>{% if cart.taxes_included %}{{ 'hp_store.cart.taxes' | t }}{% else %}{{ 'hp_store.cart.costs' | t }}{% endif %}</p>
+            {% unless settings.hp_commerce_enabled %}<p>{{ 'hp_store.cart.preview' | t }}</p>{% endunless %}
+            <div class="hp-decision-details"><strong>{{ 'hp_store.cart.review' | t }}</strong><p>{{ 'hp_store.cart.review_copy' | t }}</p><a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}">{{ 'hp_store.common.shipping' | t }}</a><a href="{{ routes.root_url | append: '/pages/returns' | replace: '//', '/' }}">{{ 'hp_store.common.returns' | t }}</a></div>
+            <button class="hp-button" type="submit" name="checkout"{% unless settings.hp_commerce_enabled %} disabled{% endunless %}>{{ 'hp_store.cart.checkout' | t }}</button>
+            <p><a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}">{{ 'hp_store.cart.help' | t }}</a></p>
+          </aside>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{"name":"t:hp_store.cart_name","settings":[],"presets":[{"name":"t:hp_store.cart_name"}]}
+{% endschema %}

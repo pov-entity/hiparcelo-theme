@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HiParcelo">
+<rect x="0" y="0" width="64" height="64" rx="13" fill="#173a37"/>
+<path d="M11 22.5 32 11l21 11.5-21 12.3-21-12.3Z" fill="none" stroke="#f4ebda" stroke-width="3.2" stroke-linejoin="round"/>
+<path d="M11 22.5v21.7L32 56l21-11.8V22.5M32 34.8V56" fill="none" stroke="#f4ebda" stroke-width="3.2" stroke-linejoin="round"/>
+<path d="m22 16.6 21 12.2" stroke="#df9a79" stroke-width="3"/>
+<path d="m22 36 6 3.5 5-3.5" stroke="#df9a79" stroke-width="3.1" stroke-linecap="round"/>
+</svg>

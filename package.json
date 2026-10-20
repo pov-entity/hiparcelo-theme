@@ -1,0 +1,20 @@
+{
+  "name": "hiparcelo-theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "copy:build": "node scripts/build-page-copy.mjs",
+    "preview": "node scripts/preview.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node scripts/test-journey-browser.cjs",
+    "test:film": "node scripts/test-journey-film.cjs",
+    "test:photography": "node scripts/test-journey-photography.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "liquidjs": "10.30.0"
+  }
+}

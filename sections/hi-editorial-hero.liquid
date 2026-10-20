@@ -1,0 +1,19 @@
+<section class="hi ha-hero" aria-labelledby="hi-ec-hero-title">
+  {% if section.settings.image != blank %}
+    {{ section.settings.image | image_url: width: 2000 | image_tag: widths: '480, 840, 1280, 1672, 2000', sizes: '100vw', class: 'ha-hero__image', loading: 'eager', fetchpriority: 'high', alt: '' }}
+  {% else %}
+    <picture><source media="(max-width:749px)" srcset="{{ 'hp-atmosphere-arrival-mobile.webp' | asset_url }}"><img class="ha-hero__image" src="{{ 'hp-atmosphere-arrival.webp' | asset_url }}" width="1672" height="941" loading="eager" fetchpriority="high" alt=""></picture>
+  {% endif %}
+  <div class="ha-hero__shade" aria-hidden="true"></div>
+  <div class="ha-hero__copy">
+    <p class="ha-eyebrow ha-eyebrow--light"><span aria-hidden="true">✦</span> {{ 'hi_ec.hero_badge' | t }}</p>
+    <h1 id="hi-ec-hero-title">{{ 'hi_ec.hero_line_one' | t }} <em>{{ 'hi_ec.hero_line_two' | t }}</em></h1>
+    <p class="ha-hero__intro">{{ 'hi_ec.hero_intro' | t }}</p>
+    <a class="ha-button ha-button--light" href="#hi-feeling">{{ 'hi_ec.hero_action' | t }}<span aria-hidden="true">↗</span></a>
+    <p class="ha-hero__status">{{ 'hi_ec.hero_status' | t }}</p>
+  </div>
+  <div class="ha-hero__bottom"><span><i aria-hidden="true">↓</i> {{ 'hi_edit.hero_scroll' | t }}</span><span>{{ 'hi_ec.concept_label' | t }}</span></div>
+</section>
+{% schema %}
+{"name":"HiParcelo cinematic cover","settings":[{"type":"image_picker","id":"image","label":"t:sections.image-banner.settings.image.label"}],"presets":[{"name":"HiParcelo cinematic cover"}]}
+{% endschema %}

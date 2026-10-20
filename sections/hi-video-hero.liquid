@@ -1,0 +1,87 @@
+{{ 'hi-video-hero.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign hero_video = section.settings.hero_video
+  assign external_video_url = section.settings.hero_video_url
+  assign has_video = false
+  if hero_video != blank or external_video_url != blank
+    assign has_video = true
+  endif
+%}
+
+<section class="hi-vhero" id="hi-video-hero-{{ section.id }}" aria-labelledby="hi-vhero-title-{{ section.id }}">
+  <div class="hi-vhero__media" aria-hidden="true">
+    {% if hero_video != blank %}
+      {{ hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', class: 'hi-vhero__film', image_size: '1600x' }}
+    {% elsif external_video_url != blank %}
+      <video class="hi-vhero__film" autoplay muted loop playsinline preload="metadata" poster="{{ 'hiparcelo-scroll-poster.jpg' | file_url }}">
+        <source src="{{ external_video_url | escape }}" type="video/mp4">
+      </video>
+    {% else %}
+      {%- comment -%}
+        Shopify trial blocks video uploads. This is the original 240-frame, 1280x720
+        footage encoded as one animated WebP (10s, 24fps), not a scroll scrubber.
+        It moves automatically, with no JS and no additional hosting cost.
+        A native MP4 takes priority as soon as one is configured above.
+      {%- endcomment -%}
+      <img
+        class="hi-vhero__film hi-vhero__motion"
+        src="{{ 'hiparcelo-motion-hero.webp' | file_url }}"
+        alt=""
+        width="1280"
+        height="720"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async">
+    {% endif %}
+    <img
+      class="hi-vhero__still"
+      src="{{ 'hiparcelo-scroll-poster.jpg' | file_url }}"
+      alt=""
+      width="1280"
+      height="720"
+      loading="eager"
+      decoding="async">
+  </div>
+
+  <div class="hi-vhero__shade" aria-hidden="true"></div>
+
+  <div class="hi-vhero__inner">
+    <div class="hi-vhero__story">
+      <p class="hi-vhero__eyebrow"><span class="hi-vhero__eyebrow-line" aria-hidden="true"></span>{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="hi-vhero__title" id="hi-vhero-title-{{ section.id }}">{{ section.settings.headline | escape }}</h1>
+      <p class="hi-vhero__description">{{ section.settings.description | escape }}</p>
+      <a class="hi-vhero__discover" href="#hi-feeling">{{ section.settings.cta_label | escape }} <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+
+  <div class="hi-vhero__footer">
+    <div class="hi-vhero__footer-inner">
+      <p class="hi-vhero__footer-label">THE HIPARCELO WAY <span aria-hidden="true">/</span> 01 — 03</p>
+      <nav class="hi-vhero__chapters" aria-label="Discover HiParcelo">
+        <a href="#hi-feeling"><span class="hi-vhero__chapter-number">01</span><span>Small discoveries.<br>Everyday possibilities.</span><span class="hi-vhero__chapter-arrow" aria-hidden="true">↗</span></a>
+        <a href="#hi-approach"><span class="hi-vhero__chapter-number">02</span><span>Thoughtful choices.<br>Clear details.</span><span class="hi-vhero__chapter-arrow" aria-hidden="true">↗</span></a>
+        <a href="{{ routes.root_url | append: '/pages/shipping' | replace: '//', '/' }}"><span class="hi-vhero__chapter-number">03</span><span>From our hands.<br>To your door.</span><span class="hi-vhero__chapter-arrow" aria-hidden="true">↗</span></a>
+      </nav>
+      <span class="hi-vhero__scroll-hint" aria-hidden="true">SCROLL <span>↓</span></span>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cinematic film hero",
+  "tag": "section",
+  "class": "hi-vhero-section",
+  "enabled_on": {"templates": ["index"]},
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Eyebrow","default":"THE ART OF A GOOD FIND"},
+    {"type":"text","id":"headline","label":"Main headline","default":"Good things start with a little discovery."},
+    {"type":"textarea","id":"description","label":"Supporting text","default":"Thoughtful everyday finds, clearly explained. Because the experience should feel right long after you click."},
+    {"type":"text","id":"cta_label","label":"Explore button text","default":"Get to know us"},
+    {"type":"video","id":"hero_video","label":"Hero video (when video uploads become available)"},
+    {"type":"text","id":"hero_video_url","label":"Optional externally hosted MP4 URL","info":"Use a direct HTTPS MP4 URL when available. Until then, the original 10-second footage plays from Shopify as an animated WebP."}
+  ],
+  "presets": [{"name":"Cinematic film hero"}]
+}
+{% endschema %}

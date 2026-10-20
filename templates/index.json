@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "signals": {
+      "type": "hi-signals",
+      "settings": {}
+    },
+    "recognize": {
+      "type": "hi-recognize",
+      "settings": {}
+    },
+    "method": {
+      "type": "hi-method",
+      "settings": {}
+    },
+    "journal": {
+      "type": "hi-journal",
+      "settings": {}
+    },
+    "clarity": {
+      "type": "hi-v2-clarity",
+      "settings": {}
+    },
+    "faq": {
+      "type": "hi-faq",
+      "settings": {}
+    },
+    "last": {
+      "type": "hi-last-word",
+      "settings": {}
+    },
+    "video_hero": {
+      "type": "hi-video-hero",
+      "settings": {}
+    }
+  },
+  "order": [
+    "video_hero",
+    "signals",
+    "recognize",
+    "method",
+    "journal",
+    "clarity",
+    "faq",
+    "last"
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "version": 4,
+  "section": "hi-delivery-journey",
+  "renderer": "Native WebGL 1; no third-party runtime libraries or paid services",
+  "units": "Consistent units apply to the optional original 3D renderer. Photographic scenes use fixed source images with scroll-driven crops and dissolves.",
+  "runtime": {
+    "controller": "hi-delivery-journey.js",
+    "model": "hi-journey-model.js",
+    "world": "hi-journey-world.js",
+    "styles": "hi-delivery-journey.css",
+    "parcel_texture": "hi-journey-package-2026.webp",
+    "approved_logo": "hi-journey-approved-logo.png",
+    "material_color": "hi-journey-materials-color.webp",
+    "material_normal_roughness": "hi-journey-materials-detail.webp",
+    "photographic_renderer": "hi-journey-photography.js",
+    "optional_film_renderer": "hi-journey-film.js"
+  },
+  "reference_assets": [
+    "hi-journey-warehouse-2026.webp",
+    "hi-journey-airplane-2026.webp",
+    "hi-journey-truck-2026.webp",
+    "hi-journey-home-2026.webp"
+  ],
+  "geometry": {
+    "warehouse": "Procedural cutaway warehouse, shelves, packing arm and conveyor",
+    "parcel": "One persistent hollow box and hinged lid, using the existing parcel texture",
+    "aircraft": "Profiled navy fuselage, curved cargo hatch, cockpit glazing, panel seams, engine fans, chrome intake rings and retractable landing gear",
+    "ocean": "One continuous ocean surface between physical coastlines, with scroll-dependent water and clouds",
+    "customs": "Handling trolley, scanner, sorting belt and loading platform",
+    "truck": "Rounded navy cab, corrugated cargo panels, chrome grille, mirrors, lights, hinged doors and rounded rotating tyres",
+    "home": "Textured plaster, timber door, reflective glazing, stone paving, planted foliage and doorstep",
+    "courier": "Articulated courier with fabric uniform, facial and hand detail; original distance-driven walking, parcel pickup, placement and departure"
+  },
+  "chapters": [
+    {
+      "range": [
+        0,
+        0.1
+      ],
+      "name": "Preparation"
+    },
+    {
+      "range": [
+        0.1,
+        0.2
+      ],
+      "name": "Dispatch"
+    },
+    {
+      "range": [
+        0.2,
+        0.3
+      ],
+      "name": "Loading and takeoff"
+    },
+    {
+      "range": [
+        0.3,
+        0.53
+      ],
+      "name": "Ocean crossing"
+    },
+    {
+      "range": [
+        0.53,
+        0.69
+      ],
+      "name": "Arrival and customs"
+    },
+    {
+      "range": [
+        0.69,
+        0.78
+      ],
+      "name": "Truck handoff"
+    },
+    {
+      "range": [
+        0.78,
+        0.89
+      ],
+      "name": "Road journey"
+    },
+    {
+      "range": [
+        0.89,
+        0.96
+      ],
+      "name": "Neighborhood and courier"
+    },
+    {
+      "range": [
+        0.96,
+        1
+      ],
+      "name": "Doorstep delivery"
+    }
+  ],
+  "settings": {
+    "preparation_days": 2,
+    "international_days": 7,
+    "delivery_days": 2,
+    "desktop_length_svh": 1200,
+    "mobile_length_svh": 1400,
+    "durations_status": "Illustrative and editable; not verified delivery promises"
+  },
+  "fallbacks": [
+    "Reduced motion",
+    "No JavaScript",
+    "WebGL unavailable",
+    "Graphics context loss"
+  ],
+  "asset_policy": "Approved logo and original parcel artwork are preserved. Photographic illustrations are generated from those brand references and a consistent courier/doorstep reference. They depict an illustrative route, not recorded HiParcelo operations. Production image prompts and source provenance are in docs/journey-photography-prompts.json.",
+  "materials": {
+    "source": "scripts/build-journey-materials.py; deterministic procedural textures",
+    "atlas_dimensions": [
+      1024,
+      1024
+    ],
+    "shading": "Metallic/roughness shading, Fresnel reflections, directional lighting, filtered shadows, contact shading and tone mapping",
+    "surfaces": [
+      "paint",
+      "brushed metal",
+      "plaster",
+      "concrete",
+      "asphalt",
+      "grass",
+      "cardboard",
+      "leaves",
+      "timber",
+      "fabric",
+      "rubber",
+      "paving",
+      "skin",
+      "ocean",
+      "sand",
+      "clouds"
+    ],
+    "foliage": "Two-sided individual leaf geometry with matching clipped shadows",
+    "water": "Scroll-driven irregular wave normals, reflected sky, sun glints and shoreline foam"
+  },
+  "motion_preserved": {
+    "model_sha256": "02a227c947dbb0617507a9d0fd61ba7a45866b0aaf94fff1fbd4e92233a78123",
+    "scope": "Original 3D motion model is unchanged. Photographic mode reuses its nine chapter boundaries, captions and stage timing; it has separate image camera movements."
+  },
+  "default_presentation": "photographic",
+  "geometry_scope": "Geometry descriptions below apply to the optional original 3D journey.",
+  "photography": {
+    "medium": "AI-generated photographic illustrations; still images with animated camera movement and transitions, not filmed object or human motion",
+    "desktop_width": 1536,
+    "mobile_width": 840,
+    "desktop_bytes": 2694042,
+    "mobile_bytes": 961516,
+    "loading": "Current scene and immediate neighbors, bounded decoded cache; no autoplay or continuous frame loop",
+    "scenes": [
+      {
+        "key": "packing",
+        "start": 0,
+        "desktop": "hi-journey-photo-packing.webp",
+        "mobile": "hi-journey-photo-packing-mobile.webp"
+      },
+      {
+        "key": "dispatch",
+        "start": 0.065,
+        "desktop": "hi-journey-photo-dispatch.webp",
+        "mobile": "hi-journey-photo-dispatch-mobile.webp"
+      },
+      {
+        "key": "cargo",
+        "start": 0.2,
+        "desktop": "hi-journey-photo-cargo.webp",
+        "mobile": "hi-journey-photo-cargo-mobile.webp"
+      },
+      {
+        "key": "takeoff",
+        "start": 0.265,
+        "desktop": "hi-journey-photo-takeoff.webp",
+        "mobile": "hi-journey-photo-takeoff-mobile.webp"
+      },
+      {
+        "key": "ocean",
+        "start": 0.3,
+        "desktop": "hi-journey-photo-ocean.webp",
+        "mobile": "hi-journey-photo-ocean-mobile.webp"
+      },
+      {
+        "key": "arrival",
+        "start": 0.53,
+        "desktop": "hi-journey-photo-arrival.webp",
+        "mobile": "hi-journey-photo-arrival-mobile.webp"
+      },
+      {
+        "key": "customs",
+        "start": 0.615,
+        "desktop": "hi-journey-photo-customs.webp",
+        "mobile": "hi-journey-photo-customs-mobile.webp"
+      },
+      {
+        "key": "truck-loading",
+        "start": 0.69,
+        "desktop": "hi-journey-photo-truck-loading.webp",
+        "mobile": "hi-journey-photo-truck-loading-mobile.webp"
+      },
+      {
+        "key": "road",
+        "start": 0.78,
+        "desktop": "hi-journey-photo-road.webp",
+        "mobile": "hi-journey-photo-road-mobile.webp"
+      },
+      {
+        "key": "carrying",
+        "start": 0.89,
+        "desktop": "hi-journey-photo-carrying.webp",
+        "mobile": "hi-journey-photo-carrying-mobile.webp"
+      },
+      {
+        "key": "placing",
+        "start": 0.965,
+        "desktop": "hi-journey-photo-placing.webp",
+        "mobile": "hi-journey-photo-placing-mobile.webp"
+      },
+      {
+        "key": "delivered",
+        "start": 0.986,
+        "desktop": "hi-journey-photo-delivered.webp",
+        "mobile": "hi-journey-photo-delivered-mobile.webp"
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+<section class="hi ha-signals" aria-label="{{ 'hi_ec.values_aria' | t }}"><div class="ha-shell ha-signals__grid">
+{% assign signals = 'one,two,three,four' | split: ',' %}
+{% for signal in signals %}{% assign title_key = 'hi_ec.value_' | append: signal %}{% assign sub_key = title_key | append: '_sub' %}<div><span aria-hidden="true">✦</span><p><strong>{{ title_key | t }}</strong><small>{{ sub_key | t }}</small></p></div>{% endfor %}
+</div></section>
+{% schema %}
+{"name":"HiParcelo quiet signals","settings":[],"presets":[{"name":"HiParcelo quiet signals"}]}
+{% endschema %}

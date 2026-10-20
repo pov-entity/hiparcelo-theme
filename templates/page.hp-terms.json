@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "THE DETAILS OF BUYING FROM US",
+        "intro": "Seller information, ordering, delivery and the terms that need to be clear before a purchase.",
+        "show_draft": true,
+        "show_support": true,
+        "localization_key": "terms"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

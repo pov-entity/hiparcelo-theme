@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "FROM YOUR ORDER TO YOUR DOOR",
+        "intro": "Knowing when it may arrive is part of knowing whether it is right for you.",
+        "show_draft": true,
+        "show_support": true,
+        "localization_key": "shipping"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

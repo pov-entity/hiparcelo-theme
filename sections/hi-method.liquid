@@ -1,0 +1,17 @@
+<section class="hi ha-method" id="hi-approach" aria-labelledby="hi-ref-method-title"><div class="ha-shell">
+  <header class="ha-heading"><p class="ha-eyebrow"><span aria-hidden="true">✦</span> {{ 'hi_edit.method_kicker' | t }}</p><h2 id="hi-ref-method-title">{{ 'hi_edit.method_head_a' | t }} <em>{{ 'hi_edit.method_head_b' | t }}</em></h2><p>{{ 'hi_edit.method_copy' | t }}</p></header>
+  <div class="ha-glass-scene">
+    <img src="{{ 'hp-atmosphere-arrival.webp' | asset_url }}" srcset="{{ 'hp-atmosphere-arrival-mobile.webp' | asset_url }} 840w, {{ 'hp-atmosphere-arrival.webp' | asset_url }} 1672w" sizes="(max-width:749px) calc(100vw - 42px), calc(100vw - 96px)" class="ha-glass-scene__image" width="1672" height="941" alt="" loading="lazy">
+    <div class="ha-bento">
+      <article class="ha-glass ha-glass--lead"><span class="ha-glass__number">01</span><div><h3>{{ 'hi_edit.method_one_q' | t }}</h3><p>{{ 'hi_edit.method_one_a' | t }}</p></div></article>
+      <article class="ha-glass"><span class="ha-glass__number">02</span><h3>{{ 'hi_edit.method_two_q' | t }}</h3><p>{{ 'hi_edit.method_two_a' | t }}</p></article>
+      <article class="ha-glass"><span class="ha-glass__number">03</span><h3>{{ 'hi_edit.method_three_q' | t }}</h3><p>{{ 'hi_edit.method_three_a' | t }}</p></article>
+    </div>
+    <div class="ha-glass-scene__caption">{{ 'hi_ec.concept_label' | t }}</div>
+  </div>
+  <div class="ha-after-choice"><span>04</span><div><h3>{{ 'hi_edit.method_four_q' | t }}</h3><p>{{ 'hi_edit.method_four_a' | t }}</p></div><a class="ha-round-link" href="{{ routes.root_url | append: '/pages/help' | replace: '//', '/' }}" aria-label="{{ 'hp_store.common.help' | t }}">↗</a></div>
+  <p class="ha-note ha-method__note">{{ 'hi_edit.method_note' | t }}</p>
+</div></section>
+{% schema %}
+{"name":"HiParcelo glass story","settings":[],"presets":[{"name":"HiParcelo glass story"}]}
+{% endschema %}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "GOOD TO KNOW / THE FIT",
+        "intro": "Picture the place you will use it. Then check the details that make the picture possible.",
+        "show_draft": false,
+        "show_support": true,
+        "localization_key": "guide_fit"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

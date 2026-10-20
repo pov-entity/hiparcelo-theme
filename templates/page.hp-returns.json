@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "IF THE EXPERIENCE NEEDS A SECOND LOOK",
+        "intro": "Find out what to do if you change your mind, receive the wrong item or need help with a problem.",
+        "show_draft": true,
+        "show_support": true,
+        "localization_key": "returns"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

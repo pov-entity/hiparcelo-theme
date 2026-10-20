@@ -1,0 +1,12 @@
+<section class="hi ha-journal" id="hi-journal" aria-labelledby="hi-ref-guides-title"><div class="ha-shell">
+  <header class="ha-heading"><p class="ha-eyebrow"><span aria-hidden="true">✦</span> {{ 'hi_edit.journal_kicker' | t }}</p><h2 id="hi-ref-guides-title">{{ 'hi_edit.journal_head_a' | t }} <em>{{ 'hi_edit.journal_head_b' | t }}</em></h2><p>{{ 'hi_edit.journal_copy' | t }}</p></header>
+  <div class="ha-journal__grid">
+    <a class="ha-story-card" href="{{ routes.root_url | append: '/pages/guide-before-ordering' | replace: '//', '/' }}"><div class="ha-story-card__image"><img src="{{ 'hi-journey-photo-packing-mobile.webp' | asset_url }}" width="840" height="560" loading="lazy" alt=""></div><div class="ha-story-card__copy"><small>{{ 'hi_edit.journal_one_label' | t }}</small><h3>{{ 'hi_edit.journal_one' | t }}</h3><p>{{ 'hi_edit.journal_one_copy' | t }}</p><span class="ha-story-card__arrow" aria-hidden="true">↗</span></div></a>
+    <a class="ha-story-card" href="{{ routes.root_url | append: '/pages/guide-fit' | replace: '//', '/' }}"><div class="ha-story-card__image"><img src="{{ 'hp-story-concept.webp' | asset_url }}" width="1536" height="1024" loading="lazy" alt=""></div><div class="ha-story-card__copy"><small>{{ 'hi_edit.journal_two_label' | t }}</small><h3>{{ 'hi_edit.journal_two' | t }}</h3><p>{{ 'hi_edit.journal_two_copy' | t }}</p><span class="ha-story-card__arrow" aria-hidden="true">↗</span></div></a>
+    <a class="ha-story-card" href="{{ routes.root_url | append: '/pages/guide-use-and-care' | replace: '//', '/' }}"><div class="ha-story-card__image"><img src="{{ 'hp-atmosphere-arrival-mobile.webp' | asset_url }}" width="840" height="473" loading="lazy" alt=""></div><div class="ha-story-card__copy"><small>{{ 'hi_edit.journal_three_label' | t }}</small><h3>{{ 'hi_edit.journal_three' | t }}</h3><p>{{ 'hi_edit.journal_three_copy' | t }}</p><span class="ha-story-card__arrow" aria-hidden="true">↗</span></div></a>
+  </div>
+  <div class="ha-section-end"><a class="ha-button ha-button--outline" href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.journal_link' | t }}<span aria-hidden="true">↗</span></a></div>
+</div></section>
+{% schema %}
+{"name":"HiParcelo visual journal","settings":[],"presets":[{"name":"HiParcelo visual journal"}]}
+{% endschema %}

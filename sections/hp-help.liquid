@@ -1,0 +1,58 @@
+{% liquid
+  assign delivery_url = routes.root_url | append: '/pages/shipping' | replace: '//', '/'
+  assign returns_url = routes.root_url | append: '/pages/returns' | replace: '//', '/'
+  assign support_email = settings.hp_support_email | default: shop.email
+  assign contact_url = routes.root_url | append: '/pages/contact' | replace: '//', '/'
+  if section.settings.contact_page != blank
+    assign contact_url = section.settings.contact_page.url
+  endif
+%}
+<section class="hp hp-help" id="hp-help" aria-label="{{ 'hiparcelo.help.label' | t }}">
+  <div class="hp-shell hp-help__grid">
+    <a href="{{ delivery_url }}" class="hp-help__item">
+      {% render 'hp-icon', name: 'truck' %}
+      <span><strong>{{ 'hiparcelo.help.delivery' | t }}</strong><small>{{ 'hiparcelo.help.delivery_copy' | t }}</small></span>
+      {% render 'hp-icon', name: 'arrow' %}
+    </a>
+    <a href="{{ returns_url }}" class="hp-help__item">
+      {% render 'hp-icon', name: 'returns' %}
+      <span><strong>{{ 'hiparcelo.help.returns' | t }}</strong><small>{{ 'hiparcelo.help.returns_copy' | t }}</small></span>
+      {% render 'hp-icon', name: 'arrow' %}
+    </a>
+    <a href="{{ contact_url | escape }}" class="hp-help__item">
+      {% render 'hp-icon', name: 'chat' %}
+      <span><strong>{{ 'hiparcelo.help.contact' | t }}</strong><small>{{ 'hiparcelo.help.contact_copy' | t }}</small></span>
+      {% render 'hp-icon', name: 'arrow' %}
+    </a>
+  </div>
+</section>
+{% stylesheet %}
+  .hp-help { padding-block: 32px; background: #fff; border-bottom: 1px solid var(--hp-line); }
+  .hp-help__grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .hp-help__item { display: flex; gap: 18px; align-items: center; padding: 12px 28px; text-decoration: none; }
+  .hp-help__item:first-child { padding-left: 0; }
+  .hp-help__item + .hp-help__item { border-left: 1px solid var(--hp-line); }
+  .hp-help__item > .hp-icon:first-child { width: 31px; height: 31px; }
+  .hp-help__item > .hp-icon:last-child { width: 18px; margin-left: auto; }
+  .hp-help__item strong, .hp-help__item small { display: block; }
+  .hp-help__item strong { font-size: 14px; }
+  .hp-help__item small { margin-top: 4px; font-size: 12px; color: var(--hp-muted); }
+  .hp-help__item:hover strong { color: var(--hp-teal); }
+  @media (max-width: 1000px) { .hp-help__item { padding-inline: 17px; gap: 12px; } }
+  @media (max-width: 749px) {
+    .hp-help { padding-block: 10px; }
+    .hp-help__grid { grid-template-columns: 1fr; }
+    .hp-help__item { padding: 22px 0; }
+    .hp-help__item + .hp-help__item { border-left: 0; border-top: 1px solid var(--hp-line); }
+  }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "t:hiparcelo.help.name",
+  "limit": 1,
+  "settings": [
+    { "type": "page", "id": "contact_page", "label": "t:hiparcelo.fields.contact_page" }
+  ],
+  "presets": [{ "name": "t:hiparcelo.help.name" }]
+}
+{% endschema %}

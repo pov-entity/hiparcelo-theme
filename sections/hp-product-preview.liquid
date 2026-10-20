@@ -1,0 +1,23 @@
+<section class="hi hi-preview" aria-labelledby="hi-preview-title">
+ <div class="hi-preview__hero"><div class="hi-wrap hi-preview__grid">
+   <div class="hi-preview__story">
+     <p class="hi-kicker hi-kicker--light">{{ 'hi_edit.first_kicker' | t }}</p>
+     <h1 id="hi-preview-title">{{ 'hi_edit.preview_head_a' | t }} <em>{{ 'hi_edit.preview_head_b' | t }}</em></h1>
+     <p>{{ 'hi_edit.preview_copy' | t }}</p>
+     <a class="hi-btn hi-btn--cream" href="{{ routes.root_url | append: '/pages/about' | replace: '//', '/' }}">{{ 'hi_edit.preview_action' | t }} <span aria-hidden="true">↗</span></a>
+   </div>
+   <div class="hi-preview__art" aria-hidden="true"><span>01<em>✳</em></span></div>
+ </div></div>
+ <div class="hi-wrap hi-preview__after">
+    <p class="hi-kicker">{{ 'hi_edit.preview_next' | t }}</p><h2>{{ 'hi_edit.preview_subhead' | t }}</h2>
+    <div class="hi-preview__steps">
+       <article class="hi-preview__step"><span>{{ 'hi_edit.preview_need_label' | t }}</span><h3>{{ 'hp_store.product.preview_problem' | t }}</h3><p>{{ 'hp_store.product.preview_problem_copy' | t }}</p></article>
+       <article class="hi-preview__step"><span>{{ 'hi_edit.preview_details_label' | t }}</span><h3>{{ 'hp_store.product.preview_proof' | t }}</h3><p>{{ 'hp_store.product.preview_proof_copy' | t }}</p></article>
+       <article class="hi-preview__step"><span>{{ 'hi_edit.preview_service_label' | t }}</span><h3>{{ 'hp_store.product.preview_service' | t }}</h3><p>{{ 'hp_store.product.preview_service_copy' | t }}</p></article>
+    </div>
+    <a class="hi-text-link" href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">{{ 'hi_edit.preview_guides' | t }} <span aria-hidden="true">↗</span></a>
+ </div>
+</section>
+{% schema %}
+{"name":"HiParcelo first find","settings":[],"presets":[{"name":"HiParcelo first find"}]}
+{% endschema %}

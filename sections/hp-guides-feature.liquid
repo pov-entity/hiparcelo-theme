@@ -1,0 +1,62 @@
+<section class="hp hp-guides-feature" aria-labelledby="hp-guides-feature-title-{{ section.id }}">
+  <div class="hp-shell">
+    <div class="hp-guides-feature__heading" data-hp-reveal>
+      <div>
+        <p class="hp-eyebrow">A LITTLE MORE PEACE OF MIND</p>
+        <h2 id="hp-guides-feature-title-{{ section.id }}">Curiosity feels good.<br><span>Clarity feels better.</span></h2>
+      </div>
+      <div class="hp-guides-feature__aside">
+        <p>Sometimes the most reassuring thing is simply knowing what to look for. These short guides help you turn a moment of curiosity into a choice that feels considered.</p>
+        <a href="{{ routes.root_url | append: '/pages/guides' | replace: '//', '/' }}">See the useful guides <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="hp-guides-feature__grid">
+      <a class="hp-guide-tile" data-hp-reveal href="{{ routes.root_url | append: '/pages/guide-fit' | replace: '//', '/' }}">
+        <span class="hp-guide-tile__top"><span>01 / SPACE & FIT</span><span aria-hidden="true">↗</span></span>
+        <span class="hp-guide-tile__icon" aria-hidden="true"><svg viewBox="0 0 90 90" fill="none"><rect x="15" y="20" width="60" height="51" rx="3" stroke="currentColor" stroke-width="2"/><path d="M15 10v8m60-8v8M10 20h-5m80 0h-5M22 46h46M22 46l6-6m-6 6 6 6m40-6-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="45" cy="35" r="3" fill="currentColor"/></svg></span>
+        <span class="hp-guide-tile__name">Will it feel at home?</span>
+        <span class="hp-guide-tile__copy">A simple way to think about space, size and compatibility—before something catches you by surprise.</span>
+        <span class="hp-guide-tile__action">Read the fit guide <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="hp-guide-tile" data-hp-reveal href="{{ routes.root_url | append: '/pages/guide-before-ordering' | replace: '//', '/' }}">
+        <span class="hp-guide-tile__top"><span>02 / DECISION CHECKLIST</span><span aria-hidden="true">↗</span></span>
+        <span class="hp-guide-tile__icon" aria-hidden="true"><svg viewBox="0 0 90 90" fill="none"><rect x="24" y="12" width="45" height="64" rx="3" stroke="currentColor" stroke-width="2"/><path d="M34 26l3 3 5-6M47 27h14M34 43l3 3 5-6M47 44h14M34 60l3 3 5-6M47 61h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="hp-guide-tile__name">Know the whole picture.</span>
+        <span class="hp-guide-tile__copy">The little questions that make prices, delivery and what's included easier to understand.</span>
+        <span class="hp-guide-tile__action">See the checklist <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="hp-guide-tile" data-hp-reveal href="{{ routes.root_url | append: '/pages/guide-use-and-care' | replace: '//', '/' }}">
+        <span class="hp-guide-tile__top"><span>03 / USE & CARE</span><span aria-hidden="true">↗</span></span>
+        <span class="hp-guide-tile__icon" aria-hidden="true"><svg viewBox="0 0 90 90" fill="none"><path d="M24 56 42 74 72 39M19 45l19 19 34-40" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="45" cy="43" r="32" stroke="currentColor" stroke-width="2" stroke-dasharray="3 7"/></svg></span>
+        <span class="hp-guide-tile__name">Enjoy it with confidence.</span>
+        <span class="hp-guide-tile__copy">Get comfortable with intended use, care and the practical details beyond a quick demo.</span>
+        <span class="hp-guide-tile__action">Get the useful details <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+{% stylesheet %}
+.hp-guides-feature{background:#f5f8f7;padding-block:clamp(66px,8vw,108px);border-block:1px solid var(--hp-line);}
+.hp-guides-feature__heading{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,6vw,90px);align-items:end;margin-bottom:44px;}
+.hp-guides-feature__heading h2{margin-top:16px;font-size:clamp(39px,4.7vw,67px);line-height:1.1;letter-spacing:-.055em;}
+.hp-guides-feature__heading h2 span{color:#317b78;}
+.hp-guides-feature__aside p{font-size:16px;line-height:1.85;color:var(--hp-muted);max-width:43ch;}
+.hp-guides-feature__aside a{display:inline-flex;align-items:center;gap:20px;font-weight:700;font-size:13px;margin-top:18px;padding:8px 0;border-bottom:1px solid #689c96;text-decoration:none;}
+.hp-guides-feature__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.hp-guide-tile{display:flex;flex-direction:column;background:#fff;border:1px solid #dfebe8;min-height:385px;padding:27px 30px 29px;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;color:var(--hp-ink);}
+.hp-guide-tile:hover{transform:translateY(-4px);border-color:#8cbbb1;box-shadow:0 14px 35px rgba(16,33,57,.07);}
+.hp-guide-tile:focus-visible{outline:3px solid #006b6b;outline-offset:3px;}
+.hp-guide-tile__top{display:flex;justify-content:space-between;gap:14px;align-items:center;font-size:10px;font-weight:750;letter-spacing:.12em;color:#587e7e;}
+.hp-guide-tile__top span:last-child{font-size:18px;color:#006b6b;}
+.hp-guide-tile__icon{width:87px;height:87px;margin:26px 0;color:#407b77;}
+.hp-guide-tile__icon svg{width:100%;height:100%;}
+.hp-guide-tile__name{font-size:clamp(23px,2.2vw,29px);font-weight:700;line-height:1.1;letter-spacing:-.04em;}
+.hp-guide-tile__copy{color:#65727d;font-size:14px;line-height:1.65;margin-top:13px;max-width:35ch;}
+.hp-guide-tile__action{display:flex;justify-content:space-between;align-items:center;color:#006b6b;border-top:1px solid #e7eeee;padding-top:15px;margin-top:auto;font-weight:750;font-size:12px;}
+@media(max-width:950px){.hp-guide-tile{padding:22px;min-height:380px}.hp-guides-feature__heading{grid-template-columns:1fr 1fr;gap:25px}}
+@media(max-width:749px){.hp-guides-feature__heading{grid-template-columns:1fr;gap:18px}.hp-guides-feature__grid{grid-template-columns:1fr;gap:12px}.hp-guide-tile{min-height:0;padding:24px}.hp-guide-tile__icon{height:72px;width:72px;margin:18px 0}.hp-guide-tile__action{margin-top:28px}}
+@media(prefers-reduced-motion:reduce){.hp-guide-tile{transition:none}.hp-guide-tile:hover{transform:none}}
+{% endstylesheet %}
+{% schema %}
+{"name":"HiParcelo guides","settings":[],"presets":[{"name":"HiParcelo guides"}]}
+{% endschema %}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "THE INFORMATION YOU SHARE",
+        "intro": "What we need to explain about your information, and where to ask a privacy question.",
+        "show_draft": true,
+        "show_support": true,
+        "localization_key": "privacy"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

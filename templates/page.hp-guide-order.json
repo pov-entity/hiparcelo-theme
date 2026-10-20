@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "hp-page",
+      "settings": {
+        "kicker": "GOOD TO KNOW / THE WHOLE PICTURE",
+        "intro": "Five answers that help you know what you are saying yes to.",
+        "show_draft": false,
+        "show_support": true,
+        "localization_key": "guide_before_ordering"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

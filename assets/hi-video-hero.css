@@ -363,3 +363,29 @@ body:has(.hi-vhero) .hi-mobile__menu nav a{
 @media(prefers-reduced-motion:reduce){
   .hi-vhero__motion-picture{display:none}
 }
+
+
+/* FIX: Explicitly stack navy overlay ABOVE the video in the hero. */
+.hi-vhero{
+  isolation:isolate;
+}
+.hi-vhero__media{
+  z-index:0;
+}
+.hi-vhero__shade{
+  z-index:1;
+  display:block;
+  visibility:visible;
+  opacity:1;
+  pointer-events:none;
+}
+.hi-vhero__inner{
+  z-index:2;
+}
+.hi-vhero__footer{
+  z-index:3;
+}
+/* The media is one stacking context, so the motion picture cannot escape above the tint. */
+.hi-vhero__motion-picture{
+  z-index:1;
+}
